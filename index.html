@@ -1,18 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="css/style.css" />
-    <title>Hello World</title>
+    <title>Home — Minimal Blog</title>
 </head>
 <body>
-    <script src="js/script.js"></script>
-    <div class="header">
-        <h1>Hello, World!</h1>
-    </div>
-    <div class="footer">
-        <p>© 2026 My Website</p>
-    </div>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="logo" href="index.html">GP&amp;C</a>
+            <nav class="main-nav" aria-label="Main Navigation">
+                <a href="about.html">About Me</a>
+                <a href="blog.html">Blog</a>
+                <a href="reviews.html">Book Reviews</a>
+                <a class="active" href="dummy.html">Dummy Page</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1 class="hero-title">A Clean, Minimal Blog</h1>
+            <p class="hero-sub">Thoughtful writing, careful design, and a consistent visual system.</p>
+        </section>
+
+        <section class="preview-grid">
+            <article class="card">
+                <h2 class="card-title">Designing for Calm</h2>
+                <time class="meta">2026-02-16</time>
+                <p class="excerpt">A short essay about creating interfaces that feel stable and intentional.</p>
+                <a class="btn" href="blog.html">Read</a>
+            </article>
+
+            <article class="card">
+                <h2 class="card-title">Systematic Color</h2>
+                <time class="meta">2026-01-10</time>
+                <p class="excerpt">How to choose a small palette and use it for everything in your UI system.</p>
+                <a class="btn" href="blog.html">Read</a>
+            </article>
+
+            <article class="card">
+                <h2 class="card-title">Book Notes: Quiet Strength</h2>
+                <time class="meta">2025-12-05</time>
+                <p class="excerpt">A concise review and practical takeaways from a recent read.</p>
+                <a class="btn" href="reviews.html">Read</a>
+            </article>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2026 Website of GitPushAndChill</p>
+        </div>
+    </footer>
 </body>
 </html>

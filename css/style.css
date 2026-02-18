@@ -1,31 +1,136 @@
+:root {
+    /* Palette extracted from provided image */
+    --color-primary-1: #243233; /* dark charcoal/teal */
+    --color-primary-2: #33564f; /* deep green */
+    --color-primary-3: #a8b76e; /* sage */
+    --color-primary-4: #e9e3b8; /* pale cream */
+    --color-primary-5: #b78e6f; /* warm tan (accent) */
+
+    /* Semantic roles (mapped strictly to palette) */
+    --bg-primary: var(--color-primary-4);
+    --bg-secondary: var(--color-primary-3);
+    --accent: var(--color-primary-5);
+    --text-primary: var(--color-primary-1);
+    --text-secondary: var(--color-primary-2);
+
+    /* Layout system */
+    --container-width: 1100px;
+    --space-xxs: 6px;
+    --space-xs: 12px;
+    --space-s: 16px;
+    --space-m: 24px;
+    --space-l: 40px;
+    --radius: 8px;
+    --max-width: 1100px;
+    --type-scale-ratio: 1.25;
+}
+
+/* Global reset and base */
+* { box-sizing: border-box; }
+html,body { height: 100%; }
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+}
+
 .container {
-    width: 80%;
-    margin: auto;
-    padding: 20px;
+    width: calc(100% - 32px);
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-l) 16px;
 }
 
-.header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px;
-    text-align: center;
+/* Header / Nav */
+.site-header {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--text-secondary);
+}
+.nav-wrap {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+.logo {
+    display:inline-block;
+    text-decoration:none;
+    color:var(--text-primary);
+    font-weight:700;
+    letter-spacing:0.06em;
+    padding: calc(var(--space-s) - 4px) 0;
+}
+.main-nav {
+    display:flex;
+    gap: var(--space-m);
+}
+.main-nav a {
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: calc(var(--space-xs)) calc(var(--space-s));
+    border-radius: var(--radius);
+    font-weight:600;
+    font-size: 0.95rem;
+}
+.main-nav a.active {
+    background: var(--accent);
+    color: var(--bg-primary);
+}
+.main-nav a:focus,
+.main-nav a:hover {
+    outline: none;
+    background: rgba(0,0,0,0.04);
 }
 
-.footer {
-    background-color: #f1f1f1;
-    color: #333;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+/* Hero */
+.hero { padding: var(--space-l) 0; text-align:center; }
+.hero-title { margin: 0 0 var(--space-xs) 0; font-size: 2.1rem; }
+.hero-sub { margin: 0; color: var(--text-secondary); }
+
+/* Cards and previews */
+.preview-grid { display:grid; grid-template-columns: repeat(3,1fr); gap: var(--space-m); padding: var(--space-m) 0; }
+.card {
+    background: var(--bg-primary);
+    border: 1px solid var(--text-secondary);
+    padding: var(--space-m);
+    border-radius: var(--radius);
+}
+.card-title { margin: 0 0 var(--space-xs) 0; font-size: 1.1rem; }
+.meta { display:block; color: var(--text-secondary); font-size:0.9rem; margin-bottom: var(--space-xs); }
+.excerpt { margin: 0 0 var(--space-s) 0; color: var(--text-primary); }
+.btn { display:inline-block; text-decoration:none; background:var(--accent); color:var(--bg-primary); padding:8px 14px; border-radius:6px; font-weight:600; }
+
+/* About page avatar */
+.avatar {
+    width:120px; height:120px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;
+    background: var(--text-secondary); color: var(--bg-primary); font-weight:700; font-size:1.6rem;
 }
 
-h1 {
-    font-family: Arial, sans-serif;
+/* Reviews cards */
+.reviews-grid { display:grid; grid-template-columns: repeat(3,1fr); gap: var(--space-m); }
+.review-card { background: var(--bg-primary); border:1px solid var(--text-secondary); padding:var(--space-m); border-radius:var(--radius); }
+.rating { color: var(--accent); font-weight:700; }
+
+/* Footer */
+.site-footer { padding: var(--space-s) 0; text-align:center; color:var(--text-secondary); border-top:1px solid var(--text-secondary); background:transparent; }
+
+/* Tiny responsive rules */
+@media (max-width: 900px) {
+    .preview-grid { grid-template-columns: repeat(2,1fr); }
+    .reviews-grid { grid-template-columns: repeat(2,1fr); }
 }
 
-p {
-    font-size: 16px;
-    line-height: 1.5;
+@media (max-width: 600px) {
+    .nav-wrap { gap: var(--space-s); }
+    .main-nav { display:flex; gap:8px; }
+    .preview-grid { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .hero-title { font-size:1.6rem; }
+    .logo { font-size:1rem; }
+    .container { padding: var(--space-m) 12px; }
 }
+
+/* Ensure only palette colors are used anywhere via variables above */
