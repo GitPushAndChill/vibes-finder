@@ -91,17 +91,43 @@ body {
 .hero-sub { margin: 0; color: var(--text-secondary); }
 
 /* Cards and previews */
-.preview-grid { display:grid; grid-template-columns: repeat(3,1fr); gap: var(--space-m); padding: var(--space-m) 0; }
-.card {
+.preview-grid,
+.reviews-grid {
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: var(--space-m);
+    padding: var(--space-m) 0;
+    align-items: stretch; /* make grid items equal height */
+}
+
+/* shared card styling for blog posts and reviews */
+.card,
+.review-card {
     background: var(--bg-primary);
     border: 1px solid var(--text-secondary);
     padding: var(--space-m);
     border-radius: var(--radius);
+    position: relative; /* for absolute placement of button */
+    padding-bottom: calc(var(--space-m) * 2); /* extra room for button */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 220px; /* ensure consistent box size across pages */
 }
+
 .card-title { margin: 0 0 var(--space-xs) 0; font-size: 1.1rem; }
 .meta { display:block; color: var(--text-secondary); font-size:0.9rem; margin-bottom: var(--space-xs); }
 .excerpt { margin: 0 0 var(--space-s) 0; color: var(--text-primary); }
 .btn { display:inline-block; text-decoration:none; background:var(--accent); color:var(--bg-primary); padding:8px 14px; border-radius:6px; font-weight:600; }
+
+/* ensure read button sits bottom-left of its card/review */
+.read-btn {
+    position: absolute;
+    bottom: var(--space-m);
+    left: var(--space-m);
+    border: none;          /* no box around button */
+    outline: none;         /* remove focus ring if undesired */
+}
 
 /* About page avatar */
 .avatar {
@@ -111,11 +137,57 @@ body {
 
 /* Reviews cards */
 .reviews-grid { display:grid; grid-template-columns: repeat(3,1fr); gap: var(--space-m); }
-.review-card { background: var(--bg-primary); border:1px solid var(--text-secondary); padding:var(--space-m); border-radius:var(--radius); }
+.review-card {
+    background: var(--bg-primary);
+    border:1px solid var(--text-secondary);
+    padding:var(--space-m);
+    border-radius:var(--radius);
+    position: relative; /* consistent with .card */
+    padding-bottom: calc(var(--space-m) * 2);
+}
 .rating { color: var(--accent); font-weight:700; }
+
+/* hide expanded article text by default */
+.full-text {
+    display: none;
+}
 
 /* Footer */
 .site-footer { padding: var(--space-s) 0; text-align:center; color:var(--text-secondary); border-top:1px solid var(--text-secondary); background:transparent; }
+
+/* Article expansion/modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: var(--space-l);
+    border-radius: var(--radius);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* make sure full-text shows when a card is expanded inline (fallback) */
+.card.expanded .full-text {
+    display: block;
+}
+
+.full-text p {
+    margin-bottom: var(--space-m);
+}
 
 /* Tiny responsive rules */
 @media (max-width: 900px) {

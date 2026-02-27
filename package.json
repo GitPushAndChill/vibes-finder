@@ -1,0 +1,25 @@
+{
+  "name": "test-website",
+  "version": "1.0.0",
+  "description": "The Test Website is designed to showcase various web development technologies and techniques. It serves as a demo platform for functionalities and styles, providing users with a hands-on experience.",
+  "main": "index.js",
+  "scripts": {
+    "start": "lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GitPushAndChill/test-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/GitPushAndChill/test-website/issues"
+  },
+  "homepage": "https://github.com/GitPushAndChill/test-website#readme",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
