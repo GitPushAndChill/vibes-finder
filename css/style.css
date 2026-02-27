@@ -23,6 +23,10 @@
     --radius: 8px;
     --max-width: 1100px;
     --type-scale-ratio: 1.25;
+
+    /* logo/header sizing */
+    --logo-height: 120px;
+    --header-vertical-padding: calc(var(--logo-height) * 0.1); /* slight breathing room */
 }
 
 /* Global reset and base */
@@ -41,7 +45,7 @@ body {
     width: calc(100% - 32px);
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: var(--space-l) 16px;
+    padding: var(--space-l) 5px;
 }
 
 /* Header / Nav */
@@ -49,6 +53,15 @@ body {
     background: var(--bg-secondary);
     color: var(--text-primary);
     border-bottom: 1px solid var(--text-secondary);
+    padding: var(--header-vertical-padding) 0; /* slight padding around logo */
+    height: calc(var(--logo-height) + (var(--header-vertical-padding) * 2));
+}
+
+.nav-wrap {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height: 100%; /* ensure children fill the header height */
 }
 .nav-wrap {
     display:flex;
@@ -62,6 +75,12 @@ body {
     font-weight:700;
     letter-spacing:0.06em;
     padding: calc(var(--space-s) - 4px) 0;
+}
+
+.logo-img {
+    height: var(--logo-height);
+    width: auto;
+    display: block;
 }
 .main-nav {
     display:flex;
