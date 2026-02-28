@@ -9,6 +9,7 @@ The Test Website is designed to showcase various web development technologies an
 - **Responsive Design**: Works seamlessly on devices of all sizes.
 - **Interactive Elements**: Engaging UI components for better user interaction.
 - **Cross-Browser Compatibility**: Ensures consistent performance across different web browsers.
+- **Emojis**: taken from https://emojirepo.org/ 
 
 ### Installation Instructions
 1. Clone the repository: 

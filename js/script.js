@@ -33,9 +33,60 @@ let modalOpenCount = 0;
 
 // Wait for DOM ready
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initArticleModal);
+    document.addEventListener('DOMContentLoaded', () => {
+        populatePreviewGrid().then(initArticleModal);
+    });
 } else {
-    initArticleModal();
+    populatePreviewGrid().then(initArticleModal);
+}
+
+/* Fetch and render up to three posts into the home preview grid */
+function populatePreviewGrid() {
+    return fetch('posts/places/posts-places.json')
+        .then(r => r.json())
+        .then(data => {
+            const container = document.querySelector('#preview-grid');
+            if (!container) return;
+            // clear any existing content
+            container.innerHTML = '';
+            data.slice(0, 3).forEach(post => {
+                const article = document.createElement('article');
+                article.className = 'card';
+
+                const h2 = document.createElement('h2');
+                h2.className = 'card-title';
+                h2.textContent = post.title;
+                article.appendChild(h2);
+
+                const meta = document.createElement('time');
+                meta.className = 'meta';
+                meta.textContent = post.city;
+                article.appendChild(meta);
+
+                const p = document.createElement('p');
+                p.className = 'excerpt';
+                p.textContent = post.description;
+                article.appendChild(p);
+
+                const full = document.createElement('div');
+                full.className = 'full-text';
+                full.hidden = true;
+                const fullp = document.createElement('p');
+                fullp.textContent = post.description;
+                full.appendChild(fullp);
+                article.appendChild(full);
+
+                const btn = document.createElement('button');
+                btn.className = 'btn read-btn';
+                btn.textContent = 'Read';
+                article.appendChild(btn);
+
+                container.appendChild(article);
+            });
+        })
+        .catch(err => {
+            console.error('Failed to load preview posts:', err);
+        });
 }
 
 function initArticleModal() {

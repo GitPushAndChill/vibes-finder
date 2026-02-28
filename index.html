@@ -1,64 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="css/style.css" />
-    <script src="js/script.js"></script>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
     <title>Home — Minimal Blog</title>
+
+    <style>
+      /* Map styling */
+      #map { height: 400px; margin: 40px 0; border-radius: 10px; }
+      #vibeFilter { margin-bottom: 20px; padding: 5px 10px; font-size: 16px; }
+    </style>
 </head>
 <body>
     <header class="site-header">
         <div class="container nav-wrap">
             <a class="logo" href="index.html"><img src="images/logo.png" alt="GP&C logo" class="logo-img" /></a>
             <nav class="main-nav" aria-label="Main Navigation">
+                <a class="active" href="index.html">Home</a>
                 <a href="about.html">About Me</a>
                 <a href="blog.html">Blog</a>
                 <a href="reviews.html">Book Reviews</a>
-                <a class="active" href="dummy.html">Dummy Page</a>
             </nav>
         </div>
     </header>
 
     <main class="container">
         <section class="hero">
-            <h1 class="hero-title">A Clean, Minimal Blog</h1>
-            <p class="hero-sub">Thoughtful writing, careful design, and a consistent visual system.</p>
+            <h1 class="hero-title">Where the Vibes Live</h1>
+            <p class="hero-sub">Cool bars. Soft cafés. Artsy spaces. Loud nights. Quiet corners.</p>
+            <p class="hero-sub">This is your guide to the places that feel different — in the best way.</p>
         </section>
 
-        <section class="preview-grid">
-            <article class="card">
-                <h2 class="card-title">Designing for Calm</h2>
-                <time class="meta">2026-02-16</time>
-                <p class="excerpt">A short essay about creating interfaces that feel stable and intentional.</p>
-                <div class="full-text" hidden>
-                    <p>This piece explores ways to calm digital experiences, from typography to animation. It encourages designers to build systems that don’t demand attention but instead invite it.</p>
-                    <p>...</p>
-                </div>
-                <button class="btn read-btn">Read</button>
-            </article>
+        <!-- Preview grid blijft zoals voorheen -->
+<section class="preview-grid" id="preview-grid">
+            <!-- articles will be injected here by script -->
+        </section>
 
-            <article class="card">
-                <h2 class="card-title">Systematic Color</h2>
-                <time class="meta">2026-01-10</time>
-                <p class="excerpt">How to choose a small palette and use it for everything in your UI system.</p>
-                <div class="full-text" hidden>
-                    <p>This article outlines a method for building a color palette that is both limited and versatile, ensuring consistency without monotony.</p>
-                    <p>...</p>
-                </div>
-                <button class="btn read-btn">Read</button>
-            </article>
-
-            <article class="card">
-                <h2 class="card-title">Book Notes: Quiet Strength</h2>
-                <time class="meta">2025-12-05</time>
-                <p class="excerpt">A concise review and practical takeaways from a recent read.</p>
-                <div class="full-text" hidden>
-                    <p>Summaries and reflections on Quiet Strength highlight the importance of perseverance and quiet leadership, with actionable lessons for creatives.</p>
-                    <p>...</p>
-                </div>
-                <button class="btn read-btn">Read</button>
-            </article>
+        <!-- Vibe map section -->
+        <section>
+            <h2>Explore Posts by City & Vibe</h2>
+            <div id="map"></div>
+            <select id="vibeFilter">
+                <option value="all">All Vibes</option>
+                <option value="chill">Chill 😎</option>
+                <option value="party">Party 🎉</option>
+                <option value="artsy">Artsy 🎨</option>
+            </select>
         </section>
     </main>
 
@@ -67,5 +59,33 @@
             <p>© 2026 Website of GitPushAndChill</p>
         </div>
     </footer>
+
+    <!-- JS Libraries -->
+    <script src="js/script.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script>
+    const vibeIcons = {
+        chill: L.icon({ iconUrl: 'images/icons/chill.png', iconSize: [40,40] }),
+        party: L.icon({ iconUrl: 'images/icons/party.png', iconSize: [40,40] }),
+        artsy: L.icon({ iconUrl: 'images/icons/artsy.png', iconSize: [40,40] })
+    };
+
+    fetch('posts/places/posts-places.json')
+      .then(res => res.json())
+      .then(posts => {
+        // Map setup
+        const map = L.map('map').setView([20,0],2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        posts.forEach(post => {
+          L.marker(post.coordinates, { icon: vibeIcons[post.vibe] })
+            .addTo(map)
+            .bindPopup(`<strong>${post.city}</strong><br>${post.title}<br><img src="${post.images[0]}" width="150">`);
+        });
+      });
+    </script>
 </body>
 </html>
