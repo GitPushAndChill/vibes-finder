@@ -25,7 +25,8 @@
     --type-scale-ratio: 1.25;
 
     /* logo/header sizing */
-    --logo-height: 120px;
+    /* visible logo size; header will size slightly larger automatically */
+    --logo-height: 90px;
     --header-vertical-padding: calc(var(--logo-height) * 0.1); /* slight breathing room */
 }
 
@@ -53,20 +54,23 @@ body {
     background: var(--bg-secondary);
     color: var(--text-primary);
     border-bottom: 1px solid var(--text-secondary);
+    /* let header size to its contents and padding rather than a fixed height */
     padding: var(--header-vertical-padding) 0; /* slight padding around logo */
-    height: calc(var(--logo-height) + (var(--header-vertical-padding) * 2));
+}
+
+/* remove top/bottom padding from container inside header so green shows through */
+.site-header .container {
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .nav-wrap {
     display:flex;
     align-items:center;
     justify-content:space-between;
+    flex-wrap: wrap; /* allow wrapping on narrow screens */
     height: 100%; /* ensure children fill the header height */
-}
-.nav-wrap {
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+    gap: var(--space-s);
 }
 .logo {
     display:inline-block;
@@ -81,10 +85,12 @@ body {
     height: var(--logo-height);
     width: auto;
     display: block;
+    /* remove cap so logo can grow; header remains slightly taller via padding */
 }
 .main-nav {
     display:flex;
     gap: var(--space-m);
+    flex-wrap: wrap; /* allow items to drop to new line if necessary */
 }
 .main-nav a {
     color: var(--text-primary);
@@ -222,6 +228,8 @@ body {
     .hero-title { font-size:1.6rem; }
     .logo { font-size:1rem; }
     .container { padding: var(--space-m) 12px; }
+    /* ensure header elements stack nicely */
+    .nav-wrap { justify-content: center; }
 }
 
 /* Ensure only palette colors are used anywhere via variables above */
