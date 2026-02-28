@@ -32,5 +32,16 @@
     ],
     "description": "Ontdek de meest creatieve galerijen buiten de drukte.",
     "coordinates": [48.8566, 2.3522]
+  },
+  {
+    "city": "Utrecht",
+    "vibe": "artsy",
+    "title": "Hidden Art Galleries",
+    "images": [
+      "images/places/paris_art1.jpg",
+      "images/places/paris_art2.jpg"
+    ],
+    "description": "Ontdek de meest creatieve galerijen buiten de drukte.",
+    "coordinates": [52.091682, 5.120363]
   }
 ]
