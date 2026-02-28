@@ -1,11 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="css/style.css" />
-    <script src="js/script.js"></script>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
+
     <title>Home — Minimal Blog</title>
+
+    <style>
+      /* Extra styling voor nieuwe functionaliteiten */
+      #map { height: 400px; margin: 40px 0; border-radius: 10px; }
+      #vibeFilter { margin-bottom: 20px; padding: 5px 10px; font-size: 16px; }
+      .post { margin-bottom: 40px; padding: 15px; border: 1px solid #ddd; border-radius: 10px; transition: transform 0.3s, box-shadow 0.3s; }
+      .post:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+      .swiper { width: 100%; height: 200px; margin-bottom: 10px; border-radius: 8px; overflow: hidden; }
+      .swiper-slide img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
+    </style>
 </head>
 <body>
     <header class="site-header">
@@ -26,6 +43,7 @@
             <p class="hero-sub">Thoughtful writing, careful design, and a consistent visual system.</p>
         </section>
 
+        <!-- Preview grid blijft zoals voorheen -->
         <section class="preview-grid">
             <article class="card">
                 <h2 class="card-title">Designing for Calm</h2>
@@ -37,7 +55,7 @@
                 </div>
                 <button class="btn read-btn">Read</button>
             </article>
-
+            
             <article class="card">
                 <h2 class="card-title">Systematic Color</h2>
                 <time class="meta">2026-01-10</time>
@@ -60,6 +78,19 @@
                 <button class="btn read-btn">Read</button>
             </article>
         </section>
+
+        <!-- Nieuwe sectie: Vibe map & filtered posts -->
+        <section>
+            <h2>Explore Posts by City & Vibe</h2>
+            <div id="map"></div>
+            <select id="vibeFilter">
+                <option value="all">All Vibes</option>
+                <option value="chill">Chill 😎</option>
+                <option value="party">Party 🎉</option>
+                <option value="artsy">Artsy 🎨</option>
+            </select>
+            <div id="postsContainer"></div>
+        </section>
     </main>
 
     <footer class="site-footer">
@@ -67,5 +98,82 @@
             <p>© 2026 Website of GitPushAndChill</p>
         </div>
     </footer>
+
+    <!-- JS Libraries -->
+    <script src="js/script.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+    AOS.init({ duration: 800, once: true });
+
+    const vibeIcons = {
+        chill: L.icon({ iconUrl: 'images/icons/chill.png', iconSize: [40,40] }),
+        party: L.icon({ iconUrl: 'images/icons/party.png', iconSize: [40,40] }),
+        artsy: L.icon({ iconUrl: 'images/icons/artsy.png', iconSize: [40,40] })
+    };
+
+    fetch('posts/places/posts-places.json')
+      .then(res => res.json())
+      .then(posts => {
+        // Map setup
+        const map = L.map('map').setView([20,0],2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        posts.forEach(post => {
+          L.marker(post.coordinates, { icon: vibeIcons[post.vibe] })
+            .addTo(map)
+            .bindPopup(`<strong>${post.city}</strong><br>${post.title}<br><img src="${post.images[0]}" width="150">`);
+        });
+
+        function displayPosts(filteredPosts) {
+          const container = document.getElementById('postsContainer');
+          container.innerHTML = '';
+          filteredPosts.forEach((post, index) => {
+            const postEl = document.createElement('div');
+            postEl.classList.add('post');
+            postEl.setAttribute('data-aos','fade-up');
+
+            const slidesHTML = post.images.map(img => `<div class="swiper-slide"><img src="${img}"></div>`).join('');
+
+            postEl.innerHTML = `
+              <h3>${post.title} - ${post.city}</h3>
+              <div class="swiper swiper-${index}">
+                <div class="swiper-wrapper">${slidesHTML}</div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+              </div>
+              <p>${post.description}</p>
+            `;
+            container.appendChild(postEl);
+
+            new Swiper(`.swiper-${index}`, {
+              loop: true,
+              effect: 'fade',
+              fadeEffect: { crossFade: true },
+              navigation: {
+                nextEl: `.swiper-${index} .swiper-button-next`,
+                prevEl: `.swiper-${index} .swiper-button-prev`,
+              },
+              pagination: { el: `.swiper-${index} .swiper-pagination`, clickable: true },
+              autoplay: { delay: 4000, disableOnInteraction: false },
+            });
+          });
+        }
+
+        displayPosts(posts);
+
+        document.getElementById('vibeFilter').addEventListener('change', e => {
+          const val = e.target.value;
+          const filtered = val === 'all' ? posts : posts.filter(p => p.vibe === val);
+          displayPosts(filtered);
+          AOS.refresh();
+        });
+      });
+    </script>
 </body>
 </html>
