@@ -24,7 +24,7 @@
                 <a class="active" href="index.html">Home</a>
                 <a href="about.html">About Me</a>
                 <a href="blog.html">Vibes</a>
-                <a href="reviews.html">Book Reviews</a>
+                <a href="reviews.html">Books</a>
             </nav>
         </div>
     </header>
@@ -66,10 +66,17 @@
 
     <script>
     const vibeIcons = {
-        chill: L.icon({ iconUrl: 'images/icons/chill.png', iconSize: [40,40] }),
-        party: L.icon({ iconUrl: 'images/icons/party.png', iconSize: [40,40] }),
-        artsy: L.icon({ iconUrl: 'images/icons/artsy.png', iconSize: [40,40] })
+        chill: '😎',
+        cozy: '☕',
+        energetic: '⚡',
+        romantic: '💘',
+        family: '👪',
+        adventurous: '🧭',
+        hipster: '🎩',
+        party: '🎉',
+        artsy: '🎨'
     };
+
 
     fetch('posts/places/posts-places.json')
       .then(res => res.json())
@@ -81,9 +88,20 @@
         }).addTo(map);
 
         posts.forEach(post => {
-          L.marker(post.coordinates, { icon: vibeIcons[post.vibe] })
+            const emojiIcon = L.divIcon({
+                html: `<div style="font-size:32px;">${vibeIcons[post.vibe]}</div>`,
+                className: 'emoji-marker',
+                iconSize: [32, 32],
+                iconAnchor: [16, 16]
+            });
+
+            L.marker(post.coordinates, { icon: emojiIcon })
             .addTo(map)
-            .bindPopup(`<strong>${post.city}</strong><br>${post.title}<br><img src="${post.images[0]}" width="150">`);
+            .bindPopup(`
+                <strong>${post.city}</strong><br>
+                ${post.title}<br>
+                <img src="${post.images[0]}" width="150">
+            `);
         });
       });
     </script>

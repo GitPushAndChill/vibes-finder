@@ -244,6 +244,7 @@ function getVibeIcon(vibe) {
         'adventurous': '🧭',
         'hipster': '🎩',
         'party': '🎉',
+        'artsy': '🎨',
     };
     return map[v] || '•';
 }
