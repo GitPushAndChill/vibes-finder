@@ -124,5 +124,202 @@
     "coordinates": [52.3813, 4.6362],
     "adress": "Grote Markt, 2011 RD Haarlem",
     "created_on": "2026-03-01T14:40:00Z"
+  }  ,
+  {
+    "place": "Jopenkerk",
+    "city": "Haarlem",
+    "vibe": "party",
+    "title": "Jopenkerk Haarlem – Craft Beer & Nightlife in a Historic Church",
+    "images": [
+      "images/places/jopenkerk-haarlem.jpg"
+    ],
+    "short_description": "Speciaalbier en nightlife in een voormalige kerk.",
+    "description": "Jopenkerk Haarlem is one of the most unique nightlife spots in Haarlem, where craft beer, industrial vibes and historic architecture come together for an unforgettable evening in the city center.",
+    "coordinates": [52.3809, 4.6370],
+    "adress": "Gedempte Voldersgracht 2, 2011 WD Haarlem",
+    "created_on": "2026-03-01T14:45:00Z"
+  },
+  {
+    "place": "Teylers Museum",
+    "city": "Haarlem",
+    "vibe": "artsy",
+    "title": "Teylers Museum Haarlem – Art, Science & History Experience",
+    "images": [
+      "images/places/teylers-museum.jpg"
+    ],
+    "short_description": "Het oudste museum van Nederland.",
+    "description": "Teylers Museum is the oldest museum in the Netherlands and a cultural highlight in Haarlem, blending art, fossils and scientific discoveries in a stunning 18th-century building.",
+    "coordinates": [52.3791, 4.6357],
+    "adress": "Spaarne 16, 2011 CH Haarlem",
+    "created_on": "2026-03-01T14:50:00Z"
+  },
+  {
+    "place": "Kenaupark",
+    "city": "Haarlem",
+    "vibe": "chill",
+    "title": "Kenaupark Haarlem – Quiet Green Escape Near the Station",
+    "images": [
+      "images/places/kenaupark-haarlem.jpg"
+    ],
+    "short_description": "Rustig stadspark vlakbij station Haarlem.",
+    "description": "Kenaupark is a peaceful green park near Haarlem station, perfect for a slow walk or relaxed picnic while exploring the quieter side of Haarlem city center.",
+    "coordinates": [52.3871, 4.6374],
+    "adress": "Kenaupark, 2011 Haarlem",
+    "created_on": "2026-03-01T14:55:00Z"
+  },
+  {
+    "place": "DeDAKKAS",
+    "city": "Haarlem",
+    "vibe": "romantic",
+    "title": "DeDAKKAS Haarlem – Rooftop Dining with Sunset Views",
+    "images": [
+      "images/places/dedakkas-haarlem.jpg"
+    ],
+    "short_description": "Rooftop restaurant met uitzicht over Haarlem.",
+    "description": "DeDAKKAS is a rooftop restaurant in Haarlem known for sustainable dining and panoramic sunset views, making it one of the most romantic places to eat in Haarlem.",
+    "coordinates": [52.3795, 4.6309],
+    "adress": "De Witstraat 1A, 2011 DV Haarlem",
+    "created_on": "2026-03-01T15:00:00Z"
+  },
+  {
+    "place": "Haarlemmerhout",
+    "city": "Haarlem",
+    "vibe": "cozy",
+    "title": "Haarlemmerhout – Oldest Park in the Netherlands",
+    "images": [
+      "images/places/haarlemmerhout.jpg"
+    ],
+    "short_description": "Historisch park voor lange wandelingen.",
+    "description": "Haarlemmerhout is the oldest public park in the Netherlands and a beautiful natural escape in Haarlem, ideal for long walks and slow, cozy afternoons.",
+    "coordinates": [52.3737, 4.6315],
+    "adress": "Haarlemmerhout, 2012 Haarlem",
+    "created_on": "2026-03-01T15:05:00Z"
+  },
+  {
+    "place": "Breestraat",
+    "city": "Haarlem",
+    "vibe": "hipster",
+    "title": "Breestraat Haarlem – Boutique Shopping & Café Culture",
+    "images": [
+      "images/places/breestraat-haarlem.jpg"
+    ],
+    "short_description": "Gezellige winkelstraat met lokale boetieks.",
+    "description": "Breestraat Haarlem is one of the coziest shopping streets in the city center, filled with independent boutiques, concept stores and coffee spots that define Haarlem’s hip atmosphere.",
+    "coordinates": [52.3818, 4.6368],
+    "adress": "Breestraat, 2011 Haarlem",
+    "created_on": "2026-03-01T15:10:00Z"
+  },
+
+  {
+    "place": "Domtoren",
+    "city": "Utrecht",
+    "vibe": "adventurous",
+    "title": "Domtoren Utrecht – Climb the Tallest Church Tower",
+    "images": [
+      "images/places/domtoren-utrecht.jpg"
+    ],
+    "short_description": "Het hoogste monument van Utrecht.",
+    "description": "Domtoren Utrecht is the iconic symbol of the city and the tallest church tower in the Netherlands, offering breathtaking views over Utrecht city center after an unforgettable climb.",
+    "coordinates": [52.0907, 5.1214],
+    "adress": "Domplein 21, 3512 JC Utrecht",
+    "created_on": "2026-03-01T15:15:00Z"
+  },
+  {
+    "place": "Oudegracht",
+    "city": "Utrecht",
+    "vibe": "romantic",
+    "title": "Oudegracht Utrecht – Romantic Canal Walks & Wharf Cellars",
+    "images": [
+      "images/places/oudegracht-utrecht.jpg"
+    ],
+    "short_description": "Iconische gracht met werfkelders.",
+    "description": "Oudegracht Utrecht is famous for its unique wharf cellars and waterfront cafés, making it one of the most romantic and photogenic places to visit in Utrecht.",
+    "coordinates": [52.0920, 5.1195],
+    "adress": "Oudegracht, 3511 Utrecht",
+    "created_on": "2026-03-01T15:20:00Z"
+  },
+  {
+    "place": "Spoorwegmuseum",
+    "city": "Utrecht",
+    "vibe": "family",
+    "title": "Spoorwegmuseum Utrecht – Interactive Railway Adventure",
+    "images": [
+      "images/places/spoorwegmuseum-utrecht.jpg"
+    ],
+    "short_description": "Interactief treinmuseum voor gezinnen.",
+    "description": "The Spoorwegmuseum in Utrecht is one of the top family attractions in the Netherlands, combining historic trains with interactive exhibitions for all ages.",
+    "coordinates": [52.0889, 5.1297],
+    "adress": "Maliebaanstation 16, 3581 XW Utrecht",
+    "created_on": "2026-03-01T15:25:00Z"
+  },
+  {
+    "place": "Wilhelminapark",
+    "city": "Utrecht",
+    "vibe": "cozy",
+    "title": "Wilhelminapark Utrecht – Elegant Green Escape",
+    "images": [
+      "images/places/wilhelminapark-utrecht.jpg"
+    ],
+    "short_description": "Stijlvol park in Utrecht Oost.",
+    "description": "Wilhelminapark is a stylish green park in Utrecht Oost where locals gather for picnics and slow afternoons, offering a peaceful escape from busy Utrecht city center.",
+    "coordinates": [52.0865, 5.1405],
+    "adress": "Wilhelminapark, 3581 Utrecht",
+    "created_on": "2026-03-01T15:30:00Z"
+  },
+  {
+    "place": "LE:EN",
+    "city": "Utrecht",
+    "vibe": "energetic",
+    "title": "LE:EN Utrecht – Asian Street Food by the Water",
+    "images": [
+      "images/places/leen-utrecht.jpg"
+    ],
+    "short_description": "Aziatische streetfood hotspot aan het water.",
+    "description": "LE:EN Utrecht is a trendy Asian street food restaurant by the water, known for its industrial vibe and energetic dining experience in Utrecht.",
+    "coordinates": [52.1003, 5.0937],
+    "adress": "Heuveloord 140, 3523 CK Utrecht",
+    "created_on": "2026-03-01T15:35:00Z"
+  },
+  {
+    "place": "Griftpark",
+    "city": "Utrecht",
+    "vibe": "chill",
+    "title": "Griftpark Utrecht – Urban Park for Locals",
+    "images": [
+      "images/places/griftpark-utrecht.jpg"
+    ],
+    "short_description": "Levendig stadspark in Utrecht.",
+    "description": "Griftpark Utrecht is a lively urban park popular with students and families, offering open lawns, playgrounds and relaxed weekend vibes in the city.",
+    "coordinates": [52.0995, 5.1216],
+    "adress": "Griftpark, 3572 Utrecht",
+    "created_on": "2026-03-01T15:40:00Z"
+  },
+  {
+    "place": "Winkel van Sinkel",
+    "city": "Utrecht",
+    "vibe": "party",
+    "title": "Winkel van Sinkel Utrecht – Historic Building with Nightlife",
+    "images": [
+      "images/places/winkel-van-sinkel-utrecht.jpg"
+    ],
+    "short_description": "Restaurant en bar in historisch pand.",
+    "description": "Winkel van Sinkel is a historic landmark on Oudegracht Utrecht that now hosts a restaurant and bar, blending classic architecture with vibrant nightlife energy.",
+    "coordinates": [52.0916, 5.1190],
+    "adress": "Oudegracht 158, 3511 AZ Utrecht",
+    "created_on": "2026-03-01T15:45:00Z"
+  },
+  {
+    "place": "Kasteel de Haar",
+    "city": "Utrecht",
+    "vibe": "adventurous",
+    "title": "Kasteel de Haar – Fairytale Castle Near Utrecht",
+    "images": [
+      "images/places/kasteel-de-haar.jpg"
+    ],
+    "short_description": "Grootste kasteel van Nederland.",
+    "description": "Kasteel de Haar near Utrecht is the largest castle in the Netherlands, surrounded by gardens and romantic walking paths that make it a magical day trip destination.",
+    "coordinates": [52.1216, 4.9847],
+    "adress": "Kasteellaan 1, 3455 RR Utrecht",
+    "created_on": "2026-03-01T15:50:00Z"
   }
 ]
