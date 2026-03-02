@@ -288,6 +288,13 @@ function openModalWithCard(card) {
         full.style.display = 'block';
     }
 
+    // If the expanded content already includes short_description, don't show it twice.
+    // (Keep normal card preview unchanged; this only affects the modal clone.)
+    const excerpt = clone.querySelector('.excerpt');
+    if (excerpt && full && full.querySelector('.short-desc')) {
+        excerpt.remove();
+    }
+
     modal.appendChild(closeBtn);
     modal.appendChild(clone);
 
