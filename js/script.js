@@ -217,10 +217,72 @@ function fetchAndRenderGrids() {
             }
             // ensure modal wiring is applied after initial render
             initArticleModal();
+
+            // index.html quick actions
+            initIndexQuickActions();
         })
         .catch(err => {
             console.error('Failed to load posts:', err);
         });
+}
+
+function initIndexQuickActions() {
+    const surpriseBtn = document.querySelector('#surprise-me-btn');
+    if (!surpriseBtn) return;
+
+    if (surpriseBtn.dataset.bound === '1') return;
+    surpriseBtn.dataset.bound = '1';
+
+    surpriseBtn.addEventListener('click', () => {
+        const posts = getSortedPosts();
+        if (!posts.length) return;
+
+        const randomPost = posts[Math.floor(Math.random() * posts.length)];
+        const card = buildPostCardForModal(randomPost);
+        openModalWithCard(card);
+    });
+}
+
+function buildPostCardForModal(post) {
+    const article = document.createElement('article');
+    article.className = 'card';
+    article._post = post;
+
+    const h2 = document.createElement('h2');
+    h2.className = 'card-title';
+    h2.textContent = post.title || '';
+    article.appendChild(h2);
+
+    const meta = document.createElement('time');
+    meta.className = 'meta';
+    meta.textContent = (post.city || '') + (post.place ? ', ' + post.place : '');
+    article.appendChild(meta);
+
+    const p = document.createElement('p');
+    p.className = 'excerpt';
+    p.textContent = post.short_description || post.description || '';
+    article.appendChild(p);
+
+    const full = document.createElement('div');
+    full.className = 'full-text';
+    full.hidden = true;
+    const shortDesc = post.short_description || '';
+    const longDesc = post.description || '';
+    if (shortDesc && longDesc && shortDesc.trim() !== longDesc.trim()) {
+        full.innerHTML = `<p class="short-desc">${shortDesc}</p><p class="long-desc">${longDesc}</p>`;
+    } else if (shortDesc) {
+        full.innerHTML = `<p class="short-desc">${shortDesc}</p>`;
+    } else if (longDesc) {
+        full.innerHTML = `<p class="long-desc">${longDesc}</p>`;
+    }
+    article.appendChild(full);
+
+    const btn = document.createElement('button');
+    btn.className = 'btn read-btn';
+    btn.textContent = 'Read';
+    article.appendChild(btn);
+
+    return article;
 }
 
 if (document.readyState === 'loading') {
