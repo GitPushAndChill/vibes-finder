@@ -133,18 +133,31 @@ body {
     justify-content: space-between;
     align-items: flex-end;
     flex-wrap: nowrap;
-    padding: 0 0 var(--space-s) 0;
+    padding: var(--space-s);
+    margin: 0 0 var(--space-s) 0;
+    border: 1px solid var(--text-secondary);
+    border-radius: calc(var(--radius) + 6px);
+    background: var(--bg-primary);
+}
+@supports (background: color-mix(in srgb, red, blue)) {
+    .post-filters {
+        background: color-mix(in srgb, var(--bg-primary) 92%, var(--bg-secondary));
+    }
 }
 .filter-group {
     flex: 1;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xxs);
 }
 .filter-label {
     display: block;
-    margin: 0 0 var(--space-xxs) 0;
+    margin: 0;
     color: var(--text-secondary);
     font-weight: 600;
     font-size: 0.95rem;
+    letter-spacing: 0.02em;
 }
 .filter-input {
     width: 100%;
@@ -154,10 +167,47 @@ body {
     background: var(--bg-primary);
     color: var(--text-primary);
     font-size: 1rem;
+    display: none; /* use native select for consistent dropdown UI */
+}
+.filter-select {
+    width: 100%;
+    border: 1px solid var(--text-secondary);
+    border-radius: var(--radius);
+    padding: 10px 12px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    display: block;
+    min-height: 44px;
+    cursor: pointer;
+    transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
 }
 .filter-input:focus {
     outline: none;
     border-color: var(--accent);
+}
+.filter-select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+@supports not (background: color-mix(in srgb, red, blue)) {
+    .filter-select:focus {
+        box-shadow: 0 0 0 3px var(--accent);
+    }
+}
+
+.filter-select:hover {
+    transform: translateY(-1px);
+}
+
+@media (max-width: 600px) {
+    .post-filters {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-s);
+    }
 }
 
 /* shared card styling for blog posts and reviews */
@@ -326,6 +376,8 @@ body {
 }
 
 @media (max-width: 600px) {
+    .post-filters { gap: var(--space-s); }
+
     .nav-wrap { gap: var(--space-s); }
     .main-nav { display:flex; gap:8px; }
     .preview-grid { grid-template-columns: 1fr; }

@@ -21,20 +21,22 @@
 
     <main class="container">
       <section style="padding:var(--space-l) 0;">
-        <h1>Vibes</h1>
+        <h1>Find the best Vibes</h1>
         <p style="color:var(--text-secondary); margin-top:var(--space-s);">A collection of posts about the places and moments that feel different — in the best way.</p>
       </section>
 
       <!-- Filters (blog page only) -->
       <section class="post-filters" aria-label="Post filters">
         <div class="filter-group">
-          <label class="filter-label" for="city-filter">City</label>
-          <input class="filter-input" id="city-filter" name="city" list="city-options" placeholder="Type to search…" autocomplete="off" />
+          <label class="filter-label" id="city-filter-label" for="city-filter">Pick a city</label>
+          <input class="filter-input" id="city-filter" name="city" list="city-options" placeholder="Type to search…" autocomplete="off" aria-labelledby="city-filter-label" />
+          <select class="filter-select" id="city-select" name="city" aria-labelledby="city-filter-label"></select>
           <datalist id="city-options"></datalist>
         </div>
         <div class="filter-group">
-          <label class="filter-label" for="vibe-filter">Vibe</label>
-          <input class="filter-input" id="vibe-filter" name="vibe" list="vibe-options" placeholder="Type to search…" autocomplete="off" />
+          <label class="filter-label" id="vibe-filter-label" for="vibe-filter">Pick a vibe</label>
+          <input class="filter-input" id="vibe-filter" name="vibe" list="vibe-options" placeholder="Type to search…" autocomplete="off" aria-labelledby="vibe-filter-label" />
+          <select class="filter-select" id="vibe-select" name="vibe" aria-labelledby="vibe-filter-label"></select>
           <datalist id="vibe-options"></datalist>
         </div>
       </section>

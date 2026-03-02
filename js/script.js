@@ -114,6 +114,8 @@ function initBlogFilters() {
 
     const cityInput = document.querySelector('#city-filter');
     const vibeInput = document.querySelector('#vibe-filter');
+    const citySelect = document.querySelector('#city-select');
+    const vibeSelect = document.querySelector('#vibe-select');
     const cityOptions = document.querySelector('#city-options');
     const vibeOptions = document.querySelector('#vibe-options');
 
@@ -130,17 +132,64 @@ function initBlogFilters() {
     cityOptions.innerHTML = cities.map(c => `<option value="${escapeHtmlAttr(c)}"></option>`).join('');
     vibeOptions.innerHTML = vibes.map(v => `<option value="${escapeHtmlAttr(v)}"></option>`).join('');
 
+    if (citySelect) {
+        citySelect.innerHTML = `<option value="">Any city</option>` + cities.map(c => `<option value="${escapeHtmlAttr(c)}">${c}</option>`).join('');
+    }
+    if (vibeSelect) {
+        vibeSelect.innerHTML = `<option value="">Any vibe</option>` + vibes.map(v => `<option value="${escapeHtmlAttr(v)}">${v}</option>`).join('');
+    }
+
+    const getActiveValue = (inputEl, selectEl) => {
+        if (selectEl) return selectEl.value;
+        return inputEl.value;
+    };
+
+    const syncSelectToInput = (inputEl, selectEl) => {
+        if (!selectEl) return;
+        const needle = String(inputEl.value || '').trim().toLowerCase();
+        if (!needle) {
+            selectEl.value = '';
+            return;
+        }
+        const match = Array.from(selectEl.options).find(o => String(o.value || '').trim().toLowerCase() === needle);
+        selectEl.value = match ? match.value : '';
+    };
+
+    const syncInputToSelect = (inputEl, selectEl) => {
+        if (!selectEl) return;
+        inputEl.value = selectEl.value;
+    };
+
     const render = () => {
         populatePostGrid({
             containerSelector: '#all-posts-grid',
-            cityFilter: cityInput.value,
-            vibeFilter: vibeInput.value,
+            cityFilter: getActiveValue(cityInput, citySelect),
+            vibeFilter: getActiveValue(vibeInput, vibeSelect),
         });
         initArticleModal();
     };
 
-    cityInput.addEventListener('input', render);
-    vibeInput.addEventListener('input', render);
+    cityInput.addEventListener('input', () => {
+        syncSelectToInput(cityInput, citySelect);
+        render();
+    });
+    vibeInput.addEventListener('input', () => {
+        syncSelectToInput(vibeInput, vibeSelect);
+        render();
+    });
+
+    if (citySelect) {
+        citySelect.addEventListener('change', () => {
+            syncInputToSelect(cityInput, citySelect);
+            render();
+        });
+    }
+    if (vibeSelect) {
+        vibeSelect.addEventListener('change', () => {
+            syncInputToSelect(vibeInput, vibeSelect);
+            render();
+        });
+    }
 
     render();
 }
