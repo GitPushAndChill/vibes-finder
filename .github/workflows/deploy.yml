@@ -1,22 +1,15 @@
 name: Deploy to GitHub Pages
 
 on:
-  pull_request:
+  push:
     branches:
       - main
-    types:
-      - closed
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
 
 jobs:
   deploy:
-    if: ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       pages: write
       id-token: write
     environment:
@@ -25,11 +18,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          ref: main
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
+        with:
+          enablement: true
 
       - name: Install dependencies
         run: npm ci
