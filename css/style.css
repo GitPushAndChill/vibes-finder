@@ -1,10 +1,11 @@
 :root {
     /* Palette extracted from provided image */
-    --color-primary-1: #243233; /* dark charcoal/teal */
-    --color-primary-2: #33564f; /* deep green */
-    --color-primary-3: #a8b76e; /* sage */
-    --color-primary-4: #f6f1cc; /* pale cream */
-    --color-primary-5: #b78e6f; /* warm tan (accent) */
+    --color-primary-1: #1b2425;  /* bijna zwart teal */
+    --color-primary-2: #3c5e57;  
+    --color-primary-3: #a3b86c;  
+    --color-primary-4: #f4f0d6;  
+    --color-primary-5: #d17b49;  /* levendiger accent */
+    --color-highlight: #e8c547; /* optioneel: mustard highlight */
 
     /* Semantic roles (mapped strictly to palette) */
     --bg-primary: var(--color-primary-4);
@@ -123,6 +124,40 @@ body {
     gap: var(--space-m);
     padding: var(--space-m) 0;
     align-items: stretch; /* make grid items equal height */
+}
+
+/* Blog filters */
+.post-filters {
+    display: flex;
+    gap: var(--space-m);
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: nowrap;
+    padding: 0 0 var(--space-s) 0;
+}
+.filter-group {
+    flex: 1;
+    min-width: 0;
+}
+.filter-label {
+    display: block;
+    margin: 0 0 var(--space-xxs) 0;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+.filter-input {
+    width: 100%;
+    border: 1px solid var(--text-secondary);
+    border-radius: var(--radius);
+    padding: 10px 12px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+.filter-input:focus {
+    outline: none;
+    border-color: var(--accent);
 }
 
 /* shared card styling for blog posts and reviews */

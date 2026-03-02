@@ -31,72 +31,153 @@ let modalOpenCount = 0;
 // Article Expansion Logic
 // ===============================
 
-// Wait for DOM ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        populatePreviewGrid().then(initArticleModal);
-    });
-} else {
-    populatePreviewGrid().then(initArticleModal);
+
+// --- Refactored grid rendering logic ---
+let postsData = null; // cache for posts
+
+function getSortedPosts() {
+    if (!Array.isArray(postsData)) return [];
+    return postsData
+        .slice()
+        .sort((a, b) => {
+            const aTime = Date.parse(a?.created_on || '') || 0;
+            const bTime = Date.parse(b?.created_on || '') || 0;
+            return bTime - aTime;
+        });
 }
 
-/* Fetch and render up to three posts into the home preview grid */
-function populatePreviewGrid() {
-    return fetch('posts/places/posts-places.json')
+function populatePostGrid({ containerSelector, limit, cityFilter = '', vibeFilter = '' }) {
+    const container = document.querySelector(containerSelector);
+    if (!container || !postsData) return;
+    container.innerHTML = '';
+
+    const cityNeedle = String(cityFilter || '').trim().toLowerCase();
+    const vibeNeedle = String(vibeFilter || '').trim().toLowerCase();
+
+    let posts = getSortedPosts();
+    if (cityNeedle) {
+        posts = posts.filter(p => String(p?.city || '').toLowerCase().includes(cityNeedle));
+    }
+    if (vibeNeedle) {
+        posts = posts.filter(p => String(p?.vibe || '').toLowerCase().includes(vibeNeedle));
+    }
+    if (typeof limit === 'number') {
+        posts = posts.slice(0, limit);
+    }
+
+    posts.forEach(post => {
+        const article = document.createElement('article');
+        article.className = 'card';
+        article._post = post;
+
+        const h2 = document.createElement('h2');
+        h2.className = 'card-title';
+        h2.textContent = post.title;
+        article.appendChild(h2);
+
+        const meta = document.createElement('time');
+        meta.className = 'meta';
+        meta.textContent = post.city + (post.place ? ', ' + post.place : '');
+        article.appendChild(meta);
+
+        const p = document.createElement('p');
+        p.className = 'excerpt';
+        p.textContent = post.short_description || post.description || '';
+        article.appendChild(p);
+
+        const full = document.createElement('div');
+        full.className = 'full-text';
+        full.hidden = true;
+        const shortDesc = post.short_description || '';
+        const longDesc = post.description || '';
+        if (shortDesc && longDesc && shortDesc.trim() !== longDesc.trim()) {
+            full.innerHTML = `<p class="short-desc">${shortDesc}</p><p class="long-desc">${longDesc}</p>`;
+        } else if (shortDesc) {
+            full.innerHTML = `<p class="short-desc">${shortDesc}</p>`;
+        } else if (longDesc) {
+            full.innerHTML = `<p class="long-desc">${longDesc}</p>`;
+        }
+        article.appendChild(full);
+
+        const btn = document.createElement('button');
+        btn.className = 'btn read-btn';
+        btn.textContent = 'Read';
+        article.appendChild(btn);
+
+        container.appendChild(article);
+    });
+}
+
+function initBlogFilters() {
+    const grid = document.querySelector('#all-posts-grid');
+    if (!grid) return;
+
+    const cityInput = document.querySelector('#city-filter');
+    const vibeInput = document.querySelector('#vibe-filter');
+    const cityOptions = document.querySelector('#city-options');
+    const vibeOptions = document.querySelector('#vibe-options');
+
+    if (!cityInput || !vibeInput || !cityOptions || !vibeOptions) {
+        // filters not present; just render the grid
+        populatePostGrid({ containerSelector: '#all-posts-grid' });
+        return;
+    }
+
+    const posts = getSortedPosts();
+    const cities = Array.from(new Set(posts.map(p => p?.city).filter(Boolean))).sort();
+    const vibes = Array.from(new Set(posts.map(p => p?.vibe).filter(Boolean))).sort();
+
+    cityOptions.innerHTML = cities.map(c => `<option value="${escapeHtmlAttr(c)}"></option>`).join('');
+    vibeOptions.innerHTML = vibes.map(v => `<option value="${escapeHtmlAttr(v)}"></option>`).join('');
+
+    const render = () => {
+        populatePostGrid({
+            containerSelector: '#all-posts-grid',
+            cityFilter: cityInput.value,
+            vibeFilter: vibeInput.value,
+        });
+        initArticleModal();
+    };
+
+    cityInput.addEventListener('input', render);
+    vibeInput.addEventListener('input', render);
+
+    render();
+}
+
+function escapeHtmlAttr(value) {
+    return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('"', '&quot;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;');
+}
+
+function fetchAndRenderGrids() {
+    fetch('posts/places/posts-places.json')
         .then(r => r.json())
         .then(data => {
-            const container = document.querySelector('#preview-grid');
-            if (!container) return;
-            container.innerHTML = '';
-            data.slice(0, 3).forEach(post => {
-                const article = document.createElement('article');
-                article.className = 'card';
-                // keep the post object handy for later
-                article._post = post;
-
-                const h2 = document.createElement('h2');
-                h2.className = 'card-title';
-                h2.textContent = post.title;
-                article.appendChild(h2);
-
-                const meta = document.createElement('time');
-                meta.className = 'meta';
-                // show city and place separated by a comma
-                meta.textContent = post.city + (post.place ? ', ' + post.place : '');
-                article.appendChild(meta);
-
-                const p = document.createElement('p');
-                p.className = 'excerpt';
-                // show short_description in preview
-                p.textContent = post.short_description || post.description || '';
-                article.appendChild(p);
-
-                const full = document.createElement('div');
-                full.className = 'full-text';
-                full.hidden = true;
-                // prepare full-text for modal: always include short_description, then description if different
-                const shortDesc = post.short_description || '';
-                const longDesc = post.description || '';
-                if (shortDesc && longDesc && shortDesc.trim() !== longDesc.trim()) {
-                    full.innerHTML = `<p class="short-desc">${shortDesc}</p><p class="long-desc">${longDesc}</p>`;
-                } else if (shortDesc) {
-                    full.innerHTML = `<p class="short-desc">${shortDesc}</p>`;
-                } else if (longDesc) {
-                    full.innerHTML = `<p class="long-desc">${longDesc}</p>`;
-                }
-                article.appendChild(full);
-
-                const btn = document.createElement('button');
-                btn.className = 'btn read-btn';
-                btn.textContent = 'Read';
-                article.appendChild(btn);
-
-                container.appendChild(article);
-            });
+            postsData = data;
+            // Detect and render preview grid (index.html)
+            if (document.querySelector('#preview-grid')) {
+                populatePostGrid({ containerSelector: '#preview-grid', limit: 3 });
+            }
+            // Detect and render all-posts grid (blog.html)
+            if (document.querySelector('#all-posts-grid')) {
+                initBlogFilters();
+            }
+            // ensure modal wiring is applied after initial render
+            initArticleModal();
         })
         .catch(err => {
-            console.error('Failed to load preview posts:', err);
+            console.error('Failed to load posts:', err);
         });
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', fetchAndRenderGrids);
+} else {
+    fetchAndRenderGrids();
 }
 
 function initArticleModal() {
@@ -110,6 +191,9 @@ function initArticleModal() {
     }
 
     readButtons.forEach(btn => {
+        if (btn.dataset.modalBound === '1') return;
+        btn.dataset.modalBound = '1';
+
         btn.addEventListener('click', (e) => {
             log('Read button clicked', 'color: purple;');
 
@@ -202,6 +286,13 @@ function openModalWithCard(card) {
     if (full) {
         full.removeAttribute('hidden');
         full.style.display = 'block';
+    }
+
+    // If the expanded content already includes short_description, don't show it twice.
+    // (Keep normal card preview unchanged; this only affects the modal clone.)
+    const excerpt = clone.querySelector('.excerpt');
+    if (excerpt && full && full.querySelector('.short-desc')) {
+        excerpt.remove();
     }
 
     modal.appendChild(closeBtn);
