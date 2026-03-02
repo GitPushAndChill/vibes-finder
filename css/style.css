@@ -126,6 +126,77 @@ body {
     align-items: stretch; /* make grid items equal height */
 }
 
+/* Home quick actions */
+.vibe-actions {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: var(--space-s);
+    padding: var(--space-s) 0;
+}
+
+.vibe-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background: var(--accent);
+    color: var(--bg-primary);
+    border: 1px solid var(--accent);
+    border-radius: calc(var(--radius) + 6px);
+    padding: 12px 16px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    min-height: 46px;
+    cursor: pointer;
+    transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.vibe-action-btn:hover {
+    transform: translateY(-2px);
+}
+
+@supports (background: color-mix(in srgb, red, blue)) {
+    .vibe-action-btn:hover {
+        background: color-mix(in srgb, var(--accent) 88%, var(--text-secondary));
+        border-color: color-mix(in srgb, var(--accent) 88%, var(--text-secondary));
+    }
+}
+
+.vibe-action-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+@supports not (background: color-mix(in srgb, red, blue)) {
+    .vibe-action-btn:focus-visible {
+        box-shadow: 0 0 0 3px var(--accent);
+    }
+}
+
+.vibe-action-surprise {
+    flex: 1 1 0;
+    max-width: 520px;
+}
+
+.vibe-action-find {
+    flex: 1 1 0;
+    max-width: 520px;
+}
+
+@media (max-width: 600px) {
+    .vibe-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .vibe-action-surprise,
+    .vibe-action-find {
+        flex: 1 1 auto;
+        max-width: none;
+        width: 100%;
+    }
+}
+
 /* Blog filters */
 .post-filters {
     display: flex;
@@ -173,14 +244,22 @@ body {
     width: 100%;
     border: 1px solid var(--text-secondary);
     border-radius: var(--radius);
-    padding: 10px 12px;
+    padding: 12px 14px;
     background: var(--bg-primary);
     color: var(--text-primary);
-    font-size: 1rem;
+    font-size: 1.05rem;
+    font-weight: 700;
     display: block;
     min-height: 44px;
     cursor: pointer;
     transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+    letter-spacing: 0.01em;
+}
+
+@supports (background: color-mix(in srgb, red, blue)) {
+    .filter-select {
+        background: color-mix(in srgb, var(--bg-primary) 86%, var(--bg-secondary));
+    }
 }
 .filter-input:focus {
     outline: none;
@@ -200,6 +279,7 @@ body {
 
 .filter-select:hover {
     transform: translateY(-1px);
+    border-color: var(--accent);
 }
 
 @media (max-width: 600px) {
@@ -218,7 +298,7 @@ body {
     padding: var(--space-m);
     border-radius: var(--radius);
     position: relative; /* for absolute placement of button */
-    padding-bottom: calc(var(--space-m) * 2); /* extra room for button */
+    padding-bottom: calc(var(--space-m) * 2.6); /* extra room for button + vibe badge */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -228,7 +308,41 @@ body {
 .card-title { margin: 0 0 var(--space-xs) 0; font-size: 1.1rem; }
 .meta { display:block; color: var(--text-secondary); font-size:0.9rem; margin-bottom: var(--space-xs); }
 .excerpt { margin: 0 0 var(--space-s) 0; color: var(--text-primary); }
-.btn { display:inline-block; text-decoration:none; background:var(--accent); color:var(--bg-primary); padding:8px 14px; border-radius:6px; font-weight:600; }
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background: var(--accent);
+    color: var(--bg-primary);
+    border: 1px solid var(--accent);
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-weight: 700;
+    transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+@supports (background: color-mix(in srgb, red, blue)) {
+    .btn:hover {
+        background: color-mix(in srgb, var(--accent) 88%, var(--text-secondary));
+        border-color: color-mix(in srgb, var(--accent) 88%, var(--text-secondary));
+    }
+}
+
+.btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+@supports not (background: color-mix(in srgb, red, blue)) {
+    .btn:focus-visible {
+        box-shadow: 0 0 0 3px var(--accent);
+    }
+}
 
 /* ensure read button sits bottom-left of its card/review */
 .read-btn {
@@ -239,10 +353,52 @@ body {
     outline: none;         /* remove focus ring if undesired */
 }
 
+/* Post vibe badge (visible when not enlarged) */
+.vibe-badge {
+    position: absolute;
+    bottom: var(--space-m);
+    right: var(--space-m);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: var(--radius);
+    border: 1px solid var(--text-secondary);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1;
+    user-select: none;
+}
+
+@supports (background: color-mix(in srgb, red, blue)) {
+    .vibe-badge {
+        background: color-mix(in srgb, var(--bg-primary) 88%, var(--bg-secondary));
+    }
+}
+
+.vibe-badge-icon {
+    font-size: 1.05rem;
+}
+
 /* About page avatar */
 .avatar {
     width:120px; height:120px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;
     background: var(--text-secondary); color: var(--bg-primary); font-weight:700; font-size:1.6rem;
+}
+
+.about-logo {
+    height: calc(var(--logo-height) * 1.15);
+    width: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+    .about-logo {
+        height: var(--logo-height);
+    }
 }
 
 /* Reviews cards */
@@ -253,7 +409,7 @@ body {
     padding:var(--space-m);
     border-radius:var(--radius);
     position: relative; /* consistent with .card */
-    padding-bottom: calc(var(--space-m) * 2);
+    padding-bottom: calc(var(--space-m) * 2.6);
 }
 .rating { color: var(--accent); font-weight:700; }
 

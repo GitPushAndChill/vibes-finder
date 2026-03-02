@@ -104,8 +104,42 @@ function populatePostGrid({ containerSelector, limit, cityFilter = '', vibeFilte
         btn.textContent = 'Read';
         article.appendChild(btn);
 
+        if (post.vibe) {
+            const vibeBadge = document.createElement('div');
+            vibeBadge.className = 'vibe-badge';
+
+            const icon = document.createElement('span');
+            icon.className = 'vibe-badge-icon';
+            icon.textContent = getVibeIcon(post.vibe);
+            vibeBadge.appendChild(icon);
+
+            const text = document.createElement('span');
+            text.className = 'vibe-badge-text';
+            text.textContent = post.vibe;
+            vibeBadge.appendChild(text);
+
+            article.appendChild(vibeBadge);
+        }
+
         container.appendChild(article);
     });
+}
+
+function getVibeIcon(vibe) {
+    if (!vibe) return '';
+    const v = String(vibe).toLowerCase();
+    const map = {
+        chill: '😎',
+        cozy: '☕',
+        energetic: '⚡',
+        romantic: '💘',
+        family: '👪',
+        adventurous: '🧭',
+        hipster: '🎩',
+        party: '🎉',
+        artsy: '🎨',
+    };
+    return map[v] || '•';
 }
 
 function initBlogFilters() {
@@ -133,10 +167,31 @@ function initBlogFilters() {
     vibeOptions.innerHTML = vibes.map(v => `<option value="${escapeHtmlAttr(v)}"></option>`).join('');
 
     if (citySelect) {
-        citySelect.innerHTML = `<option value="">Any city</option>` + cities.map(c => `<option value="${escapeHtmlAttr(c)}">${c}</option>`).join('');
+        citySelect.innerHTML = '';
+        const anyCity = document.createElement('option');
+        anyCity.value = '';
+        anyCity.textContent = 'Any city';
+        citySelect.appendChild(anyCity);
+        cities.forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c;
+            opt.textContent = c;
+            citySelect.appendChild(opt);
+        });
     }
     if (vibeSelect) {
-        vibeSelect.innerHTML = `<option value="">Any vibe</option>` + vibes.map(v => `<option value="${escapeHtmlAttr(v)}">${v}</option>`).join('');
+        vibeSelect.innerHTML = '';
+        const anyVibe = document.createElement('option');
+        anyVibe.value = '';
+        anyVibe.textContent = 'Any vibe';
+        vibeSelect.appendChild(anyVibe);
+        vibes.forEach(v => {
+            const opt = document.createElement('option');
+            opt.value = v;
+            const emoji = getVibeIcon(v);
+            opt.textContent = `${emoji ? emoji + ' ' : ''}${toTitleCase(v)}`;
+            vibeSelect.appendChild(opt);
+        });
     }
 
     const getActiveValue = (inputEl, selectEl) => {
@@ -194,6 +249,12 @@ function initBlogFilters() {
     render();
 }
 
+function toTitleCase(value) {
+    const s = String(value || '').trim();
+    if (!s) return '';
+    return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
 function escapeHtmlAttr(value) {
     return String(value)
         .replaceAll('&', '&amp;')
@@ -217,10 +278,72 @@ function fetchAndRenderGrids() {
             }
             // ensure modal wiring is applied after initial render
             initArticleModal();
+
+            // index.html quick actions
+            initIndexQuickActions();
         })
         .catch(err => {
             console.error('Failed to load posts:', err);
         });
+}
+
+function initIndexQuickActions() {
+    const surpriseBtn = document.querySelector('#surprise-me-btn');
+    if (!surpriseBtn) return;
+
+    if (surpriseBtn.dataset.bound === '1') return;
+    surpriseBtn.dataset.bound = '1';
+
+    surpriseBtn.addEventListener('click', () => {
+        const posts = getSortedPosts();
+        if (!posts.length) return;
+
+        const randomPost = posts[Math.floor(Math.random() * posts.length)];
+        const card = buildPostCardForModal(randomPost);
+        openModalWithCard(card);
+    });
+}
+
+function buildPostCardForModal(post) {
+    const article = document.createElement('article');
+    article.className = 'card';
+    article._post = post;
+
+    const h2 = document.createElement('h2');
+    h2.className = 'card-title';
+    h2.textContent = post.title || '';
+    article.appendChild(h2);
+
+    const meta = document.createElement('time');
+    meta.className = 'meta';
+    meta.textContent = (post.city || '') + (post.place ? ', ' + post.place : '');
+    article.appendChild(meta);
+
+    const p = document.createElement('p');
+    p.className = 'excerpt';
+    p.textContent = post.short_description || post.description || '';
+    article.appendChild(p);
+
+    const full = document.createElement('div');
+    full.className = 'full-text';
+    full.hidden = true;
+    const shortDesc = post.short_description || '';
+    const longDesc = post.description || '';
+    if (shortDesc && longDesc && shortDesc.trim() !== longDesc.trim()) {
+        full.innerHTML = `<p class="short-desc">${shortDesc}</p><p class="long-desc">${longDesc}</p>`;
+    } else if (shortDesc) {
+        full.innerHTML = `<p class="short-desc">${shortDesc}</p>`;
+    } else if (longDesc) {
+        full.innerHTML = `<p class="long-desc">${longDesc}</p>`;
+    }
+    article.appendChild(full);
+
+    const btn = document.createElement('button');
+    btn.className = 'btn read-btn';
+    btn.textContent = 'Read';
+    article.appendChild(btn);
+
+    return article;
 }
 
 if (document.readyState === 'loading') {
@@ -331,6 +454,8 @@ function openModalWithCard(card) {
     const clone = card.cloneNode(true);
     const btn = clone.querySelector('.read-btn');
     if (btn) btn.remove();
+    const badge = clone.querySelector('.vibe-badge');
+    if (badge) badge.remove();
     const full = clone.querySelector('.full-text');
     if (full) {
         full.removeAttribute('hidden');
@@ -372,22 +497,6 @@ function openModalWithCard(card) {
         // place inside the cloned card so it sits within the card border
         clone.appendChild(vibeEl);
     }
-function getVibeIcon(vibe) {
-    if (!vibe) return '';
-    const v = String(vibe).toLowerCase();
-    const map = {
-        'chill': '😎',
-        'cozy': '☕',
-        'energetic': '⚡',
-        'romantic': '💘',
-        'family': '👪',
-        'adventurous': '🧭',
-        'hipster': '🎩',
-        'party': '🎉',
-        'artsy': '🎨',
-    };
-    return map[v] || '•';
-}
 
     // close when clicking outside content
     overlay.addEventListener('click', (evt) => {
