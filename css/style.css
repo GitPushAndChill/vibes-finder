@@ -1,27 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
 
 :root {
-    /* Base palette (kept, slightly richer) */
-    --color-primary-1: #243233;  /* dark charcoal/teal */
-    --color-primary-2: #33564f;  /* deep green */
-    --color-primary-3: #a8b76e;  /* sage */
-    --color-primary-4: #f6f1cc;  /* pale cream */
-    --color-primary-5: #b78e6f;  /* warm tan accent */
-    --color-highlight: #e8c547;
+    /* Deep Warm Botanical (premium forest + candlelight gold) */
+    --color-primary-1: #0F1C1A;  /* near-black forest */
+    --color-primary-2: #162824;  /* deep emerald charcoal */
+    --color-primary-3: #1F3A34;  /* rich forest green */
+    --color-primary-4: #2E5A4F;  /* elegant green */
+    --color-primary-5: #C6A76E;  /* muted gold */
+    --color-accent-2: #B88A5A;  /* warm caramel */
+    --color-cream: #E8DCC5;     /* warm cream text */
+    --color-botanical: #3F7868; /* softened botanical green */
+    --color-highlight: #F8F3E7; /* sparkle warm white */
 
-    /* Semantic roles (mapped strictly to palette) */
-    --bg-primary: var(--color-primary-4);
+    /* Semantic roles */
+    --bg-primary: var(--color-primary-1);
     --bg-secondary: var(--color-primary-3);
     --accent: var(--color-primary-5);
-    --text-primary: var(--color-primary-1);
-    --text-secondary: var(--color-primary-2);
+    --text-primary: var(--color-cream);
+    --text-secondary: #CDBFA9;
+    --ink: var(--color-primary-1);
 
-    /* Derived premium tokens (stay close to palette) */
-    --border-subtle: var(--text-secondary);
-    --surface: var(--bg-primary);
-    --surface-2: var(--bg-primary);
-    --botanical: var(--text-secondary);
-    --accent-hover: var(--accent);
+    /* Derived premium tokens */
+    --border-subtle: rgba(198, 167, 110, 0.26);
+    --surface: var(--color-primary-2);
+    --surface-2: var(--color-primary-3);
+    --botanical: var(--color-botanical);
+    --accent-hover: var(--color-accent-2);
 
     /* Typography */
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -35,9 +39,9 @@
     --t: 360ms;
 
     /* Shadow system */
-    --shadow-sm: 0 6px 18px rgba(36, 50, 51, 0.10);
-    --shadow-md: 0 14px 34px rgba(36, 50, 51, 0.14);
-    --shadow-ring: 0 0 0 3px rgba(183, 142, 111, 0.32);
+    --shadow-sm: 0 14px 40px rgba(0, 0, 0, 0.34);
+    --shadow-md: 0 22px 66px rgba(0, 0, 0, 0.42);
+    --shadow-ring: 0 0 0 3px rgba(198, 167, 110, 0.26);
 
     /* Layout system */
     --container-width: 1100px;
@@ -57,11 +61,11 @@
 
 @supports (background: color-mix(in srgb, red, blue)) {
     :root {
-        --border-subtle: color-mix(in srgb, var(--text-secondary) 45%, var(--bg-primary));
-        --surface: color-mix(in srgb, var(--bg-primary) 92%, var(--bg-secondary));
-        --surface-2: color-mix(in srgb, var(--bg-primary) 86%, var(--bg-secondary));
-        --botanical: color-mix(in srgb, var(--text-secondary) 78%, var(--text-primary));
-        --accent-hover: color-mix(in srgb, var(--accent) 78%, var(--botanical));
+        --text-secondary: color-mix(in srgb, var(--text-primary) 76%, var(--botanical));
+        --border-subtle: color-mix(in srgb, var(--accent) 34%, transparent);
+        --surface: color-mix(in srgb, var(--bg-primary) 30%, var(--color-primary-2));
+        --surface-2: color-mix(in srgb, var(--bg-primary) 18%, var(--bg-secondary));
+        --accent-hover: color-mix(in srgb, var(--accent) 76%, var(--color-accent-2));
     }
 }
 
@@ -95,11 +99,11 @@ body::after {
 }
 
 body::before {
-    opacity: 0.22;
+    opacity: 0.18;
     background-image:
-        radial-gradient(circle, var(--color-highlight) 0 1px, transparent 2.6px),
-        radial-gradient(circle, var(--accent) 0 1.05px, transparent 2.8px),
-        radial-gradient(circle, var(--text-secondary) 0 1.05px, transparent 2.7px);
+        radial-gradient(circle, var(--color-highlight) 0 1px, transparent 2.7px),
+        radial-gradient(circle, var(--accent) 0 1.05px, transparent 2.95px),
+        radial-gradient(circle, var(--accent-hover) 0 0.95px, transparent 2.85px);
     background-size: 260px 260px, 340px 340px, 190px 190px;
     background-position: 0 0, 70px 30px, 120px 80px;
     filter: none;
@@ -107,8 +111,17 @@ body::before {
     animation: sparkle-drift 26s linear infinite, sparkle-twinkle 9s ease-in-out infinite;
 }
 
+@supports (background: color-mix(in srgb, red, blue)) {
+    body::before {
+        background-image:
+            radial-gradient(circle, var(--color-highlight) 0 1px, transparent 2.7px),
+            radial-gradient(circle, var(--accent) 0 1.05px, transparent 2.95px),
+            radial-gradient(circle, color-mix(in srgb, var(--accent) 42%, var(--color-highlight)) 0 0.95px, transparent 2.85px);
+    }
+}
+
 body::after {
-    opacity: 0.16;
+    opacity: 0.12;
     background-image:
         radial-gradient(circle, var(--color-highlight) 0 1.4px, transparent 3.2px),
         radial-gradient(circle, var(--accent) 0 1.2px, transparent 3.05px);
@@ -117,6 +130,11 @@ body::after {
     filter: none;
     mix-blend-mode: normal;
     animation: sparkle-drift-2 48s linear infinite, sparkle-twinkle 6s ease-in-out infinite;
+}
+
+@media (max-width: 600px) {
+    body::before { opacity: 0.12; }
+    body::after { opacity: 0.08; }
 }
 
 @supports (background: color-mix(in srgb, red, blue)) {
@@ -188,9 +206,20 @@ body > * {
 @supports (background: radial-gradient(circle at 10% 10%, red, blue)) {
     body {
         background:
-            radial-gradient(1000px circle at 8% -12%, color-mix(in srgb, var(--bg-secondary) 45%, var(--bg-primary)), transparent 60%),
-            radial-gradient(900px circle at 92% 8%, color-mix(in srgb, var(--accent) 22%, var(--bg-primary)), transparent 55%),
-            var(--bg-primary);
+            radial-gradient(920px circle at 12% -22%, rgba(63, 120, 104, 0.22), transparent 60%),
+            radial-gradient(860px circle at 88% 12%, rgba(198, 167, 110, 0.14), transparent 56%),
+            radial-gradient(1100px circle at 48% 118%, rgba(46, 90, 79, 0.26), transparent 62%),
+            linear-gradient(180deg, var(--bg-secondary), var(--bg-primary) 62%, var(--bg-primary));
+    }
+}
+
+@supports ((background: color-mix(in srgb, red, blue)) and (background: radial-gradient(circle at 10% 10%, red, blue))) {
+    body {
+        background:
+            radial-gradient(920px circle at 12% -22%, color-mix(in srgb, var(--botanical) 44%, transparent), transparent 60%),
+            radial-gradient(860px circle at 88% 12%, color-mix(in srgb, var(--accent) 26%, transparent), transparent 56%),
+            radial-gradient(1100px circle at 48% 118%, color-mix(in srgb, var(--color-primary-4) 42%, transparent), transparent 62%),
+            linear-gradient(180deg, var(--bg-secondary), var(--bg-primary) 62%, var(--bg-primary));
     }
 }
 
@@ -291,7 +320,7 @@ body > * {
 }
 .main-nav a.active {
     background: var(--accent);
-    color: var(--bg-primary);
+    color: var(--ink);
 }
 .main-nav a:focus,
 .main-nav a:hover {
@@ -441,8 +470,7 @@ body > * {
     padding: 10px 12px;
     border-radius: var(--radius);
     border: 1px solid var(--border-subtle);
-    background: var(--bg-primary);
-    background: color-mix(in srgb, var(--bg-primary) 92%, white);
+    background: rgba(22, 40, 36, 0.72);
 }
 .filter-label {
     display: block;
@@ -455,10 +483,10 @@ body > * {
 }
 .filter-input {
     width: 100%;
-    border: 1px solid var(--text-secondary);
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius);
     padding: 10px 12px;
-    background: var(--bg-primary);
+    background: rgba(15, 28, 26, 0.68);
     color: var(--text-primary);
     font-size: 1rem;
     display: none; /* use native select for consistent dropdown UI */
@@ -469,7 +497,7 @@ body > * {
     border-radius: var(--radius);
     padding: 12px 14px;
     padding-right: 44px; /* room for custom arrow */
-    background: var(--surface-2);
+    background: rgba(15, 28, 26, 0.68);
     color: var(--text-primary);
     font-size: 1.05rem;
     font-weight: 700;
@@ -481,8 +509,8 @@ body > * {
     appearance: none;
     -webkit-appearance: none;
     background-image:
-        linear-gradient(45deg, transparent 50%, var(--text-secondary) 50%),
-        linear-gradient(135deg, var(--text-secondary) 50%, transparent 50%);
+        linear-gradient(45deg, transparent 50%, var(--accent) 50%),
+        linear-gradient(135deg, var(--accent) 50%, transparent 50%);
     background-position:
         calc(100% - 18px) 55%,
         calc(100% - 12px) 55%;
@@ -494,7 +522,7 @@ body > * {
 
 @supports (background: color-mix(in srgb, red, blue)) {
     .filter-select {
-        background: color-mix(in srgb, var(--bg-primary) 86%, var(--bg-secondary));
+        background: color-mix(in srgb, var(--surface) 78%, var(--bg-primary));
     }
 }
 .filter-input:focus {
@@ -534,7 +562,7 @@ body > * {
 /* shared card styling for blog posts and reviews */
 .card,
 .review-card {
-    background: color-mix(in srgb, var(--bg-primary) 90%, white);
+    background: rgba(22, 40, 36, 0.68);
     border: 1px solid var(--border-subtle);
     padding: var(--space-m);
     border-radius: var(--radius-lg);
@@ -546,6 +574,14 @@ body > * {
     min-height: 220px; /* ensure consistent box size across pages */
     box-shadow: var(--shadow-sm);
     transition: transform var(--t) var(--ease-out), border-color var(--t) var(--ease-out), box-shadow var(--t) var(--ease-out);
+}
+
+@supports (background: color-mix(in srgb, red, blue)) {
+    .card,
+    .review-card {
+        background: color-mix(in srgb, var(--surface) 78%, transparent);
+        border-color: color-mix(in srgb, var(--accent) 32%, transparent);
+    }
 }
 
 .card:hover,
@@ -565,7 +601,7 @@ body > * {
 @supports not (background: color-mix(in srgb, red, blue)) {
     .card:hover,
     .review-card:hover {
-        box-shadow: 0 10px 22px rgba(60, 94, 87, 0.18);
+        box-shadow: 0 18px 48px rgba(0, 0, 0, 0.36);
     }
     .card:focus-within,
     .review-card:focus-within {
@@ -585,36 +621,46 @@ body > * {
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
-    color: var(--bg-primary);
-    border: 1px solid var(--accent);
-    border: 1px solid color-mix(in srgb, var(--accent) 78%, var(--botanical));
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+    color: var(--text-primary);
+    border: 1px solid rgba(198, 167, 110, 0.55);
     padding: 10px 14px;
     border-radius: var(--radius-lg);
     font-weight: 700;
     letter-spacing: 0.01em;
-    box-shadow: 0 10px 24px rgba(183, 142, 111, 0.18);
-    transition: transform var(--t-fast) var(--ease-out), box-shadow var(--t) var(--ease-out), filter var(--t) var(--ease-out);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.36);
+    transition: transform 420ms var(--ease-out), box-shadow 420ms var(--ease-out), filter 420ms var(--ease-out), border-color 420ms var(--ease-out), background 420ms var(--ease-out);
+}
+
+@supports (background: color-mix(in srgb, red, blue)) {
+    .btn,
+    .vibe-action-btn {
+        background: linear-gradient(135deg, color-mix(in srgb, var(--bg-secondary) 86%, var(--bg-primary)), var(--bg-primary));
+        border-color: color-mix(in srgb, var(--accent) 44%, transparent);
+    }
 }
 
 .btn:hover,
 .vibe-action-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 16px 34px rgba(183, 142, 111, 0.22);
-    filter: saturate(1.05);
+    box-shadow:
+        0 24px 70px rgba(0, 0, 0, 0.46),
+        0 0 0 1px rgba(198, 167, 110, 0.18),
+        0 0 26px rgba(198, 167, 110, 0.24);
+    filter: saturate(1.06);
 }
 
 @supports (background: color-mix(in srgb, red, blue)) {
     .btn:hover {
-        background: color-mix(in srgb, var(--accent) 88%, var(--text-secondary));
-        border-color: color-mix(in srgb, var(--accent) 88%, var(--text-secondary));
+        background: linear-gradient(135deg, color-mix(in srgb, var(--bg-secondary) 88%, var(--bg-primary)), color-mix(in srgb, var(--bg-primary) 92%, black));
+        border-color: color-mix(in srgb, var(--accent) 58%, transparent);
     }
 }
 
 .btn:focus-visible,
 .vibe-action-btn:focus-visible {
     outline: none;
-    box-shadow: var(--shadow-ring), 0 16px 34px rgba(183, 142, 111, 0.18);
+    box-shadow: var(--shadow-ring), 0 16px 34px rgba(198, 167, 110, 0.16);
 }
 
 @supports not (background: color-mix(in srgb, red, blue)) {
@@ -642,19 +688,20 @@ body > * {
     gap: 8px;
     padding: 7px 10px;
     border-radius: var(--radius);
-    border: 1px solid color-mix(in srgb, var(--text-secondary) 60%, var(--bg-primary));
-    background: color-mix(in srgb, var(--bg-primary) 88%, var(--bg-secondary));
+    border: 1px solid rgba(198, 167, 110, 0.22);
+    background: rgba(15, 28, 26, 0.66);
     color: var(--text-primary);
     font-weight: 600;
     font-size: 0.95rem;
     line-height: 1;
     user-select: none;
-    box-shadow: 0 10px 22px rgba(36, 50, 51, 0.10);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.34);
 }
 
 @supports (background: color-mix(in srgb, red, blue)) {
     .vibe-badge {
-        background: color-mix(in srgb, var(--bg-primary) 88%, var(--bg-secondary));
+        background: color-mix(in srgb, var(--bg-primary) 66%, transparent);
+        border-color: color-mix(in srgb, var(--accent) 28%, transparent);
     }
 }
 
@@ -665,7 +712,7 @@ body > * {
 /* About page avatar */
 .avatar {
     width:120px; height:120px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;
-    background: var(--text-secondary); color: var(--bg-primary); font-weight:700; font-size:1.6rem;
+    background: var(--surface-2); color: var(--text-primary); font-weight:700; font-size:1.6rem;
 }
 
 .about-logo {
@@ -684,10 +731,10 @@ body > * {
 /* Reviews cards */
 .reviews-grid { display:grid; grid-template-columns: repeat(3,1fr); gap: var(--space-m); }
 .review-card {
-    background: var(--bg-primary);
-    border:1px solid var(--text-secondary);
+    background: inherit;
+    border: 1px solid var(--border-subtle);
     padding:var(--space-m);
-    border-radius:var(--radius);
+    border-radius:var(--radius-lg);
     position: relative; /* consistent with .card */
     padding-bottom: calc(var(--space-m) * 2.6);
 }
@@ -714,18 +761,18 @@ body > * {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(51, 86, 79, 0.35), transparent);
+    background: linear-gradient(90deg, transparent, rgba(198, 167, 110, 0.26), transparent);
 }
 
 @supports (background: color-mix(in srgb, red, blue)) {
     .site-footer {
-        background: color-mix(in srgb, var(--bg-primary) 92%, var(--bg-secondary));
+        background: color-mix(in srgb, var(--bg-primary) 86%, var(--bg-secondary));
     }
     .site-footer::before {
         background: linear-gradient(
             90deg,
             transparent,
-            color-mix(in srgb, var(--text-secondary) 60%, transparent),
+            color-mix(in srgb, var(--accent) 34%, transparent),
             transparent
         );
     }
@@ -735,7 +782,7 @@ body > * {
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.72);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -744,15 +791,69 @@ body > * {
 
 .modal-content {
     position: relative;
-    background: color-mix(in srgb, var(--bg-primary) 92%, white);
+    background: rgba(22, 40, 36, 0.88);
     color: var(--text-primary);
     max-width: 90vw;
     max-height: 90vh;
     overflow-y: auto;
     padding: var(--space-l);
+    padding-bottom: calc(var(--space-l) + 56px);
     border-radius: var(--radius-lg);
-    border: 1px solid color-mix(in srgb, var(--text-secondary) 50%, var(--bg-primary));
-    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(198, 167, 110, 0.28);
+    box-shadow:
+        var(--shadow-md),
+        0 0 0 1px rgba(198, 167, 110, 0.08),
+        0 0 38px rgba(198, 167, 110, 0.10);
+    overscroll-behavior: contain;
+}
+
+/* Modal should feel like an enlarged premium card */
+.modal-content .card,
+.modal-content .review-card {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    padding-bottom: 0;
+    min-height: unset;
+}
+
+.modal-content .card-title {
+    font-family: var(--font-heading);
+    letter-spacing: 0.02em;
+    font-size: 1.7rem;
+}
+
+.modal-content .meta {
+    color: var(--text-secondary);
+}
+
+.modal-content .excerpt,
+.modal-content .full-text {
+    color: var(--text-primary);
+}
+
+.modal-content .read-btn,
+.modal-content .vibe-badge {
+    display: none;
+}
+
+@supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
+    .modal-content {
+        background: rgba(22, 40, 36, 0.76);
+        -webkit-backdrop-filter: blur(14px);
+        backdrop-filter: blur(14px);
+    }
+}
+
+@supports (background: color-mix(in srgb, red, blue)) {
+    .modal-content {
+        border-color: color-mix(in srgb, var(--accent) 38%, transparent);
+        box-shadow:
+            var(--shadow-md),
+            0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent),
+            0 0 44px color-mix(in srgb, var(--accent) 16%, transparent);
+    }
 }
 
 /* make sure full-text shows when a card is expanded inline (fallback) */
@@ -784,6 +885,8 @@ body > * {
     max-height: 300px;
     overflow: hidden;
     margin-bottom: var(--space-m);
+    border-radius: calc(var(--radius-lg) + 2px);
+    border: 1px solid rgba(198, 167, 110, 0.18);
 }
 .image-slider .slider-img {
     width: 100%;
@@ -795,9 +898,9 @@ body > * {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0,0,0,0.3);
+    background: rgba(15, 28, 26, 0.64);
     color: white;
-    border: none;
+    border: 1px solid rgba(198, 167, 110, 0.22);
     padding: 8px 12px;
     cursor: pointer;
     font-size: 1.2rem;
@@ -808,14 +911,34 @@ body > * {
 
 .modal-footer-left,
 .modal-footer-right {
-    position: absolute;
-    bottom: var(--space-s);
+    position: static;
     color: var(--text-secondary);
     font-size: 0.95rem;
     z-index: 20;
 }
 .modal-footer-left { left: var(--space-m); }
 .modal-footer-right { right: var(--space-m); }
+
+/* Arrange modal footer items without overlap */
+.modal-content .modal-footer-left,
+.modal-content .modal-footer-right {
+    display: inline-block;
+    margin-top: var(--space-m);
+}
+
+.modal-content .modal-footer-left {
+    float: left;
+}
+
+.modal-content .modal-footer-right {
+    float: right;
+}
+
+.modal-content::after {
+    content: '';
+    display: block;
+    clear: both;
+}
 
 .vibe-icon { font-size: 1.05rem; vertical-align: middle; margin-right: 6px; }
 
@@ -831,6 +954,21 @@ body > * {
 
 .full-text p {
     margin-bottom: var(--space-m);
+}
+
+.modal-content .full-text {
+    font-size: 1.02rem;
+    line-height: 1.75;
+}
+
+.modal-content a {
+    color: var(--accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+}
+
+.modal-content a:hover {
+    color: var(--color-highlight);
 }
 
 /* Tiny responsive rules */
@@ -857,9 +995,9 @@ body > * {
         justify-content: center;
         width: 100%;
         padding: 8px;
-        border: 1px solid color-mix(in srgb, var(--text-secondary) 70%, var(--bg-primary));
+        border: 1px solid var(--border-subtle);
         border-radius: var(--radius-lg);
-        background: color-mix(in srgb, var(--bg-primary) 90%, var(--bg-secondary));
+        background: rgba(15, 28, 26, 0.66);
         box-shadow: var(--shadow-sm);
     }
     .preview-grid { grid-template-columns: 1fr; }
