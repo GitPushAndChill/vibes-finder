@@ -78,6 +78,106 @@ body {
     -moz-osx-font-smoothing:grayscale;
     line-height: 1.6;
     animation: pageIn 520ms var(--ease-out) both;
+    position: relative;
+    isolation: isolate;
+}
+
+/* Sparkly background overlay (premium + small cute sparkles) */
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-repeat: repeat;
+    opacity: 0.0;
+}
+
+body::before {
+    opacity: 0.22;
+    background-image:
+        radial-gradient(circle, var(--color-highlight) 0 1px, transparent 2.6px),
+        radial-gradient(circle, var(--accent) 0 1.05px, transparent 2.8px),
+        radial-gradient(circle, var(--text-secondary) 0 1.05px, transparent 2.7px);
+    background-size: 260px 260px, 340px 340px, 190px 190px;
+    background-position: 0 0, 70px 30px, 120px 80px;
+    filter: none;
+    mix-blend-mode: normal;
+    animation: sparkle-drift 26s linear infinite, sparkle-twinkle 9s ease-in-out infinite;
+}
+
+body::after {
+    opacity: 0.16;
+    background-image:
+        radial-gradient(circle, var(--color-highlight) 0 1.4px, transparent 3.2px),
+        radial-gradient(circle, var(--accent) 0 1.2px, transparent 3.05px);
+    background-size: 520px 520px, 610px 610px;
+    background-position: 0 0, 120px 240px;
+    filter: none;
+    mix-blend-mode: normal;
+    animation: sparkle-drift-2 48s linear infinite, sparkle-twinkle 6s ease-in-out infinite;
+}
+
+@supports (background: color-mix(in srgb, red, blue)) {
+    body::before {
+        background-image:
+            radial-gradient(circle, color-mix(in srgb, var(--color-highlight) 86%, white) 0 1px, transparent 2.6px),
+            radial-gradient(circle, color-mix(in srgb, var(--color-highlight) 36%, transparent) 0 6px, transparent 9.4px),
+            radial-gradient(circle, color-mix(in srgb, var(--accent) 82%, white) 0 1.05px, transparent 2.8px),
+            radial-gradient(circle, color-mix(in srgb, var(--accent) 30%, transparent) 0 6.2px, transparent 9.6px),
+            radial-gradient(circle, color-mix(in srgb, var(--text-secondary) 70%, white) 0 1.05px, transparent 2.7px);
+    }
+
+    body::after {
+        background-image:
+            radial-gradient(circle, color-mix(in srgb, var(--color-highlight) 86%, white) 0 1.4px, transparent 3.2px),
+            radial-gradient(circle, color-mix(in srgb, var(--color-highlight) 28%, transparent) 0 7.6px, transparent 12.2px),
+            radial-gradient(circle, color-mix(in srgb, var(--accent) 82%, white) 0 1.2px, transparent 3.05px),
+            radial-gradient(circle, color-mix(in srgb, var(--accent) 22%, transparent) 0 7.8px, transparent 12.6px);
+    }
+}
+
+@supports (filter: drop-shadow(0 0 2px black)) {
+    body::before {
+        filter:
+            drop-shadow(0 0 1px color-mix(in srgb, var(--color-highlight) 34%, transparent))
+            drop-shadow(0 0 12px color-mix(in srgb, var(--color-highlight) 22%, transparent));
+    }
+    body::after {
+        filter:
+            drop-shadow(0 0 1px color-mix(in srgb, var(--accent) 30%, transparent))
+            drop-shadow(0 0 14px color-mix(in srgb, var(--accent) 20%, transparent));
+    }
+}
+
+/* Keep all page content above the sparkle overlay */
+body > * {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes sparkle-drift {
+    from {
+        background-position: 0 0, 70px 30px, 120px 80px;
+    }
+    to {
+        background-position: -240px 520px, 420px -360px, -160px 320px;
+    }
+}
+
+@keyframes sparkle-drift-2 {
+    from {
+        background-position: 0 0, 120px 240px;
+    }
+    to {
+        background-position: 680px -820px, -740px 900px;
+    }
+}
+
+@keyframes sparkle-twinkle {
+    0%, 100% { opacity: 0.10; }
+    50% { opacity: 0.22; }
 }
 
 @keyframes pageIn {
@@ -98,6 +198,10 @@ body {
     html { scroll-behavior: auto; }
     body { animation: none; }
     * { transition: none !important; }
+    body::before,
+    body::after {
+        animation: none;
+    }
 }
 
 .container {
@@ -121,7 +225,8 @@ body {
 
 @supports ((-webkit-backdrop-filter: blur(8px)) or (backdrop-filter: blur(8px))) {
     .site-header {
-        background: color-mix(in srgb, var(--bg-secondary) 55%, transparent);
+        /* Keep premium blur but make it opaque so sparkles never show through */
+        background: color-mix(in srgb, var(--bg-secondary) 55%, var(--bg-primary));
         -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
     }
