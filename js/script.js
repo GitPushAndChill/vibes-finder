@@ -346,6 +346,18 @@ function buildPostCardForModal(post) {
     return article;
 }
 
+function getPostIndexInSortedList(post) {
+    if (!post) return -1;
+    const sorted = getSortedPosts();
+    if (!sorted.length) return -1;
+
+    return sorted.findIndex((candidate) => {
+        const sameCreated = String(candidate?.created_on || '') === String(post?.created_on || '');
+        const sameTitle = String(candidate?.title || '') === String(post?.title || '');
+        return sameCreated && sameTitle;
+    });
+}
+
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', fetchAndRenderGrids);
 } else {
@@ -469,6 +481,24 @@ function openModalWithCard(card) {
         excerpt.remove();
     }
 
+    // SEO internal links inside enlarged article (append at very bottom later)
+    let seoWrap = null;
+    if (post && (post.city || post.vibe)) {
+        seoWrap = document.createElement('div');
+        seoWrap.className = 'modal-seo-links';
+
+        const cityText = post.city ? String(post.city) : 'Dutch cities';
+        const vibeText = post.vibe ? String(post.vibe) : 'best';
+
+        seoWrap.innerHTML = `
+            <p>Explore more:</p>
+            <a href="blog.html">Best places and vibes in the Netherlands</a>
+            <a href="blog.html">More ${cityText} city vibes</a>
+            <a href="blog.html">More ${vibeText} places</a>
+            <a href="index.html#city-vibe-map">Interactive city vibe map</a>
+        `;
+    }
+
     modal.appendChild(closeBtn);
     modal.appendChild(clone);
 
@@ -496,6 +526,52 @@ function openModalWithCard(card) {
         vibeEl.appendChild(vibeText);
         // place inside the cloned card so it sits within the card border
         clone.appendChild(vibeEl);
+    }
+
+    // previous / next article navigation in modal
+    const sortedPosts = getSortedPosts();
+    const currentIndex = getPostIndexInSortedList(post);
+    if (sortedPosts.length > 1 && currentIndex !== -1) {
+        const nav = document.createElement('div');
+        nav.className = 'modal-article-nav';
+
+        const prevIndex = (currentIndex - 1 + sortedPosts.length) % sortedPosts.length;
+        const nextIndex = (currentIndex + 1) % sortedPosts.length;
+
+        const prevPost = sortedPosts[prevIndex];
+        const nextPost = sortedPosts[nextIndex];
+
+        const prevBtn = document.createElement('button');
+        prevBtn.type = 'button';
+        prevBtn.className = 'btn modal-nav-btn';
+        prevBtn.textContent = '← Previous article';
+        prevBtn.setAttribute('aria-label', `Open previous article: ${prevPost?.title || ''}`);
+
+        const nextBtn = document.createElement('button');
+        nextBtn.type = 'button';
+        nextBtn.className = 'btn modal-nav-btn';
+        nextBtn.textContent = 'Next article →';
+        nextBtn.setAttribute('aria-label', `Open next article: ${nextPost?.title || ''}`);
+
+        const openTargetPost = (targetPost) => {
+            if (document.body.contains(overlay)) {
+                document.body.removeChild(overlay);
+            }
+            const targetCard = buildPostCardForModal(targetPost);
+            openModalWithCard(targetCard);
+        };
+
+        prevBtn.addEventListener('click', () => openTargetPost(prevPost));
+        nextBtn.addEventListener('click', () => openTargetPost(nextPost));
+
+        nav.appendChild(prevBtn);
+        nav.appendChild(nextBtn);
+        clone.appendChild(nav);
+    }
+
+    // keep SEO links as the very last block in enlarged article
+    if (seoWrap) {
+        clone.appendChild(seoWrap);
     }
 
     // close when clicking outside content

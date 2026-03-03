@@ -321,5 +321,551 @@
     "coordinates": [52.1216, 4.9847],
     "adress": "Kasteellaan 1, 3455 RR Utrecht",
     "created_on": "2026-03-01T15:50:00Z"
+  },
+  {
+    "place": "Rijksmuseum",
+    "city": "Amsterdam",
+    "vibe": "artsy",
+    "title": "Rijksmuseum Amsterdam – Iconic Art & Golden Age Masterpieces",
+    "images": [
+      "images/places/rijksmuseum-amsterdam.jpg"
+    ],
+    "short_description": "A world-class museum with Dutch masters, elegant galleries, and timeless artsy energy.",
+    "description": "Rijksmuseum Amsterdam is the ultimate artsy deep-dive with Rembrandt, Vermeer, and beautifully curated halls that make every corner feel cinematic, so it’s one of the best cultural places in Amsterdam for a full inspiration day.",
+    "coordinates": [52.3600, 4.8852],
+    "adress": "Museumstraat 1, 1071 XX Amsterdam",
+    "created_on": "2026-03-02T10:00:00Z"
+  },
+  {
+    "place": "Brouwerij 't IJ",
+    "city": "Amsterdam",
+    "vibe": "party",
+    "title": "Brouwerij 't IJ Amsterdam – Craft Beer by the Windmill",
+    "images": [
+      "images/places/brouwerij-t-ij-amsterdam.jpg"
+    ],
+    "short_description": "A lively brewery next to a windmill with local beer flights and social party vibes.",
+    "description": "Brouwerij 't IJ in Amsterdam Oost blends iconic Dutch scenery with energetic taproom culture, making it a top pick for friends who want great craft beer, buzzing tables, and a fun pre-night-out atmosphere.",
+    "coordinates": [52.3667, 4.9205],
+    "adress": "Funenkade 7, 1018 AL Amsterdam",
+    "created_on": "2026-03-02T10:05:00Z"
+  },
+  {
+    "place": "Albert Cuyp Market",
+    "city": "Amsterdam",
+    "vibe": "energetic",
+    "title": "Albert Cuypmarkt Amsterdam – Street Food, Shopping & Local Buzz",
+    "images": [
+      "images/places/albert-cuypmarkt-amsterdam.jpg"
+    ],
+    "short_description": "A high-energy street market packed with snacks, fashion finds, and nonstop city life.",
+    "description": "Albert Cuyp Market in De Pijp is pure energetic Amsterdam with stroopwafels, fresh bites, and market stalls stretching block after block, so it’s perfect when you want local flavor and movement in one walk.",
+    "coordinates": [52.3545, 4.8913],
+    "adress": "Albert Cuypstraat, 1073 BD Amsterdam",
+    "created_on": "2026-03-02T10:10:00Z"
+  },
+  {
+    "place": "Eye Filmmuseum",
+    "city": "Amsterdam",
+    "vibe": "hipster",
+    "title": "Eye Filmmuseum Amsterdam – Design Icon with Indie Film Vibes",
+    "images": [
+      "images/places/eye-filmmuseum-amsterdam.jpg"
+    ],
+    "short_description": "A sleek riverside film museum with indie screenings and cool design-forward energy.",
+    "description": "Eye Filmmuseum in Amsterdam Noord delivers hipster perfection with bold architecture, curated cinema programming, and a waterfront café view that feels effortlessly stylish from day to night.",
+    "coordinates": [52.3849, 4.9010],
+    "adress": "IJpromenade 1, 1031 KT Amsterdam",
+    "created_on": "2026-03-02T10:15:00Z"
+  },
+  {
+    "place": "Westerpark",
+    "city": "Amsterdam",
+    "vibe": "chill",
+    "title": "Westerpark Amsterdam – Green Escape with Creative Hangouts",
+    "images": [
+      "images/places/westerpark-amsterdam.jpg"
+    ],
+    "short_description": "A relaxed city park with lawns, cafés, and easy chill vibes all day.",
+    "description": "Westerpark is a chill Amsterdam favorite where you can picnic, coffee-hop, and catch creative events in old industrial spaces, making it ideal for a no-pressure day that still feels lively.",
+    "coordinates": [52.3874, 4.8672],
+    "adress": "Westerpark, 1014 Amsterdam",
+    "created_on": "2026-03-02T10:20:00Z"
+  },
+  {
+    "place": "A'DAM Lookout",
+    "city": "Amsterdam",
+    "vibe": "adventurous",
+    "title": "A'DAM Lookout – Skyline Views & Adrenaline Swing in Amsterdam",
+    "images": [
+      "images/places/adam-lookout-amsterdam.jpg"
+    ],
+    "short_description": "Panoramic city views and a daring rooftop swing for adventurous Amsterdam moments.",
+    "description": "A'DAM Lookout in Amsterdam Noord is made for adventurous travelers who want skyline photos and a little thrill, with a 360-degree city panorama that turns golden hour into a full main-character scene.",
+    "coordinates": [52.3846, 4.9022],
+    "adress": "Overhoeksplein 5, 1031 KS Amsterdam",
+    "created_on": "2026-03-02T10:25:00Z"
+  },
+  {
+    "place": "Hannekes Boom",
+    "city": "Amsterdam",
+    "vibe": "cozy",
+    "title": "Hannekes Boom Amsterdam – Waterside Terrace with Cozy Vibes",
+    "images": [
+      "images/places/hannekes-boom-amsterdam.jpg"
+    ],
+    "short_description": "A cozy waterfront terrace for drinks, sunsets, and casual Amsterdam nights.",
+    "description": "Hannekes Boom near Amsterdam Central is a cozy, laid-back spot where picnic-table energy meets waterfront sunsets, so it’s perfect for warm evenings with friends and easy conversation.",
+    "coordinates": [52.3755, 4.9104],
+    "adress": "Dijksgracht 4, 1019 BS Amsterdam",
+    "created_on": "2026-03-02T10:30:00Z"
+  },
+  {
+    "place": "Noordermarkt",
+    "city": "Amsterdam",
+    "vibe": "romantic",
+    "title": "Noordermarkt Amsterdam – Charming Market Stroll in Jordaan",
+    "images": [
+      "images/places/noordermarkt-amsterdam.jpg"
+    ],
+    "short_description": "A romantic Jordaan market with flowers, vintage finds, and dreamy canal-side walks.",
+    "description": "Noordermarkt in the Jordaan gives romantic Amsterdam energy with organic stalls, antiques, and nearby canals that make every weekend stroll feel soft, photogenic, and quietly special.",
+    "coordinates": [52.3785, 4.8838],
+    "adress": "Noordermarkt, 1015 NA Amsterdam",
+    "created_on": "2026-03-02T10:35:00Z"
+  },
+  {
+    "place": "TivoliVredenburg",
+    "city": "Utrecht",
+    "vibe": "party",
+    "title": "TivoliVredenburg Utrecht – Live Music & Nightlife Hub",
+    "images": [
+      "images/places/tivolivredenburg-utrecht.jpg"
+    ],
+    "short_description": "Utrecht’s top music venue with buzzing party nights and multi-stage energy.",
+    "description": "TivoliVredenburg is the heart of Utrecht nightlife with concerts, club nights, and packed dance floors across multiple halls, making it one of the best party spots when you want a proper night out.",
+    "coordinates": [52.0927, 5.1098],
+    "adress": "Vredenburgkade 11, 3511 WC Utrecht",
+    "created_on": "2026-03-02T10:40:00Z"
+  },
+  {
+    "place": "Sonnenborgh Museum & Observatory",
+    "city": "Utrecht",
+    "vibe": "artsy",
+    "title": "Sonnenborgh Utrecht – Observatory with Historic Artsy Charm",
+    "images": [
+      "images/places/sonnenborgh-utrecht.jpg"
+    ],
+    "short_description": "A historic observatory museum with artsy science vibes and stellar views.",
+    "description": "Sonnenborgh in Utrecht combines old fort architecture with astronomy exhibits and observatory nights, giving you an artsy-science experience that feels both intimate and unexpectedly magical.",
+    "coordinates": [52.0873, 5.1264],
+    "adress": "Zonnenburg 2, 3512 NL Utrecht",
+    "created_on": "2026-03-02T10:45:00Z"
+  },
+  {
+    "place": "nijntje museum",
+    "city": "Utrecht",
+    "vibe": "family",
+    "title": "nijntje museum Utrecht – Playful Family Day in the City",
+    "images": [
+      "images/places/nijntje-museum-utrecht.jpg"
+    ],
+    "short_description": "A playful family museum where kids can explore, build, and learn by doing.",
+    "description": "The nijntje museum in Utrecht is a family-friendly favorite packed with interactive rooms and hands-on activities for little ones, making it a stress-free indoor plan that parents actually enjoy too.",
+    "coordinates": [52.0839, 5.1212],
+    "adress": "Agnietenstraat 2, 3512 XB Utrecht",
+    "created_on": "2026-03-02T10:50:00Z"
+  },
+  {
+    "place": "Kanaalstraat Food Strip",
+    "city": "Utrecht",
+    "vibe": "energetic",
+    "title": "Kanaalstraat Utrecht – Street Food Strip with Big Flavor Energy",
+    "images": [
+      "images/places/kanaalstraat-utrecht.jpg"
+    ],
+    "short_description": "A vibrant food street in Lombok with energetic flavors from around the world.",
+    "description": "Kanaalstraat in Utrecht Lombok is a top energetic food zone with bakeries, grills, spice shops, and constant local movement, so it’s ideal when you want bold bites and authentic city rhythm.",
+    "coordinates": [52.0940, 5.0946],
+    "adress": "Kanaalstraat, 3531 Utrecht",
+    "created_on": "2026-03-02T10:55:00Z"
+  },
+  {
+    "place": "Máximapark",
+    "city": "Utrecht",
+    "vibe": "chill",
+    "title": "Máximapark Utrecht – Spacious Chill Park with Sunset Trails",
+    "images": [
+      "images/places/maximapark-utrecht.jpg"
+    ],
+    "short_description": "A spacious park with cycling paths, gardens, and truly chill weekend vibes.",
+    "description": "Máximapark in Leidsche Rijn is a chill Utrecht escape with wide green fields, long biking routes, and calm water edges that make it perfect for slow afternoons and reset-energy walks.",
+    "coordinates": [52.0839, 5.0531],
+    "adress": "Máximapark, 3452 Utrecht",
+    "created_on": "2026-03-02T11:00:00Z"
+  },
+  {
+    "place": "Fort bij Rijnauwen",
+    "city": "Utrecht",
+    "vibe": "adventurous",
+    "title": "Fort bij Rijnauwen – Nature & Fort Adventure near Utrecht",
+    "images": [
+      "images/places/fort-rijnauwen-utrecht.jpg"
+    ],
+    "short_description": "A hidden fort in the woods for adventurous walks and history-rich surroundings.",
+    "description": "Fort bij Rijnauwen just outside Utrecht gives adventurous day-trip vibes with old military history, forest trails, and wild nature around every turn, making it perfect for travelers who like exploration over crowds.",
+    "coordinates": [52.0686, 5.1708],
+    "adress": "Vossegatsedijk 5, 3981 HS Bunnik",
+    "created_on": "2026-03-02T11:05:00Z"
+  },
+  {
+    "place": "Botanische Tuinen Utrecht",
+    "city": "Utrecht",
+    "vibe": "romantic",
+    "title": "Botanische Tuinen Utrecht – Romantic Garden Escape at De Uithof",
+    "images": [
+      "images/places/botanische-tuinen-utrecht.jpg"
+    ],
+    "short_description": "A romantic botanical garden with flowers, butterflies, and serene pathways.",
+    "description": "Botanische Tuinen Utrecht is a romantic nature spot with themed gardens, blooming colors, and quiet corners that feel worlds away from city noise, ideal for date walks and peaceful photos.",
+    "coordinates": [52.0879, 5.1754],
+    "adress": "Budapestlaan 17, 3584 CD Utrecht",
+    "created_on": "2026-03-02T11:10:00Z"
+  },
+  {
+    "place": "Rotsoord",
+    "city": "Utrecht",
+    "vibe": "hipster",
+    "title": "Rotsoord Utrecht – Industrial-Cool Quarter with Hipster Energy",
+    "images": [
+      "images/places/rotsoord-utrecht.jpg"
+    ],
+    "short_description": "An industrial-cool district with creative bars, design studios, and hipster nights.",
+    "description": "Rotsoord in Utrecht is where warehouses turned into stylish hangouts, with breweries, music, and waterside terraces creating that perfect hipster blend of creative and casual.",
+    "coordinates": [52.0795, 5.1247],
+    "adress": "Rotsoord, 3523 Utrecht",
+    "created_on": "2026-03-02T11:15:00Z"
+  },
+  {
+    "place": "Markthal",
+    "city": "Rotterdam",
+    "vibe": "energetic",
+    "title": "Markthal Rotterdam – Food Market with Bold City Energy",
+    "images": [
+      "images/places/markthal-rotterdam.jpg"
+    ],
+    "short_description": "A vibrant indoor market with global food stands under iconic architecture.",
+    "description": "Markthal Rotterdam is energetic from morning till evening with food stalls, fresh produce, and dramatic design overhead, making it one of the top places to feel the city’s modern pulse.",
+    "coordinates": [51.9200, 4.4864],
+    "adress": "Dominee Jan Scharpstraat 298, 3011 GZ Rotterdam",
+    "created_on": "2026-03-02T11:20:00Z"
+  },
+  {
+    "place": "Depot Boijmans Van Beuningen",
+    "city": "Rotterdam",
+    "vibe": "artsy",
+    "title": "Depot Boijmans Van Beuningen – Artsy Mirror Landmark in Rotterdam",
+    "images": [
+      "images/places/depot-boijmans-rotterdam.jpg"
+    ],
+    "short_description": "A futuristic mirrored depot with rotating exhibitions and premium artsy vibes.",
+    "description": "Depot Boijmans Van Beuningen in Rotterdam is an artsy must with its mirrored facade, curated collection storage tours, and skyline views that merge architecture and culture in one standout experience.",
+    "coordinates": [51.9145, 4.4717],
+    "adress": "Museumpark 24, 3015 CX Rotterdam",
+    "created_on": "2026-03-02T11:25:00Z"
+  },
+  {
+    "place": "Witte de Withstraat",
+    "city": "Rotterdam",
+    "vibe": "party",
+    "title": "Witte de Withstraat Rotterdam – Bars, Galleries & Nightlife",
+    "images": [
+      "images/places/witte-de-withstraat-rotterdam.jpg"
+    ],
+    "short_description": "Rotterdam’s nightlife street with bars, art spaces, and late-night party flow.",
+    "description": "Witte de Withstraat is one of Rotterdam’s most iconic party zones where gallery culture meets cocktail bars and packed terraces, making it perfect for bar hopping with creative city energy.",
+    "coordinates": [51.9142, 4.4757],
+    "adress": "Witte de Withstraat, 3012 Rotterdam",
+    "created_on": "2026-03-02T11:30:00Z"
+  },
+  {
+    "place": "Fenix Food Factory",
+    "city": "Rotterdam",
+    "vibe": "hipster",
+    "title": "Fenix Food Factory Rotterdam – Hipster Food Hall by the Maas",
+    "images": [
+      "images/places/fenix-food-factory-rotterdam.jpg"
+    ],
+    "short_description": "A hipster food hall with craft bites, local makers, and waterfront cool.",
+    "description": "Fenix Food Factory on Katendrecht gives Rotterdam hipster vibes with local beer, artisan food counters, and harbor-side seating that feels relaxed, social, and effortlessly trendy.",
+    "coordinates": [51.9028, 4.4908],
+    "adress": "Nico Koomanskade 1025, 3072 LM Rotterdam",
+    "created_on": "2026-03-02T11:35:00Z"
+  },
+  {
+    "place": "Kralingse Bos",
+    "city": "Rotterdam",
+    "vibe": "chill",
+    "title": "Kralingse Bos Rotterdam – Lakeside Chill Escape",
+    "images": [
+      "images/places/kralingse-bos-rotterdam.jpg"
+    ],
+    "short_description": "A large lakeside park for jogging, picnics, and seriously chill downtime.",
+    "description": "Kralingse Bos is Rotterdam’s go-to chill zone with a big lake, skyline views, and open trails that make it perfect for reset walks, bike loops, and calm weekend hangs.",
+    "coordinates": [51.9297, 4.5203],
+    "adress": "Kralingse Plaslaan, 3062 Rotterdam",
+    "created_on": "2026-03-02T11:40:00Z"
+  },
+  {
+    "place": "Euromast",
+    "city": "Rotterdam",
+    "vibe": "adventurous",
+    "title": "Euromast Rotterdam – Skyline Adventure Above the City",
+    "images": [
+      "images/places/euromast-rotterdam.jpg"
+    ],
+    "short_description": "A towering Rotterdam viewpoint with adventurous heights and panoramic city views.",
+    "description": "Euromast is the adventurous Rotterdam classic where you ride up for spectacular city-and-river views, and if you’re brave, add the extra thrill activities for a real adrenaline memory.",
+    "coordinates": [51.9058, 4.4662],
+    "adress": "Parkhaven 20, 3016 GM Rotterdam",
+    "created_on": "2026-03-02T11:45:00Z"
+  },
+  {
+    "place": "Hotel New York",
+    "city": "Rotterdam",
+    "vibe": "romantic",
+    "title": "Hotel New York Rotterdam – Historic Riverside Date Spot",
+    "images": [
+      "images/places/hotel-new-york-rotterdam.jpg"
+    ],
+    "short_description": "A romantic waterfront icon with old-world charm and skyline dinner views.",
+    "description": "Hotel New York on the Kop van Zuid serves romantic Rotterdam vibes with heritage architecture, river views, and dinner moments that feel timeless, especially at sunset.",
+    "coordinates": [51.9054, 4.4848],
+    "adress": "Koninginnenhoofd 1, 3072 AD Rotterdam",
+    "created_on": "2026-03-02T11:50:00Z"
+  },
+  {
+    "place": "Dakpark",
+    "city": "Rotterdam",
+    "vibe": "cozy",
+    "title": "Dakpark Rotterdam – Cozy Elevated Park Above the City",
+    "images": [
+      "images/places/dakpark-rotterdam.jpg"
+    ],
+    "short_description": "An elevated city park with cozy walking paths, gardens, and neighborhood views.",
+    "description": "Dakpark in Rotterdam West is a cozy hidden gem built above shops, offering quiet green space and local community vibes that feel intimate and refreshingly different.",
+    "coordinates": [51.9064, 4.4317],
+    "adress": "Vierhavensstraat 79, 3029 BB Rotterdam",
+    "created_on": "2026-03-02T11:55:00Z"
+  },
+  {
+    "place": "De Pier Scheveningen",
+    "city": "The Hague",
+    "vibe": "energetic",
+    "title": "De Pier Scheveningen – Sea Views, Food & Fun Near The Hague",
+    "images": [
+      "images/places/de-pier-scheveningen.jpg"
+    ],
+    "short_description": "A lively beach pier with food stands, sea breeze, and energetic coastal vibes.",
+    "description": "De Pier in Scheveningen brings energetic seaside fun near The Hague with ocean views, snacks, and attractions, making it a top pick when you want beach atmosphere with city access.",
+    "coordinates": [52.1131, 4.2816],
+    "adress": "Strandweg 156, 2586 JW Den Haag",
+    "created_on": "2026-03-02T12:00:00Z"
+  },
+  {
+    "place": "Mauritshuis",
+    "city": "The Hague",
+    "vibe": "artsy",
+    "title": "Mauritshuis The Hague – Dutch Masters in an Elegant Setting",
+    "images": [
+      "images/places/mauritshuis-the-hague.jpg"
+    ],
+    "short_description": "An elegant museum with Dutch masterpieces and refined artsy city vibes.",
+    "description": "Mauritshuis in The Hague is a compact artsy gem where iconic works like Girl with a Pearl Earring sit in elegant historic rooms, perfect for a cultured city afternoon.",
+    "coordinates": [52.0809, 4.3146],
+    "adress": "Plein 29, 2511 CS Den Haag",
+    "created_on": "2026-03-02T12:05:00Z"
+  },
+  {
+    "place": "Grote Markt Den Haag",
+    "city": "The Hague",
+    "vibe": "party",
+    "title": "Grote Markt The Hague – Bars, Terraces & Party Nights",
+    "images": [
+      "images/places/grote-markt-the-hague.jpg"
+    ],
+    "short_description": "A vibrant square full of bars and terraces with classic party-night vibes.",
+    "description": "Grote Markt in The Hague is one of the best party zones in the city center, with lively terraces, music venues, and a crowd that keeps the atmosphere fun from day drinks to late night.",
+    "coordinates": [52.0779, 4.3077],
+    "adress": "Grote Markt, 2511 BG Den Haag",
+    "created_on": "2026-03-02T12:10:00Z"
+  },
+  {
+    "place": "Vredespaleis",
+    "city": "The Hague",
+    "vibe": "romantic",
+    "title": "Vredespaleis The Hague – Romantic Landmark with Timeless Grandeur",
+    "images": [
+      "images/places/vredespaleis-the-hague.jpg"
+    ],
+    "short_description": "A grand historic landmark with romantic architecture and peaceful gardens nearby.",
+    "description": "Vredespaleis in The Hague gives romantic old-world energy with striking architecture and serene surroundings, making it a beautiful stop for couples and city walkers who love elegant landmarks.",
+    "coordinates": [52.0866, 4.2954],
+    "adress": "Carnegieplein 2, 2517 KJ Den Haag",
+    "created_on": "2026-03-02T12:15:00Z"
+  },
+  {
+    "place": "Paleistuin",
+    "city": "The Hague",
+    "vibe": "chill",
+    "title": "Paleistuin The Hague – Chill Royal Garden in the City",
+    "images": [
+      "images/places/paleistuin-the-hague.jpg"
+    ],
+    "short_description": "A calm royal garden for chill breaks, coffee walks, and quiet moments.",
+    "description": "Paleistuin is a chill hidden spot in The Hague where you can slow down among manicured greenery right behind Noordeinde Palace, perfect for a peaceful break between city plans.",
+    "coordinates": [52.0814, 4.3044],
+    "adress": "Prinsessewal, 2513 EE Den Haag",
+    "created_on": "2026-03-02T12:20:00Z"
+  },
+  {
+    "place": "Westduinpark",
+    "city": "The Hague",
+    "vibe": "adventurous",
+    "title": "Westduinpark – Dune Trails & Coastal Adventure near The Hague",
+    "images": [
+      "images/places/westduinpark-the-hague.jpg"
+    ],
+    "short_description": "Wild dunes and trail routes for adventurous coastal walks near the city.",
+    "description": "Westduinpark near The Hague and Kijkduin is an adventurous nature area with dune climbs, sea air, and open coastal trails that feel like a mini escape from city life.",
+    "coordinates": [52.0712, 4.2457],
+    "adress": "Westduinpark, 2554 Den Haag",
+    "created_on": "2026-03-02T12:25:00Z"
+  },
+  {
+    "place": "Madurodam",
+    "city": "The Hague",
+    "vibe": "family",
+    "title": "Madurodam The Hague – Family-Friendly Mini Netherlands Experience",
+    "images": [
+      "images/places/madurodam-the-hague.jpg"
+    ],
+    "short_description": "A fun miniature Netherlands attraction with playful family-friendly exhibits.",
+    "description": "Madurodam in The Hague is a family favorite where miniature Dutch landmarks and interactive displays keep kids engaged while adults enjoy a compact tour of the country’s highlights.",
+    "coordinates": [52.0996, 4.2970],
+    "adress": "George Maduroplein 1, 2584 RZ Den Haag",
+    "created_on": "2026-03-02T12:30:00Z"
+  },
+  {
+    "place": "Delft Markt",
+    "city": "Delft",
+    "vibe": "cozy",
+    "title": "Delft Markt – Cozy Historic Square near The Hague",
+    "images": [
+      "images/places/delft-markt.jpg"
+    ],
+    "short_description": "A cozy historic square with cafés, canals, and classic Dutch postcard charm.",
+    "description": "Delft Markt, close to The Hague and Rotterdam, is pure cozy Netherlands with old facades, canal-side strolls, and terrace culture that makes it a perfect surrounding-city day trip.",
+    "coordinates": [52.0116, 4.3571],
+    "adress": "Markt, 2611 GW Delft",
+    "created_on": "2026-03-02T12:35:00Z"
+  },
+  {
+    "place": "Kinderdijk Windmills",
+    "city": "Kinderdijk",
+    "vibe": "romantic",
+    "title": "Kinderdijk – Romantic Windmill Landscape near Rotterdam",
+    "images": [
+      "images/places/kinderdijk-windmills.jpg"
+    ],
+    "short_description": "Iconic windmill scenery with romantic sunset walks near Rotterdam.",
+    "description": "Kinderdijk is a romantic surrounding destination near Rotterdam where historic windmills, water reflections, and open skies create one of the most photogenic experiences in the Netherlands.",
+    "coordinates": [51.8850, 4.6347],
+    "adress": "Nederwaard 1, 2961 AS Kinderdijk",
+    "created_on": "2026-03-02T12:40:00Z"
+  },
+  {
+    "place": "Schiedam Jenever Museum",
+    "city": "Schiedam",
+    "vibe": "hipster",
+    "title": "Nationaal Jenevermuseum Schiedam – Hipster Distillery Culture",
+    "images": [
+      "images/places/jenevermuseum-schiedam.jpg"
+    ],
+    "short_description": "A quirky distillery museum in Schiedam with local spirit and hipster charm.",
+    "description": "The Jenever Museum in Schiedam, right next to Rotterdam, mixes heritage distilling with modern tasting culture, making it a hipster-friendly stop for craft drink lovers and curious explorers.",
+    "coordinates": [51.9199, 4.3990],
+    "adress": "Lange Haven 74, 3111 CG Schiedam",
+    "created_on": "2026-03-02T12:45:00Z"
+  },
+  {
+    "place": "Kasteel Duivenvoorde",
+    "city": "Voorschoten",
+    "vibe": "family",
+    "title": "Kasteel Duivenvoorde – Family Day at a Historic Estate",
+    "images": [
+      "images/places/kasteel-duivenvoorde.jpg"
+    ],
+    "short_description": "A family-friendly castle estate near The Hague with gardens and history.",
+    "description": "Kasteel Duivenvoorde in Voorschoten offers a family day out near The Hague with historic rooms, parkland walks, and easy educational fun that works for both kids and adults.",
+    "coordinates": [52.1299, 4.4352],
+    "adress": "Laan van Duivenvoorde 4, 2252 AK Voorschoten",
+    "created_on": "2026-03-02T12:50:00Z"
+  },
+  {
+    "place": "Naarden-Vesting",
+    "city": "Naarden",
+    "vibe": "adventurous",
+    "title": "Naarden-Vesting – Star Fort Adventure near Amsterdam",
+    "images": [
+      "images/places/naarden-vesting.jpg"
+    ],
+    "short_description": "A star-shaped fortified town near Amsterdam with adventurous history walks.",
+    "description": "Naarden-Vesting is an adventurous surroundings trip from Amsterdam where moats, bastions, and fortress streets create a unique Dutch history experience with beautiful geometric city views.",
+    "coordinates": [52.2958, 5.1625],
+    "adress": "Westwalstraat, 1411 PB Naarden",
+    "created_on": "2026-03-02T12:55:00Z"
+  },
+  {
+    "place": "Slot Zuylen",
+    "city": "Oud-Zuilen",
+    "vibe": "romantic",
+    "title": "Slot Zuylen – Romantic Castle Escape near Utrecht",
+    "images": [
+      "images/places/slot-zuylen.jpg"
+    ],
+    "short_description": "A romantic riverside castle near Utrecht with elegant gardens and stories.",
+    "description": "Slot Zuylen near Utrecht is a romantic hidden gem with stately interiors, landscaped gardens, and scenic river surroundings that make it perfect for a soft, culture-rich date trip.",
+    "coordinates": [52.1271, 5.0769],
+    "adress": "Tournooiveld 1, 3611 AS Oud-Zuilen",
+    "created_on": "2026-03-02T13:00:00Z"
+  },
+  {
+    "place": "Muiderslot",
+    "city": "Muiden",
+    "vibe": "family",
+    "title": "Muiderslot – Family Castle Day near Amsterdam",
+    "images": [
+      "images/places/muiderslot-muiden.jpg"
+    ],
+    "short_description": "A fairytale medieval castle near Amsterdam with family-friendly exhibits.",
+    "description": "Muiderslot in Muiden is one of the best family castle trips near Amsterdam, with towers, armor stories, and garden walks that keep kids curious and adults fully entertained.",
+    "coordinates": [52.3273, 5.0690],
+    "adress": "Herengracht 1, 1398 AA Muiden",
+    "created_on": "2026-03-02T13:05:00Z"
+  },
+  {
+    "place": "Hoge Veluwe Sculpture Garden",
+    "city": "Otterlo",
+    "vibe": "artsy",
+    "title": "Hoge Veluwe Sculpture Garden – Artsy Nature Trip from Utrecht",
+    "images": [
+      "images/places/hoge-veluwe-sculpture-garden.jpg"
+    ],
+    "short_description": "An artsy open-air sculpture garden in nature for a premium day trip vibe.",
+    "description": "The sculpture garden at De Hoge Veluwe is an artsy surroundings adventure from Utrecht with monumental works, forest paths, and museum-level culture in a beautiful outdoor setting.",
+    "coordinates": [52.0996, 5.8160],
+    "adress": "Houtkampweg 6, 6731 AW Otterlo",
+    "created_on": "2026-03-02T13:10:00Z"
   }
 ]
