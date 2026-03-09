@@ -22,7 +22,7 @@
 
     <style>
       /* Map styling */
-      #map { height: 400px; margin: 40px 0; border-radius: 10px; }
+    #map { height: 400px; margin: 40px 0; border-radius: 14px; }
       #vibeFilter { margin-bottom: 20px; padding: 5px 10px; font-size: 16px; }
     </style>
 </head>
@@ -94,8 +94,8 @@
                     .then(posts => {
                         // Map setup
                         const map = L.map('map').setView([52.1, 5.3], 7);
-                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                            attribution: '&copy; OpenStreetMap contributors'
+                        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                            attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
                         }).addTo(map);
 
                         const groupedByCoordinate = {};
@@ -122,25 +122,78 @@
                                 const [lat, lng] = applyMarkerOffset(post.coordinates[0], post.coordinates[1], indexInGroup, group.length);
 
                                 const postVibes = typeof getPostVibes === 'function' ? getPostVibes(post) : [];
-                                const vibeIcons = postVibes.length
-                                    ? postVibes.slice(0, 3).map(v => getVibeIcon(v)).join('')
-                                    : (typeof getVibeIcon === 'function' ? getVibeIcon(post.vibe) : '•');
+                                const markerVibes = postVibes.length
+                                    ? postVibes.slice(0, 3)
+                                    : [post.vibe];
+
+                                const markerIconsHtml = markerVibes
+                                    .map(v => `<span class="map-marker-emoji">${typeof getVibeIcon === 'function' ? getVibeIcon(v) : '•'}</span>`)
+                                    .join('');
+
+                                const markerIconCount = Math.max(1, markerVibes.length);
+                                const markerWidth = 18 + (markerIconCount * 14);
 
                                 const emojiIcon = L.divIcon({
-                                        html: `<div style="font-size:28px; line-height:1; background:rgba(15,28,26,0.72); border:1px solid rgba(198,167,110,0.35); border-radius:999px; padding:4px 7px; box-shadow:0 6px 18px rgba(0,0,0,0.35);">${vibeIcons}</div>`,
+                                        html: `<div class="map-marker-pill">${markerIconsHtml}</div>`,
                                         className: 'emoji-marker',
-                                        iconSize: [42, 32],
-                                        iconAnchor: [21, 16]
+                                        iconSize: [markerWidth, 30],
+                                        iconAnchor: [Math.round(markerWidth / 2), 15]
                                 });
 
-                                L.marker([lat, lng], { icon: emojiIcon })
+                                const popupVibes = postVibes.length
+                                    ? `<div class="map-popup-vibes">${postVibes.map(v => `${getVibeIcon(v)} ${typeof getVibeLabel === 'function' ? getVibeLabel(v) : v}`).join(' • ')}</div>`
+                                    : '';
+
+                                const popupHtml = `
+                                    <div class="map-popup-card" role="button" tabindex="0" aria-label="Open post: ${post.title}">
+                                        <div class="map-popup-city">${post.city}</div>
+                                        <div class="map-popup-title">${post.title}</div>
+                                        ${popupVibes}
+                                        <img class="map-popup-image" src="${post.images[0]}" alt="${post.place || post.title}">
+                                        <button type="button" class="map-popup-open">Open post</button>
+                                    </div>
+                                `;
+
+                                const marker = L.marker([lat, lng], { icon: emojiIcon })
                                 .addTo(map)
-                                .bindPopup(`
-                                        <strong>${post.city}</strong><br>
-                                        ${post.title}<br>
-                                        ${(postVibes.length ? `<small>${postVibes.map(v => `${getVibeIcon(v)} ${typeof getVibeLabel === 'function' ? getVibeLabel(v) : v}`).join(' • ')}</small><br>` : '')}
-                                        <img src="${post.images[0]}" width="150">
-                                `);
+                                .bindPopup(popupHtml, { className: 'vibe-map-popup' });
+
+                                marker.on('popupopen', (event) => {
+                                    const popupElement = event.popup.getElement();
+                                    if (!popupElement) return;
+
+                                    const cardElement = popupElement.querySelector('.map-popup-card');
+                                    const openButton = popupElement.querySelector('.map-popup-open');
+                                    const openPost = () => {
+                                        if (typeof buildPostCardForModal !== 'function' || typeof openModalWithCard !== 'function') {
+                                            window.location.href = 'blog.html';
+                                            return;
+                                        }
+                                        map.closePopup();
+                                        const card = buildPostCardForModal(post);
+                                        openModalWithCard(card);
+                                    };
+
+                                    if (openButton && !openButton.dataset.bound) {
+                                        openButton.dataset.bound = '1';
+                                        openButton.addEventListener('click', (clickEvent) => {
+                                            clickEvent.preventDefault();
+                                            clickEvent.stopPropagation();
+                                            openPost();
+                                        });
+                                    }
+
+                                    if (cardElement && !cardElement.dataset.bound) {
+                                        cardElement.dataset.bound = '1';
+                                        cardElement.addEventListener('click', openPost);
+                                        cardElement.addEventListener('keydown', (keyEvent) => {
+                                            if (keyEvent.key === 'Enter' || keyEvent.key === ' ') {
+                                                keyEvent.preventDefault();
+                                                openPost();
+                                            }
+                                        });
+                                    }
+                                });
                         });
                     });
             });

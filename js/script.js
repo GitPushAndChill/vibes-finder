@@ -301,6 +301,8 @@ function initBlogFilters() {
     const grid = document.querySelector('#all-posts-grid');
     if (!grid) return;
 
+    initBlogVibeGuide();
+
     const cityInput = document.querySelector('#city-filter');
     const vibeInput = document.querySelector('#vibe-filter');
     const citySelect = document.querySelector('#city-select');
@@ -406,6 +408,62 @@ function initBlogFilters() {
     }
 
     render();
+}
+
+function initBlogVibeGuide() {
+    const toggleBtn = document.querySelector('#toggle-vibe-guide-btn');
+    if (!toggleBtn) return;
+    if (toggleBtn.dataset.bound === '1') return;
+    toggleBtn.dataset.bound = '1';
+
+    toggleBtn.textContent = '👓 Learn about the Vibes 👓';
+
+    toggleBtn.addEventListener('click', () => {
+        const vibeEntries = Object.entries(VIBE_DEFINITIONS)
+            .map(([key, def]) => ({
+                key,
+                icon: def?.icon || '•',
+                label: def?.label || toTitleCase(String(key || '').replaceAll('_', ' ')),
+                definition: def?.definition || '',
+            }))
+            .sort((a, b) => a.label.localeCompare(b.label));
+
+        const guideCard = document.createElement('article');
+        guideCard.className = 'card vibe-guide-article';
+
+        const heading = document.createElement('h2');
+        heading.className = 'card-title';
+        heading.textContent = 'All vibe descriptions';
+        guideCard.appendChild(heading);
+
+        const intro = document.createElement('p');
+        intro.className = 'excerpt';
+        intro.textContent = 'A quick overview of every vibe used across the posts.';
+        guideCard.appendChild(intro);
+
+        const guideList = document.createElement('div');
+        guideList.className = 'vibe-guide-list';
+
+        vibeEntries.forEach((entry) => {
+            const item = document.createElement('article');
+            item.className = 'vibe-guide-item';
+
+            const title = document.createElement('h3');
+            title.className = 'vibe-guide-item-title';
+            title.textContent = `${entry.icon} ${entry.label}`;
+
+            const description = document.createElement('p');
+            description.className = 'vibe-guide-item-desc';
+            description.textContent = entry.definition;
+
+            item.appendChild(title);
+            item.appendChild(description);
+            guideList.appendChild(item);
+        });
+
+        guideCard.appendChild(guideList);
+        openModalWithCard(guideCard);
+    });
 }
 
 function toTitleCase(value) {
