@@ -1,0 +1,73 @@
+# Central vibe definitions for icons and copy.
+# Update this file to change vibe icons/definitions without editing JS.
+
+vibes:
+  classy:
+    icon: "🍸"
+    label: "Classy"
+    definition: "Dress up & romanticize it. Cocktail bars, aesthetic dinner spots, wine bars and rooftops worth getting ready for."
+
+  easygoing:
+    icon: "👯‍♀️"
+    label: "Easygoing"
+    definition: "Keep it simple & just show up. Cool lunch spots, cozy cafés and relaxed hangout spaces where company matters most."
+
+  do_mode:
+    icon: "🎯"
+    label: "Do Mode"
+    definition: "Have the experience & make memories with workshops, tastings, arcades, comedy and activities."
+
+  social:
+    icon: "🎉"
+    label: "Social"
+    definition: "Feel the energy & meet people through lively bars, DJ sets, open mics and events."
+
+  culture_craving:
+    icon: "🎭"
+    label: "Culture Craving"
+    definition: "Feed the brain & find your muse with museums, galleries, exhibitions and walking tours."
+
+  date_night:
+    icon: "❤️‍🔥"
+    label: "Date Night"
+    definition: "Make it electric & feel the spark with intimate restaurants, cozy wine bars and candle-lit corners."
+
+  alternative:
+    icon: "🦄"
+    label: "Alternative"
+    definition: "Break the stereotypical & find unexpected creative spaces, street art, underground events and flea markets."
+
+  little_ones:
+    icon: "🧸"
+    label: "Little Ones"
+    definition: "Embrace sweet childhood & play it out with family-friendly museums, parks, cafés and workshops."
+
+  outdoorsy:
+    icon: "🤸🏽‍♀️"
+    label: "Outdoorsy"
+    definition: "Step outside & dare to explore parks, trails, picnic spots, beach days and open-air events."
+
+  hidden_gems:
+    icon: "💎"
+    label: "Hidden Gems"
+    definition: "Discover it, but keep it secret with tucked-away cafés, quirky shops and under-the-radar spots."
+
+  beer_lovers:
+    icon: "🍺"
+    label: "Beer Lovers"
+    definition: "Sip it & savour it with craft breweries, cozy beer bars and tasting rooms full of character."
+
+  golden_summertime:
+    icon: "🌞"
+    label: "Golden Summertime"
+    definition: "Catch the sun & immerse into summer with terraces, beaches and sun-soaked city escapes."
+
+  coffee_and_chill:
+    icon: "☕"
+    label: "Coffee & Chill"
+    definition: "Slow down & enjoy the caffeine kick in gezellig cafés for breaks, books and mindful moments."
+
+  cute_girl_brunch:
+    icon: "🥐"
+    label: "Cute Girl Brunch"
+    definition: "Get the girls & indulge in slow mornings at cozy brunch spots made for chats and rituals."

@@ -35,6 +35,156 @@ let modalOpenCount = 0;
 // --- Refactored grid rendering logic ---
 let postsData = null; // cache for posts
 
+const DEFAULT_VIBE_DEFINITIONS = {
+    classy: { icon: '🍸', label: 'Classy', definition: 'Dress up and romanticize it.' },
+    easygoing: { icon: '👯‍♀️', label: 'Easygoing', definition: 'Keep it simple and just show up.' },
+    do_mode: { icon: '🎯', label: 'Do Mode', definition: 'Have the experience and make memories.' },
+    social: { icon: '🪩', label: 'Social', definition: 'Feel the energy and meet people.' },
+    culture_craving: { icon: '🎭', label: 'Culture Craving', definition: 'Feed the brain and find your muse.' },
+    date_night: { icon: '❤️‍🔥', label: 'Date Night', definition: 'Make it electric and feel the spark.' },
+    alternative: { icon: '🦄', label: 'Alternative', definition: 'Break the stereotypical and find unexpected.' },
+    little_ones: { icon: '🧸', label: 'Little Ones', definition: 'Embrace sweet childhood and play it out.' },
+    outdoorsy: { icon: '🤸🏽‍♀️', label: 'Outdoorsy', definition: 'Step outside and dare to explore.' },
+    hidden_gems: { icon: '💎', label: 'Hidden Gems', definition: 'Discover it, but keep it secret.' },
+    beer_lovers: { icon: '🍺', label: 'Beer Lovers', definition: 'Sip it and savour it.' },
+    golden_summertime: { icon: '🌞', label: 'Golden Summertime', definition: 'Catch the sun and immerse into summer.' },
+    coffee_and_chill: { icon: '☕', label: 'Coffee & Chill', definition: 'Slow down and enjoy the caffeine kick.' },
+    cute_girl_brunch: { icon: '🥐', label: 'Cute Girl Brunch', definition: 'Get the girls and indulge in slow mornings.' },
+};
+
+let VIBE_DEFINITIONS = { ...DEFAULT_VIBE_DEFINITIONS };
+let VIBE_ICON_MAP = Object.fromEntries(
+    Object.entries(VIBE_DEFINITIONS).map(([key, def]) => [key, def.icon || '•'])
+);
+
+function normalizeVibeKey(value) {
+    return String(value || '')
+        .trim()
+        .toLowerCase()
+        .replaceAll('&', 'and')
+        .replace(/[\s\/]+/g, '_')
+        .replace(/[^a-z0-9_]/g, '')
+        .replace(/_+/g, '_')
+        .replace(/^_|_$/g, '');
+}
+
+function findVibeDefinition(vibe) {
+    const key = normalizeVibeKey(vibe);
+    if (VIBE_DEFINITIONS[key]) return { key, def: VIBE_DEFINITIONS[key] };
+
+    const byLabelEntry = Object.entries(VIBE_DEFINITIONS).find(([, def]) =>
+        normalizeVibeKey(def?.label) === key
+    );
+    if (byLabelEntry) {
+        return { key: byLabelEntry[0], def: byLabelEntry[1] };
+    }
+
+    return null;
+}
+
+function getPostVibes(post) {
+    if (!post) return [];
+
+    const source = Array.isArray(post.vibes) && post.vibes.length
+        ? post.vibes
+        : (post.vibe ? [post.vibe] : []);
+
+    const normalized = source
+        .map((v) => normalizeVibeKey(v))
+        .filter(Boolean);
+
+    return Array.from(new Set(normalized));
+}
+
+function getPostPrimaryVibe(post) {
+    return getPostVibes(post)[0] || '';
+}
+
+function parseVibesYaml(yamlText) {
+    const definitions = {};
+    const lines = String(yamlText || '').split(/\r?\n/);
+    let inVibesBlock = false;
+    let currentVibeKey = null;
+
+    for (const rawLine of lines) {
+        const line = rawLine.replace(/\t/g, '    ');
+        const trimmed = line.trim();
+
+        if (!trimmed || trimmed.startsWith('#')) continue;
+
+        if (!inVibesBlock) {
+            if (trimmed === 'vibes:') inVibesBlock = true;
+            continue;
+        }
+
+        const vibeMatch = line.match(/^\s{2}([a-zA-Z0-9_-]+):\s*$/);
+        if (vibeMatch) {
+            currentVibeKey = vibeMatch[1].toLowerCase();
+            if (!definitions[currentVibeKey]) definitions[currentVibeKey] = {};
+            continue;
+        }
+
+        const propMatch = line.match(/^\s{4}([a-zA-Z0-9_-]+):\s*(.+)\s*$/);
+        if (propMatch && currentVibeKey) {
+            const prop = propMatch[1].toLowerCase();
+            let value = propMatch[2].trim();
+            if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+                value = value.slice(1, -1);
+            }
+            definitions[currentVibeKey][prop] = value;
+        }
+    }
+
+    return definitions;
+}
+
+async function loadVibeDefinitionsFromYaml() {
+    try {
+        const response = await fetch('content/vibes.yml', { cache: 'no-cache' });
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+
+        const yamlText = await response.text();
+        const parsed = parseVibesYaml(yamlText);
+
+        const parsedKeys = Object.keys(parsed);
+        if (!parsedKeys.length) {
+            warn('No vibe definitions found in content/vibes.yml, using defaults.');
+            return;
+        }
+
+        const merged = { ...DEFAULT_VIBE_DEFINITIONS };
+        parsedKeys.forEach((rawKey) => {
+            const normalizedKey = normalizeVibeKey(rawKey);
+            if (!normalizedKey) return;
+
+            const parsedDef = parsed[rawKey] || {};
+            const baseDef = merged[normalizedKey] || {};
+            merged[normalizedKey] = {
+                ...baseDef,
+                ...parsedDef,
+                label: parsedDef.label || baseDef.label || rawKey,
+                icon: parsedDef.icon || baseDef.icon || '•',
+            };
+        });
+
+        VIBE_DEFINITIONS = merged;
+        VIBE_ICON_MAP = Object.fromEntries(
+            Object.entries(VIBE_DEFINITIONS).map(([key, def]) => [key, def.icon || '•'])
+        );
+
+        log(`Loaded ${parsedKeys.length} vibe definitions from YAML`, 'color: #c6a76e;');
+    } catch (err) {
+        warn(`Failed to load content/vibes.yml, using default vibe icons. (${err?.message || err})`);
+    }
+}
+
+const vibeConfigReady = loadVibeDefinitionsFromYaml();
+if (typeof window !== 'undefined') {
+    window.vibeConfigReady = vibeConfigReady;
+}
+
 function getSortedPosts() {
     if (!Array.isArray(postsData)) return [];
     return postsData
@@ -59,7 +209,13 @@ function populatePostGrid({ containerSelector, limit, cityFilter = '', vibeFilte
         posts = posts.filter(p => String(p?.city || '').toLowerCase().includes(cityNeedle));
     }
     if (vibeNeedle) {
-        posts = posts.filter(p => String(p?.vibe || '').toLowerCase().includes(vibeNeedle));
+        posts = posts.filter((p) => {
+            const vibes = getPostVibes(p);
+            return vibes.some((v) => {
+                const label = getVibeLabel(v).toLowerCase();
+                return v.includes(vibeNeedle) || label.includes(vibeNeedle);
+            });
+        });
     }
     if (typeof limit === 'number') {
         posts = posts.slice(0, limit);
@@ -99,23 +255,24 @@ function populatePostGrid({ containerSelector, limit, cityFilter = '', vibeFilte
         }
         article.appendChild(full);
 
-        const btn = document.createElement('button');
-        btn.className = 'btn read-btn';
-        btn.textContent = 'Read';
-        article.appendChild(btn);
-
-        if (post.vibe) {
+        const postVibes = getPostVibes(post);
+        if (postVibes.length) {
             const vibeBadge = document.createElement('div');
             vibeBadge.className = 'vibe-badge';
 
             const icon = document.createElement('span');
             icon.className = 'vibe-badge-icon';
-            icon.textContent = getVibeIcon(post.vibe);
+            icon.textContent = getVibeIcon(postVibes[0]);
             vibeBadge.appendChild(icon);
 
             const text = document.createElement('span');
             text.className = 'vibe-badge-text';
-            text.textContent = post.vibe;
+            const labels = postVibes.map(getVibeLabel);
+            if (labels.length <= 2) {
+                text.textContent = labels.join(' • ');
+            } else {
+                text.textContent = `${labels.slice(0, 2).join(' • ')} +${labels.length - 2}`;
+            }
             vibeBadge.appendChild(text);
 
             article.appendChild(vibeBadge);
@@ -127,19 +284,17 @@ function populatePostGrid({ containerSelector, limit, cityFilter = '', vibeFilte
 
 function getVibeIcon(vibe) {
     if (!vibe) return '';
-    const v = String(vibe).toLowerCase();
-    const map = {
-        chill: '😎',
-        cozy: '☕',
-        energetic: '⚡',
-        romantic: '💘',
-        family: '👪',
-        adventurous: '🧭',
-        hipster: '🎩',
-        party: '🎉',
-        artsy: '🎨',
-    };
-    return map[v] || '•';
+    const found = findVibeDefinition(vibe);
+    return found?.def?.icon || '•';
+}
+
+function getVibeLabel(vibe) {
+    if (!vibe) return '';
+    const found = findVibeDefinition(vibe);
+    if (found?.def?.label) return found.def.label;
+
+    const normalized = normalizeVibeKey(vibe).replaceAll('_', ' ');
+    return toTitleCase(normalized);
 }
 
 function initBlogFilters() {
@@ -161,7 +316,11 @@ function initBlogFilters() {
 
     const posts = getSortedPosts();
     const cities = Array.from(new Set(posts.map(p => p?.city).filter(Boolean))).sort();
-    const vibes = Array.from(new Set(posts.map(p => p?.vibe).filter(Boolean))).sort();
+    const vibes = Array.from(
+        new Set(
+            posts.flatMap((p) => getPostVibes(p))
+        )
+    ).sort((a, b) => getVibeLabel(a).localeCompare(getVibeLabel(b)));
 
     cityOptions.innerHTML = cities.map(c => `<option value="${escapeHtmlAttr(c)}"></option>`).join('');
     vibeOptions.innerHTML = vibes.map(v => `<option value="${escapeHtmlAttr(v)}"></option>`).join('');
@@ -189,7 +348,7 @@ function initBlogFilters() {
             const opt = document.createElement('option');
             opt.value = v;
             const emoji = getVibeIcon(v);
-            opt.textContent = `${emoji ? emoji + ' ' : ''}${toTitleCase(v)}`;
+            opt.textContent = `${emoji ? emoji + ' ' : ''}${getVibeLabel(v)}`;
             vibeSelect.appendChild(opt);
         });
     }
@@ -338,11 +497,6 @@ function buildPostCardForModal(post) {
     }
     article.appendChild(full);
 
-    const btn = document.createElement('button');
-    btn.className = 'btn read-btn';
-    btn.textContent = 'Read';
-    article.appendChild(btn);
-
     return article;
 }
 
@@ -359,42 +513,52 @@ function getPostIndexInSortedList(post) {
 }
 
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', fetchAndRenderGrids);
+    document.addEventListener('DOMContentLoaded', () => {
+        vibeConfigReady.finally(fetchAndRenderGrids);
+    });
 } else {
-    fetchAndRenderGrids();
+    vibeConfigReady.finally(fetchAndRenderGrids);
 }
 
 function initArticleModal() {
     log('Initializing article modal system...', 'color: green;');
 
-    const readButtons = document.querySelectorAll('.read-btn');
-    log(`Found ${readButtons.length} read buttons`, 'color: blue;');
+    const cards = document.querySelectorAll('.card, .review-card');
+    log(`Found ${cards.length} cards`, 'color: blue;');
 
-    if (readButtons.length === 0) {
-        warn('No read buttons found on page.');
+    if (cards.length === 0) {
+        warn('No cards found on page.');
     }
 
-    readButtons.forEach(btn => {
-        if (btn.dataset.modalBound === '1') return;
-        btn.dataset.modalBound = '1';
+    const openCardModal = (card) => {
+        const title = card.querySelector('h2, h3');
+        if (title) {
+            log(`Opening article: ${title.textContent.trim()}`, 'color: blue; font-weight: bold;');
+        } else {
+            warn('No title found inside card.');
+        }
 
-        btn.addEventListener('click', (e) => {
-            log('Read button clicked', 'color: purple;');
+        openModalWithCard(card);
+    };
 
-            const card = e.currentTarget.closest('.card, .review-card');
-            if (!card) {
-                warn('No card found for clicked button.');
-                return;
+    cards.forEach(card => {
+        if (card.dataset.modalBound === '1') return;
+        card.dataset.modalBound = '1';
+        card.style.cursor = 'pointer';
+        if (!card.hasAttribute('tabindex')) {
+            card.tabIndex = 0;
+        }
+
+        card.addEventListener('click', () => {
+            log('Card clicked', 'color: purple;');
+            openCardModal(card);
+        });
+
+        card.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openCardModal(card);
             }
-
-            const title = card.querySelector('h2, h3');
-            if (title) {
-                log(`Opening article: ${title.textContent.trim()}`, 'color: blue; font-weight: bold;');
-            } else {
-                warn('No title found inside card.');
-            }
-
-            openModalWithCard(card);
         });
     });
 }
@@ -483,12 +647,14 @@ function openModalWithCard(card) {
 
     // SEO internal links inside enlarged article (append at very bottom later)
     let seoWrap = null;
-    if (post && (post.city || post.vibe)) {
+    const postVibes = getPostVibes(post);
+    if (post && (post.city || postVibes.length)) {
         seoWrap = document.createElement('div');
         seoWrap.className = 'modal-seo-links';
 
         const cityText = post.city ? String(post.city) : 'Dutch cities';
-        const vibeText = post.vibe ? String(post.vibe) : 'best';
+        const primaryVibe = getPostPrimaryVibe(post);
+        const vibeText = primaryVibe ? getVibeLabel(primaryVibe) : 'best';
 
         seoWrap.innerHTML = `
             <p>Explore more:</p>
@@ -502,30 +668,41 @@ function openModalWithCard(card) {
     modal.appendChild(closeBtn);
     modal.appendChild(clone);
 
-    // modal footer info: address (left) and vibe (right)
+    // modal footer info row: address (left) and vibes (right)
+    const metaRow = document.createElement('div');
+    metaRow.className = 'modal-meta-row';
+
     const addrText = post.adress || post.address || '';
     if (addrText) {
         const addrEl = document.createElement('div');
         addrEl.className = 'modal-footer-left';
         addrEl.textContent = addrText;
-        // place address inside the cloned card so it sits within the card border
-        clone.appendChild(addrEl);
+        metaRow.appendChild(addrEl);
     }
 
-    if (post.vibe) {
+    if (postVibes.length) {
         const vibeEl = document.createElement('div');
         vibeEl.className = 'modal-footer-right';
-        // include a small icon representing the vibe
-        const icon = document.createElement('span');
-        icon.className = 'vibe-icon';
-        icon.textContent = getVibeIcon(post.vibe);
-        icon.style.marginRight = '8px';
-        vibeEl.appendChild(icon);
-        const vibeText = document.createElement('span');
-        vibeText.textContent = post.vibe;
-        vibeEl.appendChild(vibeText);
-        // place inside the cloned card so it sits within the card border
-        clone.appendChild(vibeEl);
+
+        postVibes.forEach((v) => {
+            const chip = document.createElement('span');
+            chip.className = 'modal-vibe-chip';
+            const icon = document.createElement('span');
+            icon.className = 'vibe-icon';
+            icon.textContent = getVibeIcon(v);
+            chip.appendChild(icon);
+
+            const vibeText = document.createElement('span');
+            vibeText.textContent = getVibeLabel(v);
+            chip.appendChild(vibeText);
+
+            vibeEl.appendChild(chip);
+        });
+        metaRow.appendChild(vibeEl);
+    }
+
+    if (metaRow.children.length) {
+        clone.appendChild(metaRow);
     }
 
     // previous / next article navigation in modal

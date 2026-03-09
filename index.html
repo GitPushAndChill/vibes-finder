@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-language" content="en" />
+    <meta name="language" content="English" />
     <link rel="stylesheet" href="css/style.css" />
 
     <!-- Leaflet CSS -->
@@ -14,6 +16,7 @@
     <meta name="robots" content="index, follow" />
     <meta property="og:title" content="Vibes Finder — Best Places & Vibes in the Netherlands" />
     <meta property="og:description" content="Find the best places and vibes in Dutch cities like Amsterdam, Rotterdam, Utrecht and Den Haag. Vind de leukste plekken en city vibes in Nederland." />
+    <meta property="og:locale" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:description" content="Best places and vibes in the Netherlands (EN/NL): Amsterdam, Rotterdam, Utrecht, Den Haag and more." />
 
@@ -82,46 +85,65 @@
     <script src="js/script.js"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-    <script>
-    const vibeIcons = {
-        chill: '😎',
-        cozy: '☕',
-        energetic: '⚡',
-        romantic: '💘',
-        family: '👪',
-        adventurous: '🧭',
-        hipster: '🎩',
-        party: '🎉',
-        artsy: '🎨'
-    };
+        <script>
+        Promise.resolve(window.vibeConfigReady)
+            .catch(() => null)
+            .finally(() => {
+                fetch('posts/places/posts-places.json')
+                    .then(res => res.json())
+                    .then(posts => {
+                        // Map setup
+                        const map = L.map('map').setView([52.1, 5.3], 7);
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            attribution: '&copy; OpenStreetMap contributors'
+                        }).addTo(map);
 
+                        const groupedByCoordinate = {};
+                        posts.forEach((post) => {
+                            const key = `${Number(post.coordinates?.[0] || 0).toFixed(5)}|${Number(post.coordinates?.[1] || 0).toFixed(5)}`;
+                            if (!groupedByCoordinate[key]) groupedByCoordinate[key] = [];
+                            groupedByCoordinate[key].push(post);
+                        });
 
-    fetch('posts/places/posts-places.json')
-      .then(res => res.json())
-      .then(posts => {
-        // Map setup
-        const map = L.map('map').setView([52.1, 5.3], 7);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
+                        const applyMarkerOffset = (baseLat, baseLng, indexInGroup, groupSize) => {
+                            if (groupSize <= 1) return [baseLat, baseLng];
+                            const angle = (Math.PI * 2 * indexInGroup) / groupSize;
+                            const radius = 0.0012;
+                            return [
+                                baseLat + Math.sin(angle) * radius,
+                                baseLng + Math.cos(angle) * radius,
+                            ];
+                        };
 
-        posts.forEach(post => {
-            const emojiIcon = L.divIcon({
-                html: `<div style="font-size:32px;">${vibeIcons[post.vibe]}</div>`,
-                className: 'emoji-marker',
-                iconSize: [32, 32],
-                iconAnchor: [16, 16]
+                        posts.forEach(post => {
+                                const key = `${Number(post.coordinates?.[0] || 0).toFixed(5)}|${Number(post.coordinates?.[1] || 0).toFixed(5)}`;
+                                const group = groupedByCoordinate[key] || [post];
+                                const indexInGroup = group.indexOf(post);
+                                const [lat, lng] = applyMarkerOffset(post.coordinates[0], post.coordinates[1], indexInGroup, group.length);
+
+                                const postVibes = typeof getPostVibes === 'function' ? getPostVibes(post) : [];
+                                const vibeIcons = postVibes.length
+                                    ? postVibes.slice(0, 3).map(v => getVibeIcon(v)).join('')
+                                    : (typeof getVibeIcon === 'function' ? getVibeIcon(post.vibe) : '•');
+
+                                const emojiIcon = L.divIcon({
+                                        html: `<div style="font-size:28px; line-height:1; background:rgba(15,28,26,0.72); border:1px solid rgba(198,167,110,0.35); border-radius:999px; padding:4px 7px; box-shadow:0 6px 18px rgba(0,0,0,0.35);">${vibeIcons}</div>`,
+                                        className: 'emoji-marker',
+                                        iconSize: [42, 32],
+                                        iconAnchor: [21, 16]
+                                });
+
+                                L.marker([lat, lng], { icon: emojiIcon })
+                                .addTo(map)
+                                .bindPopup(`
+                                        <strong>${post.city}</strong><br>
+                                        ${post.title}<br>
+                                        ${(postVibes.length ? `<small>${postVibes.map(v => `${getVibeIcon(v)} ${typeof getVibeLabel === 'function' ? getVibeLabel(v) : v}`).join(' • ')}</small><br>` : '')}
+                                        <img src="${post.images[0]}" width="150">
+                                `);
+                        });
+                    });
             });
-
-            L.marker(post.coordinates, { icon: emojiIcon })
-            .addTo(map)
-            .bindPopup(`
-                <strong>${post.city}</strong><br>
-                ${post.title}<br>
-                <img src="${post.images[0]}" width="150">
-            `);
-        });
-      });
-    </script>
+        </script>
 </body>
 </html>

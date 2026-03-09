@@ -605,14 +605,25 @@ body > * {
     border: 1px solid var(--border-subtle);
     padding: var(--space-m);
     border-radius: var(--radius-lg);
-    position: relative; /* for absolute placement of button */
-    padding-bottom: calc(var(--space-m) * 2.6); /* extra room for button + vibe badge */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    position: relative;
+    padding-bottom: var(--space-m);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
     min-height: 220px; /* ensure consistent box size across pages */
     box-shadow: var(--shadow-sm);
     transition: transform var(--t) var(--ease-out), border-color var(--t) var(--ease-out), box-shadow var(--t) var(--ease-out);
+}
+
+.card > .card-title,
+.card > .meta,
+.card > .excerpt,
+.card > .full-text,
+.review-card > h3,
+.review-card > .meta,
+.review-card > p,
+.review-card > .full-text {
+    grid-column: 1 / -1;
 }
 
 @supports (background: color-mix(in srgb, red, blue)) {
@@ -710,22 +721,29 @@ body > * {
 
 /* ensure read button sits bottom-left of its card/review */
 .read-btn {
-    position: absolute;
-    bottom: var(--space-m);
-    left: var(--space-m);
+    position: static;
+    grid-column: 1;
+    justify-self: start;
+    align-self: end;
+    margin-top: var(--space-s);
     border: none;          /* no box around button */
     outline: none;         /* remove focus ring if undesired */
 }
 
 /* Post vibe badge (visible when not enlarged) */
 .vibe-badge {
-    position: absolute;
-    bottom: var(--space-m);
-    right: var(--space-m);
+    position: static;
+    grid-column: 2;
+    justify-self: end;
+    align-self: end;
+    margin-top: var(--space-s);
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 7px 10px;
+    padding: 0 10px;
+    height: 36px;
+    min-height: 36px;
+    max-height: 36px;
     border-radius: var(--radius);
     border: 1px solid rgba(198, 167, 110, 0.22);
     background: rgba(15, 28, 26, 0.66);
@@ -733,8 +751,22 @@ body > * {
     font-weight: 600;
     font-size: 0.95rem;
     line-height: 1;
+    white-space: nowrap;
+    overflow: hidden;
     user-select: none;
     box-shadow: 0 14px 40px rgba(0, 0, 0, 0.34);
+}
+
+@media (max-width: 520px) {
+    .card,
+    .review-card {
+        grid-template-columns: 1fr;
+    }
+
+    .vibe-badge {
+        grid-column: 1;
+        justify-self: start;
+    }
 }
 
 @supports (background: color-mix(in srgb, red, blue)) {
@@ -746,6 +778,15 @@ body > * {
 
 .vibe-badge-icon {
     font-size: 1.05rem;
+    flex: 0 0 auto;
+}
+
+.vibe-badge-text {
+    display: inline-block;
+    max-width: 210px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* About page avatar */
@@ -852,9 +893,17 @@ body > * {
     background: transparent;
     border: none;
     box-shadow: none;
+    display: block;
+    width: 100%;
     padding: 0;
     padding-bottom: 0;
     min-height: unset;
+}
+
+.modal-meta-row,
+.modal-article-nav,
+.modal-seo-links {
+    width: 100%;
 }
 
 .modal-content .card-title {
@@ -873,45 +922,61 @@ body > * {
 }
 
 .modal-seo-links {
-    clear: both;
-    margin-top: var(--space-m);
-    padding-top: var(--space-s);
+    margin-top: var(--space-xs);
+    padding-top: 10px;
     border-top: 1px solid var(--border-subtle);
     display: flex;
     flex-wrap: wrap;
-    gap: 10px 16px;
+    gap: 6px 12px;
 }
 
 .modal-seo-links p {
     margin: 0;
     width: 100%;
     color: var(--text-secondary);
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 0.88rem;
+    opacity: 0.85;
 }
 
 .modal-seo-links a {
-    color: var(--accent);
-    text-decoration-thickness: 2px;
-    text-underline-offset: 3px;
+    display: inline;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    color: color-mix(in srgb, var(--accent) 85%, var(--text-secondary));
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    font-size: 0.95rem;
+    opacity: 0.9;
 }
 
 .modal-seo-links a:hover {
     color: var(--color-highlight);
+    opacity: 1;
 }
 
 .modal-article-nav {
-    clear: both;
-    margin-top: var(--space-m);
-    padding-top: var(--space-s);
-    border-top: 1px solid var(--border-subtle);
+    margin-top: var(--space-s);
+    margin-bottom: var(--space-s);
     display: flex;
     justify-content: space-between;
     gap: var(--space-s);
 }
 
 .modal-nav-btn {
-    min-height: 42px;
-    padding: 9px 14px;
+    min-height: 44px;
+    min-width: 170px;
+    padding: 10px 16px;
+}
+
+.modal-article-nav .modal-nav-btn:first-child {
+    justify-self: start;
+}
+
+.modal-article-nav .modal-nav-btn:last-child {
+    justify-self: end;
 }
 
 .modal-content .read-btn,
@@ -992,48 +1057,80 @@ body > * {
 
 .modal-footer-left,
 .modal-footer-right {
-    position: static;
     color: var(--text-secondary);
     font-size: 0.95rem;
-    z-index: 20;
 }
-.modal-footer-left { left: var(--space-m); }
-.modal-footer-right { right: var(--space-m); }
 
-/* Arrange modal footer items without overlap */
-.modal-content .modal-footer-left,
-.modal-content .modal-footer-right {
-    display: inline-block;
+.modal-meta-row {
     margin-top: var(--space-m);
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(198, 167, 110, 0.18);
+    background: rgba(15, 28, 26, 0.34);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-s);
+    align-items: center;
 }
 
-.modal-content .modal-footer-left {
-    float: left;
+.modal-footer-left {
+    text-align: left;
+    line-height: 1.45;
+    word-break: break-word;
 }
 
-.modal-content .modal-footer-right {
-    float: right;
+.modal-footer-right {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
 }
 
-.modal-content::after {
-    content: '';
-    display: block;
-    clear: both;
+.modal-vibe-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(198, 167, 110, 0.20);
+    background: rgba(15, 28, 26, 0.42);
+    color: var(--text-primary);
+    font-size: 0.92rem;
+    line-height: 1;
+}
+
+.modal-vibe-chip .vibe-icon {
+    margin-right: 0;
 }
 
 .vibe-icon { font-size: 1.05rem; vertical-align: middle; margin-right: 6px; }
 
 @media (max-width: 600px) {
+    .modal-meta-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
     .modal-footer-left,
     .modal-footer-right {
-        position: static;
-        display: block;
-        margin-top: var(--space-s);
-        text-align: center;
+        text-align: left;
+    }
+
+    .modal-footer-right {
+        justify-content: flex-start;
     }
 
     .modal-article-nav {
         flex-direction: column;
+    }
+
+    .modal-nav-btn {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .modal-seo-links {
+        gap: 4px 10px;
     }
 }
 
