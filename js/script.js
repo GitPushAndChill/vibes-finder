@@ -53,6 +53,7 @@ const DEFAULT_VIBE_DEFINITIONS = {
 };
 
 let VIBE_DEFINITIONS = { ...DEFAULT_VIBE_DEFINITIONS };
+let VIBE_DEFINITIONS_FROM_YAML = null;
 let VIBE_ICON_MAP = Object.fromEntries(
     Object.entries(VIBE_DEFINITIONS).map(([key, def]) => [key, def.icon || '•'])
 );
@@ -154,6 +155,19 @@ async function loadVibeDefinitionsFromYaml() {
             return;
         }
 
+        const yamlOnlyDefinitions = {};
+        parsedKeys.forEach((rawKey) => {
+            const normalizedKey = normalizeVibeKey(rawKey);
+            if (!normalizedKey) return;
+
+            const parsedDef = parsed[rawKey] || {};
+            yamlOnlyDefinitions[normalizedKey] = {
+                label: parsedDef.label || rawKey,
+                icon: parsedDef.icon || '•',
+                definition: parsedDef.definition || '',
+            };
+        });
+
         const merged = { ...DEFAULT_VIBE_DEFINITIONS };
         parsedKeys.forEach((rawKey) => {
             const normalizedKey = normalizeVibeKey(rawKey);
@@ -170,6 +184,7 @@ async function loadVibeDefinitionsFromYaml() {
         });
 
         VIBE_DEFINITIONS = merged;
+        VIBE_DEFINITIONS_FROM_YAML = yamlOnlyDefinitions;
         VIBE_ICON_MAP = Object.fromEntries(
             Object.entries(VIBE_DEFINITIONS).map(([key, def]) => [key, def.icon || '•'])
         );
@@ -419,7 +434,11 @@ function initBlogVibeGuide() {
     toggleBtn.textContent = '👓 Learn about the Vibes 👓';
 
     toggleBtn.addEventListener('click', () => {
-        const vibeEntries = Object.entries(VIBE_DEFINITIONS)
+        const sourceDefinitions = (VIBE_DEFINITIONS_FROM_YAML && Object.keys(VIBE_DEFINITIONS_FROM_YAML).length)
+            ? VIBE_DEFINITIONS_FROM_YAML
+            : VIBE_DEFINITIONS;
+
+        const vibeEntries = Object.entries(sourceDefinitions)
             .map(([key, def]) => ({
                 key,
                 icon: def?.icon || '•',
