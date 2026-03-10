@@ -1335,12 +1335,39 @@ body > * {
     }
 
     .post-filters {
-        gap: var(--space-s);
+        gap: 8px;
+        padding: 10px;
+        border-radius: 12px;
         position: sticky;
         top: calc(var(--logo-height) + 68px);
         z-index: 45;
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
+    }
+
+    .filter-group {
+        padding: 7px 8px;
+        gap: 4px;
+        border-radius: 10px;
+    }
+
+    .filter-label {
+        font-size: 0.7rem;
+        letter-spacing: 0.06em;
+    }
+
+    .filter-select {
+        min-height: 40px;
+        padding: 9px 10px;
+        padding-right: 34px;
+        font-size: 0.95rem;
+        border-radius: 10px;
+        background-position:
+            calc(100% - 14px) 54%,
+            calc(100% - 9px) 54%;
+        background-size:
+            5px 5px,
+            5px 5px;
     }
 
     .nav-wrap {
