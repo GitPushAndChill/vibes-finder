@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="content-language" content="en" />
     <meta name="language" content="English" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" />
     <link rel="stylesheet" href="css/style.css" />
 
     <!-- Leaflet CSS -->
@@ -29,7 +33,7 @@
 <body>
     <header class="site-header">
         <div class="container nav-wrap">
-            <a class="logo" href="index.html"><img src="images/logo.png" alt="Vibe Finder logo" class="logo-img" /></a>
+            <a class="logo" href="index.html"><img src="images/logo.png" alt="Vibe Finder logo" class="logo-img" decoding="async" fetchpriority="high" width="320" height="86" /></a>
             <nav class="main-nav" aria-label="Main Navigation">
                 <a class="active" href="index.html">Home</a>
                 <a href="blog.html">Vibes</a>
@@ -149,7 +153,7 @@
                                         <div class="map-popup-city">${post.city}</div>
                                         <div class="map-popup-title">${post.title}</div>
                                         ${popupVibes}
-                                        <img class="map-popup-image" src="${post.images[0]}" alt="${post.place || post.title}">
+                                        <img class="map-popup-image" src="${post.images[0]}" alt="${post.place || post.title}" loading="lazy" decoding="async" fetchpriority="low" width="360" height="208">
                                         <button type="button" class="map-popup-open">Open post</button>
                                     </div>
                                 `;

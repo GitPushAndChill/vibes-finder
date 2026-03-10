@@ -5,8 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="content-language" content="en" />
   <meta name="language" content="English" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" />
   <link rel="stylesheet" href="css/style.css" />
-  <script src="js/script.js"></script>
+  <script src="js/script.js" defer></script>
   <title>Vibes Finder — About Me</title>
   <meta name="description" content="About the creator behind Vibes Finder: curated tips for the best places and vibes in Dutch cities like Amsterdam, Rotterdam, Utrecht and Den Haag. Over de maker met city guides voor de leukste plekken in Nederland." />
   <meta name="keywords" content="about Vibes Finder, Netherlands city guide creator, Amsterdam vibe guide, Rotterdam vibe guide, Utrecht tips, Den Haag tips, over city guide Nederland, beste plekken Nederland" />
@@ -20,7 +24,7 @@
 <body>
   <header class="site-header">
     <div class="container nav-wrap">
-      <a class="logo" href="index.html"><img src="images/logo.png" alt="GP&C logo" class="logo-img" /></a>
+      <a class="logo" href="index.html"><img src="images/logo.png" alt="GP&C logo" class="logo-img" decoding="async" fetchpriority="high" width="320" height="86" /></a>
       <nav class="main-nav" aria-label="Main Navigation">
         <a href="index.html">Home</a>
         <a href="blog.html">Vibes</a>
@@ -31,7 +35,7 @@
 
   <main class="container">
     <section style="text-align:center; padding:var(--space-l) 0;">
-      <img class="about-logo" src="images/logo.png" alt="GP&C logo" />
+      <img class="about-logo" src="images/logo.png" alt="GP&C logo" decoding="async" loading="lazy" width="370" height="99" />
       <h1 style="margin-top:var(--space-s);">About Me</h1>
       <p style="max-width:720px; margin:var(--space-m) auto; color:var(--text-primary);">
         Hi! I’m an international girl on a forever quest for the best vibes — the kind of places you walk into and instantly think: “yep, this is it.” ✨

@@ -5,8 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="content-language" content="en" />
   <meta name="language" content="English" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" />
   <link rel="stylesheet" href="css/style.css" />
-  <script src="js/script.js"></script>
+  <script src="js/script.js" defer></script>
   <title>Book Reviews — Minimal Blog</title>
   <meta name="description" content="Extra reads and lifestyle inspiration from Vibes Finder, your EN/NL guide to the best places and vibes in Dutch cities like Amsterdam, Rotterdam, Utrecht and Den Haag." />
   <meta name="keywords" content="Vibes Finder, Netherlands city vibes, Amsterdam hotspots, Rotterdam hotspots, Utrecht hotspots, Den Haag hotspots, beste plekken Nederland" />
@@ -20,7 +24,7 @@
 <body>
   <header class="site-header">
     <div class="container nav-wrap">
-      <a class="logo" href="index.html"><img src="images/logo.png" alt="GP&C logo" class="logo-img" /></a>
+      <a class="logo" href="index.html"><img src="images/logo.png" alt="GP&C logo" class="logo-img" decoding="async" fetchpriority="high" width="320" height="86" /></a>
       <nav class="main-nav" aria-label="Main Navigation">
         <a href="index.html">Home</a>
         <a href="about.html">About Me</a>

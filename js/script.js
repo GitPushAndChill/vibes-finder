@@ -1,7 +1,7 @@
 // ===============================
 // Debug Configuration
 // ===============================
-const DEBUG = true;
+const DEBUG = false;
 
 function log(message, style = '') {
     if (DEBUG) console.log(`%c${message}`, style);
@@ -683,6 +683,11 @@ function openModalWithCard(card) {
         const imgEl = document.createElement('img');
         imgEl.src = post.images[0];
         imgEl.className = 'slider-img';
+        imgEl.loading = 'lazy';
+        imgEl.decoding = 'async';
+        imgEl.fetchPriority = 'low';
+        imgEl.width = 1600;
+        imgEl.height = 1000;
         slider.appendChild(imgEl);
         const prevBtn = document.createElement('button');
         prevBtn.className = 'slider-control prev';
