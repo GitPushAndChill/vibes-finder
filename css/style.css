@@ -1334,7 +1334,14 @@ body > * {
         --logo-height: 70px;
     }
 
-    .post-filters { gap: var(--space-s); }
+    .post-filters {
+        gap: var(--space-s);
+        position: sticky;
+        top: calc(var(--logo-height) + 68px);
+        z-index: 45;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
 
     .nav-wrap {
         gap: var(--space-s);
@@ -1354,6 +1361,59 @@ body > * {
     }
     .preview-grid { grid-template-columns: 1fr; }
     .reviews-grid { grid-template-columns: 1fr; }
+    .preview-grid,
+    .reviews-grid {
+        gap: 12px;
+        padding: 10px 0;
+    }
+
+    .card,
+    .review-card {
+        min-height: auto;
+        padding: 14px;
+        padding-bottom: 14px;
+        border-radius: 12px;
+    }
+
+    .card-title,
+    .review-card > h3 {
+        font-size: 1rem;
+        line-height: 1.35;
+        margin-bottom: 6px;
+    }
+
+    .meta,
+    .review-card > .meta {
+        font-size: 0.82rem;
+        margin-bottom: 6px;
+    }
+
+    .excerpt,
+    .review-card > p {
+        margin: 0;
+        font-size: 0.92rem;
+        line-height: 1.45;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .vibe-badge {
+        margin-top: 8px;
+        height: 30px;
+        min-height: 30px;
+        max-height: 30px;
+        padding: 0 8px;
+        font-size: 0.82rem;
+        gap: 6px;
+    }
+
+    .vibe-badge-text {
+        max-width: 150px;
+    }
+
     .hero-title { font-size:1.6rem; }
     .logo { font-size:1rem; }
     .container { padding: var(--space-m) 12px; }
