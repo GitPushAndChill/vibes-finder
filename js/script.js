@@ -54,6 +54,12 @@ function normalizeCityKey(value) {
         .replace(/[^a-z0-9_]/g, '');
 }
 
+function getCurrentCityKey() {
+    const path = String(window.location.pathname || '').toLowerCase();
+    const match = path.match(/\/city\/([^/]+)\/?/i);
+    return match ? normalizeCityKey(match[1]) : '';
+}
+
 function getCityPagePath(cityName) {
     const cityKey = normalizeCityKey(cityName);
     return CITY_PAGE_MAP[cityKey] || 'blog.html';
@@ -135,6 +141,8 @@ function initThemeToggle() {
 function initCityMenu() {
     const nav = document.querySelector('.site-header .main-nav');
     if (!nav || nav.querySelector('.city-menu')) return;
+    const isCityPage = /\/city\//i.test(window.location.pathname);
+    const currentCityKey = getCurrentCityKey();
 
     const menu = document.createElement('div');
     menu.className = 'city-menu';
@@ -163,6 +171,9 @@ function initCityMenu() {
         link.href = toSitePath(item.path);
         link.setAttribute('role', 'menuitem');
         link.textContent = item.label;
+        if (normalizeCityKey(item.label) === currentCityKey) {
+            link.setAttribute('aria-current', 'page');
+        }
         dropdown.appendChild(link);
     });
 
@@ -199,8 +210,12 @@ function initCityMenu() {
         nav.appendChild(menu);
     }
 
-    if (/\/city\//i.test(window.location.pathname)) {
-        trigger.classList.add('active');
+    if (isCityPage) {
+        nav.querySelectorAll('a.active, a[aria-current="page"]').forEach((link) => {
+            link.classList.remove('active');
+            link.removeAttribute('aria-current');
+        });
+        trigger.setAttribute('aria-current', 'page');
     }
 }
 
