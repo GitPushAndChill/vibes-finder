@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="content-language" content="en" />
+  <meta name="language" content="English" />
+  <link rel="icon" type="image/png" href="/images/logo.png" />
+  <link rel="apple-touch-icon" href="/images/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" />
+  <script src="/js/theme-init.js"></script>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="/js/script.js" defer></script>
+  <title>Best Places in Amsterdam - Vibes Finder</title>
+  <meta name="description" content="Discover the best places in Amsterdam by vibe, from coffee spots and hidden gems to nightlife and culture picks." />
+  <meta name="keywords" content="best places Amsterdam, Amsterdam hotspots, Amsterdam vibe guide, hidden gems Amsterdam" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="/city/amsterdam/" />
+  <meta property="og:title" content="Best Places in Amsterdam - Vibes Finder" />
+  <meta property="og:description" content="Explore the best places in Amsterdam with vibe-based filters and curated picks." />
+  <meta property="og:url" content="/city/amsterdam/" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:description" content="Best places in Amsterdam with curated vibe filters." />
+</head>
+<body data-site-root="/" data-prefilter-city="Amsterdam" class="city-prefiltered">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="logo" href="/index.html"><img src="/images/logo.png" alt="GP&C logo" class="logo-img" decoding="async" fetchpriority="high" width="320" height="86" /></a>
+      <nav class="main-nav" aria-label="Main Navigation">
+        <a href="/index.html">Home</a>
+        <a class="active" href="/blog.html">Vibes</a>
+        <a href="/about.html">About Me</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1 class="hero-title">Best Places in Amsterdam</h1>
+      <p class="hero-subtitle">Curated Amsterdam spots, already filtered so you can find your next vibe fast.</p>
+      <p class="seo-linkline">Looking for more city guides? Browse <a href="/city/haarlem/">best places in Haarlem</a>, <a href="/city/rotterdam/">best places in Rotterdam</a>, <a href="/city/utrecht/">best places in Utrecht</a>, or view all cities on the <a href="/blog.html">full vibe blog</a>.</p>
+    </section>
+
+    <section class="post-filters" aria-label="Post filters">
+      <div class="filter-group">
+        <label class="filter-label" id="city-filter-label" for="city-filter">Pick a city</label>
+        <input class="filter-input" id="city-filter" name="city" list="city-options" placeholder="Type to search..." autocomplete="off" aria-labelledby="city-filter-label" />
+        <select class="filter-select" id="city-select" name="city" aria-labelledby="city-filter-label"></select>
+        <datalist id="city-options"></datalist>
+      </div>
+      <div class="filter-group">
+        <label class="filter-label" id="vibe-filter-label" for="vibe-filter">Pick a vibe</label>
+        <input class="filter-input" id="vibe-filter" name="vibe" list="vibe-options" placeholder="Type to search..." autocomplete="off" aria-labelledby="vibe-filter-label" />
+        <select class="filter-select" id="vibe-select" name="vibe" aria-labelledby="vibe-filter-label"></select>
+        <datalist id="vibe-options"></datalist>
+      </div>
+    </section>
+
+    <section class="vibe-guide-toggle" aria-label="Vibe guide">
+      <button type="button" class="vibe-action-btn" id="toggle-vibe-guide-btn" aria-label="Learn about the Vibes">👓 Learn about the Vibes 👓</button>
+    </section>
+
+    <section class="preview-grid" id="all-posts-grid"></section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="footer-quick-links" aria-label="Footer quick links">
+        <a href="/faq.html">FAQ</a>
+        <a href="/contact.html">Contact Us</a>
+      </nav>
+      <p>© 2026 Website of GitPushAndChill</p>
+      <nav class="seo-internal-links" aria-label="City vibe guides">
+        <p>Popular city guides for best places</p>
+        <ul>
+          <li><a href="/city/amsterdam/">Best places in Amsterdam</a></li>
+          <li><a href="/city/haarlem/">Best places in Haarlem</a></li>
+          <li><a href="/city/rotterdam/">Best places in Rotterdam</a></li>
+          <li><a href="/city/utrecht/">Best places in Utrecht</a></li>
+          <li><a href="/blog.html">All Netherlands city vibe posts</a></li>
+          <li><a href="/index.html#city-vibe-map">Explore the city vibe map</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

@@ -5,12 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="content-language" content="en" />
     <meta name="language" content="English" />
+        <script>
+            (function () {
+                var path = String(window.location.pathname || '').toLowerCase();
+                var match = path.match(/\/city\/(amsterdam|haarlem|rotterdam|utrecht)\/?$/);
+                if (match && !path.endsWith('/index.html')) {
+                    window.location.replace('/city/' + match[1] + '/index.html');
+                }
+            })();
+        </script>
     <link rel="icon" type="image/png" href="images/logo.png" />
     <link rel="apple-touch-icon" href="images/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" />
+    <script src="js/theme-init.js"></script>
     <link rel="stylesheet" href="css/style.css" />
 
     <!-- Leaflet CSS -->
@@ -80,13 +90,13 @@
             </nav>
             <p>© 2026 Website of GitPushAndChill</p>
             <nav class="seo-internal-links" aria-label="City vibe guides">
-                <p>Popular city vibe guides</p>
+                <p>Popular city guides for best places</p>
                 <ul>
-                    <li><a href="blog.html">Best places in Amsterdam</a></li>
-                    <li><a href="blog.html">Best vibes in Rotterdam</a></li>
-                    <li><a href="blog.html">Top spots in Utrecht</a></li>
-                    <li><a href="blog.html">The Hague / Den Haag city vibes</a></li>
-                    <li><a href="blog.html">Netherlands city vibe blog</a></li>
+                    <li><a href="city/amsterdam/">Best places in Amsterdam</a></li>
+                    <li><a href="city/haarlem/">Best places in Haarlem</a></li>
+                    <li><a href="city/rotterdam/">Best places in Rotterdam</a></li>
+                    <li><a href="city/utrecht/">Best places in Utrecht</a></li>
+                    <li><a href="blog.html">All Netherlands city vibe posts</a></li>
                     <li><a href="about.html">About the vibe curator</a></li>
                 </ul>
             </nav>
@@ -102,14 +112,38 @@
         Promise.resolve(window.vibeConfigReady)
             .catch(() => null)
             .finally(() => {
-                fetch('posts/places/posts-places.json')
+                fetch((typeof toSitePath === 'function') ? toSitePath('posts/places/posts-places.json') : 'posts/places/posts-places.json')
                     .then(res => res.json())
                     .then(posts => {
                         // Map setup
                         const map = L.map('map').setView([52.1, 5.3], 7);
-                        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-                            attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
-                        }).addTo(map);
+                        const getMapTileTheme = () => {
+                            const activeTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+                            if (activeTheme === 'light') {
+                                return {
+                                    url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+                                    attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+                                };
+                            }
+                            return {
+                                url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+                                attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+                            };
+                        };
+
+                        let activeTileLayer = null;
+                        const applyMapTileTheme = () => {
+                            const tileTheme = getMapTileTheme();
+                            if (activeTileLayer) {
+                                map.removeLayer(activeTileLayer);
+                            }
+                            activeTileLayer = L.tileLayer(tileTheme.url, {
+                                attribution: tileTheme.attribution
+                            }).addTo(map);
+                        };
+
+                        applyMapTileTheme();
+                        window.addEventListener('themechange', applyMapTileTheme);
 
                         const markerCluster = L.markerClusterGroup({
                             showCoverageOnHover: false,
@@ -167,7 +201,7 @@
                                     const openButton = popupElement.querySelector('.map-popup-open');
                                     const openPost = () => {
                                         if (typeof buildPostCardForModal !== 'function' || typeof openModalWithCard !== 'function') {
-                                            window.location.href = 'blog.html';
+                                            window.location.href = (typeof toSitePath === 'function') ? toSitePath('blog.html') : 'blog.html';
                                             return;
                                         }
                                         map.closePopup();

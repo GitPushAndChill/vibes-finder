@@ -22,6 +22,190 @@ const currentDate = new Date();
 const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
 log(`Script loaded at (UTC): ${formattedDate}`, 'color: green; font-weight: bold;');
 
+const CITY_PAGE_MAP = {
+    amsterdam: 'city/amsterdam/',
+    haarlem: 'city/haarlem/',
+    rotterdam: 'city/rotterdam/',
+    utrecht: 'city/utrecht/',
+};
+
+function getSiteRootPrefix() {
+    const fromBody = document.body?.getAttribute('data-site-root');
+    if (fromBody) {
+        return fromBody.endsWith('/') ? fromBody : `${fromBody}/`;
+    }
+    return './';
+}
+
+function toSitePath(relativePath) {
+    const raw = String(relativePath || '').trim();
+    if (!raw) return getSiteRootPrefix();
+    if (/^(https?:|mailto:|tel:|#)/i.test(raw)) return raw;
+
+    const cleaned = raw.replace(/^\/+/, '');
+    return `${getSiteRootPrefix()}${cleaned}`;
+}
+
+function normalizeCityKey(value) {
+    return String(value || '')
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, '_')
+        .replace(/[^a-z0-9_]/g, '');
+}
+
+function getCityPagePath(cityName) {
+    const cityKey = normalizeCityKey(cityName);
+    return CITY_PAGE_MAP[cityKey] || 'blog.html';
+}
+
+// ===============================
+// Theme (Dark / Light)
+// ===============================
+const THEME_STORAGE_KEY = 'vf-theme';
+
+function getStoredTheme() {
+    try {
+        const value = localStorage.getItem(THEME_STORAGE_KEY);
+        return value === 'light' || value === 'dark' ? value : null;
+    } catch (err) {
+        return null;
+    }
+}
+
+function getActiveTheme() {
+    return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+}
+
+function applyTheme(theme, { persist = false } = {}) {
+    const safeTheme = theme === 'light' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', safeTheme);
+
+    if (persist) {
+        try {
+            localStorage.setItem(THEME_STORAGE_KEY, safeTheme);
+        } catch (err) {
+            warn('Unable to persist theme preference.');
+        }
+    }
+
+    window.dispatchEvent(new CustomEvent('themechange', {
+        detail: { theme: safeTheme }
+    }));
+}
+
+function initThemeToggle() {
+    const navWrap = document.querySelector('.site-header .nav-wrap');
+    if (!navWrap || document.querySelector('#theme-toggle')) return;
+
+    const toggleWrap = document.createElement('div');
+    toggleWrap.className = 'theme-toggle-wrap';
+
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'theme-toggle';
+    toggle.id = 'theme-toggle';
+    toggle.setAttribute('aria-label', 'Toggle light mode');
+    toggle.innerHTML = `
+        <span class="theme-toggle-label theme-toggle-label-on">On</span>
+        <span class="theme-toggle-label theme-toggle-label-off">Off</span>
+    `;
+
+    const updateToggleState = (theme) => {
+        const isLight = theme === 'light';
+        toggle.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+        toggle.setAttribute('title', isLight ? 'Light mode is on' : 'Light mode is off');
+    };
+
+    updateToggleState(getActiveTheme());
+
+    toggle.addEventListener('click', () => {
+        const nextTheme = getActiveTheme() === 'light' ? 'dark' : 'light';
+        applyTheme(nextTheme, { persist: true });
+    });
+
+    window.addEventListener('themechange', (event) => {
+        updateToggleState(event?.detail?.theme || getActiveTheme());
+    });
+
+    toggleWrap.appendChild(toggle);
+    navWrap.appendChild(toggleWrap);
+}
+
+function initCityMenu() {
+    const nav = document.querySelector('.site-header .main-nav');
+    if (!nav || nav.querySelector('.city-menu')) return;
+
+    const menu = document.createElement('div');
+    menu.className = 'city-menu';
+
+    const trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.className = 'city-menu-trigger';
+    trigger.setAttribute('aria-expanded', 'false');
+    trigger.setAttribute('aria-haspopup', 'true');
+    trigger.setAttribute('aria-label', 'Browse city pages');
+    trigger.textContent = 'City';
+
+    const dropdown = document.createElement('div');
+    dropdown.className = 'city-menu-dropdown';
+    dropdown.setAttribute('role', 'menu');
+
+    const cityItems = [
+        { label: 'Amsterdam', path: CITY_PAGE_MAP.amsterdam },
+        { label: 'Haarlem', path: CITY_PAGE_MAP.haarlem },
+        { label: 'Rotterdam', path: CITY_PAGE_MAP.rotterdam },
+        { label: 'Utrecht', path: CITY_PAGE_MAP.utrecht },
+    ];
+
+    cityItems.forEach((item) => {
+        const link = document.createElement('a');
+        link.href = toSitePath(item.path);
+        link.setAttribute('role', 'menuitem');
+        link.textContent = item.label;
+        dropdown.appendChild(link);
+    });
+
+    const setExpanded = (isOpen) => {
+        menu.classList.toggle('is-open', Boolean(isOpen));
+        trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    };
+
+    trigger.addEventListener('click', (event) => {
+        event.preventDefault();
+        setExpanded(!menu.classList.contains('is-open'));
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!menu.contains(event.target)) {
+            setExpanded(false);
+        }
+    });
+
+    menu.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            setExpanded(false);
+            trigger.focus();
+        }
+    });
+
+    menu.appendChild(trigger);
+    menu.appendChild(dropdown);
+
+    const vibesLink = Array.from(nav.querySelectorAll('a')).find((a) => /vibes/i.test(a.textContent || ''));
+    if (vibesLink) {
+        vibesLink.insertAdjacentElement('afterend', menu);
+    } else {
+        nav.appendChild(menu);
+    }
+
+    if (/\/city\//i.test(window.location.pathname)) {
+        trigger.classList.add('active');
+    }
+}
+
+applyTheme(getStoredTheme() || getActiveTheme());
+
 // ===============================
 // Modal Analytics (Session Only)
 // ===============================
@@ -147,7 +331,7 @@ function parseVibesYaml(yamlText) {
 
 async function loadVibeDefinitionsFromYaml() {
     try {
-        const response = await fetch('content/vibes.yml', { cache: 'no-cache' });
+        const response = await fetch(toSitePath('content/vibes.yml'), { cache: 'no-cache' });
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}`);
         }
@@ -345,6 +529,7 @@ function initBlogFilters() {
     const vibeSelect = document.querySelector('#vibe-select');
     const cityOptions = document.querySelector('#city-options');
     const vibeOptions = document.querySelector('#vibe-options');
+    const lockedCity = String(document.body?.dataset?.prefilterCity || '').trim();
 
     let paginationNav = document.querySelector('#posts-pagination');
     if (!paginationNav) {
@@ -432,6 +617,21 @@ function initBlogFilters() {
             opt.textContent = c;
             citySelect.appendChild(opt);
         });
+
+        if (lockedCity) {
+            const hasLockedCity = Array.from(citySelect.options).some((opt) =>
+                String(opt.value || '').toLowerCase() === lockedCity.toLowerCase()
+            );
+            if (!hasLockedCity) {
+                const opt = document.createElement('option');
+                opt.value = lockedCity;
+                opt.textContent = lockedCity;
+                citySelect.appendChild(opt);
+            }
+            citySelect.value = lockedCity;
+            citySelect.disabled = true;
+            citySelect.setAttribute('aria-disabled', 'true');
+        }
     }
     if (vibeSelect) {
         vibeSelect.innerHTML = '';
@@ -449,9 +649,18 @@ function initBlogFilters() {
     }
 
     const getActiveValue = (inputEl, selectEl) => {
+        if (lockedCity && inputEl?.id === 'city-filter') return lockedCity;
         if (selectEl) return selectEl.value;
         return inputEl.value;
     };
+
+    if (lockedCity) {
+        cityInput.value = lockedCity;
+        cityInput.disabled = true;
+        cityInput.setAttribute('aria-disabled', 'true');
+        const cityFilterGroup = cityInput.closest('.filter-group');
+        if (cityFilterGroup) cityFilterGroup.classList.add('filter-group-locked');
+    }
 
     const syncSelectToInput = (inputEl, selectEl) => {
         if (!selectEl) return;
@@ -501,16 +710,18 @@ function initBlogFilters() {
         render();
     };
 
-    cityInput.addEventListener('input', () => {
-        syncSelectToInput(cityInput, citySelect);
-        renderFromFirstPage();
-    });
+    if (!lockedCity) {
+        cityInput.addEventListener('input', () => {
+            syncSelectToInput(cityInput, citySelect);
+            renderFromFirstPage();
+        });
+    }
     vibeInput.addEventListener('input', () => {
         syncSelectToInput(vibeInput, vibeSelect);
         renderFromFirstPage();
     });
 
-    if (citySelect) {
+    if (citySelect && !lockedCity) {
         citySelect.addEventListener('change', () => {
             syncInputToSelect(cityInput, citySelect);
             renderFromFirstPage();
@@ -623,7 +834,7 @@ function escapeHtmlAttr(value) {
 }
 
 function fetchAndRenderGrids() {
-    fetch('posts/places/posts-places.json')
+    fetch(toSitePath('posts/places/posts-places.json'))
         .then(r => r.json())
         .then(data => {
             postsData = data;
@@ -714,9 +925,13 @@ function getPostIndexInSortedList(post) {
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
+        initCityMenu();
+        initThemeToggle();
         vibeConfigReady.finally(fetchAndRenderGrids);
     });
 } else {
+    initCityMenu();
+    initThemeToggle();
     vibeConfigReady.finally(fetchAndRenderGrids);
 }
 
@@ -860,13 +1075,14 @@ function openModalWithCard(card) {
         const cityText = post.city ? String(post.city) : 'Dutch cities';
         const primaryVibe = getPostPrimaryVibe(post);
         const vibeText = primaryVibe ? getVibeLabel(primaryVibe) : 'best';
+        const cityPageHref = toSitePath(getCityPagePath(post.city));
 
         seoWrap.innerHTML = `
             <p>Explore more:</p>
-            <a href="blog.html">Best places and vibes in the Netherlands</a>
-            <a href="blog.html">More ${cityText} city vibes</a>
-            <a href="blog.html">More ${vibeText} places</a>
-            <a href="index.html#city-vibe-map">Interactive city vibe map</a>
+            <a href="${toSitePath('blog.html')}">Best places and vibes in the Netherlands</a>
+            <a href="${cityPageHref}">Best places in ${cityText}</a>
+            <a href="${toSitePath('blog.html')}">More ${vibeText} places</a>
+            <a href="${toSitePath('index.html#city-vibe-map')}">Interactive city vibe map</a>
         `;
     }
 
