@@ -372,23 +372,28 @@ body > * {
 .main-nav {
     display:flex;
     gap: var(--space-m);
+    align-items: center;
     flex-wrap: wrap; /* allow items to drop to new line if necessary */
 }
 
 .city-menu {
     position: relative;
     display: inline-flex;
-    align-items: center;
+    align-items: stretch;
 }
 
 .city-menu-trigger {
     color: var(--text-primary);
     background: transparent;
     border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: var(--space-xs) var(--space-s);
     border-radius: var(--radius);
     font-weight: 600;
     font-size: 0.95rem;
+    line-height: 1.2;
     font-family: inherit;
     cursor: pointer;
     position: relative;
@@ -410,16 +415,20 @@ body > * {
 }
 
 .city-menu-trigger:hover,
-.city-menu-trigger:focus-visible,
-.city-menu-trigger.active {
+.city-menu-trigger:focus-visible {
     outline: none;
     background: var(--surface-2);
 }
 
 .city-menu-trigger:hover::after,
 .city-menu-trigger:focus-visible::after,
-.city-menu-trigger.active::after {
+.city-menu-trigger[aria-current='page']::after {
     transform: scaleX(1);
+}
+
+.city-menu-trigger[aria-current='page'] {
+    background: var(--accent);
+    color: var(--ink);
 }
 
 .city-menu-dropdown {
@@ -453,6 +462,13 @@ body > * {
     outline: none;
     background: color-mix(in srgb, var(--surface-2) 80%, transparent);
     color: var(--accent);
+}
+
+.city-menu-dropdown a[aria-current='page'],
+.city-menu-dropdown a[aria-current='page']:hover,
+.city-menu-dropdown a[aria-current='page']:focus-visible {
+    background: var(--accent);
+    color: var(--ink);
 }
 
 .city-menu:hover .city-menu-dropdown,
@@ -954,6 +970,25 @@ body > * {
 .card-title { font-family: var(--font-heading); letter-spacing: 0.01em; }
 .meta { display:block; color: var(--text-secondary); font-size:0.9rem; margin-bottom: var(--space-xs); }
 .excerpt { margin: 0 0 var(--space-s) 0; color: var(--text-primary); }
+
+.static-info-page .static-info-grid .card {
+    min-height: auto;
+    transform: none;
+    cursor: default;
+}
+
+.static-info-page .static-info-grid .card:hover,
+.static-info-page .static-info-grid .card:focus-within {
+    transform: none;
+}
+
+.static-info-page .static-info-grid .excerpt {
+    display: block;
+    overflow: visible;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    -webkit-box-orient: initial;
+}
 
 /* Buttons (shared) */
 .btn,
@@ -1771,6 +1806,12 @@ html[data-theme='light'] .map-popup-open:hover {
         white-space: nowrap;
     }
 
+    .city-menu-trigger {
+        padding: 7px 10px;
+        font-size: 0.88rem;
+        white-space: nowrap;
+    }
+
     .city-menu {
         width: auto;
         justify-content: center;
@@ -1839,6 +1880,14 @@ html[data-theme='light'] .map-popup-open:hover {
         line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
+    }
+
+    .static-info-page .static-info-grid .excerpt {
+        display: block;
+        -webkit-line-clamp: unset;
+        line-clamp: unset;
+        -webkit-box-orient: initial;
+        overflow: visible;
     }
 
     .vibe-badge {
