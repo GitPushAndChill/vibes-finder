@@ -390,15 +390,19 @@ if (typeof window !== 'undefined') {
     window.vibeConfigReady = vibeConfigReady;
 }
 
+let _sortedPostsCache = null;
+
 function getSortedPosts() {
+    if (_sortedPostsCache) return _sortedPostsCache;
     if (!Array.isArray(postsData)) return [];
-    return postsData
+    _sortedPostsCache = postsData
         .slice()
         .sort((a, b) => {
             const aTime = Date.parse(a?.created_on || '') || 0;
             const bTime = Date.parse(b?.created_on || '') || 0;
             return bTime - aTime;
         });
+    return _sortedPostsCache;
 }
 
 function getFilteredPosts({ cityFilter = '', vibeFilter = '' } = {}) {
@@ -441,6 +445,8 @@ function populatePostGrid({ containerSelector, limit, offset = 0, cityFilter = '
         const article = document.createElement('article');
         article.className = 'card';
         article._post = post;
+        article.tabIndex = 0;
+        article.style.cursor = 'pointer';
 
         const h2 = document.createElement('h2');
         h2.className = 'card-title';
@@ -457,19 +463,8 @@ function populatePostGrid({ containerSelector, limit, offset = 0, cityFilter = '
         p.textContent = post.short_description || post.description || '';
         article.appendChild(p);
 
-        const full = document.createElement('div');
-        full.className = 'full-text';
-        full.hidden = true;
-        const shortDesc = post.short_description || '';
-        const longDesc = post.description || '';
-        if (shortDesc && longDesc && shortDesc.trim() !== longDesc.trim()) {
-            full.innerHTML = `<p class="short-desc">${shortDesc}</p><p class="long-desc">${longDesc}</p>`;
-        } else if (shortDesc) {
-            full.innerHTML = `<p class="short-desc">${shortDesc}</p>`;
-        } else if (longDesc) {
-            full.innerHTML = `<p class="long-desc">${longDesc}</p>`;
-        }
-        article.appendChild(full);
+        // full-text is NOT pre-rendered here — it is built on-demand inside openPostModal
+        // to avoid doubling DOM nodes for every visible grid card.
 
         const postVibes = getPostVibes(post);
         if (postVibes.length) {
@@ -838,6 +833,7 @@ function fetchAndRenderGrids() {
         .then(r => r.json())
         .then(data => {
             postsData = data;
+            _sortedPostsCache = null; // invalidate sort cache on fresh data
             // Detect and render preview grid (index.html)
             if (document.querySelector('#preview-grid')) {
                 populatePostGrid({ containerSelector: '#preview-grid', limit: 3 });
@@ -867,10 +863,8 @@ function initIndexQuickActions() {
     surpriseBtn.addEventListener('click', () => {
         const posts = getSortedPosts();
         if (!posts.length) return;
-
         const randomPost = posts[Math.floor(Math.random() * posts.length)];
-        const card = buildPostCardForModal(randomPost);
-        openModalWithCard(card);
+        openPostModal(randomPost);
     });
 }
 
@@ -935,66 +929,109 @@ if (document.readyState === 'loading') {
     vibeConfigReady.finally(fetchAndRenderGrids);
 }
 
-function initArticleModal() {
-    log('Initializing article modal system...', 'color: green;');
 
-    const cards = document.querySelectorAll('.card, .review-card');
-    log(`Found ${cards.length} cards`, 'color: blue;');
+// ---- Modal state: single overlay instance + single ESC handler ----
+// Keeping one reference means closeModal() always tears down the current modal
+// completely (including the ESC listener), so nothing leaks between opens.
+let _modalOverlay = null;
+let _modalEscHandler = null;
 
-    if (cards.length === 0) {
-        warn('No cards found on page.');
+function closeModal() {
+    if (_modalEscHandler) {
+        document.removeEventListener('keydown', _modalEscHandler);
+        _modalEscHandler = null;
     }
-
-    const openCardModal = (card) => {
-        const title = card.querySelector('h2, h3');
-        if (title) {
-            log(`Opening article: ${title.textContent.trim()}`, 'color: blue; font-weight: bold;');
-        } else {
-            warn('No title found inside card.');
+    if (_modalOverlay) {
+        // Setting src='' lets the browser release decoded image memory immediately.
+        _modalOverlay.querySelectorAll('img').forEach(img => { img.src = ''; });
+        if (document.body.contains(_modalOverlay)) {
+            document.body.removeChild(_modalOverlay);
         }
+        _modalOverlay = null;
+    }
+}
 
-        openModalWithCard(card);
-    };
+function initArticleModal() {
+    // One-time delegation on body — no per-card listeners, no re-run on grid re-renders.
+    if (document.body.dataset.modalDelegated === '1') return;
+    document.body.dataset.modalDelegated = '1';
 
-    cards.forEach(card => {
-        if (card.dataset.modalBound === '1') return;
-        card.dataset.modalBound = '1';
-        card.style.cursor = 'pointer';
-        if (!card.hasAttribute('tabindex')) {
-            card.tabIndex = 0;
-        }
+    document.body.addEventListener('click', (e) => {
+        // Ignore clicks that originate inside an open modal
+        if (e.target.closest('.modal-content')) return;
+        const card = e.target.closest('.card, .review-card');
+        if (!card) return;
+        const post = card._post;
+        if (post) openPostModal(post);
+    });
 
-        card.addEventListener('click', () => {
-            log('Card clicked', 'color: purple;');
-            openCardModal(card);
-        });
-
-        card.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                openCardModal(card);
-            }
-        });
+    document.body.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        if (e.target.closest('.modal-content')) return;
+        const card = e.target.closest('.card, .review-card');
+        if (!card) return;
+        const post = card._post;
+        if (!post) return;
+        e.preventDefault();
+        openPostModal(post);
     });
 }
 
-function openModalWithCard(card) {
+// openModalWithCard: kept for backwards-compat (vibe guide passes a DOM element with no _post).
+// Data-backed cards are routed to openPostModal; DOM-only cards use _openDomElementModal.
+function openModalWithCard(cardOrElement) {
+    const post = cardOrElement._post;
+    if (post) {
+        openPostModal(post);
+        return;
+    }
+    _openDomElementModal(cardOrElement);
+}
+
+// Used by initBlogVibeGuide which builds a full article DOM element without post data.
+function _openDomElementModal(contentEl) {
+    closeModal();
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay fade-in';
+    _modalOverlay = overlay;
+
+    const modal = document.createElement('div');
+    modal.className = 'modal-content slide-in';
+
+    const closeBtn = document.createElement('button');
+    closeBtn.textContent = '\u00d7';
+    closeBtn.setAttribute('aria-label', 'Close');
+    closeBtn.style.cssText = 'position:absolute;top:8px;right:12px;font-size:1.4rem;background:none;border:none;cursor:pointer;color:var(--text-secondary);';
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', (evt) => { if (evt.target === overlay) closeModal(); });
+    _modalEscHandler = (evt) => { if (evt.key === 'Escape') closeModal(); };
+    document.addEventListener('keydown', _modalEscHandler);
+
+    modal.appendChild(closeBtn);
+    modal.appendChild(contentEl);
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+}
+
+// Core modal renderer — builds all content from post data directly.
+// No cloneNode: avoids duplicating hidden DOM nodes from grid cards.
+// Uses closeModal() for all close paths so the ESC handler is always cleaned up.
+function openPostModal(post) {
+    closeModal();
     if (DEBUG) console.time('Modal Render Time');
 
     modalOpenCount++;
     log(`Modal opened ${modalOpenCount} times this session`, 'color: orange;');
 
-    const post = card._post || {};
-
     const overlay = document.createElement('div');
     overlay.className = 'modal-overlay fade-in';
+    _modalOverlay = overlay;
 
     const modal = document.createElement('div');
     modal.className = 'modal-content slide-in';
 
-    // close button
     const closeBtn = document.createElement('button');
-    closeBtn.textContent = '×';
+    closeBtn.textContent = '\u00d7';
     closeBtn.setAttribute('aria-label', 'Close');
     closeBtn.style.cssText = `
         position:absolute;
@@ -1006,90 +1043,90 @@ function openModalWithCard(card) {
         cursor:pointer;
         color:var(--text-secondary);
     `;
-    closeBtn.addEventListener('click', () => {
-        if (document.body.contains(overlay)) {
-            document.body.removeChild(overlay);
-            log('Modal closed via button', 'color: red;');
-        }
-    });
+    closeBtn.addEventListener('click', closeModal);
 
-    // add image slider if there are images
+    // Image slider — only renders nav arrows when more than one image exists.
+    // img.src is cleared by closeModal() so decoded pixel data is freed immediately.
     if (post.images && post.images.length > 0) {
         const slider = document.createElement('div');
         slider.className = 'image-slider';
         let idx = 0;
         const imgEl = document.createElement('img');
-        imgEl.src = post.images[0];
+        imgEl.src = toSitePath(post.images[0]);
+        imgEl.alt = getPostDisplayTitle(post);
         imgEl.className = 'slider-img';
         imgEl.loading = 'lazy';
         imgEl.decoding = 'async';
-        imgEl.fetchPriority = 'low';
-        imgEl.width = 1600;
-        imgEl.height = 1000;
+        imgEl.setAttribute('fetchpriority', 'low');
+        imgEl.width = 800;
+        imgEl.height = 500;
         slider.appendChild(imgEl);
-        const prevBtn = document.createElement('button');
-        prevBtn.className = 'slider-control prev';
-        prevBtn.textContent = '<';
-        const nextBtn = document.createElement('button');
-        nextBtn.className = 'slider-control next';
-        nextBtn.textContent = '>';
-        prevBtn.addEventListener('click', () => {
-            idx = (idx - 1 + post.images.length) % post.images.length;
-            imgEl.src = post.images[idx];
-        });
-        nextBtn.addEventListener('click', () => {
-            idx = (idx + 1) % post.images.length;
-            imgEl.src = post.images[idx];
-        });
-        slider.appendChild(prevBtn);
-        slider.appendChild(nextBtn);
+
+        if (post.images.length > 1) {
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'slider-control prev';
+            prevBtn.setAttribute('aria-label', 'Previous image');
+            prevBtn.textContent = '<';
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'slider-control next';
+            nextBtn.setAttribute('aria-label', 'Next image');
+            nextBtn.textContent = '>';
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                idx = (idx - 1 + post.images.length) % post.images.length;
+                imgEl.src = toSitePath(post.images[idx]);
+            });
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                idx = (idx + 1) % post.images.length;
+                imgEl.src = toSitePath(post.images[idx]);
+            });
+            slider.appendChild(prevBtn);
+            slider.appendChild(nextBtn);
+        }
         modal.appendChild(slider);
     }
 
-    // build content clone after slider
-    const clone = card.cloneNode(true);
-    const btn = clone.querySelector('.read-btn');
-    if (btn) btn.remove();
-    const badge = clone.querySelector('.vibe-badge');
-    if (badge) badge.remove();
-    const full = clone.querySelector('.full-text');
-    if (full) {
-        full.removeAttribute('hidden');
-        full.style.display = 'block';
+    // Article body — built fresh from post data, never cloned from the grid card.
+    const article = document.createElement('article');
+    article.className = 'card';
+
+    const h2 = document.createElement('h2');
+    h2.className = 'card-title';
+    h2.textContent = getPostDisplayTitle(post);
+    article.appendChild(h2);
+
+    const timeMeta = document.createElement('time');
+    timeMeta.className = 'meta';
+    timeMeta.textContent = post.city || '';
+    article.appendChild(timeMeta);
+
+    // Full description rendered only here, on-demand — not pre-baked in grid cards.
+    const shortDesc = post.short_description || '';
+    const longDesc = post.description || '';
+    if (shortDesc || longDesc) {
+        const fullDiv = document.createElement('div');
+        fullDiv.className = 'full-text';
+        if (shortDesc && longDesc && shortDesc.trim() !== longDesc.trim()) {
+            const pShort = document.createElement('p');
+            pShort.className = 'short-desc';
+            pShort.textContent = shortDesc;
+            fullDiv.appendChild(pShort);
+            const pLong = document.createElement('p');
+            pLong.className = 'long-desc';
+            pLong.textContent = longDesc;
+            fullDiv.appendChild(pLong);
+        } else {
+            const pDesc = document.createElement('p');
+            pDesc.className = shortDesc ? 'short-desc' : 'long-desc';
+            pDesc.textContent = shortDesc || longDesc;
+            fullDiv.appendChild(pDesc);
+        }
+        article.appendChild(fullDiv);
     }
 
-    // If the expanded content already includes short_description, don't show it twice.
-    // (Keep normal card preview unchanged; this only affects the modal clone.)
-    const excerpt = clone.querySelector('.excerpt');
-    if (excerpt && full && full.querySelector('.short-desc')) {
-        excerpt.remove();
-    }
-
-    // SEO internal links inside enlarged article (append at very bottom later)
-    let seoWrap = null;
+    // Footer: address (left) + vibe chips (right)
     const postVibes = getPostVibes(post);
-    if (post && (post.city || postVibes.length)) {
-        seoWrap = document.createElement('div');
-        seoWrap.className = 'modal-seo-links';
-
-        const cityText = post.city ? String(post.city) : 'Dutch cities';
-        const primaryVibe = getPostPrimaryVibe(post);
-        const vibeText = primaryVibe ? getVibeLabel(primaryVibe) : 'best';
-        const cityPageHref = toSitePath(getCityPagePath(post.city));
-
-        seoWrap.innerHTML = `
-            <p>Explore more:</p>
-            <a href="${toSitePath('blog.html')}">Best places and vibes in the Netherlands</a>
-            <a href="${cityPageHref}">Best places in ${cityText}</a>
-            <a href="${toSitePath('blog.html')}">More ${vibeText} places</a>
-            <a href="${toSitePath('index.html#city-vibe-map')}">Interactive city vibe map</a>
-        `;
-    }
-
-    modal.appendChild(closeBtn);
-    modal.appendChild(clone);
-
-    // modal footer info row: address (left) and vibes (right)
     const metaRow = document.createElement('div');
     metaRow.className = 'modal-meta-row';
 
@@ -1104,29 +1141,24 @@ function openModalWithCard(card) {
     if (postVibes.length) {
         const vibeEl = document.createElement('div');
         vibeEl.className = 'modal-footer-right';
-
         postVibes.forEach((v) => {
             const chip = document.createElement('span');
             chip.className = 'modal-vibe-chip';
-            const icon = document.createElement('span');
-            icon.className = 'vibe-icon';
-            icon.textContent = getVibeIcon(v);
-            chip.appendChild(icon);
-
-            const vibeText = document.createElement('span');
-            vibeText.textContent = getVibeLabel(v);
-            chip.appendChild(vibeText);
-
+            const iconSpan = document.createElement('span');
+            iconSpan.className = 'vibe-icon';
+            iconSpan.textContent = getVibeIcon(v);
+            chip.appendChild(iconSpan);
+            const vibeLabel = document.createElement('span');
+            vibeLabel.textContent = getVibeLabel(v);
+            chip.appendChild(vibeLabel);
             vibeEl.appendChild(chip);
         });
         metaRow.appendChild(vibeEl);
     }
 
-    if (metaRow.children.length) {
-        clone.appendChild(metaRow);
-    }
+    if (metaRow.children.length) article.appendChild(metaRow);
 
-    // previous / next article navigation in modal
+    // Previous / next article navigation
     const sortedPosts = getSortedPosts();
     const currentIndex = getPostIndexInSortedList(post);
     if (sortedPosts.length > 1 && currentIndex !== -1) {
@@ -1135,59 +1167,64 @@ function openModalWithCard(card) {
 
         const prevIndex = (currentIndex - 1 + sortedPosts.length) % sortedPosts.length;
         const nextIndex = (currentIndex + 1) % sortedPosts.length;
-
         const prevPost = sortedPosts[prevIndex];
         const nextPost = sortedPosts[nextIndex];
 
-        const prevBtn = document.createElement('button');
-        prevBtn.type = 'button';
-        prevBtn.className = 'btn modal-nav-btn';
-        prevBtn.textContent = '← Previous article';
-        prevBtn.setAttribute('aria-label', `Open previous article: ${getPostDisplayTitle(prevPost)}`);
+        const prevNavBtn = document.createElement('button');
+        prevNavBtn.type = 'button';
+        prevNavBtn.className = 'btn modal-nav-btn';
+        prevNavBtn.textContent = '\u2190 Previous article';
+        prevNavBtn.setAttribute('aria-label', `Open previous article: ${getPostDisplayTitle(prevPost)}`);
+        prevNavBtn.addEventListener('click', (e) => { e.stopPropagation(); openPostModal(prevPost); });
 
-        const nextBtn = document.createElement('button');
-        nextBtn.type = 'button';
-        nextBtn.className = 'btn modal-nav-btn';
-        nextBtn.textContent = 'Next article →';
-        nextBtn.setAttribute('aria-label', `Open next article: ${getPostDisplayTitle(nextPost)}`);
+        const nextNavBtn = document.createElement('button');
+        nextNavBtn.type = 'button';
+        nextNavBtn.className = 'btn modal-nav-btn';
+        nextNavBtn.textContent = `Next article \u2192`;
+        nextNavBtn.setAttribute('aria-label', `Open next article: ${getPostDisplayTitle(nextPost)}`);
+        nextNavBtn.addEventListener('click', (e) => { e.stopPropagation(); openPostModal(nextPost); });
 
-        const openTargetPost = (targetPost) => {
-            if (document.body.contains(overlay)) {
-                document.body.removeChild(overlay);
-            }
-            const targetCard = buildPostCardForModal(targetPost);
-            openModalWithCard(targetCard);
-        };
-
-        prevBtn.addEventListener('click', () => openTargetPost(prevPost));
-        nextBtn.addEventListener('click', () => openTargetPost(nextPost));
-
-        nav.appendChild(prevBtn);
-        nav.appendChild(nextBtn);
-        clone.appendChild(nav);
+        nav.appendChild(prevNavBtn);
+        nav.appendChild(nextNavBtn);
+        article.appendChild(nav);
     }
 
-    // keep SEO links as the very last block in enlarged article
-    if (seoWrap) {
-        clone.appendChild(seoWrap);
+    // SEO internal links
+    if (post.city || postVibes.length) {
+        const seoWrap = document.createElement('div');
+        seoWrap.className = 'modal-seo-links';
+        const cityText = post.city ? String(post.city) : 'Dutch cities';
+        const primaryVibe = getPostPrimaryVibe(post);
+        const vibeText = primaryVibe ? getVibeLabel(primaryVibe) : 'best';
+        const cityPageHref = toSitePath(getCityPagePath(post.city));
+        seoWrap.innerHTML = `
+            <p>Explore more:</p>
+            <a href="${toSitePath('blog.html')}">Best places and vibes in the Netherlands</a>
+            <a href="${cityPageHref}">Best places in ${cityText}</a>
+            <a href="${toSitePath('blog.html')}">More ${vibeText} places</a>
+            <a href="${toSitePath('index.html#city-vibe-map')}">Interactive city vibe map</a>
+        `;
+        article.appendChild(seoWrap);
     }
 
-    // close when clicking outside content
+    modal.appendChild(closeBtn);
+    modal.appendChild(article);
+
     overlay.addEventListener('click', (evt) => {
         if (evt.target === overlay) {
-            document.body.removeChild(overlay);
             log('Modal closed via overlay click', 'color: red;');
+            closeModal();
         }
     });
 
-    const escHandler = (evt) => {
-        if (evt.key === 'Escape' && document.body.contains(overlay)) {
-            document.body.removeChild(overlay);
-            document.removeEventListener('keydown', escHandler);
+    // Single ESC handler stored in _modalEscHandler so closeModal() can always remove it.
+    _modalEscHandler = (evt) => {
+        if (evt.key === 'Escape') {
             log('Modal closed via Escape key', 'color: red;');
+            closeModal();
         }
     };
-    document.addEventListener('keydown', escHandler);
+    document.addEventListener('keydown', _modalEscHandler);
 
     overlay.appendChild(modal);
     document.body.appendChild(overlay);

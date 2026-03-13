@@ -1675,7 +1675,7 @@ html[data-theme='light'] .map-popup-open:hover {
 
 @media (max-width: 600px) {
     :root {
-        --logo-height: 70px;
+        --logo-height: 52px;
     }
 
     .post-filters {
@@ -1710,39 +1710,44 @@ html[data-theme='light'] .map-popup-open:hover {
     }
 
     .nav-wrap {
-        gap: var(--space-s);
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
         align-items: center;
+        justify-content: space-between;
+        gap: 6px 0;
     }
 
     .theme-toggle-wrap {
-        position: absolute;
-        top: 6px;
-        right: 8px;
-        width: auto;
+        position: static;
         margin-left: 0;
-        justify-content: flex-end;
-        padding: 3px;
-        border-radius: 999px;
-        border: 1px solid var(--border-subtle);
-        background: color-mix(in srgb, var(--surface) 76%, transparent);
-        box-shadow: var(--shadow-sm), inset 0 0 0 1px color-mix(in srgb, var(--accent) 16%, transparent);
-        z-index: 60;
+        width: auto;
+        padding: 0;
+        border: none;
+        background: none;
+        box-shadow: none;
+        border-radius: 0;
     }
 
     .theme-toggle {
         width: 62px;
     }
     .main-nav {
-        display:flex;
-        gap: 8px;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 4px;
         justify-content: center;
         width: 100%;
-        padding: 8px;
+        flex-basis: 100%;
+        padding: 6px 8px;
         border: 1px solid var(--border-subtle);
         border-radius: var(--radius-lg);
-        background: rgba(15, 28, 26, 0.66);
+        background: color-mix(in srgb, var(--surface) 88%, var(--surface-2));
         box-shadow: var(--shadow-sm);
+    }
+    .main-nav a {
+        padding: 7px 10px;
+        font-size: 0.88rem;
+        white-space: nowrap;
     }
 
     .city-menu {
@@ -1827,10 +1832,8 @@ html[data-theme='light'] .map-popup-open:hover {
     }
 
     .hero-title { font-size:1.6rem; }
-    .logo { font-size:1rem; }
+    .logo { font-size:1rem; padding: 4px 0; }
     .container { padding: var(--space-m) 12px; }
-    /* ensure header elements stack nicely */
-    .nav-wrap { justify-content: center; }
 }
 
 /* Ensure only palette colors are used anywhere via variables above */
