@@ -471,9 +471,9 @@ body > * {
 
 .theme-toggle {
     --toggle-width: 62px;
-    --toggle-height: 25px;
-    --toggle-pad: 2px;
-    --toggle-thumb: calc(var(--toggle-height) - (var(--toggle-pad) * 2));
+    --toggle-height: 24px;
+    --toggle-pad: 3px;
+    --toggle-thumb: 14px;
     position: relative;
     width: var(--toggle-width);
     height: var(--toggle-height);
@@ -495,13 +495,14 @@ body > * {
 .theme-toggle::before {
     content: '';
     position: absolute;
-    top: var(--toggle-pad);
+    top: 50%;
     left: var(--toggle-pad);
     width: var(--toggle-thumb);
     height: var(--toggle-thumb);
     border-radius: 50%;
     background: linear-gradient(145deg, #fffdf8, #e7dcc8);
     box-shadow: 0 9px 20px rgba(0, 0, 0, 0.24), inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+    transform: translateY(-50%);
     transition: transform var(--t) var(--ease-out), background var(--t-fast) var(--ease-out), box-shadow var(--t-fast) var(--ease-out);
 }
 
@@ -528,7 +529,7 @@ body > * {
 }
 
 .theme-toggle[aria-pressed='true']::before {
-    transform: translateX(calc(var(--toggle-width) - var(--toggle-thumb) - (var(--toggle-pad) * 2)));
+    transform: translateX(calc(var(--toggle-width) - var(--toggle-thumb) - (var(--toggle-pad) * 2) - 2px)) translateY(-50%);
     background: linear-gradient(145deg, #FFFFFF, #F1E6D5);
     box-shadow: 0 10px 22px rgba(53, 120, 98, 0.26), inset 0 0 0 1px rgba(36, 138, 109, 0.24);
 }
@@ -1247,6 +1248,11 @@ html[data-theme='light'] .modal-overlay {
     color: var(--text-primary);
 }
 
+/* full-text is hidden on cards by default; modal must explicitly reveal it */
+.modal-content .full-text {
+    display: block;
+}
+
 .modal-seo-links {
     margin-top: var(--space-xs);
     padding-top: 10px;
@@ -1675,7 +1681,7 @@ html[data-theme='light'] .map-popup-open:hover {
 
 @media (max-width: 600px) {
     :root {
-        --logo-height: 70px;
+        --logo-height: 52px;
     }
 
     .post-filters {
@@ -1710,39 +1716,44 @@ html[data-theme='light'] .map-popup-open:hover {
     }
 
     .nav-wrap {
-        gap: var(--space-s);
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
         align-items: center;
+        justify-content: space-between;
+        gap: 6px 0;
     }
 
     .theme-toggle-wrap {
-        position: absolute;
-        top: 6px;
-        right: 8px;
-        width: auto;
+        position: static;
         margin-left: 0;
-        justify-content: flex-end;
-        padding: 3px;
-        border-radius: 999px;
-        border: 1px solid var(--border-subtle);
-        background: color-mix(in srgb, var(--surface) 76%, transparent);
-        box-shadow: var(--shadow-sm), inset 0 0 0 1px color-mix(in srgb, var(--accent) 16%, transparent);
-        z-index: 60;
+        width: auto;
+        padding: 0;
+        border: none;
+        background: none;
+        box-shadow: none;
+        border-radius: 0;
     }
 
     .theme-toggle {
         width: 62px;
     }
     .main-nav {
-        display:flex;
-        gap: 8px;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 4px;
         justify-content: center;
         width: 100%;
-        padding: 8px;
+        flex-basis: 100%;
+        padding: 6px 8px;
         border: 1px solid var(--border-subtle);
         border-radius: var(--radius-lg);
-        background: rgba(15, 28, 26, 0.66);
+        background: color-mix(in srgb, var(--surface) 88%, var(--surface-2));
         box-shadow: var(--shadow-sm);
+    }
+    .main-nav a {
+        padding: 7px 10px;
+        font-size: 0.88rem;
+        white-space: nowrap;
     }
 
     .city-menu {
@@ -1827,10 +1838,8 @@ html[data-theme='light'] .map-popup-open:hover {
     }
 
     .hero-title { font-size:1.6rem; }
-    .logo { font-size:1rem; }
+    .logo { font-size:1rem; padding: 4px 0; }
     .container { padding: var(--space-m) 12px; }
-    /* ensure header elements stack nicely */
-    .nav-wrap { justify-content: center; }
 }
 
 /* Ensure only palette colors are used anywhere via variables above */
