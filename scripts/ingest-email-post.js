@@ -7,9 +7,9 @@ const VIBES_PATH = path.join(ROOT, 'content', 'vibes.yml');
 const POST_INSTRUCTIONS_PATH = path.join(ROOT, 'posts', 'posts_instructions.md');
 const IMAGES_DIR = path.join(ROOT, 'images', 'places');
 
-const MODELS_ENDPOINT = process.env.GITHUB_MODELS_ENDPOINT || 'https://models.inference.ai.azure.com/chat/completions';
-const MODELS_TOKEN = process.env.MODELS_TOKEN || process.env.GITHUB_TOKEN || '';
-const COPILOT_MODEL = process.env.COPILOT_MODEL || 'openai/gpt-4.1-mini';
+const OPENAI_ENDPOINT = process.env.OPENAI_ENDPOINT || 'https://api.openai.com/v1/chat/completions';
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY || process.env.OPENAI_TOKEN || '';
+const OPENAI_MODEL = process.env.OPENAI_MODEL || 'gpt-4o-mini';
 const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY || '';
 
 let _sharp = null;
@@ -256,14 +256,14 @@ async function saveAttachmentAsJpg(att, outputPath) {
   await fs.writeFile(outputPath, optimized);
 }
 
-async function generatePostDraftWithCopilot({
+async function generatePostDraftWithOpenAI({
   emailPayload,
   mapsContext,
   vibeKeys,
   postInstructions,
 }) {
-  if (!MODELS_TOKEN) {
-    fail('Missing GITHUB_MODELS_TOKEN secret. Add it to repository secrets.');
+  if (!OPENAI_API_KEY) {
+    fail('Missing OPENAI_API_KEY secret. Add it to repository secrets.');
   }
 
   const mailText = [
@@ -290,7 +290,7 @@ async function generatePostDraftWithCopilot({
   });
 
   const payload = {
-    model: COPILOT_MODEL,
+    model: OPENAI_MODEL,
     temperature: 0.2,
     messages: [
       { role: 'system', content: system },
@@ -298,24 +298,24 @@ async function generatePostDraftWithCopilot({
     ],
   };
 
-  const response = await fetch(MODELS_ENDPOINT, {
+  const response = await fetch(OPENAI_ENDPOINT, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${MODELS_TOKEN}`,
+      Authorization: `Bearer ${OPENAI_API_KEY}`,
     },
     body: JSON.stringify(payload),
   });
 
   if (!response.ok) {
     const details = await response.text();
-    fail(`Copilot model API error ${response.status}: ${details}`);
+    fail(`OpenAI API error ${response.status}: ${details}`);
   }
 
   const data = await response.json();
   const content = data?.choices?.[0]?.message?.content;
   if (!content) {
-    fail('Copilot model response did not contain message content.');
+    fail('OpenAI response did not contain message content.');
   }
 
   const start = content.indexOf('{');
@@ -328,7 +328,7 @@ async function generatePostDraftWithCopilot({
   try {
     return JSON.parse(json);
   } catch (err) {
-    fail(`Could not parse Copilot JSON output: ${err.message}`);
+    fail(`Could not parse OpenAI JSON output: ${err.message}`);
   }
 }
 
@@ -506,7 +506,7 @@ async function main() {
 
   const mapsContext = await resolveMapContext(mapsUrl, emailPayload.placeHint, emailPayload.cityHint);
 
-  const draft = await generatePostDraftWithCopilot({
+  const draft = await generatePostDraftWithOpenAI({
     emailPayload,
     mapsContext,
     vibeKeys,
