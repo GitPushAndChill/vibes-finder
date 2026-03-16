@@ -3,6 +3,9 @@ const GMAIL_FORWARDER_CONFIG = {
   subjectMustContain: 'vibesfinder/import',
   processedLabel: 'vibesfinder/imported',
   failedLabel: 'vibesfinder/import-failed',
+  // Use Drive URLs to avoid GitHub repository_dispatch payload-size limits.
+  attachmentMode: 'drive_url', // 'drive_url' or 'base64'
+  driveFolderId: '',
   githubOwner: 'GitPushAndChill',
   githubRepo: 'test-website',
   eventType: 'gmail_forwarded_email',
@@ -112,10 +115,12 @@ function buildRepositoryDispatchPayload_(message, config) {
   const plainBody = message.getPlainBody() || '';
   const htmlBody = message.getBody() || '';
   const attachments = message
-    .getAttachments({ includeInlineImages: false, includeAttachments: true })
+    .getAttachments({ includeInlineImages: true, includeAttachments: true })
     .filter(isImageAttachment_)
     .slice(0, config.maxImageAttachments)
-    .map((attachment) => toWebhookAttachment_(attachment));
+    .map((attachment) => toWebhookAttachment_(attachment, config));
+
+  Logger.log('[gmail-forwarder] Payload build found %s image attachment(s). mode=%s', attachments.length, config.attachmentMode);
 
   const googleMapsUrl = findGoogleMapsUrl_(plainBody, htmlBody);
 
@@ -126,7 +131,8 @@ function buildRepositoryDispatchPayload_(message, config) {
         subject: message.getSubject() || '',
         from: message.getFrom() || '',
         text: plainBody,
-        html: htmlBody,
+        // Keep payload small; plain text is enough for downstream parsing.
+        html: '',
         attachments: attachments,
       },
       google_maps_url: googleMapsUrl,
@@ -170,13 +176,42 @@ function isImageAttachment_(attachment) {
   return contentType.indexOf('image/') === 0 || /\.(jpg|jpeg|png|webp|heic|heif)$/i.test(name);
 }
 
-function toWebhookAttachment_(attachment) {
-  const bytes = attachment.copyBlob().getBytes();
+function toWebhookAttachment_(attachment, config) {
+  const mode = String(config.attachmentMode || 'drive_url').toLowerCase();
+
+  if (mode === 'base64') {
+    const bytes = attachment.copyBlob().getBytes();
+    return {
+      filename: attachment.getName(),
+      contentType: attachment.getContentType(),
+      contentBase64: Utilities.base64Encode(bytes),
+    };
+  }
+
+  const downloadUrl = uploadAttachmentToDriveAndGetDownloadUrl_(attachment, config);
   return {
     filename: attachment.getName(),
     contentType: attachment.getContentType(),
-    contentBase64: Utilities.base64Encode(bytes),
+    url: downloadUrl,
   };
+}
+
+function uploadAttachmentToDriveAndGetDownloadUrl_(attachment, config) {
+  if (!config.driveFolderId) {
+    throw new Error('Missing driveFolderId in config while attachmentMode is drive_url.');
+  }
+
+  const folder = DriveApp.getFolderById(config.driveFolderId);
+  const blob = attachment.copyBlob();
+  const timestamp = new Date().toISOString().replace(/[.:]/g, '-');
+  const safeName = `${timestamp}-${attachment.getName()}`;
+  blob.setName(safeName);
+
+  const file = folder.createFile(blob);
+  file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+
+  const id = file.getId();
+  return `https://drive.google.com/uc?export=download&id=${id}`;
 }
 
 function findGoogleMapsUrl_(plainBody, htmlBody) {

@@ -111,16 +111,33 @@ function initThemeToggle() {
     toggle.type = 'button';
     toggle.className = 'theme-toggle';
     toggle.id = 'theme-toggle';
-    toggle.setAttribute('aria-label', 'Toggle light mode');
+    toggle.setAttribute('aria-label', 'Switch to light mode');
     toggle.innerHTML = `
-        <span class="theme-toggle-label theme-toggle-label-on">On</span>
-        <span class="theme-toggle-label theme-toggle-label-off">Off</span>
+        <span class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M21 14.2A9 9 0 1 1 9.8 3a7 7 0 1 0 11.2 11.2z"></path>
+            </svg>
+        </span>
+        <span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+                <circle cx="12" cy="12" r="4.2"></circle>
+                <line x1="12" y1="1.8" x2="12" y2="4.2"></line>
+                <line x1="12" y1="19.8" x2="12" y2="22.2"></line>
+                <line x1="1.8" y1="12" x2="4.2" y2="12"></line>
+                <line x1="19.8" y1="12" x2="22.2" y2="12"></line>
+                <line x1="4.3" y1="4.3" x2="6" y2="6"></line>
+                <line x1="18" y1="18" x2="19.7" y2="19.7"></line>
+                <line x1="18" y1="6" x2="19.7" y2="4.3"></line>
+                <line x1="4.3" y1="19.7" x2="6" y2="18"></line>
+            </svg>
+        </span>
     `;
 
     const updateToggleState = (theme) => {
         const isLight = theme === 'light';
         toggle.setAttribute('aria-pressed', isLight ? 'true' : 'false');
-        toggle.setAttribute('title', isLight ? 'Light mode is on' : 'Light mode is off');
+        toggle.setAttribute('title', isLight ? 'Light mode is on' : 'Dark mode is on');
+        toggle.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
     };
 
     updateToggleState(getActiveTheme());
