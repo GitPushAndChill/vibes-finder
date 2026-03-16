@@ -87,6 +87,39 @@ function findGoogleMapsUrl(emailPayload) {
   return match ? match[0] : '';
 }
 
+async function expandGoogleMapsUrl(url) {
+  const raw = String(url || '').trim();
+  if (!raw) return '';
+  if (!/maps\.app\.goo\.gl/i.test(raw)) return raw;
+
+  try {
+    const response = await fetch(raw, { redirect: 'follow' });
+    return response?.url || raw;
+  } catch (err) {
+    console.warn(`Maps URL expansion failed, using original URL: ${err.message}`);
+    return raw;
+  }
+}
+
+function derivePlaceHintFromEmail(emailPayload) {
+  const rawText = String(emailPayload.text || decodeHtml(emailPayload.html || '') || '');
+  const lines = rawText
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .filter((line) => !/^https?:\/\//i.test(line))
+    .filter((line) => !/^\[[^\]]+\]$/.test(line));
+
+  for (const line of lines) {
+    const match = line.match(/\bat\s+(.+)$/i);
+    if (match && match[1]) {
+      return match[1].trim();
+    }
+  }
+
+  return lines[0] || '';
+}
+
 function extractLatLngFromUrl(url) {
   const match = String(url || '').match(/@(-?\d+\.\d+),(-?\d+\.\d+)/);
   if (!match) return null;
@@ -534,15 +567,17 @@ async function main() {
 
   const payload = JSON.parse(payloadRaw);
   const emailPayload = normalizeEmailPayload(payload);
-  const mapsUrl = findGoogleMapsUrl(emailPayload);
-  if (!mapsUrl) {
+  const originalMapsUrl = findGoogleMapsUrl(emailPayload);
+  if (!originalMapsUrl) {
     fail('No Google Maps URL found in webhook payload/email content.');
   }
+  const mapsUrl = await expandGoogleMapsUrl(originalMapsUrl);
 
   const existingPosts = JSON.parse(postsRaw);
   const vibeKeys = parseVibeKeys(vibesRaw);
 
-  const mapsContext = await resolveMapContext(mapsUrl, emailPayload.placeHint, emailPayload.cityHint);
+  const derivedPlaceHint = emailPayload.placeHint || derivePlaceHintFromEmail(emailPayload);
+  const mapsContext = await resolveMapContext(mapsUrl, derivedPlaceHint, emailPayload.cityHint);
 
   const draft = await generatePostDraftWithOpenAI({
     emailPayload,
