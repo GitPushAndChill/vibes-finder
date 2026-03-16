@@ -226,15 +226,54 @@ function decodeBase64Payload(value) {
   return Buffer.from(padded, 'base64');
 }
 
+async function delay(ms) {
+  await new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function fetchAttachmentBytesWithRetry(url, { retries = 3, initialDelayMs = 600 } = {}) {
+  let lastErr = null;
+
+  for (let attempt = 1; attempt <= retries; attempt += 1) {
+    try {
+      const response = await fetch(url, { redirect: 'follow' });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const bytes = Buffer.from(await response.arrayBuffer());
+      if (!bytes.length) {
+        throw new Error('Downloaded attachment is empty');
+      }
+
+      return bytes;
+    } catch (err) {
+      lastErr = err;
+      if (attempt < retries) {
+        await delay(initialDelayMs * attempt);
+      }
+    }
+  }
+
+  throw new Error(`Image download failed after ${retries} attempts (${url}): ${lastErr?.message || lastErr}`);
+}
+
 async function optimizeToJpeg(buffer) {
   const sharp = await getSharp();
   if (!sharp) return buffer;
 
-  return sharp(buffer)
-    .rotate()
-    .resize({ width: 1800, withoutEnlargement: true })
-    .jpeg({ quality: 78, mozjpeg: true, progressive: true, chromaSubsampling: '4:2:0' })
-    .toBuffer();
+  if (!buffer || !buffer.length) {
+    fail('Image processing failed: attachment buffer is empty.');
+  }
+
+  try {
+    return await sharp(buffer)
+      .rotate()
+      .resize({ width: 1800, withoutEnlargement: true })
+      .jpeg({ quality: 78, mozjpeg: true, progressive: true, chromaSubsampling: '4:2:0' })
+      .toBuffer();
+  } catch (err) {
+    fail(`Image processing failed: ${err.message}`);
+  }
 }
 
 async function saveAttachmentAsJpg(att, outputPath) {
@@ -242,12 +281,11 @@ async function saveAttachmentAsJpg(att, outputPath) {
 
   if (att.contentBase64) {
     bytes = decodeBase64Payload(att.contentBase64);
-  } else if (att.url) {
-    const response = await fetch(att.url);
-    if (!response.ok) {
-      fail(`Image download failed: ${att.url} (HTTP ${response.status})`);
+    if (!bytes.length) {
+      fail(`Attachment ${att.filename || '(unnamed)'} has empty base64 image content.`);
     }
-    bytes = Buffer.from(await response.arrayBuffer());
+  } else if (att.url) {
+    bytes = await fetchAttachmentBytesWithRetry(att.url);
   } else {
     fail(`Attachment ${att.filename || '(unnamed)'} has no contentBase64 or URL`);
   }

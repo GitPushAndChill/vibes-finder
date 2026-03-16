@@ -6,6 +6,7 @@ const GMAIL_FORWARDER_CONFIG = {
   // Use Drive URLs to avoid GitHub repository_dispatch payload-size limits.
   attachmentMode: 'drive_url', // 'drive_url' or 'base64'
   driveFolderId: '',
+  driveFolderName: 'vibesfinder-email-images',
   githubOwner: 'GitPushAndChill',
   githubRepo: 'test-website',
   eventType: 'gmail_forwarded_email',
@@ -197,11 +198,7 @@ function toWebhookAttachment_(attachment, config) {
 }
 
 function uploadAttachmentToDriveAndGetDownloadUrl_(attachment, config) {
-  if (!config.driveFolderId) {
-    throw new Error('Missing driveFolderId in config while attachmentMode is drive_url.');
-  }
-
-  const folder = DriveApp.getFolderById(config.driveFolderId);
+  const folder = resolveDriveFolder_(config);
   const blob = attachment.copyBlob();
   const timestamp = new Date().toISOString().replace(/[.:]/g, '-');
   const safeName = `${timestamp}-${attachment.getName()}`;
@@ -212,6 +209,24 @@ function uploadAttachmentToDriveAndGetDownloadUrl_(attachment, config) {
 
   const id = file.getId();
   return `https://drive.google.com/uc?export=download&id=${id}`;
+}
+
+function resolveDriveFolder_(config) {
+  if (config.driveFolderId) {
+    return DriveApp.getFolderById(config.driveFolderId);
+  }
+
+  const folderName = String(config.driveFolderName || 'vibesfinder-email-images').trim();
+  const existing = DriveApp.getFoldersByName(folderName);
+  if (existing.hasNext()) {
+    const folder = existing.next();
+    Logger.log('[gmail-forwarder] Using Drive folder by name="%s" id=%s', folderName, folder.getId());
+    return folder;
+  }
+
+  const created = DriveApp.createFolder(folderName);
+  Logger.log('[gmail-forwarder] Created Drive folder name="%s" id=%s', folderName, created.getId());
+  return created;
 }
 
 function findGoogleMapsUrl_(plainBody, htmlBody) {
