@@ -9,7 +9,7 @@ const IMAGES_DIR = path.join(ROOT, 'images', 'places');
 
 const OPENAI_ENDPOINT = process.env.OPENAI_ENDPOINT || 'https://api.openai.com/v1/chat/completions';
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || process.env.OPENAI_TOKEN || '';
-const OPENAI_MODEL = process.env.OPENAI_MODEL || 'gpt-4o-mini';
+const OPENAI_MODEL = process.env.OPENAI_MODEL || 'gpt-5-mini';
 const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY || '';
 
 let _sharp = null;
@@ -411,7 +411,21 @@ function titleCase(value) {
     .join(' ');
 }
 
-function validateAndBuildPost({ draft, mapsContext, imagePaths, existingImages, vibeKeys }) {
+function toIsoUtcTimestamp(value) {
+  const raw = String(value || '').trim();
+  if (!raw) return '';
+
+  const date = new Date(raw);
+  if (Number.isNaN(date.getTime())) return '';
+
+  return date.toISOString().replace(/\.\d{3}Z$/, 'Z');
+}
+
+function nowIsoUtc() {
+  return new Date().toISOString().replace(/\.\d{3}Z$/, 'Z');
+}
+
+function validateAndBuildPost({ draft, mapsContext, imagePaths, existingImages, existingPost, vibeKeys, now }) {
   const allowedVibes = new Set(vibeKeys);
   const inputVibes = Array.isArray(draft.vibes) ? draft.vibes : [];
   const normalizedVibes = inputVibes.filter((v) => allowedVibes.has(String(v)));
@@ -450,7 +464,10 @@ function validateAndBuildPost({ draft, mapsContext, imagePaths, existingImages, 
 
   if (!resolvedImages.length) fail('At least one JPG image is required.');
 
-  const createdOn = new Date().toISOString().replace(/\.\d{3}Z$/, 'Z');
+  const fallbackCreatedOn = toIsoUtcTimestamp(existingPost?.created_on);
+  const createdOn = toIsoUtcTimestamp(draft.created_on) || fallbackCreatedOn || now;
+  const draftUpdatedOn = toIsoUtcTimestamp(draft.updated_on);
+  const updatedOn = draftUpdatedOn || (existingPost ? now : createdOn);
 
   return {
     place,
@@ -463,6 +480,7 @@ function validateAndBuildPost({ draft, mapsContext, imagePaths, existingImages, 
     coordinates,
     adress,
     created_on: createdOn,
+    updated_on: updatedOn,
     vibes,
   };
 }
@@ -490,11 +508,14 @@ function uniqueImages(list) {
   return result;
 }
 
-function mergePost(existing, incoming) {
+function mergePost(existing, incoming, now) {
   const mergedImages = uniqueImages([
     ...(Array.isArray(incoming.images) ? incoming.images : []),
     ...(Array.isArray(existing.images) ? existing.images : []),
   ]).slice(0, 3);
+
+  const preservedCreatedOn = toIsoUtcTimestamp(existing.created_on) || toIsoUtcTimestamp(incoming.created_on) || now;
+  const updatedOn = toIsoUtcTimestamp(incoming.updated_on) || now;
 
   return {
     place: incoming.place || existing.place,
@@ -508,7 +529,8 @@ function mergePost(existing, incoming) {
       ? incoming.coordinates
       : existing.coordinates,
     adress: incoming.adress || existing.adress,
-    created_on: existing.created_on || incoming.created_on,
+    created_on: preservedCreatedOn,
+    updated_on: updatedOn,
     vibes: Array.isArray(incoming.vibes) && incoming.vibes.length ? incoming.vibes : existing.vibes,
   };
 }
@@ -572,6 +594,7 @@ async function main() {
     fail('No Google Maps URL found in webhook payload/email content.');
   }
   const mapsUrl = await expandGoogleMapsUrl(originalMapsUrl);
+  const now = nowIsoUtc();
 
   const existingPosts = JSON.parse(postsRaw);
   const vibeKeys = parseVibeKeys(vibesRaw);
@@ -604,12 +627,14 @@ async function main() {
     mapsContext,
     imagePaths,
     existingImages: maybeExistingIndex >= 0 ? existingPosts[maybeExistingIndex]?.images : [],
+    existingPost: maybeExistingIndex >= 0 ? existingPosts[maybeExistingIndex] : null,
     vibeKeys,
+    now,
   });
 
   const existingIndex = findExistingPostIndex(existingPosts, post);
   if (existingIndex >= 0) {
-    const merged = mergePost(existingPosts[existingIndex], post);
+    const merged = mergePost(existingPosts[existingIndex], post, now);
     assertNoDuplicatePost(existingPosts, merged, existingIndex);
     existingPosts[existingIndex] = merged;
     console.log(`Updated existing post for ${merged.place} (${merged.city}).`);
