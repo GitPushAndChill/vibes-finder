@@ -427,16 +427,26 @@ function nowIsoUtc() {
 function validateAndBuildPost({ draft, mapsContext, imagePaths, existingImages, existingPost, vibeKeys, now }) {
   const allowedVibes = new Set(vibeKeys);
   const inputVibes = Array.isArray(draft.vibes) ? draft.vibes : [];
-  const normalizedVibes = inputVibes.filter((v) => allowedVibes.has(String(v)));
+  const normalizedVibes = [...new Set(
+    inputVibes
+      .map((v) => String(v || '').trim())
+      .filter((v) => allowedVibes.has(v))
+  )];
 
-  const fallbackVibe = allowedVibes.has(String(draft.vibe))
-    ? String(draft.vibe)
-    : normalizedVibes[0] || 'easygoing';
+  const preferredVibe = String(draft.vibe || '').trim();
+  const firstAllowedVibe = vibeKeys.find((v) => allowedVibes.has(String(v))) || 'easygoing';
+  const fallbackVibe = allowedVibes.has(preferredVibe)
+    ? preferredVibe
+    : normalizedVibes[0] || firstAllowedVibe;
 
-  const vibes = normalizedVibes.length ? normalizedVibes : [fallbackVibe];
-  if (!vibes.includes(fallbackVibe)) {
-    vibes.unshift(fallbackVibe);
+  let vibes = normalizedVibes;
+  if (allowedVibes.has(fallbackVibe)) {
+    vibes = [fallbackVibe, ...vibes.filter((v) => v !== fallbackVibe)];
   }
+  if (!vibes.length) {
+    vibes = [fallbackVibe];
+  }
+  vibes = vibes.slice(0, 3);
 
   const coordinates = Array.isArray(draft.coordinates) && draft.coordinates.length === 2
     ? [Number(draft.coordinates[0]), Number(draft.coordinates[1])]
