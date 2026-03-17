@@ -12,6 +12,6 @@ Adhere to the folowing data definition when populating the json file for adding 
 - **short_description**: short description of the place and vibe, around the lenght of 2 sentences. should use some key word good for SEO.the short description is targeted towards a younger audience, so make it gen-z style.
 - **description**: description of the place and vibe, not longer than two paragraphs. it should give reasons to visit the place. make the description targeted for gen-z.
 - **coordinates**: coordinates of the place
-- **adress**: the adress of the pace
+- **adress**: the adress of the place
 - **created_on**: the timestamp when the post was created.
 - **updated_on** time timestamp when the post was updated for the last time.
