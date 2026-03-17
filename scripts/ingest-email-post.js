@@ -362,7 +362,6 @@ async function generatePostDraftWithOpenAI({
 
   const payload = {
     model: OPENAI_MODEL,
-    temperature: 0.2,
     messages: [
       { role: 'system', content: system },
       { role: 'user', content: user },
