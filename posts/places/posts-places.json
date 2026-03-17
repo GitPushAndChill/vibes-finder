@@ -1753,5 +1753,28 @@
       "easygoing"
     ],
     "updated_on": "2026-03-16T21:27:42Z"
+  },
+  {
+    "place": "Brouwerij Noordt",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "Brouwerij Noordt",
+    "images": [
+      "images/places/brouwerij-noordt-rotterdam.jpg",
+      "images/places/brouwerij-noordt-rotterdam-2.jpg",
+      "images/places/brouwerij-noordt-rotterdam-3.jpg"
+    ],
+    "short_description": "Brouwerij Noordt Rotterdam brewery serving laid-back craft beers with major chill vibes — perfect for beer lovers and crew hangs. Low-key spot near Zaagmolenkade where the brews and the vibe both slap.",
+    "description": "Brouwerij Noordt is a Rotterdam brewery with easygoing energy and solid craft-beer cred — think approachable, flavour-forward pours and a relaxed crowd. It’s a great place to kick back with friends, taste local brews, and soak up mellow industrial-chic vibes without any pretense.\n\nHit Noordt when you want a casual beer sesh or an intro to Dutch craft brewing; the spot is ideal for small groups, casual dates, or solo tasting sessions. Located on Zaagmolenkade, it’s easy to find via Maps and makes a solid stop on a Rotterdam brewery crawl.",
+    "coordinates": [
+      51.9332794,
+      4.486463200000001
+    ],
+    "adress": "Zaagmolenkade 46, 3035 KA Rotterdam, Netherlands",
+    "created_on": "2026-03-17T15:30:00Z",
+    "updated_on": "2026-03-17T15:30:00Z",
+    "vibes": [
+      "easygoing"
+    ]
   }
 ]
