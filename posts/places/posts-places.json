@@ -1800,5 +1800,28 @@
       "beer_lovers",
       "golden_summertime"
     ]
+  },
+  {
+    "place": "Nederlands Fotomuseum",
+    "city": "Rotterdam",
+    "vibe": "culture_craving",
+    "title": "Nederlands Fotomuseum (Dutch Photo Museum)",
+    "images": [
+      "images/places/nederlands-fotomuseum-rotterdam.jpg",
+      "images/places/nederlands-fotomuseum-rotterdam-2.jpg",
+      "images/places/nederlands-fotomuseum-rotterdam-3.jpg"
+    ],
+    "short_description": "Nederlands Fotomuseum is the top photo museum in Rotterdam — a must-visit for anyone into contemporary and historic photography. Perfect for culture seekers and content creators looking for photo museum Rotterdam inspo and strong visual vibes.",
+    "description": "This national photo museum serves up rotating exhibitions that spotlight both Dutch and international photographers, archival projects, and storytelling through powerful images. It’s a compact cultural hub where you can dive into themed shows, discover emerging talents, and find fresh inspiration for your feed.\n\nGreat for a daytime cultural crawl or a creative date, the Fotomuseum offers accessible exhibits, a museum shop with unique finds, and plenty of moments made for photos. Easy to reach on Brede Hilledijk, it’s a solid stop for Gen-Z art lovers who want to mix learning with major visual energy.",
+    "coordinates": [
+      51.9027988,
+      4.4951298
+    ],
+    "adress": "Brede Hilledijk 95, 3072 KD Rotterdam, Netherlands",
+    "created_on": "2026-03-18T12:00:00Z",
+    "updated_on": "2026-03-18T12:00:00Z",
+    "vibes": [
+      "culture_craving"
+    ]
   }
 ]
