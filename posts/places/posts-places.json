@@ -1754,5 +1754,27 @@
       "easygoing",
       "beer_lovers"
     ]
+  },
+  {
+    "place": "FENIX",
+    "city": "Rotterdam",
+    "vibe": "culture_craving",
+    "title": "FENIX",
+    "images": [
+      "images/places/fenix-rotterdam.jpg",
+      "images/places/fenix-rotterdam-2.jpg"
+    ],
+    "short_description": "Fenix Museum Rotterdam is a photogenic, harbor-side museum that slaps for culture-hungry explorers. Expect rotating exhibits, industrial-chic vibes, and major content-ready backdrops — perfect for your next museum day.",
+    "description": "Nestled on the Kop van Zuid waterfront, FENIX gives off low-key museum core with high-key photo ops. With rotating exhibits and striking industrial architecture, it’s a compact cultural stop that feeds your feed and curiosity alike. \n\nWhy go? It’s an easy visit for a chilled culture day: think curated displays, river views, and architecture that doubles as a backdrop for pics. Ideal for Gen Z museum-hoppers who want art, history, and vibes without the museum marathon — plus it’s super close to cafés and the rest of Rotterdam’s harbor scene.",
+    "coordinates": [
+      51.9021499,
+      4.484190799999999
+    ],
+    "adress": "Paul Nijghkade 5, 3072 AT Rotterdam, Netherlands",
+    "created_on": "2026-03-18T15:30:00Z",
+    "updated_on": "2026-03-18T15:30:00Z",
+    "vibes": [
+      "culture_craving"
+    ]
   }
 ]
