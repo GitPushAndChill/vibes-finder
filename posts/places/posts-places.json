@@ -1776,5 +1776,29 @@
     "vibes": [
       "culture_craving"
     ]
+  },
+  {
+    "place": "Fenix Food Factory",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "Fenix Food Factory",
+    "images": [
+      "images/places/fenix-food-factory-rotterdam.jpg",
+      "images/places/fenix-food-factory-rotterdam-2.jpg"
+    ],
+    "short_description": "Fenix Food Factory Rotterdam is the go-to food market for artisan bites, craft beer, and chill waterfront vibes — perfect for golden-hour hangs. Low-key spot for weekend grub runs and community-style eating, ideal if you love trying local flavours.",
+    "description": "Fenix Food Factory is a laid-back food hall on Rotterdam's waterfront where local vendors dish out everything from fresh bread and tacos to specialty coffee and craft beer. The vibe is super easygoing with communal tables, indie producers, and an industrial-chic space that makes it perfect for group hangs or solo snack missions.\n\nDuring golden summertime the terrace fills up with sun-soaked crowds sipping cold beers and sharing plates while watching the water — a must-visit for beer lovers and anyone who vibes with casual outdoor hangs. Pop in for a quick bite, a brewery pairing, or a relaxed evening of discovering local eats.",
+    "coordinates": [
+      51.9020324,
+      4.4867529
+    ],
+    "adress": "Nico Koomanskade 1025, 3072 LM Rotterdam, Netherlands",
+    "created_on": "2026-03-18T14:30:00Z",
+    "updated_on": "2026-03-18T14:30:00Z",
+    "vibes": [
+      "easygoing",
+      "beer_lovers",
+      "golden_summertime"
+    ]
   }
 ]
