@@ -1886,4 +1886,131 @@ html[data-theme='light'] .map-popup-open:hover {
     .container { padding: var(--space-m) 12px; }
 }
 
+/* Ads consent banner */
+.ads-consent-banner {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    width: min(420px, calc(100vw - 24px));
+    z-index: 1200;
+    border-radius: 14px;
+    padding: 14px;
+    background: rgba(22, 40, 36, 0.96);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(5px);
+}
+
+.ads-consent-text {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 0.94rem;
+    line-height: 1.45;
+}
+
+.ads-consent-links {
+    margin: 8px 0 0;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+}
+
+.ads-consent-links a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.ads-consent-links a:hover {
+    color: var(--accent-hover);
+}
+
+.ads-consent-actions {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.ads-consent-btn {
+    border-radius: 10px;
+    border: 1px solid var(--border-subtle);
+    padding: 8px 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform var(--t-fast) var(--ease-out), background-color var(--t-fast) var(--ease-out), border-color var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
+}
+
+.ads-consent-btn:hover {
+    transform: translateY(-1px);
+}
+
+.ads-consent-btn-secondary {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-primary);
+}
+
+.ads-consent-btn-secondary:hover {
+    border-color: color-mix(in srgb, var(--accent) 46%, transparent);
+}
+
+.ads-consent-btn-primary {
+    background: var(--accent);
+    color: var(--ink);
+    border-color: color-mix(in srgb, var(--accent) 78%, black);
+}
+
+.ads-consent-btn-primary:hover {
+    background: var(--accent-hover);
+}
+
+html[data-theme='light'] .ads-consent-banner {
+    background: rgba(255, 249, 240, 0.98);
+    border-color: rgba(126, 93, 52, 0.3);
+}
+
+html[data-theme='light'] .ads-consent-btn-secondary {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.consent-settings-btn {
+    position: fixed;
+    left: 14px;
+    bottom: 14px;
+    z-index: 1190;
+    border-radius: 999px;
+    border: 1px solid var(--border-subtle);
+    background: rgba(22, 40, 36, 0.9);
+    color: var(--text-primary);
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+}
+
+.consent-settings-btn:hover {
+    border-color: color-mix(in srgb, var(--accent) 46%, transparent);
+}
+
+html[data-theme='light'] .consent-settings-btn {
+    background: rgba(255, 249, 240, 0.94);
+}
+
+@media (max-width: 600px) {
+    .ads-consent-banner {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        width: auto;
+    }
+
+    .consent-settings-btn {
+        left: 12px;
+        bottom: 12px;
+        font-size: 0.76rem;
+        padding: 7px 10px;
+    }
+}
+
 /* Ensure only palette colors are used anywhere via variables above */

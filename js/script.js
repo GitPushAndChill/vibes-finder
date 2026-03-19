@@ -16,6 +16,269 @@ function error(message) {
 }
 
 // ===============================
+// Ads Consent
+// ===============================
+const ADS_CONSENT_STORAGE_KEY = 'vf-ads-consent';
+const CONSENT_STORAGE_KEY = 'vf-consent-v2';
+const ADS_CLIENT_ID = 'ca-pub-6784233656400841';
+const ADS_SCRIPT_SRC = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADS_CLIENT_ID}`;
+const GA_MEASUREMENT_ID = 'G-YPKV051KH6';
+const GA_SCRIPT_SRC = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+
+const CONSENT_STATE_DENIED = {
+    analytics: false,
+    ads: false,
+};
+
+function normalizeConsent(input) {
+    const source = input || {};
+    return {
+        analytics: Boolean(source.analytics),
+        ads: Boolean(source.ads),
+    };
+}
+
+function toConsentStoragePayload(consent) {
+    const normalized = normalizeConsent(consent);
+    return JSON.stringify({
+        version: 1,
+        analytics: normalized.analytics,
+        ads: normalized.ads,
+        updatedAt: new Date().toISOString().replace(/\.\d{3}Z$/, 'Z'),
+    });
+}
+
+function readLegacyAdsConsent() {
+    try {
+        const legacyValue = localStorage.getItem(ADS_CONSENT_STORAGE_KEY);
+        if (legacyValue === 'granted') {
+            return { analytics: true, ads: true };
+        }
+        if (legacyValue === 'denied') {
+            return { analytics: false, ads: false };
+        }
+    } catch (err) {
+        return null;
+    }
+    return null;
+}
+
+function getStoredConsent() {
+    try {
+        const raw = localStorage.getItem(CONSENT_STORAGE_KEY);
+        if (raw) {
+            const parsed = JSON.parse(raw);
+            if (typeof parsed === 'object' && parsed) {
+                return normalizeConsent(parsed);
+            }
+        }
+    } catch (err) {
+        warn('Unable to read consent preference.');
+    }
+
+    const legacy = readLegacyAdsConsent();
+    if (legacy) {
+        setStoredConsent(legacy);
+        return legacy;
+    }
+
+    return null;
+}
+
+function setStoredConsent(consent) {
+    const normalized = normalizeConsent(consent);
+    try {
+        localStorage.setItem(CONSENT_STORAGE_KEY, toConsentStoragePayload(normalized));
+        localStorage.setItem(ADS_CONSENT_STORAGE_KEY, normalized.ads ? 'granted' : 'denied');
+    } catch (err) {
+        warn('Unable to persist consent preference.');
+    }
+}
+
+function ensureGtagBase() {
+    window.dataLayer = window.dataLayer || [];
+    if (typeof window.gtag !== 'function') {
+        window.gtag = function gtag() {
+            window.dataLayer.push(arguments);
+        };
+    }
+}
+
+function ensureGoogleAnalyticsLoaded() {
+    if (document.querySelector('script[data-ga-loader="1"]')) return;
+    if (document.querySelector(`script[src*="googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}"]`)) return;
+
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = GA_SCRIPT_SRC;
+    script.dataset.gaLoader = '1';
+    document.head.appendChild(script);
+}
+
+function setConsentModeDefaults() {
+    ensureGtagBase();
+    window.gtag('consent', 'default', {
+        ad_storage: 'denied',
+        analytics_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        wait_for_update: 500,
+    });
+}
+
+function ensureAdSenseLoaded() {
+    if (document.querySelector(`script[src*="googlesyndication.com/pagead/js/adsbygoogle.js"]`)) return;
+    if (window.__vfAdSenseLoading) return;
+    window.__vfAdSenseLoading = true;
+
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = ADS_SCRIPT_SRC;
+    script.crossOrigin = 'anonymous';
+    script.addEventListener('error', () => {
+        window.__vfAdSenseLoading = false;
+    });
+    document.head.appendChild(script);
+}
+
+function applyConsent(consent, { persist = false } = {}) {
+    const normalized = normalizeConsent(consent);
+    const analyticsGranted = normalized.analytics;
+    const adsGranted = normalized.ads;
+
+    ensureGtagBase();
+    window.gtag('consent', 'update', {
+        analytics_storage: analyticsGranted ? 'granted' : 'denied',
+        ad_storage: adsGranted ? 'granted' : 'denied',
+        ad_user_data: adsGranted ? 'granted' : 'denied',
+        ad_personalization: adsGranted ? 'granted' : 'denied',
+    });
+
+    if (analyticsGranted || adsGranted) {
+        ensureGoogleAnalyticsLoaded();
+        window.gtag('js', new Date());
+        window.gtag('config', GA_MEASUREMENT_ID, {
+            anonymize_ip: true,
+        });
+    }
+
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = adsGranted ? 0 : 1;
+
+    if (adsGranted) {
+        ensureAdSenseLoaded();
+    }
+
+    if (persist) {
+        setStoredConsent(normalized);
+    }
+}
+
+function closeAdsConsentBanner() {
+    const banner = document.querySelector('#ads-consent-banner');
+    if (banner && banner.parentNode) {
+        banner.parentNode.removeChild(banner);
+    }
+}
+
+function showAdsConsentBanner() {
+    if (document.querySelector('#ads-consent-banner')) return;
+
+    const banner = document.createElement('aside');
+    banner.id = 'ads-consent-banner';
+    banner.className = 'ads-consent-banner';
+    banner.setAttribute('role', 'dialog');
+    banner.setAttribute('aria-live', 'polite');
+    banner.setAttribute('aria-label', 'Privacy consent settings');
+
+    banner.innerHTML = `
+        <p class="ads-consent-text">
+            We use cookies for analytics and ad personalization. Choose how your data may be used.
+        </p>
+        <p class="ads-consent-links">
+            Read our <a href="${toSitePath('privacy.html')}">Privacy Policy</a> and <a href="${toSitePath('cookies.html')}">Cookie Policy</a>.
+        </p>
+        <div class="ads-consent-actions">
+            <button type="button" class="ads-consent-btn ads-consent-btn-secondary" data-consent-choice="reject">Reject</button>
+            <button type="button" class="ads-consent-btn ads-consent-btn-secondary" data-consent-choice="analytics-only">Analytics Only</button>
+            <button type="button" class="ads-consent-btn ads-consent-btn-primary" data-consent-choice="accept-all">Accept All</button>
+        </div>
+    `;
+
+    banner.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-consent-choice]');
+        if (!button) return;
+
+        const choice = String(button.getAttribute('data-consent-choice') || 'reject');
+        let consent = CONSENT_STATE_DENIED;
+
+        if (choice === 'analytics-only') {
+            consent = { analytics: true, ads: false };
+        } else if (choice === 'accept-all') {
+            consent = { analytics: true, ads: true };
+        }
+
+        applyConsent(consent, { persist: true });
+        closeAdsConsentBanner();
+    });
+
+    document.body.appendChild(banner);
+}
+
+function ensureConsentSettingsButton() {
+    if (document.querySelector('#consent-settings-btn')) return;
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.id = 'consent-settings-btn';
+    button.className = 'consent-settings-btn';
+    button.textContent = 'Privacy settings';
+    button.setAttribute('aria-label', 'Open privacy settings');
+    button.addEventListener('click', () => {
+        showAdsConsentBanner();
+    });
+
+    document.body.appendChild(button);
+}
+
+function mapCmpConsent(cmpConsent) {
+    const source = cmpConsent || {};
+    return {
+        analytics: Boolean(source.analytics),
+        ads: Boolean(source.ads || source.advertising || source.ad_personalization || source.ad_user_data),
+    };
+}
+
+function installCmpConsentBridge() {
+    window.updateConsentFromCMP = function updateConsentFromCMP(cmpConsent) {
+        const mapped = mapCmpConsent(cmpConsent);
+        applyConsent(mapped, { persist: true });
+        closeAdsConsentBanner();
+    };
+
+    window.addEventListener('cmp:consent-changed', (event) => {
+        const mapped = mapCmpConsent(event?.detail || {});
+        applyConsent(mapped, { persist: true });
+        closeAdsConsentBanner();
+    });
+}
+
+function initAdsConsent() {
+    setConsentModeDefaults();
+    ensureConsentSettingsButton();
+    installCmpConsentBridge();
+
+    const stored = getStoredConsent();
+    if (stored) {
+        applyConsent(stored);
+        return;
+    }
+
+    applyConsent(CONSENT_STATE_DENIED);
+    showAdsConsentBanner();
+}
+
+// ===============================
 // Script Loaded Timestamp
 // ===============================
 const currentDate = new Date();
@@ -951,11 +1214,13 @@ function getPostIndexInSortedList(post) {
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
+        initAdsConsent();
         initCityMenu();
         initThemeToggle();
         vibeConfigReady.finally(fetchAndRenderGrids);
     });
 } else {
+    initAdsConsent();
     initCityMenu();
     initThemeToggle();
     vibeConfigReady.finally(fetchAndRenderGrids);
