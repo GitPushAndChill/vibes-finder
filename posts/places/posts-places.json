@@ -1823,5 +1823,30 @@
     "vibes": [
       "culture_craving"
     ]
+  },
+  {
+    "place": "Papa's Beach House",
+    "city": "Hoofddorp",
+    "vibe": "outdoorsy",
+    "title": "Papa's Beach House",
+    "images": [
+      "images/places/papa-s-beach-house-hoofddorp.jpg",
+      "images/places/papa-s-beach-house-hoofddorp-2.jpg",
+      "images/places/papa-s-beach-house-hoofddorp-3.jpg"
+    ],
+    "short_description": "Lowkey the best spot in Haarlemmermeerse Bos for summer chill — rent a SUP at Papa's Beach House and vibe on the water. Perfect for BBQ days with the crew and golden hour flexing, ideal for anyone searching for Haarlemmermeerse Bos SUP rental spots.",
+    "description": "Papa's Beach House at Haarlemmermeerse Bos is a summer must: grab a SUP, paddle out, and spend the day lazing on the shore with a BBQ and friends. The spot gives relaxed outdoorsy energy with easy access to water activities and chill hangout zones — super photogenic for golden hour and group hangs.\n\nBring a portable grill, some snacks, and your besties for an all-day hang; the restaurant handles rentals so you can focus on fun. It’s a top pick if you want low-effort, high-vibe summer days in Hoofddorp without leaving the city loop.",
+    "coordinates": [
+      52.323431,
+      4.67406
+    ],
+    "adress": "IJweg 961, 2131 LV Hoofddorp, Netherlands",
+    "created_on": "2026-03-24T12:00:00Z",
+    "updated_on": "2026-03-24T12:00:00Z",
+    "vibes": [
+      "outdoorsy",
+      "golden_summertime",
+      "easygoing"
+    ]
   }
 ]
