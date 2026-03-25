@@ -1848,5 +1848,28 @@
       "golden_summertime",
       "easygoing"
     ]
+  },
+  {
+    "place": "Oasis Rotterdam (formerly Mecca Oasis)",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "Oasis Rotterdam",
+    "images": [
+      "images/places/oasis-rotterdam-formerly-mecca-oasis-rotterdam.jpg"
+    ],
+    "short_description": "Lowkey hidden gem on Noordsingel — Oasis Rotterdam serves cozy coffee vibes and chill hangout energy perfect for study seshes and lazy brunches. If you’re hunting for a relaxed Rotterdam coffee spot with aesthetic corners and mellow beats, this place slaps.",
+    "description": "Formerly Mecca Oasis, Oasis Rotterdam is a super chill spot on Noordsingel that’s all about relaxed hangs, good coffee, and lowkey vibes. Expect comfy seating, cozy nooks for studying or catching up with friends, and an overall easygoing atmosphere that makes it a go-to hidden gem in Rotterdam.\n\nPop in for a warm drink, grab a corner with your laptop, or meet friends for a slow brunch — it’s perfect for coffee-and-chill moods. Located at Noordsingel 39, 3035 EJ Rotterdam (map: https://www.google.com/maps?q=Oasis+Rotterdam+(formerly+Mecca+Oasis),+Noordsingel+39,+3035+EJ+Rotterdam,+Netherlands), it’s an easy find and a vibe check worth doing on your next Rotterdam day out.",
+    "coordinates": [
+      51.930118,
+      4.4805301
+    ],
+    "adress": "Noordsingel 39, 3035 EJ Rotterdam, Netherlands",
+    "created_on": "2026-03-25T10:00:00Z",
+    "updated_on": "2026-03-25T10:00:00Z",
+    "vibes": [
+      "easygoing",
+      "coffee_and_chill",
+      "hidden_gems"
+    ]
   }
 ]
