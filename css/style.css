@@ -1377,7 +1377,7 @@ html[data-theme='light'] .modal-content a:hover {
 .image-slider {
     position: relative;
     width: 100%;
-    max-height: 300px;
+    height: min(420px, 45vh);
     overflow: hidden;
     margin-bottom: var(--space-m);
     border-radius: calc(var(--radius-lg) + 2px);
@@ -1385,7 +1385,7 @@ html[data-theme='light'] .modal-content a:hover {
 }
 .image-slider .slider-img {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
     object-fit: cover;
 }
@@ -1884,6 +1884,10 @@ html[data-theme='light'] .map-popup-open:hover {
     .hero-title { font-size:1.6rem; }
     .logo { font-size:1rem; padding: 4px 0; }
     .container { padding: var(--space-m) 12px; }
+
+    .image-slider {
+        height: min(240px, 40vh);
+    }
 }
 
 /* Ads consent banner */
