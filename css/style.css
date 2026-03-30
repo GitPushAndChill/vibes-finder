@@ -1138,10 +1138,11 @@ body > * {
 }
 
 .footer-quick-links {
-    display: inline-flex;
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: var(--space-m);
+    gap: var(--space-s) var(--space-m);
     margin-bottom: var(--space-xs);
 }
 
