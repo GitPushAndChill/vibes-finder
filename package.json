@@ -6,7 +6,7 @@
   "scripts": {
     "generate:post-pages": "node scripts/generate-post-pages.js",
     "prestart": "npm run generate:post-pages",
-    "start": "lite-server",
+    "start": "browser-sync start --config bs-config.json",
     "prebuild": "npm run generate:post-pages",
     "build": "node scripts/build-static.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -24,6 +24,6 @@
   },
   "homepage": "https://github.com/GitPushAndChill/test-website#readme",
   "devDependencies": {
-    "lite-server": "^2.6.1"
+    "browser-sync": "^3.0.4"
   }
 }
