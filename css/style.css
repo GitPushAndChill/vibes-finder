@@ -577,15 +577,56 @@ body > * {
     outline: none;
     background: var(--surface-2);
 }
+.main-nav a.active:hover,
+.main-nav a.active:focus {
+    background: var(--accent);
+}
 
 .main-nav a:hover::after,
 .main-nav a:focus-visible::after {
     transform: scaleX(1);
 }
+.main-nav a.active:hover::after,
+.main-nav a.active:focus-visible::after {
+    transform: scaleX(0);
+}
 
 .main-nav a:focus-visible {
     outline: none;
     box-shadow: var(--shadow-ring);
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    padding: var(--space-xs) 0 0;
+}
+.breadcrumb ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0;
+}
+.breadcrumb li + li::before {
+    content: '›';
+    padding: 0 6px;
+    color: var(--text-secondary);
+}
+.breadcrumb a {
+    color: var(--text-secondary);
+    text-decoration: none;
+}
+.breadcrumb a:hover {
+    color: var(--text-primary);
+    text-decoration: underline;
+}
+.breadcrumb [aria-current="page"] {
+    color: var(--text-primary);
+    font-weight: 600;
 }
 
 /* Hero */
