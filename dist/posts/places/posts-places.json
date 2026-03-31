@@ -1,0 +1,1875 @@
+[
+  {
+    "place": "Bar Mokum",
+    "city": "Amsterdam",
+    "vibe": "classy",
+    "title": "Bar Mokum Amsterdam – Intimate Cocktails for a Classy Date Night",
+    "images": [
+      "images/places/bar-mokum-amsterdam.jpg"
+    ],
+    "short_description": "Intimate cocktail bar with local spirit twists and a polished yet playful atmosphere — perfect for a fancy hangout with the girls.",
+    "description": "Bar Mokum is an intimate Amsterdam cocktail bar known for local spirit twists and a polished yet playful atmosphere, ideal for dressed-up evenings and quality conversation.",
+    "coordinates": [
+      52.3549,
+      4.8919
+    ],
+    "adress": "Ferdinand Bolstraat 11, 1072 LA Amsterdam",
+    "created_on": "2026-03-10T12:00:00Z",
+    "vibes": [
+      "classy",
+      "date_night"
+    ],
+    "updated_on": "2026-03-10T12:00:00Z"
+  },
+  {
+    "place": "Door 74",
+    "city": "Amsterdam",
+    "vibe": "classy",
+    "title": "Door 74 Amsterdam – Hidden Speakeasy with Prohibition Vibes",
+    "images": [
+      "images/places/door-74-amsterdam.jpg"
+    ],
+    "short_description": "Prohibition-style speakeasy with impeccably crafted drinks and a secretive door you actually need to know about.",
+    "description": "Door 74 delivers a prohibition-style speakeasy experience in Amsterdam with meticulously crafted cocktails and a true hidden-door feeling.",
+    "coordinates": [
+      52.3649,
+      4.8958
+    ],
+    "adress": "Reguliersdwarsstraat 74, 1017 BN Amsterdam",
+    "created_on": "2026-03-10T12:02:00Z",
+    "vibes": [
+      "classy",
+      "hidden_gems"
+    ],
+    "updated_on": "2026-03-10T12:02:00Z"
+  },
+  {
+    "place": "Super Lyan",
+    "city": "Amsterdam",
+    "vibe": "classy",
+    "title": "Super Lyan Amsterdam – Creative Cocktail Lab Downtown",
+    "images": [
+      "images/places/super-lyan-amsterdam.jpg"
+    ],
+    "short_description": "Creative cocktail lab with surprising flavor profiles — for the night when upclass drinks are the destination.",
+    "description": "Super Lyan is a creative cocktail lab in central Amsterdam where surprising flavor combinations make the drinks the main event.",
+    "coordinates": [
+      52.3755,
+      4.8946
+    ],
+    "adress": "Nieuwezijds Voorburgwal 3, 1012 RC Amsterdam",
+    "created_on": "2026-03-10T12:04:00Z",
+    "vibes": [
+      "classy",
+      "date_night"
+    ],
+    "updated_on": "2026-03-10T12:04:00Z"
+  },
+  {
+    "place": "Bar TwentySeven",
+    "city": "Amsterdam",
+    "vibe": "classy",
+    "title": "Bar TwentySeven Amsterdam – Luxury Drinks with Dam Square Views",
+    "images": [
+      "images/places/bar-twentyseven-amsterdam.jpg"
+    ],
+    "short_description": "Stylish high-end bar on Dam Square with panoramic city views — mains dressed-up energy downtown.",
+    "description": "Bar TwentySeven offers a stylish high-end cocktail experience on Dam Square with panoramic city views and elevated downtown energy.",
+    "coordinates": [
+      52.3731,
+      4.8922
+    ],
+    "adress": "Dam 27, 1012 JS Amsterdam",
+    "created_on": "2026-03-10T12:06:00Z",
+    "vibes": [
+      "classy",
+      "date_night"
+    ],
+    "updated_on": "2026-03-10T12:06:00Z"
+  },
+  {
+    "place": "Proeflokaal Arendsnest",
+    "city": "Amsterdam",
+    "vibe": "easygoing",
+    "title": "Proeflokaal Arendsnest Amsterdam – Dutch Craft Beer Favorite",
+    "images": [
+      "images/places/proeflokaal-arendsnest-amsterdam.jpg"
+    ],
+    "short_description": "Craft beer haven with thoughtful Dutch brews on tap — laid-back but endlessly fun with friends.",
+    "description": "Proeflokaal Arendsnest is a Dutch craft-beer haven in Amsterdam where thoughtful taps and relaxed atmosphere make it easy to stay for another round.",
+    "coordinates": [
+      52.3774,
+      4.8867
+    ],
+    "adress": "Herengracht 90, 1015 BS Amsterdam",
+    "created_on": "2026-03-10T12:08:00Z",
+    "vibes": [
+      "easygoing",
+      "beer_lovers"
+    ],
+    "updated_on": "2026-03-10T12:08:00Z"
+  },
+  {
+    "place": "Cafe Gollem",
+    "city": "Amsterdam",
+    "vibe": "easygoing",
+    "title": "Cafe Gollem Amsterdam – Cozy Local Pub with Great Beer",
+    "images": [
+      "images/places/cafe-gollem-amsterdam.jpg"
+    ],
+    "short_description": "Classic and cozy local pub with great beer and an inviting crowd — authentically gezellig.",
+    "description": "Cafe Gollem is a classic cozy Amsterdam pub with strong beer selection and an inviting crowd, perfect for an authentically gezellig night out.",
+    "coordinates": [
+      52.3659,
+      4.8998
+    ],
+    "adress": "Amstelstraat 34, 1017 DA Amsterdam",
+    "created_on": "2026-03-10T12:10:00Z",
+    "vibes": [
+      "easygoing",
+      "beer_lovers"
+    ],
+    "updated_on": "2026-03-10T12:10:00Z"
+  },
+  {
+    "place": "Jigger",
+    "city": "Rotterdam",
+    "vibe": "classy",
+    "title": "Jigger Rotterdam – Stylish Cocktails for Date Night",
+    "images": [
+      "images/places/jigger-rotterdam.jpg"
+    ],
+    "short_description": "Stylish cocktail spot with elevated drinks and local flair — great for kicking off an evening.",
+    "description": "Jigger is a stylish Rotterdam cocktail bar with elevated drinks and local flair, making it a strong start for an evening out.",
+    "coordinates": [
+      51.9199,
+      4.4905
+    ],
+    "adress": "Hoogstraat 73A, 3011 PH Rotterdam",
+    "created_on": "2026-03-10T12:12:00Z",
+    "vibes": [
+      "classy",
+      "date_night"
+    ],
+    "updated_on": "2026-03-10T12:12:00Z"
+  },
+  {
+    "place": "Biergarten",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "Biergarten Rotterdam – Open-Air Beers, DJs and Summer Vibes",
+    "images": [
+      "images/places/biergarten-rotterdam.jpg"
+    ],
+    "short_description": "Open‑air lively hangout place with DJs, firepits and picnic tables — where cool crowd meets casual vibes.",
+    "description": "Biergarten is a lively open-air Rotterdam hangout with DJs, firepits and picnic tables where casual beers meet alternative summer energy.",
+    "coordinates": [
+      51.9246,
+      4.4682
+    ],
+    "adress": "Schiestraat 18, 3013 AH Rotterdam",
+    "created_on": "2026-03-10T12:14:00Z",
+    "vibes": [
+      "easygoing",
+      "alternative",
+      "beer_lovers",
+      "golden_summertime"
+    ],
+    "updated_on": "2026-03-10T12:14:00Z"
+  },
+  {
+    "place": "Bierlokaal Locus Publicus",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "Bierlokaal Locus Publicus Rotterdam – Friendly Local Beer Stop",
+    "images": [
+      "images/places/bierlokaal-locus-publicus-rotterdam.jpg"
+    ],
+    "short_description": "Friendly local pub with excellent beer and relaxed chatter — ideal beer stop before exploring the evening further.",
+    "description": "Bierlokaal Locus Publicus is a friendly Rotterdam pub with excellent beer and relaxed chatter, ideal before moving deeper into the evening.",
+    "coordinates": [
+      51.9212,
+      4.5081
+    ],
+    "adress": "Oostzeedijk 364, 3063 CD Rotterdam",
+    "created_on": "2026-03-10T12:16:00Z",
+    "vibes": [
+      "easygoing",
+      "beer_lovers"
+    ],
+    "updated_on": "2026-03-10T12:16:00Z"
+  },
+  {
+    "place": "Cocktailbar & Restaurant Botanero",
+    "city": "Rotterdam",
+    "vibe": "classy",
+    "title": "Botanero Rotterdam – Refined Cocktails and Bites by the Canal",
+    "images": [
+      "images/places/botanero-rotterdam.jpg"
+    ],
+    "short_description": "Cocktails + bites near the canals — fermentation meets refinement.",
+    "description": "Botanero blends refined cocktails and thoughtful bites near the canals in Rotterdam, with a polished atmosphere built for long evenings.",
+    "coordinates": [
+      51.9223,
+      4.4883
+    ],
+    "adress": "Mariniersweg 55, 3011 NE Rotterdam",
+    "created_on": "2026-03-10T12:18:00Z",
+    "vibes": [
+      "classy",
+      "date_night"
+    ],
+    "updated_on": "2026-03-10T12:18:00Z"
+  },
+  {
+    "place": "Wijnbar Janssen en van Dijk",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "Wijnbar Janssen en van Dijk Rotterdam – Curated Wines for Mellow Nights",
+    "images": [
+      "images/places/wijnbar-janssen-en-van-dijk-rotterdam.jpg"
+    ],
+    "short_description": "Charming wine bar with curated pours — perfect for tasting journeys or mellow evenings.",
+    "description": "Wijnbar Janssen en van Dijk offers curated pours in a charming Rotterdam setting, ideal for relaxed wine explorations and date-night pace.",
+    "coordinates": [
+      51.9209,
+      4.4846
+    ],
+    "adress": "Westewagenstraat 58, 3011 AT Rotterdam",
+    "created_on": "2026-03-10T12:20:00Z",
+    "vibes": [
+      "easygoing",
+      "date_night"
+    ],
+    "updated_on": "2026-03-10T12:20:00Z"
+  },
+  {
+    "place": "Depot Boijmans Van Beuningen",
+    "city": "Rotterdam",
+    "vibe": "culture_craving",
+    "title": "Depot Boijmans Van Beuningen Rotterdam – Public Art Storage Experience",
+    "images": [
+      "images/places/depot-boijmans-van-beuningen-rotterdam.jpg"
+    ],
+    "short_description": "The world’s first art storage open to the public — wander through unseen collections in a gleaming mirror building.",
+    "description": "Depot Boijmans Van Beuningen is Rotterdam’s iconic mirror-clad art storage where visitors can wander through normally unseen collections.",
+    "coordinates": [
+      51.9142,
+      4.4728
+    ],
+    "adress": "Museumpark 24, 3015 CX Rotterdam",
+    "created_on": "2026-03-10T12:22:00Z",
+    "vibes": [
+      "culture_craving"
+    ],
+    "updated_on": "2026-03-10T12:22:00Z"
+  },
+  {
+    "place": "Fenix Museum",
+    "city": "Rotterdam",
+    "vibe": "culture_craving",
+    "title": "Fenix Museum Rotterdam – Maritime Stories with Maas Views",
+    "images": [
+      "images/places/fenix-museum-rotterdam.jpg"
+    ],
+    "short_description": "Interactive maritime history with panoramic views over the Maas — wander exhibits, step onto the rooftop terrace, and discover Rotterdam’s story from sea to city.",
+    "description": "Fenix Museum combines interactive maritime storytelling with panoramic Maas views, connecting Rotterdam’s harbor heritage to modern city life.",
+    "coordinates": [
+      51.9076,
+      4.4954
+    ],
+    "adress": "Paul Nijghkade 5, 3072 AT Rotterdam",
+    "created_on": "2026-03-10T12:24:00Z",
+    "vibes": [
+      "culture_craving"
+    ],
+    "updated_on": "2026-03-10T12:24:00Z"
+  },
+  {
+    "place": "Foodhallen Rotterdam",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "Foodhallen Rotterdam – Global Street Food Under One Roof",
+    "images": [
+      "images/places/foodhallen-rotterdam.jpg"
+    ],
+    "short_description": "Bustling indoor food bazaar with global street eats and craft drinks — grab a bite from different kitchens and toast with friends under lively lights.",
+    "description": "Foodhallen Rotterdam is a lively indoor food bazaar with global kitchens and craft drinks, designed for easygoing group hangs and tasting around.",
+    "coordinates": [
+      51.9076,
+      4.4908
+    ],
+    "adress": "Wilhelminakade 58, 3072 AR Rotterdam",
+    "created_on": "2026-03-10T12:26:00Z",
+    "vibes": [
+      "easygoing"
+    ],
+    "updated_on": "2026-03-10T12:26:00Z"
+  },
+  {
+    "place": "Gastrobar Elvy - nhow",
+    "city": "Rotterdam",
+    "vibe": "classy",
+    "title": "Gastrobar Elvy Rotterdam – Skyline Cocktails at nhow",
+    "images": [
+      "images/places/gastrobar-elvy-rotterdam.jpg"
+    ],
+    "short_description": "Skyline cocktail bar and refined gastro plates with Maas views — stylish vibes make it a go‑to for special evenings and elevated drinks.",
+    "description": "Gastrobar Elvy at nhow serves skyline cocktails and refined gastro plates with Maas views, fitting for polished and memorable nights.",
+    "coordinates": [
+      51.9072,
+      4.4888
+    ],
+    "adress": "Wilhelminakade 137, 3072 AP Rotterdam",
+    "created_on": "2026-03-10T12:28:00Z",
+    "vibes": [
+      "classy",
+      "date_night"
+    ],
+    "updated_on": "2026-03-10T12:28:00Z"
+  },
+  {
+    "place": "Café Biljart 't Haventje",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "Café Biljart 't Haventje Rotterdam – Retro Billiards and Easy Beers",
+    "images": [
+      "images/places/cafe-biljart-t-haventje-rotterdam.jpg"
+    ],
+    "short_description": "Local favorite billiards pub with cold beers and retro charm — casual games, laid‑back laughs and good vibes after work or pre‑night out.",
+    "description": "Café Biljart 't Haventje is a local Rotterdam favorite for billiards, cold beers and retro charm in a low-pressure social setting.",
+    "coordinates": [
+      51.9048,
+      4.5026
+    ],
+    "adress": "Prins Hendrikkade 129, 3071 KL Rotterdam",
+    "created_on": "2026-03-10T12:30:00Z",
+    "vibes": [
+      "easygoing"
+    ],
+    "updated_on": "2026-03-10T12:30:00Z"
+  },
+  {
+    "place": "Harvest",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "Harvest Rotterdam – All-Day Bakery and Coffee Favorite",
+    "images": [
+      "images/places/harvest-rotterdam.jpg"
+    ],
+    "short_description": "Modern neighbourhood bakery & coffee favourite spot with seasonal plates and drinks — bright interiors, friendly service and brunch‑to‑dinner energy.",
+    "description": "Harvest is a modern Rotterdam neighborhood bakery and coffee favorite with seasonal plates, bright interiors and relaxed all-day energy.",
+    "coordinates": [
+      51.9184,
+      4.4901
+    ],
+    "adress": "Glashaven 105-107, 3011 XG Rotterdam",
+    "created_on": "2026-03-10T12:32:00Z",
+    "vibes": [
+      "easygoing",
+      "coffee_and_chill"
+    ],
+    "updated_on": "2026-03-10T12:32:00Z"
+  },
+  {
+    "place": "The Rumah",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "The Rumah Rotterdam – Eclectic Cocktails and Artsy Lounge Vibes",
+    "images": [
+      "images/places/the-rumah-rotterdam.jpg"
+    ],
+    "short_description": "Eclectic cocktail lounge with Asian‑inspired drinks and artsy interiors — vibrant crowd and playful creativity tucked among the bars.",
+    "description": "The Rumah is an eclectic Rotterdam cocktail lounge with Asian-inspired drinks, artsy interiors and a lively but easygoing crowd.",
+    "coordinates": [
+      51.9193,
+      4.4759
+    ],
+    "adress": "Oude Binnenweg 110C, 3012 JG Rotterdam",
+    "created_on": "2026-03-10T12:34:00Z",
+    "vibes": [
+      "easygoing"
+    ],
+    "updated_on": "2026-03-10T12:34:00Z"
+  },
+  {
+    "place": "BACKYARD",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "BACKYARD Rotterdam – Hidden Courtyard Bar for Summer Sessions",
+    "images": [
+      "images/places/backyard-rotterdam.jpg"
+    ],
+    "short_description": "Hidden courtyard bar with DJs, food vendors and laid‑back tables — summer vibes, craft pours and friendly crowds under open skies.",
+    "description": "BACKYARD is a hidden Rotterdam courtyard bar with DJs, food vendors and laid-back seating built for social summer evenings.",
+    "coordinates": [
+      51.9204,
+      4.4864
+    ],
+    "adress": "Korte Hoogstraat 14, 3011 GL Rotterdam",
+    "created_on": "2026-03-10T12:36:00Z",
+    "vibes": [
+      "easygoing",
+      "hidden_gems"
+    ],
+    "updated_on": "2026-03-10T12:36:00Z"
+  },
+  {
+    "place": "Savor&Nosh",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "Savor&Nosh Rotterdam – Refined Comfort Food All Day",
+    "images": [
+      "images/places/savor-and-nosh-rotterdam.jpg"
+    ],
+    "short_description": "Contemporary all‑day restaurant with refined comfort cooking — warm space and thoughtful plates for brunch or lunch.",
+    "description": "Savor&Nosh is a contemporary all-day Rotterdam restaurant focused on refined comfort dishes in a warm and inviting setting.",
+    "coordinates": [
+      51.9208,
+      4.4848
+    ],
+    "adress": "Westewagenstraat 66, 3011 AT Rotterdam",
+    "created_on": "2026-03-10T12:38:00Z",
+    "vibes": [
+      "easygoing"
+    ],
+    "updated_on": "2026-03-10T12:38:00Z"
+  },
+  {
+    "place": "De Huismeester",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "De Huismeester Rotterdam – Cozy Meent Café for Slow Afternoons",
+    "images": [
+      "images/places/de-huismeester-rotterdam.jpg"
+    ],
+    "short_description": "Classic café with great beer and cocktail list and cosy interiors — local pit stop for unwinding, people‑watching and slow afternoons.",
+    "description": "De Huismeester is a classic Rotterdam café on the Meent with cozy interiors, strong drink options and easy local energy.",
+    "coordinates": [
+      51.9214,
+      4.4879
+    ],
+    "adress": "Meent 115, 3011 JH Rotterdam",
+    "created_on": "2026-03-10T12:40:00Z",
+    "vibes": [
+      "easygoing"
+    ],
+    "updated_on": "2026-03-10T12:40:00Z"
+  },
+  {
+    "place": "Café Marseille",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "Café Marseille Rotterdam – Friendly Neighborhood Bar and Kitchen",
+    "images": [
+      "images/places/cafe-marseille-rotterdam.jpg"
+    ],
+    "short_description": "Welcoming neighbourhood bar with friendly service and excellent French-inspired cusine — laid‑back spot for casual drinks, food and conversations.",
+    "description": "Café Marseille is a welcoming neighborhood Rotterdam bar with French-inspired cuisine, easy drinks and conversation-first atmosphere.",
+    "coordinates": [
+      51.9176,
+      4.4626
+    ],
+    "adress": "1e Middellandstraat 16B, 3014 BD Rotterdam",
+    "created_on": "2026-03-10T12:42:00Z",
+    "vibes": [
+      "easygoing"
+    ],
+    "updated_on": "2026-03-10T12:42:00Z"
+  },
+  {
+    "place": "Le Petitjean",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "Le Petitjean Rotterdam – Hidden Bakery Café for Slow Coffee Moments",
+    "images": [
+      "images/places/le-petitjean-rotterdam.jpg"
+    ],
+    "short_description": "Quaint bakery and café beloved for its fresh breads, pastries and relaxed vibe — perfect for a slow snack, weekend coffee or casual meetup.",
+    "description": "Le Petitjean is a quaint Rotterdam bakery and café known for fresh breads, pastries and a relaxed hidden-gem feeling.",
+    "coordinates": [
+      51.9156,
+      4.4685
+    ],
+    "adress": "Nieuwe Binnenweg 174, 3015 BJ Rotterdam",
+    "created_on": "2026-03-10T12:44:00Z",
+    "vibes": [
+      "easygoing",
+      "hidden_gems"
+    ],
+    "updated_on": "2026-03-10T12:44:00Z"
+  },
+  {
+    "place": "Dune",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "Dune Rotterdam – Minimal Coffee Bar with Standout Breakfast",
+    "images": [
+      "images/places/dune-rotterdam.jpg"
+    ],
+    "short_description": "Minimalist café with exceptional coffee and standout breakfast dishes — think Turkish eggs and carefully crafted morning plates in a calm, stylish setting.",
+    "description": "Dune is a minimalist Rotterdam café focused on exceptional coffee and carefully crafted breakfast plates in a calm stylish interior.",
+    "coordinates": [
+      51.9149,
+      4.4754
+    ],
+    "adress": "Van Vollenhovenstraat 14A, 3016 BH Rotterdam",
+    "created_on": "2026-03-10T12:46:00Z",
+    "vibes": [
+      "easygoing",
+      "hidden_gems",
+      "coffee_and_chill"
+    ],
+    "updated_on": "2026-03-10T12:46:00Z"
+  },
+  {
+    "place": "CELEST | evenementenlocatie & skybar",
+    "city": "Rotterdam",
+    "vibe": "classy",
+    "title": "CELEST Rotterdam – Rooftop Skybar for Sunset Date Nights",
+    "images": [
+      "images/places/celest-rotterdam.jpg"
+    ],
+    "short_description": "Skyline lounge and event hub with panoramic sunset views — perfect for sophisticated rooftop drinks, celebrations and absorbing city energy at dusk.",
+    "description": "CELEST is a Rotterdam skyline lounge and event hub with panoramic views, ideal for sophisticated rooftop drinks and celebration nights.",
+    "coordinates": [
+      51.9112,
+      4.4717
+    ],
+    "adress": "Gedempte Zalmhaven 20, 3016 DT Rotterdam",
+    "created_on": "2026-03-10T12:48:00Z",
+    "vibes": [
+      "classy",
+      "date_night"
+    ],
+    "updated_on": "2026-03-10T12:48:00Z"
+  },
+  {
+    "place": "Comedy Club Haug",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "Comedy Club Haug Rotterdam – Stand-Up Nights and Big Laughs",
+    "images": [
+      "images/places/comedy-club-haug-rotterdam.jpg"
+    ],
+    "short_description": "Stand‑up comedy with local and rising acts — bring laughs, tasty drinks and a night where smiling is the main activity.",
+    "description": "Comedy Club Haug hosts stand-up in Rotterdam with local and rising acts, great drinks and crowd energy built around laughter.",
+    "coordinates": [
+      51.9171,
+      4.4896
+    ],
+    "adress": "Boompjeskade 11, 3011 XE Rotterdam",
+    "created_on": "2026-03-10T12:50:00Z",
+    "vibes": [
+      "easygoing",
+      "do_mode"
+    ],
+    "updated_on": "2026-03-10T12:50:00Z"
+  },
+  {
+    "place": "Mooie Boules",
+    "city": "Rotterdam",
+    "vibe": "do_mode",
+    "title": "Mooie Boules Rotterdam – Petanque, Drinks and Casual Fun",
+    "images": [
+      "images/places/mooie-boules-rotterdam.jpg"
+    ],
+    "short_description": "Petanque courts with drinks, snacks and a relaxed crowd — sunny outdoor vibes where friendly games, laughter and casual sips take center stage.",
+    "description": "Mooie Boules combines petanque, drinks and relaxed social atmosphere in Rotterdam, perfect for easy competition and group nights.",
+    "coordinates": [
+      51.9314,
+      4.4776
+    ],
+    "adress": "Vijverhofstraat 45, 3032 SB Rotterdam",
+    "created_on": "2026-03-10T12:52:00Z",
+    "vibes": [
+      "do_mode",
+      "easygoing"
+    ],
+    "updated_on": "2026-03-10T12:52:00Z"
+  },
+  {
+    "place": "Proeflokaal De Pui",
+    "city": "Rotterdam",
+    "vibe": "beer_lovers",
+    "title": "Proeflokaal De Pui Rotterdam – Waterfront Craft Beer Spot",
+    "images": [
+      "images/places/proeflokaal-de-pui-rotterdam.jpg"
+    ],
+    "short_description": "Craft beer haven on the water — curated taps, friendly vibes and a relaxed place to sip local and rare brews.",
+    "description": "Proeflokaal De Pui is a waterfront craft-beer Rotterdam stop with curated taps, friendly service and easygoing pub atmosphere.",
+    "coordinates": [
+      51.9291,
+      4.5197
+    ],
+    "adress": "Oostzeedijk Beneden 221 a-b, 3061 VT Rotterdam",
+    "created_on": "2026-03-10T12:54:00Z",
+    "vibes": [
+      "beer_lovers",
+      "easygoing"
+    ],
+    "updated_on": "2026-03-10T12:54:00Z"
+  },
+  {
+    "place": "Bon Ton Stripclub",
+    "city": "Rotterdam",
+    "vibe": "do_mode",
+    "title": "Bon Ton Rotterdam – Bold Nightlife and High-Energy Entertainment",
+    "images": [
+      "images/places/bon-ton-stripclub-rotterdam.jpg"
+    ],
+    "short_description": "High‑energy adult entertainment with music and drinks — bold, nightlife‑focused and unapologetically playful.",
+    "description": "Bon Ton is a bold Rotterdam nightlife destination with high-energy adult entertainment, music and drinks in a playful after-dark setting.",
+    "coordinates": [
+      51.9242,
+      4.5008
+    ],
+    "adress": "Oostplein 226, 3063 CE Rotterdam",
+    "created_on": "2026-03-10T12:56:00Z",
+    "vibes": [
+      "do_mode",
+      "alternative",
+      "classy"
+    ],
+    "updated_on": "2026-03-10T12:56:00Z"
+  },
+  {
+    "place": "Pannekoekhuis De Nachtegaal",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "Pannekoekhuis De Nachtegaal Rotterdam – Forest Pancake House for Families",
+    "images": [
+      "images/places/pannekoekhuis-de-nachtegaal-rotterdam.jpg"
+    ],
+    "short_description": "Classic pancake house in a beautiful forest with warm service — generous portions and family‑friendly vibes that make every bite feel like Sunday.",
+    "description": "Pannekoekhuis De Nachtegaal is a classic forest-side pancake house near Rotterdam with generous portions and warm family-friendly atmosphere.",
+    "coordinates": [
+      51.9255,
+      4.5315
+    ],
+    "adress": "Pr. Beatrixlaan 11, 3062 CM Rotterdam",
+    "created_on": "2026-03-10T12:58:00Z",
+    "vibes": [
+      "easygoing",
+      "little_ones"
+    ],
+    "updated_on": "2026-03-10T12:58:00Z"
+  },
+  {
+    "place": "Stadshaven Brouwerij & Gastropub",
+    "city": "Rotterdam",
+    "vibe": "beer_lovers",
+    "title": "Stadshaven Brouwerij Rotterdam – House Brews and Hearty Plates",
+    "images": [
+      "images/places/stadshaven-brouwerij-rotterdam.jpg"
+    ],
+    "short_description": "Urban brewery and gastropub with house brews and hearty plates — industrial cosy space for pint lovers and casual feasts.",
+    "description": "Stadshaven Brouwerij & Gastropub is an urban Rotterdam brewery with house brews, hearty food and industrial-cosy character.",
+    "coordinates": [
+      51.9066,
+      4.4246
+    ],
+    "adress": "Galileistraat 24, 3029 AM Rotterdam",
+    "created_on": "2026-03-10T13:00:00Z",
+    "vibes": [
+      "beer_lovers",
+      "easygoing"
+    ],
+    "updated_on": "2026-03-10T13:00:00Z"
+  },
+  {
+    "place": "Keilecafe",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "Keilecafe Rotterdam – Social Summer Hangout in M4H",
+    "images": [
+      "images/places/keilecafe-rotterdam.jpg"
+    ],
+    "short_description": "Summertime neighborhood hangout spot with local spirit — simple drinks, friendly crowd, occasional DJ sets and no‑frills comfort that feels like your favourite go‑to.",
+    "description": "Keilecafe is a Rotterdam summer favorite with simple drinks, social atmosphere and occasional DJ sets in a no-frills neighborhood setting.",
+    "coordinates": [
+      51.9108,
+      4.4347
+    ],
+    "adress": "Vierhavensstraat 46, 3029 BG Rotterdam",
+    "created_on": "2026-03-10T13:02:00Z",
+    "vibes": [
+      "easygoing",
+      "social",
+      "golden_summertime"
+    ],
+    "updated_on": "2026-03-10T13:02:00Z"
+  },
+  {
+    "place": "Bubble Planet: An Immersive Experience Utrecht",
+    "city": "Utrecht",
+    "vibe": "do_mode",
+    "title": "Bubble Planet Utrecht – Immersive Family Fun with Lights and Color",
+    "images": [
+      "images/places/bubble-planet-utrecht.jpg"
+    ],
+    "short_description": "Interactive, sensory‑rich splash of color, lights and bubbles — playful exploration that feels like stepping into a dream.",
+    "description": "Bubble Planet brings immersive sensory fun to Utrecht with color, light and playful interactive rooms for all ages.",
+    "coordinates": [
+      52.0899,
+      5.1066
+    ],
+    "adress": "Jaarbeursplein 6, Hal 5, 3521 AL Utrecht",
+    "created_on": "2026-03-10T13:04:00Z",
+    "vibes": [
+      "do_mode",
+      "culture_craving",
+      "little_ones"
+    ],
+    "updated_on": "2026-03-10T13:04:00Z"
+  },
+  {
+    "place": "Mo-jo Japanese Kitchen",
+    "city": "Utrecht",
+    "vibe": "easygoing",
+    "title": "Mo-jo Japanese Kitchen Utrecht – Casual Plates for Date Nights",
+    "images": [
+      "images/places/mo-jo-japanese-kitchen-utrecht.jpg"
+    ],
+    "short_description": "Fresh Japanese small plates and casual drinks with minimalist style — vibrant yet approachable for lunch dates or dinner rendezvous.",
+    "description": "Mo-jo Japanese Kitchen serves fresh Japanese small plates in Utrecht with approachable style for easy lunch dates or relaxed dinners.",
+    "coordinates": [
+      52.0931,
+      5.1176
+    ],
+    "adress": "Potterstraat 16-20, 3512 TB Utrecht",
+    "created_on": "2026-03-10T13:06:00Z",
+    "vibes": [
+      "easygoing",
+      "date_night"
+    ],
+    "updated_on": "2026-03-10T13:06:00Z"
+  },
+  {
+    "place": "The Village Coffee & Music",
+    "city": "Utrecht",
+    "vibe": "easygoing",
+    "title": "The Village Coffee & Music Utrecht – Specialty Brews and Social Beats",
+    "images": [
+      "images/places/the-village-coffee-and-music-utrecht.jpg"
+    ],
+    "short_description": "Café by day, music hangout by vibe — specialty brews and laid‑back jams that effortlessly stretch from day to night.",
+    "description": "The Village Coffee & Music blends café calm and social music energy in Utrecht, making it easy to transition from day to evening.",
+    "coordinates": [
+      52.0943,
+      5.121
+    ],
+    "adress": "Voorstraat 44-46, 3512 AP Utrecht",
+    "created_on": "2026-03-10T13:08:00Z",
+    "vibes": [
+      "easygoing",
+      "social",
+      "alternative",
+      "coffee_and_chill"
+    ],
+    "updated_on": "2026-03-10T13:08:00Z"
+  },
+  {
+    "place": "AKIBA District",
+    "city": "Utrecht",
+    "vibe": "do_mode",
+    "title": "AKIBA District Utrecht – Gaming and Ramen with High Energy",
+    "images": [
+      "images/places/akiba-district-utrecht.jpg"
+    ],
+    "short_description": "High‑energy gaming and ramen — Tokyo meets Utrecht chaos that’s fun, quirky and charged.",
+    "description": "AKIBA District combines high-energy gaming and ramen in Utrecht, channeling playful Tokyo-inspired chaos in a fun social setup.",
+    "coordinates": [
+      52.0908,
+      5.1146
+    ],
+    "adress": "Boven Clarenburg 7, 3511 CR Utrecht",
+    "created_on": "2026-03-10T13:10:00Z",
+    "vibes": [
+      "do_mode",
+      "little_ones"
+    ],
+    "updated_on": "2026-03-10T13:10:00Z"
+  },
+  {
+    "place": "Sonnenborgh Observatory",
+    "city": "Utrecht",
+    "vibe": "culture_craving",
+    "title": "Sonnenborgh Observatory Utrecht – Stargazing Hidden Gem",
+    "images": [
+      "images/places/sonnenborgh-observatory-utrecht.jpg"
+    ],
+    "short_description": "Historic fortress and astronomical observatory — stargazing meets heritage views for curious minds and photo badges.",
+    "description": "Sonnenborgh Observatory is a historic Utrecht fortress and observatory where stargazing and heritage views meet for curious visitors.",
+    "coordinates": [
+      52.0878,
+      5.1271
+    ],
+    "adress": "Zonnenburg 2, 3512 NL Utrecht",
+    "created_on": "2026-03-10T13:12:00Z",
+    "vibes": [
+      "culture_craving",
+      "hidden_gems"
+    ],
+    "updated_on": "2026-03-10T13:12:00Z"
+  },
+  {
+    "place": "Cafe Lijn 4",
+    "city": "Utrecht",
+    "vibe": "easygoing",
+    "title": "Cafe Lijn 4 Utrecht – Canal-Side Pub for Easy Pitches",
+    "images": [
+      "images/places/cafe-lijn-4-utrecht.jpg"
+    ],
+    "short_description": "Canal‑side classic with good brews and cosy interiors — steady local crowd and easy pitchers for a casual hang.",
+    "description": "Cafe Lijn 4 is a canal-side Utrecht classic with good brews, cozy interiors and steady local crowd energy.",
+    "coordinates": [
+      52.0873,
+      5.1229
+    ],
+    "adress": "Twijnstraat 3, 3511 ZG Utrecht",
+    "created_on": "2026-03-10T13:14:00Z",
+    "vibes": [
+      "easygoing",
+      "beer_lovers"
+    ],
+    "updated_on": "2026-03-10T13:14:00Z"
+  },
+  {
+    "place": "Kimmade Vietnamese Street Food",
+    "city": "Utrecht",
+    "vibe": "easygoing",
+    "title": "Kimmade Utrecht – Cozy Vietnamese Street Food Hidden Gem",
+    "images": [
+      "images/places/kimmade-vietnamese-street-food-utrecht.jpg"
+    ],
+    "short_description": "Authentic Vietnamese street‑food energy served fast in a cute, cozy space that feels like home.",
+    "description": "Kimmade delivers authentic Vietnamese street-food energy in Utrecht with fast service and a cozy hidden-gem feel.",
+    "coordinates": [
+      52.0908,
+      5.1164
+    ],
+    "adress": "Mariastraat 2, 3511 LP Utrecht",
+    "created_on": "2026-03-10T13:16:00Z",
+    "vibes": [
+      "easygoing",
+      "hidden_gems"
+    ],
+    "updated_on": "2026-03-10T13:16:00Z"
+  },
+  {
+    "place": "Belgisch Biercafé Olivier",
+    "city": "Utrecht",
+    "vibe": "beer_lovers",
+    "title": "Belgisch Biercafé Olivier Utrecht – Iconic Church Beer Bar",
+    "images": [
+      "images/places/belgisch-biercafe-olivier-utrecht.jpg"
+    ],
+    "short_description": "Czech church bar transformed into Belgian beer cathedral — spectacular taps, hearty food and wow factor vibes.",
+    "description": "Belgisch Biercafé Olivier transforms a church-like interior into a Belgian beer cathedral in Utrecht with spectacular taps and atmosphere.",
+    "coordinates": [
+      52.0912,
+      5.1143
+    ],
+    "adress": "Achter Clarenburg 6a, 3511 JJ Utrecht",
+    "created_on": "2026-03-10T13:18:00Z",
+    "vibes": [
+      "beer_lovers",
+      "easygoing"
+    ],
+    "updated_on": "2026-03-10T13:18:00Z"
+  },
+  {
+    "place": "Ax Specialty Café",
+    "city": "Haarlem",
+    "vibe": "easygoing",
+    "title": "Ax Specialty Café Haarlem – Creative Coffee and Chill Mornings",
+    "images": [
+      "images/places/ax-specialty-cafe-haarlem.jpg"
+    ],
+    "short_description": "Hip specialty coffee hub with creative vibes — exceptional roasts and chill energy perfect for slow mornings.",
+    "description": "Ax Specialty Café is a hip Haarlem coffee hub with creative atmosphere, exceptional roasts and relaxed slow-morning energy.",
+    "coordinates": [
+      52.3817,
+      4.636
+    ],
+    "adress": "Kruisstraat 4 zw, 2011 PX Haarlem",
+    "created_on": "2026-03-10T13:20:00Z",
+    "vibes": [
+      "easygoing",
+      "coffee_and_chill"
+    ],
+    "updated_on": "2026-03-10T13:20:00Z"
+  },
+  {
+    "place": "Jopen",
+    "city": "Haarlem",
+    "vibe": "beer_lovers",
+    "title": "Jopen Haarlem – Brewery Bar in a Cathedral Setting",
+    "images": [
+      "images/places/jopen-haarlem.jpg"
+    ],
+    "short_description": "Brewery and tasting bar in a cathedral setting — iconic local brews paired with heritage architecture and good company.",
+    "description": "Jopen in Haarlem pairs iconic local brews with dramatic heritage architecture for a memorable beer-lovers experience.",
+    "coordinates": [
+      52.3809,
+      4.637
+    ],
+    "adress": "Gedempte Voldersgracht 2, 2011 WD Haarlem",
+    "created_on": "2026-03-10T13:22:00Z",
+    "vibes": [
+      "beer_lovers",
+      "easygoing"
+    ],
+    "updated_on": "2026-03-10T13:22:00Z"
+  },
+  {
+    "place": "Teylers Museum",
+    "city": "Haarlem",
+    "vibe": "culture_craving",
+    "title": "Teylers Museum Haarlem – Art and Science in the Oldest Dutch Museum",
+    "images": [
+      "images/places/teylers-museum-haarlem.jpg"
+    ],
+    "short_description": "The Netherlands’ oldest museum with science, art and wonder — a treasure trove for curious minds and aesthetic delights.",
+    "description": "Teylers Museum in Haarlem blends science, art and wonder in the Netherlands’ oldest museum, ideal for curious culture-focused visitors.",
+    "coordinates": [
+      52.3791,
+      4.6357
+    ],
+    "adress": "Spaarne 16, 2011 CH Haarlem",
+    "created_on": "2026-03-10T13:24:00Z",
+    "vibes": [
+      "culture_craving",
+      "hidden_gems"
+    ],
+    "updated_on": "2026-03-10T13:24:00Z"
+  },
+  {
+    "place": "Maroosh",
+    "city": "Haarlem",
+    "vibe": "easygoing",
+    "title": "Maroosh Haarlem – Bold Mediterranean Flavors for Dates and Groups",
+    "images": [
+      "images/places/maroosh-haarlem.jpg"
+    ],
+    "short_description": "Warm Mediterranean‑leaning kitchen with bold flavours — casual meets refined for enjoyable group dinners or dates.",
+    "description": "Maroosh offers warm Mediterranean-leaning dishes in Haarlem where casual setting and refined flavors fit group dinners and date nights.",
+    "coordinates": [
+      52.3818,
+      4.6386
+    ],
+    "adress": "Botermarkt 2, 2011 XK Haarlem",
+    "created_on": "2026-03-10T13:26:00Z",
+    "vibes": [
+      "easygoing",
+      "date_night"
+    ],
+    "updated_on": "2026-03-10T13:26:00Z"
+  },
+  {
+    "place": "Kus van de Cactus",
+    "city": "Haarlem",
+    "vibe": "easygoing",
+    "title": "Kus van de Cactus Haarlem – Quirky Cocktails and Relaxed Nights",
+    "images": [
+      "images/places/kus-van-de-cactus-haarlem.jpg"
+    ],
+    "short_description": "Creative cocktail and bites bar with quirky drinks — cactus‑themed fun and creative sips for laid‑back nights.",
+    "description": "Kus van de Cactus is a playful Haarlem cocktail-and-bites bar with quirky drinks and easygoing laid-back night energy.",
+    "coordinates": [
+      52.3807,
+      4.6379
+    ],
+    "adress": "De Haasstraat 14, 2011 DW Haarlem",
+    "created_on": "2026-03-10T13:28:00Z",
+    "vibes": [
+      "easygoing"
+    ],
+    "updated_on": "2026-03-10T13:28:00Z"
+  },
+  {
+    "place": "Pllek",
+    "city": "Amsterdam",
+    "vibe": "easygoing",
+    "title": "Pllek Amsterdam – Beach-Style IJ Hangout with Sunset Energy",
+    "images": [
+      "images/places/pllek-amsterdam.jpg"
+    ],
+    "short_description": "Industrial beach‑style hangout on the IJ with relaxed drinks, occasional DJ sets and sunset chills — summer‑mood vibes year around.",
+    "description": "Pllek is an industrial beach-style Amsterdam hangout on the IJ with relaxed drinks, social crowd and sunset-focused year-round summer mood.",
+    "coordinates": [
+      52.403,
+      4.8947
+    ],
+    "adress": "T.T. Neveritaweg 59, 1033 WB Amsterdam",
+    "created_on": "2026-03-10T13:30:00Z",
+    "vibes": [
+      "easygoing",
+      "social",
+      "alternative",
+      "golden_summertime",
+      "cute_girl_brunch"
+    ],
+    "updated_on": "2026-03-10T13:30:00Z"
+  },
+  {
+    "place": "De Ceuvel",
+    "city": "Amsterdam",
+    "vibe": "alternative",
+    "title": "De Ceuvel Amsterdam – Sustainable Dockland Hidden Gem",
+    "images": [
+      "images/places/de-ceuvel-amsterdam.jpg"
+    ],
+    "short_description": "Eco‑creative dockland hub with cafés, quirky architecture and canal views — feel‑good sustainable energy and hidden gems to explore.",
+    "description": "De Ceuvel is an eco-creative Amsterdam dockland hub with quirky architecture, cafés and canal views wrapped in alternative sustainable energy.",
+    "coordinates": [
+      52.3993,
+      4.8914
+    ],
+    "adress": "Korte Papaverweg 2, 1032 KB Amsterdam",
+    "created_on": "2026-03-10T13:32:00Z",
+    "vibes": [
+      "alternative",
+      "easygoing",
+      "hidden_gems",
+      "golden_summertime"
+    ],
+    "updated_on": "2026-03-10T13:32:00Z"
+  },
+  {
+    "place": "Oedipus Brewing",
+    "city": "Amsterdam",
+    "vibe": "beer_lovers",
+    "title": "Oedipus Brewing Amsterdam – Playful Craft Beer in Noord",
+    "images": [
+      "images/places/oedipus-brewing-amsterdam.jpg"
+    ],
+    "short_description": "Playful brewery with inventive flavours and bright taproom — funky brews, chill vibes and artistic flair in every pour.",
+    "description": "Oedipus Brewing is a playful Amsterdam brewery in Noord known for inventive flavors, artistic branding and relaxed taproom atmosphere.",
+    "coordinates": [
+      52.3966,
+      4.9197
+    ],
+    "adress": "Schaafstraat 21, 1021 KD Amsterdam",
+    "created_on": "2026-03-10T13:34:00Z",
+    "vibes": [
+      "beer_lovers",
+      "easygoing"
+    ],
+    "updated_on": "2026-03-10T13:34:00Z"
+  },
+  {
+    "place": "Café-Restaurant Amsterdam",
+    "city": "Amsterdam",
+    "vibe": "easygoing",
+    "title": "Café-Restaurant Amsterdam – Spacious Dutch Classic in Westerpark",
+    "images": [
+      "images/places/cafe-restaurant-amsterdam.jpg"
+    ],
+    "short_description": "Spacious kitchen-hall energy with classic Dutch charm — laid-back, hearty dishes that make every meal feel like home.",
+    "description": "Café-Restaurant Amsterdam brings spacious kitchen-hall charm with hearty Dutch-leaning dishes and a relaxed, dependable atmosphere.",
+    "coordinates": [
+      52.3845,
+      4.8713
+    ],
+    "adress": "Watertorenplein 6, 1051 PA Amsterdam",
+    "created_on": "2026-03-10T13:36:00Z",
+    "vibes": [
+      "easygoing",
+      "date_night"
+    ],
+    "updated_on": "2026-03-10T13:36:00Z"
+  },
+  {
+    "place": "Boom Chicago",
+    "city": "Amsterdam",
+    "vibe": "easygoing",
+    "title": "Boom Chicago Amsterdam – Improv and Stand-Up Night Out",
+    "images": [
+      "images/places/boom-chicago-amsterdam.jpg"
+    ],
+    "short_description": "Stand‑up comedy and improv space with occasional events — sharp laughs, bold energy and perfect night‑out vibes with friends.",
+    "description": "Boom Chicago is a sharp Amsterdam improv and comedy venue where bold humor, drinks and energetic crowds fuel a complete night out.",
+    "coordinates": [
+      52.3699,
+      4.8731
+    ],
+    "adress": "Rozengracht 117, 1016 LV Amsterdam",
+    "created_on": "2026-03-10T13:38:00Z",
+    "vibes": [
+      "easygoing",
+      "do_mode"
+    ],
+    "updated_on": "2026-03-10T13:38:00Z"
+  },
+  {
+    "place": "Café Bax",
+    "city": "Amsterdam",
+    "vibe": "easygoing",
+    "title": "Café Bax Amsterdam – Hidden Neighborhood Beer Bar",
+    "images": [
+      "images/places/cafe-bax-amsterdam.jpg"
+    ],
+    "short_description": "Hidden gem neighbourhood bar with classic beers and friendly locals — timeless energy without pretense.",
+    "description": "Café Bax is a hidden-gem neighborhood Amsterdam bar with classic beers, friendly locals and timeless easygoing atmosphere.",
+    "coordinates": [
+      52.3678,
+      4.8607
+    ],
+    "adress": "Ten Katestraat 119, 1053 CC Amsterdam",
+    "created_on": "2026-03-10T13:40:00Z",
+    "vibes": [
+      "easygoing",
+      "beer_lovers",
+      "hidden_gems"
+    ],
+    "updated_on": "2026-03-10T13:40:00Z"
+  },
+  {
+    "place": "Oeuf Amsterdam",
+    "city": "Amsterdam",
+    "vibe": "easygoing",
+    "title": "Oeuf Amsterdam – Cozy Brunch Spot for Slow Mornings",
+    "images": [
+      "images/places/oeuf-amsterdam.jpg"
+    ],
+    "short_description": "Small, cozy café with hip touches and sunny brunch vibes — perfect for eggs, coffee, and lazy morning hangs.",
+    "description": "Oeuf is a small cozy Amsterdam café with hip touches and sunny brunch mood, ideal for eggs, coffee and unhurried mornings.",
+    "coordinates": [
+      52.3546,
+      4.8897
+    ],
+    "adress": "Daniël Stalpertstraat 36, 1072 BE Amsterdam",
+    "created_on": "2026-03-10T13:42:00Z",
+    "vibes": [
+      "easygoing",
+      "cute_girl_brunch"
+    ],
+    "updated_on": "2026-03-10T13:42:00Z"
+  },
+  {
+    "place": "Bonnie",
+    "city": "Amsterdam",
+    "vibe": "social",
+    "title": "Bonnie Amsterdam – Dinner-to-Dance Date Night Favorite",
+    "images": [
+      "images/places/bonnie-amsterdam.jpg"
+    ],
+    "short_description": "Your go-to spot for dinner that turns into dance floor magic — start with bites and cocktails, end the night moving to unforgettable beats.",
+    "description": "Bonnie is a social Amsterdam dinner-and-drinks destination that naturally shifts into dance-floor energy later in the evening.",
+    "coordinates": [
+      52.3478,
+      4.8588
+    ],
+    "adress": "Amstelveenseweg 226h, 1075 RN Amsterdam",
+    "created_on": "2026-03-10T13:44:00Z",
+    "vibes": [
+      "social",
+      "easygoing",
+      "date_night"
+    ],
+    "updated_on": "2026-03-10T13:44:00Z"
+  },
+  {
+    "place": "Bar Dancing Multipla",
+    "city": "Amsterdam",
+    "vibe": "social",
+    "title": "Bar Dancing Multipla Amsterdam – Eclectic Dinner and Dance Energy",
+    "images": [
+      "images/places/bar-dancing-multipla-amsterdam.jpg"
+    ],
+    "short_description": "Local favorite for eclectic dinner, mellow techno vibe and a hidden relaxed r’n’b space — creative sets and crowd energy that keep feet moving.",
+    "description": "Bar Dancing Multipla blends eclectic dinner, mellow techno and a hidden relaxed R&B space in Amsterdam for creative all-night momentum.",
+    "coordinates": [
+      52.3468,
+      4.8456
+    ],
+    "adress": "Valschermkade 16, 1059 CD Amsterdam",
+    "created_on": "2026-03-10T13:46:00Z",
+    "vibes": [
+      "social",
+      "alternative",
+      "easygoing"
+    ],
+    "updated_on": "2026-03-10T13:46:00Z"
+  },
+  {
+    "place": "Hasta La Vista, Baby - Restaurant & Rooftop Bar",
+    "city": "Amsterdam",
+    "vibe": "classy",
+    "title": "Hasta La Vista, Baby Amsterdam – Classy Rooftop Cocktails with Skyline Views",
+    "images": [
+      "images/places/hasta-la-vista-baby-amsterdam.jpg"
+    ],
+    "short_description": "Sunset cocktails paired along sophisticated taps with skyline panorama view and playful atmosphere. Grab that dirty martini and embrace the main character energy.",
+    "description": "Hasta La Vista, Baby pairs skyline panorama views with sunset cocktails and playful upscale atmosphere for polished Amsterdam nights.",
+    "coordinates": [
+      52.3387,
+      4.8733
+    ],
+    "adress": "Eduard van Beinumstraat 40, 1077 CZ Amsterdam",
+    "created_on": "2026-03-10T13:48:00Z",
+    "vibes": [
+      "classy",
+      "date_night"
+    ],
+    "updated_on": "2026-03-10T13:48:00Z"
+  },
+  {
+    "place": "Cafe Cook",
+    "city": "Amsterdam",
+    "vibe": "easygoing",
+    "title": "Cafe Cook Amsterdam – Hidden Neighborhood Spot for Slow Lunches",
+    "images": [
+      "images/places/cafe-cook-amsterdam.jpg"
+    ],
+    "short_description": "Neighborhood café with calm charm — sip wine, watch the street go by, or enjoy a slow lunch with a newspaper in hand.",
+    "description": "Cafe Cook is a calm hidden-gem neighborhood café in Amsterdam, perfect for slow lunches, street watching and easy conversation.",
+    "coordinates": [
+      52.3756,
+      4.8494
+    ],
+    "adress": "James Cookstraat 2, 1056 RZ Amsterdam",
+    "created_on": "2026-03-10T13:50:00Z",
+    "vibes": [
+      "easygoing",
+      "hidden_gems",
+      "cute_girl_brunch"
+    ],
+    "updated_on": "2026-03-10T13:50:00Z"
+  },
+  {
+    "place": "Box Sociaal",
+    "city": "Amsterdam",
+    "vibe": "easygoing",
+    "title": "Box Sociaal Amsterdam – Hearty Plates with Hip Character",
+    "images": [
+      "images/places/box-sociaal-amsterdam.jpg"
+    ],
+    "short_description": "Unpretentious spot with hearty plates and drinks — comfort food energy for lunch, dinner or drinks. Quite a hip place with a character.",
+    "description": "Box Sociaal is an unpretentious Amsterdam comfort-food favorite with hearty plates, drinks and a distinct hip personality.",
+    "coordinates": [
+      52.3672,
+      4.9094
+    ],
+    "adress": "Plantage Middenlaan 30A, 1018 DG Amsterdam",
+    "created_on": "2026-03-10T13:52:00Z",
+    "vibes": [
+      "easygoing",
+      "cute_girl_brunch"
+    ],
+    "updated_on": "2026-03-10T13:52:00Z"
+  },
+  {
+    "place": "Café de Jaren",
+    "city": "Amsterdam",
+    "vibe": "easygoing",
+    "title": "Café de Jaren Amsterdam – Spacious Canal Lounge for Brunch and Study",
+    "images": [
+      "images/places/cafe-de-jaren-amsterdam.jpg"
+    ],
+    "short_description": "Spacious canal‑side classic with terrace views — the lightest, breeziest place to lounge with friends. Eat, drink or study here and you will feel like you fit in regardless.",
+    "description": "Café de Jaren is a spacious canal-side Amsterdam classic with terrace views and versatile all-day atmosphere for meals, drinks or study sessions.",
+    "coordinates": [
+      52.3678,
+      4.8947
+    ],
+    "adress": "Nieuwe Doelenstraat 20-20, 1012 CP Amsterdam",
+    "created_on": "2026-03-10T13:54:00Z",
+    "vibes": [
+      "easygoing",
+      "cute_girl_brunch"
+    ],
+    "updated_on": "2026-03-10T13:54:00Z"
+  },
+  {
+    "place": "Kagetsu III",
+    "city": "Amsterdam",
+    "vibe": "easygoing",
+    "title": "Kagetsu III Amsterdam – Late-Night Izakaya for Date Nights",
+    "images": [
+      "images/places/kagetsu-iii-amsterdam.jpg"
+    ],
+    "short_description": "Late‑night izakaya with warm plates, sake pours and buzzing energy — perfect for dinner followed by drinks.",
+    "description": "Kagetsu III is a late-night Amsterdam izakaya with warm plates, sake and buzzing atmosphere that fits a dinner-to-drinks flow.",
+    "coordinates": [
+      52.3324,
+      4.8728
+    ],
+    "adress": "Kastelenstraat 268, 1082 EJ Amsterdam",
+    "created_on": "2026-03-10T13:56:00Z",
+    "vibes": [
+      "easygoing",
+      "date_night"
+    ],
+    "updated_on": "2026-03-10T13:56:00Z"
+  },
+  {
+    "place": "Fort Negen",
+    "city": "Amsterdam",
+    "vibe": "easygoing",
+    "title": "Fort Negen Amsterdam – Hidden Bakery for Fresh Morning Treats",
+    "images": [
+      "images/places/fort-negen-amsterdam.jpg"
+    ],
+    "short_description": "Cozy bakery with warm, fresh bread straight from the oven — the perfect spot for a casual morning treat or a slow pastry break.",
+    "description": "Fort Negen is a cozy hidden-gem Amsterdam bakery with warm fresh bread and relaxed neighborhood morning rhythm.",
+    "coordinates": [
+      52.3721,
+      4.8565
+    ],
+    "adress": "Jan Evertsenstraat 31, 1057 BM Amsterdam",
+    "created_on": "2026-03-10T13:58:00Z",
+    "vibes": [
+      "easygoing",
+      "hidden_gems"
+    ],
+    "updated_on": "2026-03-10T13:58:00Z"
+  },
+  {
+    "place": "Kattencafé Kopjes",
+    "city": "Amsterdam",
+    "vibe": "hidden_gems",
+    "title": "Kattencafé Kopjes Amsterdam – Cozy Cat Café Hidden Gem",
+    "images": [
+      "images/places/kattencafe-kopjes-amsterdam.jpg"
+    ],
+    "short_description": "Cozy café where coffee meets cuddly cats — spend slow mornings with lattes, purring companions and a relaxed, whimsical vibe.",
+    "description": "Kattencafé Kopjes combines cozy coffee culture with cuddly cats in Amsterdam, creating a whimsical hidden-gem escape.",
+    "coordinates": [
+      52.3705,
+      4.8521
+    ],
+    "adress": "Marco Polostraat 211, 1057 TB Amsterdam",
+    "created_on": "2026-03-10T14:00:00Z",
+    "vibes": [
+      "hidden_gems",
+      "easygoing",
+      "little_ones"
+    ],
+    "updated_on": "2026-03-10T14:00:00Z"
+  },
+  {
+    "place": "'Amsterdecks': drijvende vlonder in het Nieuwe Meer",
+    "city": "Amsterdam",
+    "vibe": "outdoorsy",
+    "title": "Amsterdecks Amsterdam – Floating Summer Secret at Nieuwe Meer",
+    "images": [
+      "images/places/amsterdecks-amsterdam.jpg"
+    ],
+    "short_description": "Floating wooden decks at Nieuwe Meer — sun‑soaked hangout for dips, drinks and chill lakeside energy that feels like a local secret.",
+    "description": "Amsterdecks offers floating wooden decks at Nieuwe Meer in Amsterdam with sun, swims and hidden local lakeside energy.",
+    "coordinates": [
+      52.3305,
+      4.8409
+    ],
+    "adress": "Boeierspad 25, 1081 KE Amsterdam",
+    "created_on": "2026-03-10T14:02:00Z",
+    "vibes": [
+      "outdoorsy",
+      "hidden_gems",
+      "golden_summertime"
+    ],
+    "updated_on": "2026-03-10T14:02:00Z"
+  },
+  {
+    "place": "Strandzuid",
+    "city": "Amsterdam",
+    "vibe": "easygoing",
+    "title": "Strandzuid Amsterdam – City Beach Club for Golden Hour Drinks",
+    "images": [
+      "images/places/strandzuid-amsterdam.jpg"
+    ],
+    "short_description": "Beach‑club meets city park with sandy vibes, casual bites and refreshing drinks — bring shades, friends, and open‑air energy that stretches through golden hour.",
+    "description": "Strandzuid blends city-park accessibility with beach-club atmosphere in Amsterdam for open-air drinks and golden-hour social moments.",
+    "coordinates": [
+      52.3438,
+      4.8896
+    ],
+    "adress": "Europaplein 22, 1078 GZ Amsterdam",
+    "created_on": "2026-03-10T14:04:00Z",
+    "vibes": [
+      "easygoing",
+      "beer_lovers",
+      "golden_summertime"
+    ],
+    "updated_on": "2026-03-10T14:04:00Z"
+  },
+  {
+    "place": "Salvo Basement",
+    "city": "Amsterdam",
+    "vibe": "hidden_gems",
+    "title": "Salvo Basement Amsterdam – Hidden Lunch Spot for Croissant Sandwiches",
+    "images": [
+      "images/places/salvo-basement-amsterdam.jpg"
+    ],
+    "short_description": "Hip croissant-sandwich spot with a curated selection of tasty desserts - a perfect light lunch spot or cozy space for a catch up with a friend.",
+    "description": "Salvo Basement is a hidden-gem Amsterdam lunch spot known for croissant sandwiches, curated desserts and cozy catch-up atmosphere.",
+    "coordinates": [
+      52.3638,
+      4.898
+    ],
+    "adress": "Keizersgracht 703, 1017 DW Amsterdam",
+    "created_on": "2026-03-10T14:06:00Z",
+    "vibes": [
+      "hidden_gems",
+      "easygoing"
+    ],
+    "updated_on": "2026-03-10T14:06:00Z"
+  },
+  {
+    "place": "Blin Queen",
+    "city": "Amsterdam",
+    "vibe": "easygoing",
+    "title": "Blin Queen Amsterdam – Cozy Pancakes with a Date-Night Twist",
+    "images": [
+      "images/places/blin-queen-amsterdam.jpg"
+    ],
+    "short_description": "Eastern European-inspired pancakes with coffee or wine — playful flavors, cozy corners, and a brunch twist that surprises your taste buds. Offers occasional live music evenings.",
+    "description": "Blin Queen serves Eastern European-inspired pancakes in Amsterdam with playful flavors, cozy corners and occasional live-music evenings.",
+    "coordinates": [
+      52.3652,
+      4.8996
+    ],
+    "adress": "Amstel 102, 1017 AD Amsterdam",
+    "created_on": "2026-03-10T14:08:00Z",
+    "vibes": [
+      "easygoing",
+      "date_night"
+    ],
+    "updated_on": "2026-03-10T14:08:00Z"
+  },
+  {
+    "place": "Cafe the Minds",
+    "city": "Amsterdam",
+    "vibe": "easygoing",
+    "title": "Cafe the Minds Amsterdam – Alternative Gothic Bar for Social Nights",
+    "images": [
+      "images/places/cafe-the-minds-amsterdam.jpg"
+    ],
+    "short_description": "Gothic bar serving beers in a bold, slightly chaotic setting — perfect for late evening drinks and hangout with friends.You might feel like you’ve stepped into a metal band backstage - it is full of surprises.",
+    "description": "Cafe the Minds is a bold and slightly chaotic Amsterdam gothic bar, known for social late-evening drinks and alternative atmosphere.",
+    "coordinates": [
+      52.3706,
+      4.8864
+    ],
+    "adress": "Spuistraat 245, 1012 VP Amsterdam",
+    "created_on": "2026-03-10T14:10:00Z",
+    "vibes": [
+      "easygoing",
+      "social",
+      "alternative"
+    ],
+    "updated_on": "2026-03-10T14:10:00Z"
+  },
+  {
+    "place": "Satchmo",
+    "city": "Amsterdam",
+    "vibe": "classy",
+    "title": "Satchmo Amsterdam – Jazz Cocktails and Refined Date-Night Energy",
+    "images": [
+      "images/places/satchmo-amsterdam.jpg"
+    ],
+    "short_description": "Jazz-infused cocktail bar and restaurant with refined cocktails and smooth tunes — elegant, intimate energy that makes every evening feel special.",
+    "description": "Satchmo combines jazz-infused dining and refined cocktails in Amsterdam with elegant intimate atmosphere made for date nights.",
+    "coordinates": [
+      52.3697,
+      4.8928
+    ],
+    "adress": "Rokin 95, 1012 KE Amsterdam",
+    "created_on": "2026-03-10T14:12:00Z",
+    "vibes": [
+      "classy",
+      "date_night"
+    ],
+    "updated_on": "2026-03-10T14:12:00Z"
+  },
+  {
+    "place": "Brouwerij 't IJ",
+    "city": "Amsterdam",
+    "vibe": "beer_lovers",
+    "title": "Brouwerij 't IJ Amsterdam – Windmill Brewery and Tastings",
+    "images": [
+      "images/places/brouwerij-t-ij-amsterdam.jpg"
+    ],
+    "short_description": "Iconic windmill brewery with house-made beers and tasting sessions — hop-forward fun and relaxed local charm in every sip.",
+    "description": "Brouwerij 't IJ is Amsterdam’s iconic windmill brewery with house-made beers and tasting sessions in an easygoing local setting.",
+    "coordinates": [
+      52.3667,
+      4.925
+    ],
+    "adress": "Funenkade 7, 1018 AL Amsterdam",
+    "created_on": "2026-03-10T14:14:00Z",
+    "vibes": [
+      "beer_lovers",
+      "easygoing"
+    ],
+    "updated_on": "2026-03-10T14:14:00Z"
+  },
+  {
+    "place": "BADHUS Social Sauna",
+    "city": "Amsterdam",
+    "vibe": "do_mode",
+    "title": "BADHUS Social Sauna Amsterdam – Nordic Wellness in Noord",
+    "images": [
+      "images/places/badhus-social-sauna-amsterdam.jpg"
+    ],
+    "short_description": "Nordic-style niche sauna and wellness space — unwind in warm waters, enjoy steam rituals, and step out refreshed and energized.",
+    "description": "BADHUS Social Sauna brings Nordic-style wellness to Amsterdam Noord with warm waters, steam rituals and restorative social calm.",
+    "coordinates": [
+      52.3995,
+      4.9097
+    ],
+    "adress": "Papaverhoek 31, 1032 JZ Amsterdam",
+    "created_on": "2026-03-10T14:16:00Z",
+    "vibes": [
+      "do_mode",
+      "easygoing"
+    ],
+    "updated_on": "2026-03-10T14:16:00Z"
+  },
+  {
+    "place": "Stretch and Fold",
+    "city": "Amsterdam",
+    "vibe": "easygoing",
+    "title": "Stretch and Fold Amsterdam – Yoga, Sauna and Mindful Recharge",
+    "images": [
+      "images/places/stretch-and-fold-amsterdam.jpg"
+    ],
+    "short_description": "Wellness hub with yoga, sauna, swimming pool, and calm spaces — relax, recharge, and enjoy a full day of mindful indulgence.",
+    "description": "Stretch and Fold is an Amsterdam wellness hub with yoga, sauna, pool and calm spaces for a full-day mindful recharge.",
+    "coordinates": [
+      52.4002,
+      4.9049
+    ],
+    "adress": "Papaverhof 71C, 1032 LX Amsterdam",
+    "created_on": "2026-03-10T14:18:00Z",
+    "vibes": [
+      "easygoing",
+      "do_mode"
+    ],
+    "updated_on": "2026-03-10T14:18:00Z"
+  },
+  {
+    "place": "Kometen Brood & Cafe",
+    "city": "Amsterdam",
+    "vibe": "easygoing",
+    "title": "Kometen Brood & Cafe Amsterdam – Hidden Noord Bakery Coffee Stop",
+    "images": [
+      "images/places/kometen-brood-and-cafe-amsterdam.jpg"
+    ],
+    "short_description": "Neighborhood café with heavenly bread, pastries and coffee — perfect for slow mornings, cozy chats, or lingering with a newspaper.",
+    "description": "Kometen Brood & Cafe is a neighborhood Amsterdam Noord café known for bread, pastries and coffee in an easy hidden-gem rhythm.",
+    "coordinates": [
+      52.4017,
+      4.9028
+    ],
+    "adress": "Ms. van Riemsdijkweg 2, 1033 RD Amsterdam",
+    "created_on": "2026-03-10T14:20:00Z",
+    "vibes": [
+      "easygoing",
+      "hidden_gems",
+      "coffee_and_chill"
+    ],
+    "updated_on": "2026-03-10T14:20:00Z"
+  },
+  {
+    "place": "Yellow House",
+    "city": "Amsterdam",
+    "vibe": "alternative",
+    "title": "Yellow House Amsterdam – Creative Café and Exhibition Hub",
+    "images": [
+      "images/places/yellow-house-amsterdam.jpg"
+    ],
+    "short_description": "Creative hub and café with artsy vibes — colorful interiors, unique exhibitions, and a space that sparks curiosity and casual exploration.",
+    "description": "Yellow House is an alternative creative hub and café in Amsterdam with colorful interiors, exhibitions and curiosity-led social flow.",
+    "coordinates": [
+      52.3901,
+      4.8736
+    ],
+    "adress": "Danzigerbocht 45R, 1013 AM Amsterdam",
+    "created_on": "2026-03-10T14:22:00Z",
+    "vibes": [
+      "alternative",
+      "easygoing"
+    ],
+    "updated_on": "2026-03-10T14:22:00Z"
+  },
+  {
+    "place": "TonTon Club Westergas",
+    "city": "Amsterdam",
+    "vibe": "easygoing",
+    "title": "TonTon Club Westergas Amsterdam – Arcade Bar Game Night Favorite",
+    "images": [
+      "images/places/tonton-club-westergas-amsterdam.jpg"
+    ],
+    "short_description": "Arcade bar meets pinball and gaming heaven — playful competition, craft drinks, and late-night energy that turns friends into challengers.",
+    "description": "TonTon Club Westergas mixes arcade and pinball competition with drinks in Amsterdam, creating playful do-mode energy for groups.",
+    "coordinates": [
+      52.3859,
+      4.8686
+    ],
+    "adress": "Polonceaukade 27, 1014 DA Amsterdam",
+    "created_on": "2026-03-10T14:24:00Z",
+    "vibes": [
+      "easygoing",
+      "do_mode"
+    ],
+    "updated_on": "2026-03-10T14:24:00Z"
+  },
+  {
+    "place": "Blast Galaxy",
+    "city": "Amsterdam",
+    "vibe": "do_mode",
+    "title": "Blast Galaxy Amsterdam – Futuristic Laser Tag Experience",
+    "images": [
+      "images/places/blast-galaxy-amsterdam.jpg"
+    ],
+    "short_description": "Futuristic indoor laser tag arena — immersive games, adrenaline-charged fun, and high-energy experiences that last well into the evening.",
+    "description": "Blast Galaxy is a futuristic indoor laser-tag arena in Amsterdam built for immersive high-energy sessions and competitive fun.",
+    "coordinates": [
+      52.3884,
+      4.8773
+    ],
+    "adress": "Magneetstraat 5, 1014 CC Amsterdam",
+    "created_on": "2026-03-10T14:26:00Z",
+    "vibes": [
+      "do_mode",
+      "little_ones"
+    ],
+    "updated_on": "2026-03-10T14:26:00Z"
+  },
+  {
+    "place": "Back to Black",
+    "city": "Amsterdam",
+    "vibe": "easygoing",
+    "title": "Back to Black Amsterdam – Minimal Specialty Coffee for Dog Lovers",
+    "images": [
+      "images/places/back-to-black-amsterdam.jpg"
+    ],
+    "short_description": "Specialty coffee spot with minimalist charm and dog lovers — carefully brewed cups and cozy corners for lingering or catching up with friends.",
+    "description": "Back to Black is a minimalist specialty coffee Amsterdam spot with carefully brewed cups, dog-friendly energy and cozy corners.",
+    "coordinates": [
+      52.3849,
+      4.8751
+    ],
+    "adress": "Van Hallstraat 268, 1051 HM Amsterdam",
+    "created_on": "2026-03-10T14:28:00Z",
+    "vibes": [
+      "easygoing",
+      "coffee_and_chill"
+    ],
+    "updated_on": "2026-03-10T14:28:00Z"
+  },
+  {
+    "place": "Museum Vrolik",
+    "city": "Amsterdam",
+    "vibe": "culture_craving",
+    "title": "Museum Vrolik Amsterdam – Offbeat Science and Medical Curiosities",
+    "images": [
+      "images/places/museum-vrolik-amsterdam.jpg"
+    ],
+    "short_description": "Quirky medical museum blending history, science, and curiosity — step in for a fascinating, slightly offbeat learning experience that sparks conversation.",
+    "description": "Museum Vrolik is a quirky Amsterdam medical museum where history, science and alternative curiosity combine into a striking culture stop.",
+    "coordinates": [
+      52.2965,
+      4.9578
+    ],
+    "adress": "Meibergdreef 15, 1105 AZ Amsterdam",
+    "created_on": "2026-03-10T14:30:00Z",
+    "vibes": [
+      "culture_craving",
+      "hidden_gems",
+      "alternative"
+    ],
+    "updated_on": "2026-03-10T14:30:00Z"
+  },
+  {
+    "place": "De Japanner Strandeiland",
+    "city": "Amsterdam",
+    "vibe": "easygoing",
+    "title": "De Japanner Strandeiland Amsterdam – Sushi and Cocktails by the Water",
+    "images": [
+      "images/places/de-japanner-strandeiland-amsterdam.jpg"
+    ],
+    "short_description": "Beachy Japanese-inspired café with sushi, cocktails, and sunny terrace vibes — perfect for relaxing by the water while enjoying light bites and good company.",
+    "description": "De Japanner Strandeiland is a beachy Japanese-inspired Amsterdam café with sushi, cocktails and sunny waterside terrace atmosphere.",
+    "coordinates": [
+      52.3531,
+      5.0048
+    ],
+    "adress": "Pampuslaan 505, 1087 HP Amsterdam",
+    "created_on": "2026-03-10T14:32:00Z",
+    "vibes": [
+      "easygoing",
+      "golden_summertime",
+      "date_night"
+    ],
+    "updated_on": "2026-03-10T14:32:00Z"
+  },
+  {
+    "place": "Restaurant De Tuin van de Vier Windstreken",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "De Tuin van de Vier Windstreken Rotterdam – Green Dining by the Lake",
+    "images": [
+      "images/places/de-tuin-van-de-vier-windstreken-rotterdam.jpg"
+    ],
+    "short_description": "Charming restaurant surrounded by greenery with seasonal dishes — casual yet thoughtful dining for long lunches or cozy evenings in nature-inspired surroundings.",
+    "description": "Restaurant De Tuin van de Vier Windstreken offers greenery-surrounded Rotterdam dining with seasonal dishes and relaxed date-friendly atmosphere.",
+    "coordinates": [
+      51.9248,
+      4.5314
+    ],
+    "adress": "Plaszoom 354, 3062 CL Rotterdam",
+    "created_on": "2026-03-10T14:34:00Z",
+    "vibes": [
+      "easygoing",
+      "date_night",
+      "golden_summertime"
+    ],
+    "updated_on": "2026-03-10T14:34:00Z"
+  },
+  {
+    "place": "Brouwerij Noordt",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "Brouwerij Noordt",
+    "images": [
+      "images/places/brouwerij-noordt-rotterdam.jpg",
+      "images/places/brouwerij-noordt-rotterdam-2.jpg",
+      "images/places/brouwerij-noordt-rotterdam-3.jpg"
+    ],
+    "short_description": "Brouwerij Noordt Rotterdam brewery serving laid-back craft beers with major chill vibes — perfect for beer lovers and crew hangs. Low-key spot near Zaagmolenkade where the brews and the vibe both slap.",
+    "description": "Brouwerij Noordt is a Rotterdam brewery with easygoing energy and solid craft-beer cred — think approachable, flavour-forward pours and a relaxed crowd. It’s a great place to kick back with friends, taste local brews, and soak up mellow industrial-chic vibes without any pretense.\n\nHit Noordt when you want a casual beer sesh or an intro to Dutch craft brewing; the spot is ideal for small groups, casual dates, or solo tasting sessions. Located on Zaagmolenkade, it’s easy to find via Maps and makes a solid stop on a Rotterdam brewery crawl.",
+    "coordinates": [
+      51.9332794,
+      4.486463200000001
+    ],
+    "adress": "Zaagmolenkade 46, 3035 KA Rotterdam, Netherlands",
+    "created_on": "2026-03-17T15:30:00Z",
+    "updated_on": "2026-03-17T15:30:00Z",
+    "vibes": [
+      "easygoing",
+      "beer_lovers"
+    ]
+  },
+  {
+    "place": "FENIX",
+    "city": "Rotterdam",
+    "vibe": "culture_craving",
+    "title": "FENIX",
+    "images": [
+      "images/places/fenix-rotterdam.jpg",
+      "images/places/fenix-rotterdam-2.jpg"
+    ],
+    "short_description": "Fenix Museum Rotterdam is a photogenic, harbor-side museum that slaps for culture-hungry explorers. Expect rotating exhibits, industrial-chic vibes, and major content-ready backdrops — perfect for your next museum day.",
+    "description": "Nestled on the Kop van Zuid waterfront, FENIX gives off low-key museum core with high-key photo ops. With rotating exhibits and striking industrial architecture, it’s a compact cultural stop that feeds your feed and curiosity alike. \n\nWhy go? It’s an easy visit for a chilled culture day: think curated displays, river views, and architecture that doubles as a backdrop for pics. Ideal for Gen Z museum-hoppers who want art, history, and vibes without the museum marathon — plus it’s super close to cafés and the rest of Rotterdam’s harbor scene.",
+    "coordinates": [
+      51.9021499,
+      4.484190799999999
+    ],
+    "adress": "Paul Nijghkade 5, 3072 AT Rotterdam, Netherlands",
+    "created_on": "2026-03-18T15:30:00Z",
+    "updated_on": "2026-03-18T15:30:00Z",
+    "vibes": [
+      "culture_craving"
+    ]
+  },
+  {
+    "place": "Fenix Food Factory",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "Fenix Food Factory",
+    "images": [
+      "images/places/fenix-food-factory-rotterdam.jpg",
+      "images/places/fenix-food-factory-rotterdam-2.jpg"
+    ],
+    "short_description": "Fenix Food Factory Rotterdam is the go-to food market for artisan bites, craft beer, and chill waterfront vibes — perfect for golden-hour hangs. Low-key spot for weekend grub runs and community-style eating, ideal if you love trying local flavours.",
+    "description": "Fenix Food Factory is a laid-back food hall on Rotterdam's waterfront where local vendors dish out everything from fresh bread and tacos to specialty coffee and craft beer. The vibe is super easygoing with communal tables, indie producers, and an industrial-chic space that makes it perfect for group hangs or solo snack missions.\n\nDuring golden summertime the terrace fills up with sun-soaked crowds sipping cold beers and sharing plates while watching the water — a must-visit for beer lovers and anyone who vibes with casual outdoor hangs. Pop in for a quick bite, a brewery pairing, or a relaxed evening of discovering local eats.",
+    "coordinates": [
+      51.9020324,
+      4.4867529
+    ],
+    "adress": "Nico Koomanskade 1025, 3072 LM Rotterdam, Netherlands",
+    "created_on": "2026-03-18T14:30:00Z",
+    "updated_on": "2026-03-18T14:30:00Z",
+    "vibes": [
+      "easygoing",
+      "beer_lovers",
+      "golden_summertime"
+    ]
+  },
+  {
+    "place": "Nederlands Fotomuseum",
+    "city": "Rotterdam",
+    "vibe": "culture_craving",
+    "title": "Nederlands Fotomuseum (Dutch Photo Museum)",
+    "images": [
+      "images/places/nederlands-fotomuseum-rotterdam.jpg",
+      "images/places/nederlands-fotomuseum-rotterdam-2.jpg",
+      "images/places/nederlands-fotomuseum-rotterdam-3.jpg"
+    ],
+    "short_description": "Nederlands Fotomuseum is the top photo museum in Rotterdam — a must-visit for anyone into contemporary and historic photography. Perfect for culture seekers and content creators looking for photo museum Rotterdam inspo and strong visual vibes.",
+    "description": "This national photo museum serves up rotating exhibitions that spotlight both Dutch and international photographers, archival projects, and storytelling through powerful images. It’s a compact cultural hub where you can dive into themed shows, discover emerging talents, and find fresh inspiration for your feed.\n\nGreat for a daytime cultural crawl or a creative date, the Fotomuseum offers accessible exhibits, a museum shop with unique finds, and plenty of moments made for photos. Easy to reach on Brede Hilledijk, it’s a solid stop for Gen-Z art lovers who want to mix learning with major visual energy.",
+    "coordinates": [
+      51.9027988,
+      4.4951298
+    ],
+    "adress": "Brede Hilledijk 95, 3072 KD Rotterdam, Netherlands",
+    "created_on": "2026-03-18T12:00:00Z",
+    "updated_on": "2026-03-18T12:00:00Z",
+    "vibes": [
+      "culture_craving"
+    ]
+  },
+  {
+    "place": "Papa's Beach House",
+    "city": "Hoofddorp",
+    "vibe": "outdoorsy",
+    "title": "Papa's Beach House",
+    "images": [
+      "images/places/papa-s-beach-house-hoofddorp.jpg",
+      "images/places/papa-s-beach-house-hoofddorp-2.jpg",
+      "images/places/papa-s-beach-house-hoofddorp-3.jpg"
+    ],
+    "short_description": "Lowkey the best spot in Haarlemmermeerse Bos for summer chill — rent a SUP at Papa's Beach House and vibe on the water. Perfect for BBQ days with the crew and golden hour flexing, ideal for anyone searching for Haarlemmermeerse Bos SUP rental spots.",
+    "description": "Papa's Beach House at Haarlemmermeerse Bos is a summer must: grab a SUP, paddle out, and spend the day lazing on the shore with a BBQ and friends. The spot gives relaxed outdoorsy energy with easy access to water activities and chill hangout zones — super photogenic for golden hour and group hangs.\n\nBring a portable grill, some snacks, and your besties for an all-day hang; the restaurant handles rentals so you can focus on fun. It’s a top pick if you want low-effort, high-vibe summer days in Hoofddorp without leaving the city loop.",
+    "coordinates": [
+      52.323431,
+      4.67406
+    ],
+    "adress": "IJweg 961, 2131 LV Hoofddorp, Netherlands",
+    "created_on": "2026-03-24T12:00:00Z",
+    "updated_on": "2026-03-24T12:00:00Z",
+    "vibes": [
+      "outdoorsy",
+      "golden_summertime",
+      "easygoing"
+    ]
+  },
+  {
+    "place": "Oasis Rotterdam (formerly Mecca Oasis)",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "Oasis Rotterdam",
+    "images": [
+      "images/places/oasis-rotterdam-formerly-mecca-oasis-rotterdam.jpg"
+    ],
+    "short_description": "Lowkey hidden gem on Noordsingel — Oasis Rotterdam serves cozy coffee vibes and chill hangout energy perfect for study seshes and lazy brunches. If you’re hunting for a relaxed Rotterdam coffee spot with aesthetic corners and mellow beats, this place slaps.",
+    "description": "Formerly Mecca Oasis, Oasis Rotterdam is a super chill spot on Noordsingel that’s all about relaxed hangs, good coffee, and lowkey vibes. Expect comfy seating, cozy nooks for studying or catching up with friends, and an overall easygoing atmosphere that makes it a go-to hidden gem in Rotterdam.\n\nPop in for a warm drink, grab a corner with your laptop, or meet friends for a slow brunch — it’s perfect for coffee-and-chill moods. Located at Noordsingel 39, 3035 EJ Rotterdam (map: https://www.google.com/maps?q=Oasis+Rotterdam+(formerly+Mecca+Oasis),+Noordsingel+39,+3035+EJ+Rotterdam,+Netherlands), it’s an easy find and a vibe check worth doing on your next Rotterdam day out.",
+    "coordinates": [
+      51.930118,
+      4.4805301
+    ],
+    "adress": "Noordsingel 39, 3035 EJ Rotterdam, Netherlands",
+    "created_on": "2026-03-25T10:00:00Z",
+    "updated_on": "2026-03-25T10:00:00Z",
+    "vibes": [
+      "easygoing",
+      "coffee_and_chill",
+      "hidden_gems"
+    ]
+  }
+]
