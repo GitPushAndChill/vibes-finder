@@ -43,7 +43,7 @@ async function main() {
     await copyIfExists(path.join(ROOT, file), path.join(DIST, file));
   }
 
-  const dirs = ['css', 'js', 'images', 'posts', 'city', 'content'];
+  const dirs = ['css', 'js', 'images', 'posts', 'city', 'vibes', 'content'];
   for (const dir of dirs) {
     await copyIfExists(path.join(ROOT, dir), path.join(DIST, dir));
   }

@@ -329,6 +329,7 @@ async function main() {
     '/privacy.html',
     '/cookies.html',
     '/city/',
+    '/vibes/',
     ...citySlugs.map((slug) => `/city/${slug}/`),
   ];
 
