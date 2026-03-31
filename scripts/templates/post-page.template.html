@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="content-language" content="en" />
+  <meta name="language" content="English" />
+  <meta name="google-adsense-account" content="ca-pub-6784233656400841" />
+  <link rel="icon" type="image/png" href="{{SITE_ROOT}}images/logo.png" />
+  <link rel="apple-touch-icon" href="{{SITE_ROOT}}images/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" />
+  <script src="{{SITE_ROOT}}js/theme-init.js"></script>
+  <link rel="stylesheet" href="{{SITE_ROOT}}css/style.css" />
+  <script src="{{SITE_ROOT}}js/script.js" defer></script>
+
+  <title>{{PAGE_TITLE}}</title>
+  <meta name="description" content="{{META_DESCRIPTION}}" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="{{CANONICAL_URL}}" />
+  <meta property="og:title" content="{{OG_TITLE}}" />
+  <meta property="og:description" content="{{OG_DESCRIPTION}}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="{{CANONICAL_URL}}" />
+  <meta property="og:image" content="{{OG_IMAGE}}" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{OG_TITLE}}" />
+  <meta name="twitter:description" content="{{OG_DESCRIPTION}}" />
+  <meta name="twitter:image" content="{{OG_IMAGE}}" />
+
+  <script type="application/ld+json">{{JSON_LD}}</script>
+</head>
+<body data-site-root="{{SITE_ROOT}}" class="post-detail-page">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="logo" href="{{SITE_ROOT}}index.html"><img src="{{SITE_ROOT}}images/logo.png" alt="GP&C logo" class="logo-img" decoding="async" fetchpriority="high" width="320" height="86" /></a>
+      <nav class="main-nav" aria-label="Main Navigation">
+        <a href="{{SITE_ROOT}}index.html">Home</a>
+        <a href="{{SITE_ROOT}}city/">Vibes</a>
+        <a href="{{SITE_ROOT}}about.html">About Me</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container post-detail-container">
+    <section class="post-detail-shell" aria-label="Post details">
+      <article class="card post-detail-card" data-post-url="{{POST_PATH}}">
+        {{IMAGE_SLIDER}}
+        <h1 class="card-title">{{POST_TITLE}}</h1>
+        <time class="meta">{{POST_CITY}}</time>
+
+        <div class="full-text">
+          <p class="short-desc">{{POST_SHORT_DESCRIPTION}}</p>
+          <p class="long-desc">{{POST_DESCRIPTION}}</p>
+        </div>
+
+        <div class="modal-meta-row">
+          <div class="modal-footer-left">{{POST_ADDRESS}}</div>
+          <div class="modal-footer-right">{{VIBE_CHIPS}}</div>
+        </div>
+
+        <div class="modal-article-nav">
+          {{PREV_LINK}}
+          {{NEXT_LINK}}
+        </div>
+
+        <div class="modal-seo-links">
+          <p>Explore more:</p>
+          <a href="{{SITE_ROOT}}city/">Best places and vibes in the Netherlands</a>
+          <a href="{{CITY_PAGE_PATH}}">Best places in {{POST_CITY}}</a>
+          <a href="{{SITE_ROOT}}index.html#city-vibe-map">Interactive city vibe map</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="footer-quick-links" aria-label="Footer quick links">
+        <a href="{{SITE_ROOT}}faq.html">FAQ</a>
+        <a href="{{SITE_ROOT}}contact.html">Contact Us</a>
+        <a href="{{SITE_ROOT}}privacy.html">Privacy Policy</a>
+        <a href="{{SITE_ROOT}}cookies.html">Cookie Policy</a>
+      </nav>
+      <p>© 2026 Website of GitPushAndChill</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var slider = document.querySelector('.image-slider');
+      if (!slider) return;
+
+      var slides = Array.from(slider.querySelectorAll('.slider-img'));
+      if (!slides.length) return;
+
+      var prev = slider.querySelector('.slider-control.prev');
+      var next = slider.querySelector('.slider-control.next');
+      var index = 0;
+
+      function render() {
+        slides.forEach(function (img, i) {
+          img.hidden = i !== index;
+        });
+      }
+
+      function go(delta) {
+        index = (index + delta + slides.length) % slides.length;
+        render();
+      }
+
+      if (prev) prev.addEventListener('click', function () { go(-1); });
+      if (next) next.addEventListener('click', function () { go(1); });
+      render();
+    })();
+  </script>
+</body>
+</html>

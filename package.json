@@ -4,8 +4,11 @@
   "description": "The Test Website is designed to showcase various web development technologies and techniques. It serves as a demo platform for functionalities and styles, providing users with a hands-on experience.",
   "main": "index.js",
   "scripts": {
+    "generate:post-pages": "node scripts/generate-post-pages.js",
+    "prestart": "npm run generate:post-pages",
     "start": "lite-server",
-    "build": "mkdir -p dist && cp -r *.html css js images posts README.md .nojekyll dist",
+    "prebuild": "npm run generate:post-pages",
+    "build": "node scripts/build-static.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
