@@ -1378,7 +1378,7 @@ html[data-theme='light'] .modal-content a:hover {
 .image-slider {
     position: relative;
     width: 100%;
-    height: min(420px, 45vh);
+    height: min(560px, 60vh);
     overflow: hidden;
     margin-bottom: var(--space-m);
     border-radius: calc(var(--radius-lg) + 2px);
