@@ -6,6 +6,7 @@ const POSTS_PATH = path.join(ROOT, 'posts', 'places', 'posts-places.json');
 const VIBES_PATH = path.join(ROOT, 'content', 'vibes.yml');
 const POST_INSTRUCTIONS_PATH = path.join(ROOT, 'posts', 'posts_instructions.md');
 const IMAGES_DIR = path.join(ROOT, 'images', 'places');
+const MAX_IMAGES_PER_POST = 6;
 
 const OPENAI_ENDPOINT = process.env.OPENAI_ENDPOINT || 'https://api.openai.com/v1/chat/completions';
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || process.env.OPENAI_TOKEN || '';
@@ -521,7 +522,7 @@ function mergePost(existing, incoming, now) {
   const mergedImages = uniqueImages([
     ...(Array.isArray(incoming.images) ? incoming.images : []),
     ...(Array.isArray(existing.images) ? existing.images : []),
-  ]).slice(0, 3);
+  ]).slice(0, MAX_IMAGES_PER_POST);
 
   const preservedCreatedOn = toIsoUtcTimestamp(existing.created_on) || toIsoUtcTimestamp(incoming.created_on) || now;
   const updatedOn = toIsoUtcTimestamp(incoming.updated_on) || now;
@@ -563,7 +564,7 @@ async function processImages({ attachments, place, city, required = true }) {
     fail('No attachments were provided in webhook payload. At least one JPG image is required.');
   }
 
-  const imageAttachments = normalized.filter(isImageAttachment).slice(0, 3);
+  const imageAttachments = normalized.filter(isImageAttachment).slice(0, MAX_IMAGES_PER_POST);
   if (!imageAttachments.length) {
     if (!required) return [];
     fail('No image attachments found. Provide at least one image in the email webhook payload.');

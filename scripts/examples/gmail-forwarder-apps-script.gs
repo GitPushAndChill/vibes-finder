@@ -10,7 +10,7 @@ const GMAIL_FORWARDER_CONFIG = {
   githubOwner: 'GitPushAndChill',
   githubRepo: 'test-website',
   eventType: 'gmail_forwarded_email',
-  maxImageAttachments: 3,
+  maxImageAttachments: 6,
   maxThreadsPerRun: 10,
 };
 

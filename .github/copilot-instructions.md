@@ -14,7 +14,7 @@ Every post object must include all of these fields:
 - `city` (string): city name.
 - `vibe` (string): primary vibe key.
 - `title` (string): catchy SEO-friendly title.
-- `images` (array): 1 to 3 `.jpg` image paths.
+- `images` (array): 1 to 6 `.jpg` image paths.
 - `short_description` (string): max one sentence.
 - `description` (string): max one paragraph.
 - `coordinates` (array): `[latitude, longitude]` as numbers.
@@ -68,7 +68,7 @@ When asked to add posts, return only ready-to-paste JSON objects that follow thi
 ## Validation checklist
 Before finalizing generated posts:
 1. All required fields exist.
-2. `images` count is between 1 and 3 and all are `.jpg`.
+2. `images` count is between 1 and 6 and all are `.jpg`.
 3. `vibe` is included as the first item in `vibes`.
 4. Every vibe key exists in `content/vibes.yml`.
 5. No duplicate `place` + `city` entries are introduced.
