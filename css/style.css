@@ -489,10 +489,10 @@ body > * {
     align-items: center;
     margin-left: auto;
     gap: 10px;
+    position: relative;
 }
 
 .header-search-wrap {
-    position: relative;
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -2027,7 +2027,13 @@ html[data-theme='light'] .map-popup-open:hover {
     .header-search-results {
         top: calc(100% + 8px);
         right: 0;
-        width: min(90vw, 380px);
+        width: min(calc(100vw - 32px), 380px);
+        max-height: min(55vh, 340px);
+    }
+
+    .header-search-item {
+        padding: 12px;
+        min-height: 44px;
     }
 
     .main-nav {
