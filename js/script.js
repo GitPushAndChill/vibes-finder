@@ -294,8 +294,37 @@ const CITY_PAGE_MAP = {
 
 function getSiteRootPrefix() {
     const fromBody = document.body?.getAttribute('data-site-root');
-    if (fromBody) {
-        return fromBody.endsWith('/') ? fromBody : `${fromBody}/`;
+    if (typeof fromBody === 'string') {
+        let value = fromBody.trim();
+
+        // Disallow URL schemes and backslashes to keep navigation same-origin and path-based.
+        // If a colon appears before any slash, treat it as unsafe (e.g. "http:", "javascript:").
+        const firstSlash = value.indexOf('/');
+        const firstColon = value.indexOf(':');
+        if (firstColon !== -1 && (firstSlash === -1 || firstColon < firstSlash)) {
+            value = '';
+        }
+
+        // Normalize to a relative/site-root path, dropping protocol/host if present.
+        if (value.startsWith('http://') || value.startsWith('https://')) {
+            try {
+                const url = new URL(value);
+                value = url.pathname || '/';
+            } catch (e) {
+                value = '';
+            }
+        }
+
+        // Remove backslashes and normalize multiple leading slashes.
+        value = value.replace(/\\/g, '').replace(/^\/+/, '/');
+
+        if (value) {
+            // Ensure it ends with a trailing slash.
+            if (!value.endsWith('/')) {
+                value += '/';
+            }
+            return value;
+        }
     }
     return './';
 }
