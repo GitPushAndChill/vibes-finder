@@ -367,6 +367,7 @@ function initThemeToggle() {
     const navWrap = document.querySelector('.site-header .nav-wrap');
     if (!navWrap || document.querySelector('#theme-toggle')) return;
 
+    const controlsWrap = getHeaderControlsWrap(navWrap);
     const toggleWrap = document.createElement('div');
     toggleWrap.className = 'theme-toggle-wrap';
 
@@ -415,7 +416,362 @@ function initThemeToggle() {
     });
 
     toggleWrap.appendChild(toggle);
-    navWrap.appendChild(toggleWrap);
+    controlsWrap.appendChild(toggleWrap);
+}
+
+function getHeaderControlsWrap(navWrap) {
+    const existing = navWrap.querySelector('.header-controls-wrap');
+    if (existing) return existing;
+
+    const controlsWrap = document.createElement('div');
+    controlsWrap.className = 'header-controls-wrap';
+    navWrap.appendChild(controlsWrap);
+    return controlsWrap;
+}
+
+let _headerSearchFetchPromise = null;
+let _headerSearchIndexCache = null;
+
+function normalizeSearchText(value) {
+    return String(value || '')
+        .normalize('NFKD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .trim();
+}
+
+function escapeRegex(value) {
+    return String(value || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function toWildcardRegex(query) {
+    const safe = escapeRegex(query)
+        .replace(/\\\*/g, '.*')
+        .replace(/\\\?/g, '.');
+    if (!safe) return null;
+    try {
+        return new RegExp(safe, 'i');
+    } catch (err) {
+        return null;
+    }
+}
+
+function ensurePostsDataLoaded() {
+    if (Array.isArray(postsData) && postsData.length) {
+        return Promise.resolve(postsData);
+    }
+    if (_headerSearchFetchPromise) {
+        return _headerSearchFetchPromise;
+    }
+
+    _headerSearchFetchPromise = fetch(toSitePath('posts/places/posts-places.json'))
+        .then((response) => response.json())
+        .then((data) => {
+            postsData = Array.isArray(data) ? data : [];
+            _sortedPostsCache = null;
+            buildPostRouteMap(postsData);
+            return postsData;
+        })
+        .finally(() => {
+            _headerSearchFetchPromise = null;
+        });
+
+    return _headerSearchFetchPromise;
+}
+
+function buildHeaderSearchIndex(posts) {
+    return (Array.isArray(posts) ? posts : []).map((post) => {
+        const vibes = getPostVibes(post)
+            .map((vibeKey) => normalizeSearchText(`${vibeKey} ${getVibeLabel(vibeKey)}`))
+            .join(' ');
+
+        const title = normalizeSearchText(getPostDisplayTitle(post));
+        const place = normalizeSearchText(post?.place || post?.title || '');
+        const city = normalizeSearchText(post?.city || '');
+        const description = normalizeSearchText(post?.short_description || post?.description || '');
+        const searchBlob = `${title} ${place} ${city} ${vibes} ${description}`.trim();
+
+        return {
+            post,
+            title,
+            place,
+            city,
+            searchBlob,
+        };
+    });
+}
+
+function getHeaderSearchIndex() {
+    if (_headerSearchIndexCache) {
+        return Promise.resolve(_headerSearchIndexCache);
+    }
+
+    return ensurePostsDataLoaded().then((posts) => {
+        _headerSearchIndexCache = buildHeaderSearchIndex(posts);
+        return _headerSearchIndexCache;
+    });
+}
+
+function scoreSearchEntry(entry, normalizedQuery, wildcardRegex) {
+    let score = 0;
+
+    if (entry.title.startsWith(normalizedQuery) || entry.place.startsWith(normalizedQuery)) score += 120;
+    if (entry.city.startsWith(normalizedQuery)) score += 90;
+    if (entry.title.includes(normalizedQuery)) score += 75;
+    if (entry.place.includes(normalizedQuery)) score += 60;
+    if (entry.city.includes(normalizedQuery)) score += 40;
+    if (entry.searchBlob.includes(normalizedQuery)) score += 25;
+
+    if (wildcardRegex) {
+        if (wildcardRegex.test(entry.title)) score += 60;
+        if (wildcardRegex.test(entry.place)) score += 50;
+        if (wildcardRegex.test(entry.city)) score += 30;
+        if (wildcardRegex.test(entry.searchBlob)) score += 20;
+    }
+
+    return score;
+}
+
+function initHeaderSearch() {
+    const navWrap = document.querySelector('.site-header .nav-wrap');
+    if (!navWrap || document.querySelector('#header-post-search')) return;
+
+    const controlsWrap = getHeaderControlsWrap(navWrap);
+    const searchWrap = document.createElement('div');
+    searchWrap.className = 'header-search-wrap';
+
+    const trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.className = 'header-search-trigger';
+    trigger.id = 'header-search-trigger';
+    trigger.setAttribute('aria-label', 'Open search');
+    trigger.setAttribute('aria-expanded', 'false');
+    trigger.setAttribute('aria-controls', 'header-post-search');
+    trigger.innerHTML = `
+        <span class="header-search-trigger-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+                <circle cx="11" cy="11" r="7"></circle>
+                <line x1="16.65" y1="16.65" x2="21" y2="21"></line>
+            </svg>
+        </span>
+    `;
+
+    const input = document.createElement('input');
+    input.type = 'search';
+    input.id = 'header-post-search';
+    input.className = 'header-search-input';
+    input.setAttribute('placeholder', 'Search places...');
+    input.setAttribute('aria-label', 'Search posts');
+    input.setAttribute('autocomplete', 'off');
+    input.hidden = true;
+
+    const results = document.createElement('div');
+    results.className = 'header-search-results';
+    results.setAttribute('role', 'listbox');
+    results.hidden = true;
+
+    searchWrap.appendChild(trigger);
+    searchWrap.appendChild(input);
+    searchWrap.appendChild(results);
+    controlsWrap.appendChild(searchWrap);
+
+    let activeIndex = -1;
+    let activeResults = [];
+    let debounceId = null;
+    let isExpanded = false;
+
+    const setExpanded = (expanded) => {
+        isExpanded = Boolean(expanded);
+        searchWrap.classList.toggle('is-expanded', isExpanded);
+        input.hidden = !isExpanded;
+        trigger.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+        trigger.setAttribute('aria-label', isExpanded ? 'Close search' : 'Open search');
+    };
+
+    const closeResults = () => {
+        activeIndex = -1;
+        activeResults = [];
+        results.hidden = true;
+        results.innerHTML = '';
+    };
+
+    const collapseSearch = () => {
+        closeResults();
+        setExpanded(false);
+    };
+
+    const openResultAtIndex = (index) => {
+        const target = activeResults[index];
+        if (!target) return;
+        window.location.href = getPostUrl(target.post);
+    };
+
+    const renderResults = (items) => {
+        activeResults = items;
+        activeIndex = items.length ? 0 : -1;
+        results.innerHTML = '';
+
+        if (!items.length) {
+            results.hidden = false;
+            const empty = document.createElement('div');
+            empty.className = 'header-search-empty';
+            empty.textContent = 'No matches found';
+            results.appendChild(empty);
+            return;
+        }
+
+        items.forEach((entry, idx) => {
+            const item = document.createElement('button');
+            item.type = 'button';
+            item.className = 'header-search-item';
+            item.setAttribute('role', 'option');
+            item.setAttribute('aria-selected', idx === activeIndex ? 'true' : 'false');
+
+            const title = document.createElement('span');
+            title.className = 'header-search-item-title';
+            title.textContent = getPostDisplayTitle(entry.post);
+
+            const meta = document.createElement('span');
+            meta.className = 'header-search-item-meta';
+            meta.textContent = `${entry.post.city || ''} · ${getPostVibes(entry.post).map((v) => getVibeLabel(v)).join(' · ')}`;
+
+            item.appendChild(title);
+            item.appendChild(meta);
+
+            item.addEventListener('mouseenter', () => {
+                activeIndex = idx;
+                Array.from(results.children).forEach((child, childIndex) => {
+                    child.setAttribute('aria-selected', childIndex === activeIndex ? 'true' : 'false');
+                });
+            });
+
+            item.addEventListener('click', () => {
+                openResultAtIndex(idx);
+            });
+
+            results.appendChild(item);
+        });
+
+        results.hidden = false;
+    };
+
+    const updateActiveSelection = () => {
+        Array.from(results.children).forEach((child, idx) => {
+            child.setAttribute('aria-selected', idx === activeIndex ? 'true' : 'false');
+        });
+    };
+
+    const runSearch = () => {
+        if (!isExpanded) return;
+        const rawQuery = String(input.value || '').trim();
+        const normalizedQuery = normalizeSearchText(rawQuery);
+
+        if (normalizedQuery.length < 2) {
+            closeResults();
+            return;
+        }
+
+        getHeaderSearchIndex()
+            .then((indexEntries) => {
+                const wildcardRegex = toWildcardRegex(normalizedQuery);
+                const matches = indexEntries
+                    .map((entry) => ({
+                        entry,
+                        score: scoreSearchEntry(entry, normalizedQuery, wildcardRegex),
+                    }))
+                    .filter((item) => item.score > 0)
+                    .sort((a, b) => b.score - a.score || a.entry.title.localeCompare(b.entry.title))
+                    .slice(0, 8)
+                    .map((item) => item.entry);
+
+                renderResults(matches);
+            })
+            .catch(() => {
+                closeResults();
+            });
+    };
+
+    input.addEventListener('focus', () => {
+        getHeaderSearchIndex().catch(() => null);
+    });
+
+    trigger.addEventListener('click', () => {
+        if (isExpanded) {
+            collapseSearch();
+            return;
+        }
+        setExpanded(true);
+        getHeaderSearchIndex().catch(() => null);
+        input.focus();
+    });
+
+    input.addEventListener('input', () => {
+        clearTimeout(debounceId);
+        debounceId = setTimeout(runSearch, 100);
+    });
+
+    input.addEventListener('keydown', (event) => {
+        if (results.hidden) {
+            if (event.key === 'Enter') {
+                runSearch();
+            }
+            return;
+        }
+
+        if (event.key === 'ArrowDown') {
+            event.preventDefault();
+            if (!activeResults.length) return;
+            activeIndex = (activeIndex + 1) % activeResults.length;
+            updateActiveSelection();
+            return;
+        }
+
+        if (event.key === 'ArrowUp') {
+            event.preventDefault();
+            if (!activeResults.length) return;
+            activeIndex = (activeIndex - 1 + activeResults.length) % activeResults.length;
+            updateActiveSelection();
+            return;
+        }
+
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            if (activeResults.length) {
+                openResultAtIndex(activeIndex >= 0 ? activeIndex : 0);
+            }
+            return;
+        }
+
+        if (event.key === 'Escape') {
+            input.value = '';
+            collapseSearch();
+            trigger.focus();
+        }
+    });
+
+    input.addEventListener('blur', () => {
+        if (!String(input.value || '').trim()) {
+            closeResults();
+        }
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!searchWrap.contains(event.target)) {
+            if (!String(input.value || '').trim()) {
+                collapseSearch();
+            } else {
+                closeResults();
+            }
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && isExpanded) {
+            input.value = '';
+            collapseSearch();
+            trigger.focus();
+        }
+    });
 }
 
 function initCityMenu() {
@@ -1317,12 +1673,14 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         initAdsConsent();
         initCityMenu();
+        initHeaderSearch();
         initThemeToggle();
         vibeConfigReady.finally(fetchAndRenderGrids);
     });
 } else {
     initAdsConsent();
     initCityMenu();
+    initHeaderSearch();
     initThemeToggle();
     vibeConfigReady.finally(fetchAndRenderGrids);
 }
