@@ -491,7 +491,7 @@ function initCityMenu() {
     }
 
     if (isCityPage) {
-        nav.querySelectorAll('a.active, a[aria-current="page"]').forEach((link) => {
+        nav.querySelectorAll(':scope > a.active, :scope > a[aria-current="page"]').forEach((link) => {
             link.classList.remove('active');
             link.removeAttribute('aria-current');
         });
