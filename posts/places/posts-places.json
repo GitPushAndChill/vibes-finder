@@ -1871,5 +1871,30 @@
       "coffee_and_chill",
       "hidden_gems"
     ]
+  },
+  {
+    "place": "Kastan",
+    "city": "Hoofddorp",
+    "vibe": "beer_lovers",
+    "title": "Kastan",
+    "images": [
+      "images/places/kastan-hoofddorp.jpg",
+      "images/places/kastan-hoofddorp-2.jpg",
+      "images/places/kastan-hoofddorp-3.jpg"
+    ],
+    "short_description": "Kastan is the low-key cosiest biercafé in Hoofddorp — perfect for post-commute pints and chill hangs near the station. Trendy tunes, rustic vibes and loads of taps (they even flex a 1515 on draft) make it a must-visit biercafé Hoofddorp spot.",
+    "description": "Tucked right by the busy Hoofddorp station, Kastan vibes like a warm, renovated boerenschuur turned buzzy biercafé — think exposed beams, friendly crowds and a chill soundtrack that makes Thursday feel like the place-to-be. It's a social hang for groups, date nights or solo post-work brews, and it’s easy to swing by between trains and plans.\n\nBring your appetite: the menu leans comfy with burgers and hearty mains, plus a solid rotation of beers on tap (yep, they shout about a 1515 on tap). If you want fuss-free good times, good music and a lively crowd without pretension, Kastan is the easygoing, beer-lovers-approved spot in Hoofddorp.",
+    "coordinates": [
+      52.3038349,
+      4.695259099999999
+    ],
+    "adress": "Kruisweg 666, 2132 CJ Hoofddorp, Netherlands",
+    "created_on": "2026-04-02T12:34:00Z",
+    "updated_on": "2026-04-02T12:34:00Z",
+    "vibes": [
+      "beer_lovers",
+      "social",
+      "easygoing"
+    ]
   }
 ]
