@@ -1481,6 +1481,10 @@ html[data-theme='light'] .modal-content a:hover {
 
 .post-cta-nav .modal-nav-btn {
     flex: 1 1 0;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .post-cta-nav .modal-nav-btn-primary {
@@ -1776,6 +1780,17 @@ html[data-theme='light'] .modal-content a:hover {
     .post-detail-page .full-text {
         font-size: 0.98rem;
         line-height: 1.65;
+    }
+
+    .post-detail-page .post-cta-nav {
+        gap: 10px;
+    }
+
+    .post-detail-page .post-cta-nav .modal-nav-btn {
+        font-size: 0.82rem;
+        letter-spacing: 0;
+        line-height: 1.1;
+        padding: 11px 10px;
     }
 }
 
