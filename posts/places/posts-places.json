@@ -1896,28 +1896,5 @@
       "social",
       "easygoing"
     ]
-  },
-  {
-    "place": "The Vig",
-    "city": "Phoenix",
-    "vibe": "date_night",
-    "title": "The Vig",
-    "images": [
-      "images/places/the-vig-phoenix.jpg",
-      "images/places/the-vig-phoenix-2.jpg"
-    ],
-    "short_description": "A cozy restaurant in Phoenix where dinner easily slides into a long night of cocktails at a pretty, well-lit bar. Come for the drinks and relaxed evening energy—book ahead for dinner, it fills up late.",
-    "description": "Tucked into a busy stretch of central Phoenix, The Vig feels like the sort of place where a simple dinner becomes a lingering evening. The bar is the real draw: backlit bottles, low warm light and bartenders who know their cocktails. Food is solid but not the headline—think dependable plates that pair well with whatever the bartender recommends. Expect a buzzy, cozy room and a crowd that leans lively by night, which makes it perfect for relaxed date nights or a girls’ night out that doesn’t want to end early.\n\nDownside: The menu won’t wow adventurous foodies, and the space gets loud and crowded late—reservations are a must for dinner. If you want a quiet, sit-down meal or are traveling with small children, this isn’t the place; it’s better for evening drinks and social nights. For travelers from the Netherlands seeking a memorable American night out in Phoenix, The Vig is a good pick when you want atmosphere and cocktails more than culinary fireworks.",
-    "coordinates": [
-      33.455031,
-      -112.079327
-    ],
-    "adress": "606 N 4th Ave, Phoenix, AZ 85003, United States",
-    "created_on": "2026-04-04T10:30:00Z",
-    "updated_on": "2026-04-04T10:30:00Z",
-    "vibes": [
-      "date_night",
-      "social"
-    ]
   }
 ]
