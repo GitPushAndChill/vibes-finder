@@ -62,6 +62,12 @@
           <p class="long-desc">Yellow House is an alternative creative hub and café in Amsterdam with colorful interiors, exhibitions and curiosity-led social flow.</p>
         </div>
 
+        <div class="post-cta-intro">Not sure where to go next? Keep exploring:</div>
+        <div class="modal-article-nav post-cta-nav" aria-label="Explore related pages">
+          <a class="btn modal-nav-btn modal-nav-btn-primary" href="/city/amsterdam/" aria-label="Find your next spot in Amsterdam">✨ Find your next spot in Amsterdam</a>
+          <a class="btn modal-nav-btn modal-nav-btn-secondary" href="/vibes/index.html" aria-label="Browse all places and filter by vibe">🌍 Browse all places and filter by vibe</a>
+        </div>
+
         <section class="post-location-map" aria-label="Location map">
           <h2 class="post-location-map-title">Location</h2>
           <div id="map" style="height:360px; margin:16px 0 8px; border-radius:14px;"></div>
@@ -113,6 +119,11 @@
       var prev = slider.querySelector('.slider-control.prev');
       var next = slider.querySelector('.slider-control.next');
       var index = 0;
+      var touchStartX = 0;
+      var touchStartY = 0;
+      var touchEndX = 0;
+      var touchEndY = 0;
+      var swipeThreshold = 40;
 
       function render() {
         slides.forEach(function (img, i) {
@@ -127,6 +138,31 @@
 
       if (prev) prev.addEventListener('click', function () { go(-1); });
       if (next) next.addEventListener('click', function () { go(1); });
+
+      slider.addEventListener('touchstart', function (event) {
+        if (!event.touches || !event.touches.length) return;
+        touchStartX = event.touches[0].clientX;
+        touchStartY = event.touches[0].clientY;
+      }, { passive: true });
+
+      slider.addEventListener('touchend', function (event) {
+        if (!event.changedTouches || !event.changedTouches.length) return;
+        touchEndX = event.changedTouches[0].clientX;
+        touchEndY = event.changedTouches[0].clientY;
+
+        var deltaX = touchEndX - touchStartX;
+        var deltaY = touchEndY - touchStartY;
+
+        if (Math.abs(deltaX) < swipeThreshold) return;
+        if (Math.abs(deltaY) > Math.abs(deltaX)) return;
+
+        if (deltaX < 0) {
+          go(1);
+        } else {
+          go(-1);
+        }
+      }, { passive: true });
+
       render();
     })();
   </script>

@@ -66,6 +66,12 @@
 If you are building a list of the best places in the Netherlands for golden-hour hangouts, this Hoofddorp favorite deserves a spot. It works for casual group plans, spontaneous weekend outings, and anyone who wants a simple mix of nature, water, and summer energy.</p>
         </div>
 
+        <div class="post-cta-intro">Not sure where to go next? Keep exploring:</div>
+        <div class="modal-article-nav post-cta-nav" aria-label="Explore related pages">
+          <a class="btn modal-nav-btn modal-nav-btn-primary" href="/city/hoofddorp/" aria-label="Find your next spot in Hoofddorp">✨ Find your next spot in Hoofddorp</a>
+          <a class="btn modal-nav-btn modal-nav-btn-secondary" href="/vibes/index.html" aria-label="Browse all places and filter by vibe">🌍 Browse all places and filter by vibe</a>
+        </div>
+
         <section class="post-location-map" aria-label="Location map">
           <h2 class="post-location-map-title">Location</h2>
           <div id="map" style="height:360px; margin:16px 0 8px; border-radius:14px;"></div>
@@ -117,6 +123,11 @@ If you are building a list of the best places in the Netherlands for golden-hour
       var prev = slider.querySelector('.slider-control.prev');
       var next = slider.querySelector('.slider-control.next');
       var index = 0;
+      var touchStartX = 0;
+      var touchStartY = 0;
+      var touchEndX = 0;
+      var touchEndY = 0;
+      var swipeThreshold = 40;
 
       function render() {
         slides.forEach(function (img, i) {
@@ -131,6 +142,31 @@ If you are building a list of the best places in the Netherlands for golden-hour
 
       if (prev) prev.addEventListener('click', function () { go(-1); });
       if (next) next.addEventListener('click', function () { go(1); });
+
+      slider.addEventListener('touchstart', function (event) {
+        if (!event.touches || !event.touches.length) return;
+        touchStartX = event.touches[0].clientX;
+        touchStartY = event.touches[0].clientY;
+      }, { passive: true });
+
+      slider.addEventListener('touchend', function (event) {
+        if (!event.changedTouches || !event.changedTouches.length) return;
+        touchEndX = event.changedTouches[0].clientX;
+        touchEndY = event.changedTouches[0].clientY;
+
+        var deltaX = touchEndX - touchStartX;
+        var deltaY = touchEndY - touchStartY;
+
+        if (Math.abs(deltaX) < swipeThreshold) return;
+        if (Math.abs(deltaY) > Math.abs(deltaX)) return;
+
+        if (deltaX < 0) {
+          go(1);
+        } else {
+          go(-1);
+        }
+      }, { passive: true });
+
       render();
     })();
   </script>
