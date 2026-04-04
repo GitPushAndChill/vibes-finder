@@ -15,6 +15,9 @@
   <script src="/js/theme-init.js"></script>
   <link rel="stylesheet" href="/css/style.css" />
   <script src="/js/script.js" defer></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
 
   <title>Kus van de Cactus Haarlem – Quirky Cocktails and Relaxed Nights | Best Places to Visit in Haarlem</title>
   <meta name="description" content="Creative cocktail and bites bar with quirky drinks — cactus‑themed fun and creative sips for laid‑back nights. Discover why this is one of the best places to visit in Haarlem." />
@@ -59,6 +62,11 @@
           <p class="long-desc">Kus van de Cactus is a playful Haarlem cocktail-and-bites bar with quirky drinks and easygoing laid-back night energy.</p>
         </div>
 
+        <section class="post-location-map" aria-label="Location map">
+          <h2 class="post-location-map-title">Location</h2>
+          <div id="map" style="height:360px; margin:16px 0 8px; border-radius:14px;"></div>
+        </section>
+
         <div class="modal-meta-row">
           <div class="modal-footer-left">De Haasstraat 14, 2011 DW Haarlem</div>
           <div class="modal-footer-right"><span class="modal-vibe-chip"><span class="vibe-icon" aria-hidden="true">👯‍♀️</span><span>Easygoing</span></span></div>
@@ -90,6 +98,9 @@
       <p>© 2026 Website of GitPushAndChill</p>
     </div>
   </footer>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
   <script>
     (function () {

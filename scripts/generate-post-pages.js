@@ -296,13 +296,20 @@ async function main() {
     cityNameBySlug.get(a).localeCompare(cityNameBySlug.get(b))
   );
 
+  const formatLinkList = (links) => {
+    if (links.length === 0) return '';
+    if (links.length === 1) return links[0];
+    if (links.length === 2) return `${links[0]} and ${links[1]}`;
+    return `${links.slice(0, -1).join(', ')}, and ${links[links.length - 1]}`;
+  };
+
   for (const citySlug of citySlugs) {
     const cityName = cityNameBySlug.get(citySlug);
-    const otherLinks = citySlugs
-      .filter((slug) => slug !== citySlug)
-      .map((slug) => `<a href="/city/${slug}/">best places in ${escapeHtml(cityNameBySlug.get(slug))}</a>`)
-      .slice(0, 3)
-      .join(', ');
+    const otherLinks = formatLinkList(
+      ['amsterdam', 'rotterdam', 'utrecht', 'haarlem']
+        .filter((slug) => cityNameBySlug.has(slug))
+        .map((slug) => `<a href="/city/${slug}/">best places in ${escapeHtml(cityNameBySlug.get(slug))}</a>`)
+    );
 
     const cityHtml = replaceTokens(cityTemplate, {
       CITY_NAME: escapeHtml(cityName),

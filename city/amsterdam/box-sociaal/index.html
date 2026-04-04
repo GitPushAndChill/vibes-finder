@@ -15,6 +15,9 @@
   <script src="/js/theme-init.js"></script>
   <link rel="stylesheet" href="/css/style.css" />
   <script src="/js/script.js" defer></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
 
   <title>Box Sociaal Amsterdam – Hearty Plates with Hip Character | Best Places to Visit in Amsterdam</title>
   <meta name="description" content="Unpretentious spot with hearty plates and drinks — comfort food energy for lunch, dinner or drinks. Quite a hip place with a character. Discover why this is one of the best places to visit in Amsterdam." />
@@ -59,6 +62,11 @@
           <p class="long-desc">Box Sociaal is an unpretentious Amsterdam comfort-food favorite with hearty plates, drinks and a distinct hip personality.</p>
         </div>
 
+        <section class="post-location-map" aria-label="Location map">
+          <h2 class="post-location-map-title">Location</h2>
+          <div id="map" style="height:360px; margin:16px 0 8px; border-radius:14px;"></div>
+        </section>
+
         <div class="modal-meta-row">
           <div class="modal-footer-left">Plantage Middenlaan 30A, 1018 DG Amsterdam</div>
           <div class="modal-footer-right"><span class="modal-vibe-chip"><span class="vibe-icon" aria-hidden="true">👯‍♀️</span><span>Easygoing</span></span><span class="modal-vibe-chip"><span class="vibe-icon" aria-hidden="true">🥐</span><span>Cute Girl Brunch</span></span></div>
@@ -90,6 +98,9 @@
       <p>© 2026 Website of GitPushAndChill</p>
     </div>
   </footer>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
   <script>
     (function () {
