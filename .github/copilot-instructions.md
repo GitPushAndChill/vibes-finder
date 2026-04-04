@@ -60,6 +60,7 @@ When asked to add posts, return only ready-to-paste JSON objects that follow thi
   ],
   "adress": "",
   "created_on": "2026-03-10T12:00:00Z",
+  "updated_on": "2026-03-10T12:00:00Z",
   "vibes": [
     ""
   ]
