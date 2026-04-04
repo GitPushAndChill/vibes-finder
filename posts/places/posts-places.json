@@ -1896,5 +1896,29 @@
       "social",
       "easygoing"
     ]
+  },
+  {
+    "place": "Bar Bonnie",
+    "city": "Amsterdam",
+    "vibe": "date_night",
+    "title": "Bar Bonnie",
+    "images": [
+      "images/places/bar-bonnie-amsterdam.jpg",
+      "images/places/bar-bonnie-amsterdam-2.jpg"
+    ],
+    "short_description": "A lively bar in Amsterdam where cocktails steal the show — ideal for a date night or a girls’ night out. Visit for the buzzy atmosphere and well-crafted drinks that turn a simple dinner into a real night out.",
+    "description": "Bar Bonnie feels like a neighborhood spot that learned how to throw a good party: warm lighting, music that stays loud enough to keep energy up but low enough for conversation, and bartenders who know how to mix a memorable cocktail. The kitchen turns out solid, unfussy plates you can share, but the real reason to come is the drinks — inventive, balanced, and the kind you remember the next morning. It’s exactly the kind of place people hunting for the best night-out bars in the Netherlands will want on their list.\n\nDownside: the menu isn’t particularly original, and on weekend nights Bonnie gets packed — standing-room crowds and a wait for a table are common after midnight. If you want a quiet dinner, are dining with small children, or are after a culinary destination meal, skip the late shift here. Come when you’re after lively conversation, good cocktails, and a lively crowd rather than a slow, intimate evening.",
+    "coordinates": [
+      52.3511,
+      4.8583
+    ],
+    "adress": "Amstelveenseweg 226h, 1075 RN Amsterdam, Netherlands",
+    "created_on": "2026-04-04T09:15:00Z",
+    "updated_on": "2026-04-04T09:15:00Z",
+    "vibes": [
+      "date_night",
+      "social",
+      "easygoing"
+    ]
   }
 ]
