@@ -20,6 +20,7 @@ Every post object must include all of these fields:
 - `coordinates` (array): `[latitude, longitude]` as numbers.
 - `adress` (string): address text (keep key name exactly `adress`, matching existing data).
 - `created_on` (string): ISO-8601 UTC timestamp (example: `2026-03-10T12:00:00Z`).
+- `updated_on` (string): ISO-8601 UTC timestamp (example: `2026-03-10T12:00:00Z`).
 - `vibes` (array): one or more vibe keys from `content/vibes.yml`.
 
 ## Constraints
