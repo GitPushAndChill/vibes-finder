@@ -1195,16 +1195,16 @@ body > * {
     min-height: 36px;
     max-height: 36px;
     border-radius: var(--radius);
-    border: 1px solid rgba(198, 167, 110, 0.22);
-    background: rgba(15, 28, 26, 0.66);
-    color: var(--text-primary);
-    font-weight: 600;
-    font-size: 0.95rem;
+    border: 1px solid rgba(198, 167, 110, 0.16);
+    background: rgba(15, 28, 26, 0.54);
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.9rem;
     line-height: 1;
     white-space: nowrap;
     overflow: hidden;
     user-select: none;
-    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.34);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.24);
 }
 
 @media (max-width: 520px) {
@@ -1221,13 +1221,15 @@ body > * {
 
 @supports (background: color-mix(in srgb, red, blue)) {
     .vibe-badge {
-        background: color-mix(in srgb, var(--bg-primary) 66%, transparent);
-        border-color: color-mix(in srgb, var(--accent) 28%, transparent);
+        background: color-mix(in srgb, var(--bg-primary) 56%, transparent);
+        border-color: color-mix(in srgb, var(--accent) 20%, transparent);
+        color: color-mix(in srgb, var(--text-primary) 74%, var(--text-secondary));
     }
 }
 
 .vibe-badge-icon {
-    font-size: 1.05rem;
+    font-size: 1rem;
+    opacity: 0.9;
     flex: 0 0 auto;
 }
 

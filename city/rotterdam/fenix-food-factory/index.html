@@ -15,6 +15,9 @@
   <script src="/js/theme-init.js"></script>
   <link rel="stylesheet" href="/css/style.css" />
   <script src="/js/script.js" defer></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
 
   <title>Fenix Food Factory | Best Places to Visit in Rotterdam</title>
   <meta name="description" content="Fenix Food Factory Rotterdam is the go-to food market for artisan bites, craft beer, and chill waterfront vibes — perfect for golden-hour hangs. Low-key spot fo Discover why this is one of the best places to visit in Rotterdam." />
@@ -62,6 +65,11 @@
 During golden summertime the terrace fills up with sun-soaked crowds sipping cold beers and sharing plates while watching the water — a must-visit for beer lovers and anyone who vibes with casual outdoor hangs. Pop in for a quick bite, a brewery pairing, or a relaxed evening of discovering local eats.</p>
         </div>
 
+        <section class="post-location-map" aria-label="Location map">
+          <h2 class="post-location-map-title">Location</h2>
+          <div id="map" style="height:360px; margin:16px 0 8px; border-radius:14px;"></div>
+        </section>
+
         <div class="modal-meta-row">
           <div class="modal-footer-left">Nico Koomanskade 1025, 3072 LM Rotterdam, Netherlands</div>
           <div class="modal-footer-right"><span class="modal-vibe-chip"><span class="vibe-icon" aria-hidden="true">👯‍♀️</span><span>Easygoing</span></span><span class="modal-vibe-chip"><span class="vibe-icon" aria-hidden="true">🍺</span><span>Beer Lovers</span></span><span class="modal-vibe-chip"><span class="vibe-icon" aria-hidden="true">🌞</span><span>Golden Summertime</span></span></div>
@@ -93,6 +101,9 @@ During golden summertime the terrace fills up with sun-soaked crowds sipping col
       <p>© 2026 Website of GitPushAndChill</p>
     </div>
   </footer>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
   <script>
     (function () {

@@ -6,7 +6,7 @@
   "scripts": {
     "generate:post-pages": "node scripts/generate-post-pages.js",
     "prestart": "npm run generate:post-pages",
-    "start": "browser-sync start --config bs-config.json",
+    "start": "npx --yes browser-sync start --config bs-config.json",
     "prebuild": "npm run generate:post-pages",
     "build": "node scripts/build-static.js",
     "test": "echo \"Error: no test specified\" && exit 1"

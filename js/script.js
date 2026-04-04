@@ -1290,6 +1290,197 @@ function getVibeLabel(vibe) {
     return toTitleCase(normalized);
 }
 
+function escapeHtmlText(value) {
+    return String(value || '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+}
+
+function getMapTileThemeConfig() {
+    const activeTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    if (activeTheme === 'light') {
+        return {
+            url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+            attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+        };
+    }
+
+    return {
+        url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+        attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+    };
+}
+
+function createMapMarkerIcon(postVibes) {
+    const markerVibes = postVibes.length ? postVibes.slice(0, 3) : [];
+    const markerIconsHtml = markerVibes
+        .map((v) => `<span class="map-marker-emoji">${getVibeIcon(v) || '•'}</span>`)
+        .join('') || '<span class="map-marker-emoji">•</span>';
+
+    const markerIconCount = Math.max(1, markerVibes.length || 1);
+    const markerWidth = 18 + (markerIconCount * 14);
+
+    return L.divIcon({
+        html: `<div class="map-marker-pill">${markerIconsHtml}</div>`,
+        className: 'emoji-marker',
+        iconSize: [markerWidth, 30],
+        iconAnchor: [Math.round(markerWidth / 2), 15],
+    });
+}
+
+function buildMapPopupHtml(post, postVibes, includeOpenButton) {
+    const popupVibes = postVibes.length
+        ? `<div class="map-popup-vibes">${postVibes.map((v) => `${getVibeIcon(v)} ${getVibeLabel(v)}`).join(' • ')}</div>`
+        : '';
+
+    const imagePath = post?.images?.[0] ? toSitePath(post.images[0]) : '';
+    const imageHtml = imagePath
+        ? `<img class="map-popup-image" src="${escapeHtmlAttr(imagePath)}" alt="${escapeHtmlAttr(post.place || post.title || '')}" loading="lazy" decoding="async" fetchpriority="low" width="360" height="208">`
+        : '';
+
+    const openButtonHtml = includeOpenButton
+        ? '<button type="button" class="map-popup-open">Open post</button>'
+        : '';
+
+    return `
+        <div class="map-popup-card" role="button" tabindex="0" aria-label="Open post: ${escapeHtmlAttr(post.title || '')}">
+            <div class="map-popup-city">${escapeHtmlText(post.city || '')}</div>
+            <div class="map-popup-title">${escapeHtmlText(post.title || '')}</div>
+            ${popupVibes}
+            ${imageHtml}
+            ${openButtonHtml}
+        </div>
+    `;
+}
+
+function initVibeMap(containerId, posts, options = {}) {
+    const mapContainer = document.getElementById(containerId);
+    if (!mapContainer || mapContainer.dataset.mapInitialized === '1') return;
+    if (typeof window.L === 'undefined') return;
+
+    const mapPosts = Array.isArray(posts) ? posts : [];
+    const validPosts = mapPosts.filter((post) => {
+        const lat = Number(post?.coordinates?.[0]);
+        const lng = Number(post?.coordinates?.[1]);
+        return Number.isFinite(lat) && Number.isFinite(lng);
+    });
+    if (!validPosts.length) return;
+
+    const singleLocation = Boolean(options.singleLocation);
+    const map = L.map(containerId).setView([52.1, 5.3], singleLocation ? 14 : 7);
+    mapContainer.dataset.mapInitialized = '1';
+
+    let activeTileLayer = null;
+    const applyMapTileTheme = () => {
+        const tileTheme = getMapTileThemeConfig();
+        if (activeTileLayer) {
+            map.removeLayer(activeTileLayer);
+        }
+        activeTileLayer = L.tileLayer(tileTheme.url, {
+            attribution: tileTheme.attribution,
+        }).addTo(map);
+    };
+
+    applyMapTileTheme();
+    window.addEventListener('themechange', applyMapTileTheme);
+
+    const markerLayer = (!singleLocation && typeof L.markerClusterGroup === 'function')
+        ? L.markerClusterGroup({
+            showCoverageOnHover: false,
+            spiderfyOnMaxZoom: true,
+            disableClusteringAtZoom: 14,
+            maxClusterRadius: 50,
+        })
+        : L.layerGroup();
+
+    const includeOpenButton = options.includeOpenButton !== false;
+    const latLngs = [];
+
+    validPosts.forEach((post) => {
+        const lat = Number(post.coordinates[0]);
+        const lng = Number(post.coordinates[1]);
+        const latLng = [lat, lng];
+        latLngs.push(latLng);
+
+        const postVibes = getPostVibes(post);
+        const marker = L.marker(latLng, { icon: createMapMarkerIcon(postVibes) })
+            .bindPopup(buildMapPopupHtml(post, postVibes, includeOpenButton), { className: 'vibe-map-popup' });
+
+        marker.on('popupopen', (event) => {
+            const popupElement = event.popup.getElement();
+            if (!popupElement) return;
+
+            const cardElement = popupElement.querySelector('.map-popup-card');
+            const openButton = popupElement.querySelector('.map-popup-open');
+            const postUrl = getPostUrl(post);
+
+            const openPost = () => {
+                if (!postUrl) return;
+                map.closePopup();
+                window.location.href = postUrl;
+            };
+
+            if (includeOpenButton && openButton && !openButton.dataset.bound) {
+                openButton.dataset.bound = '1';
+                openButton.addEventListener('click', (clickEvent) => {
+                    clickEvent.preventDefault();
+                    clickEvent.stopPropagation();
+                    openPost();
+                });
+            }
+
+            if (includeOpenButton && cardElement && !cardElement.dataset.bound) {
+                cardElement.dataset.bound = '1';
+                cardElement.addEventListener('click', openPost);
+                cardElement.addEventListener('keydown', (keyEvent) => {
+                    if (keyEvent.key === 'Enter' || keyEvent.key === ' ') {
+                        keyEvent.preventDefault();
+                        openPost();
+                    }
+                });
+            }
+        });
+
+        markerLayer.addLayer(marker);
+    });
+
+    map.addLayer(markerLayer);
+
+    if (latLngs.length === 1) {
+        map.setView(latLngs[0], singleLocation ? 15 : 13);
+    } else {
+        map.fitBounds(L.latLngBounds(latLngs), { padding: [28, 28] });
+    }
+}
+
+function initPageMap(posts) {
+    const mapContainer = document.getElementById('map');
+    if (!mapContainer) return;
+
+    if (document.body.classList.contains('post-detail-page')) {
+        const currentPostPath = String(document.querySelector('.post-detail-card')?.dataset?.postUrl || '').trim();
+        const currentPost = currentPostPath
+            ? posts.find((post) => getPostUrl(post) === currentPostPath)
+            : null;
+
+        if (currentPost) {
+            initVibeMap('map', [currentPost], {
+                singleLocation: true,
+                includeOpenButton: false,
+            });
+        }
+        return;
+    }
+
+    initVibeMap('map', posts, {
+        singleLocation: false,
+        includeOpenButton: true,
+    });
+}
+
 function initBlogFilters() {
     const grid = document.querySelector('#all-posts-grid');
     if (!grid) return;
@@ -1628,6 +1819,9 @@ function fetchAndRenderGrids() {
 
             // index.html quick actions
             initIndexQuickActions();
+
+            // shared map renderer (index map + post-detail single-location map)
+            initPageMap(postsData);
         })
         .catch(err => {
             console.error('Failed to load posts:', err);

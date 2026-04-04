@@ -15,14 +15,17 @@
   <script src="/js/theme-init.js"></script>
   <link rel="stylesheet" href="/css/style.css" />
   <script src="/js/script.js" defer></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
 
   <title>Kastan | Best Places to Visit in Hoofddorp</title>
-  <meta name="description" content="Kastan is the cosiest biercafé in Hoofddorp — perfect for post-commute pints and chill hangs near the station. Discover why this is one of the best places to visit in Hoofddorp." />
+  <meta name="description" content="Looking for one of the best beer bars in Hoofddorp? Kastan is a warm, easygoing spot near Hoofddorp station with great draft beers and comfort food worth planni Discover why this is one of the best places to visit in Hoofddorp." />
   <meta name="keywords" content="best places to visit in Hoofddorp, what to do in Hoofddorp, Kastan, Hoofddorp travel guide" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://vibesfinder.nl/city/hoofddorp/kastan/" />
   <meta property="og:title" content="Kastan" />
-  <meta property="og:description" content="Kastan is the cosiest biercafé in Hoofddorp — perfect for post-commute pints and chill hangs near the station. Find more of the best places to visit in Hoofddorp." />
+  <meta property="og:description" content="Looking for one of the best beer bars in Hoofddorp? Kastan is a warm, easygoing spot near Hoofddorp station with great draft beers and comfort food worth planni Find more of the best places to visit in Hoofddorp." />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Vibes Finder" />
   <meta property="og:url" content="https://vibesfinder.nl/city/hoofddorp/kastan/" />
@@ -30,10 +33,10 @@
   <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Kastan | Hoofddorp" />
-  <meta name="twitter:description" content="Kastan is the cosiest biercafé in Hoofddorp — perfect for post-commute pints and chill hangs near the station. Discover one of the best places to visit in Hoofddorp." />
+  <meta name="twitter:description" content="Looking for one of the best beer bars in Hoofddorp? Kastan is a warm, easygoing spot near Hoofddorp station with great draft beers and comfort food worth planni Discover one of the best places to visit in Hoofddorp." />
   <meta name="twitter:image" content="https://vibesfinder.nl/images/places/kastan-hoofddorp.jpg" />
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristAttraction","name":"Kastan","description":"Tucked right by the busy Hoofddorp station, Kastan vibes like a warm, renovated boerenschuur turned buzzy biercafé — think exposed beams, friendly crowds and a chill soundtrack that makes Thursday feel like the place-to-be. The menu leans comfy with burgers and hearty mains, plus a solid rotation of beers on tap including a 1515 on draft, making it the easygoing, beer-lovers-approved spot in Hoofddorp.","image":["https://vibesfinder.nl/images/places/kastan-hoofddorp.jpg","https://vibesfinder.nl/images/places/kastan-hoofddorp-2.jpg","https://vibesfinder.nl/images/places/kastan-hoofddorp-3.jpg"],"address":"Kruisweg 666, 2132 CJ Hoofddorp, Netherlands","datePublished":"2026-04-02T12:34:00Z","dateModified":"2026-04-02T12:34:00Z","url":"https://vibesfinder.nl/city/hoofddorp/kastan/","geo":{"@type":"GeoCoordinates","latitude":52.3038349,"longitude":4.695259099999999}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristAttraction","name":"Kastan","description":"Kastan is the kind of place that makes a quick stop in Hoofddorp turn into a full evening: wooden interiors, friendly service, and a lively crowd that keeps the atmosphere relaxed without feeling sleepy. If you are searching for the best places to eat and drink in the Netherlands beyond Amsterdam, this local favorite delivers with solid burgers, hearty mains, and a strong tap list right by the station.","image":["https://vibesfinder.nl/images/places/kastan-hoofddorp.jpg","https://vibesfinder.nl/images/places/kastan-hoofddorp-2.jpg","https://vibesfinder.nl/images/places/kastan-hoofddorp-3.jpg"],"address":"Kruisweg 666, 2132 CJ Hoofddorp, Netherlands","datePublished":"2026-04-02T12:34:00Z","dateModified":"2026-04-02T12:34:00Z","url":"https://vibesfinder.nl/city/hoofddorp/kastan/","geo":{"@type":"GeoCoordinates","latitude":52.3038349,"longitude":4.695259099999999}}</script>
 </head>
 <body data-site-root="/" class="post-detail-page">
   <header class="site-header">
@@ -57,9 +60,14 @@
         <time class="meta">Hoofddorp</time>
 
         <div class="full-text">
-          <p class="short-desc">Kastan is the cosiest biercafé in Hoofddorp — perfect for post-commute pints and chill hangs near the station.</p>
-          <p class="long-desc">Tucked right by the busy Hoofddorp station, Kastan vibes like a warm, renovated boerenschuur turned buzzy biercafé — think exposed beams, friendly crowds and a chill soundtrack that makes Thursday feel like the place-to-be. The menu leans comfy with burgers and hearty mains, plus a solid rotation of beers on tap including a 1515 on draft, making it the easygoing, beer-lovers-approved spot in Hoofddorp.</p>
+          <p class="short-desc">Looking for one of the best beer bars in Hoofddorp? Kastan is a warm, easygoing spot near Hoofddorp station with great draft beers and comfort food worth planning your evening around.</p>
+          <p class="long-desc">Kastan is the kind of place that makes a quick stop in Hoofddorp turn into a full evening: wooden interiors, friendly service, and a lively crowd that keeps the atmosphere relaxed without feeling sleepy. If you are searching for the best places to eat and drink in the Netherlands beyond Amsterdam, this local favorite delivers with solid burgers, hearty mains, and a strong tap list right by the station.</p>
         </div>
+
+        <section class="post-location-map" aria-label="Location map">
+          <h2 class="post-location-map-title">Location</h2>
+          <div id="map" style="height:360px; margin:16px 0 8px; border-radius:14px;"></div>
+        </section>
 
         <div class="modal-meta-row">
           <div class="modal-footer-left">Kruisweg 666, 2132 CJ Hoofddorp, Netherlands</div>
@@ -92,6 +100,9 @@
       <p>© 2026 Website of GitPushAndChill</p>
     </div>
   </footer>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
   <script>
     (function () {
