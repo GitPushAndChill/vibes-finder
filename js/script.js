@@ -1612,6 +1612,15 @@ function initBlogFilters() {
             opt.textContent = `${emoji ? emoji + ' ' : ''}${getVibeLabel(v)}`;
             vibeSelect.appendChild(opt);
         });
+
+        const preselectedVibe = String(new URLSearchParams(window.location.search).get('vibe') || '').trim();
+        if (preselectedVibe) {
+            const matched = vibes.find((v) => v.toLowerCase() === preselectedVibe.toLowerCase());
+            if (matched) {
+                vibeSelect.value = matched;
+                if (vibeInput) vibeInput.value = matched;
+            }
+        }
     }
 
     const getActiveValue = (inputEl, selectEl) => {
@@ -1808,11 +1817,19 @@ function initBlogVibeGuide() {
 
 function applyVibeFilterFromGuide(vibeKey) {
     const grid = document.querySelector('#all-posts-grid');
-    if (!grid) return;
+    if (!grid) {
+        const targetUrl = toSitePath(`vibes/index.html?vibe=${encodeURIComponent(String(vibeKey || '').trim())}`);
+        window.location.href = targetUrl;
+        return;
+    }
 
     const vibeInput = document.querySelector('#vibe-filter');
     const vibeSelect = document.querySelector('#vibe-select');
-    if (!vibeInput && !vibeSelect) return;
+    if (!vibeInput && !vibeSelect) {
+        const targetUrl = toSitePath(`vibes/index.html?vibe=${encodeURIComponent(String(vibeKey || '').trim())}`);
+        window.location.href = targetUrl;
+        return;
+    }
 
     let selectedVibe = String(vibeKey || '').trim();
 
@@ -1859,6 +1876,8 @@ function fetchAndRenderGrids() {
             postsData = data;
             _sortedPostsCache = null; // invalidate sort cache on fresh data
             buildPostRouteMap(postsData);
+            // Enable the vibe descriptions modal on any page that has the trigger button.
+            initBlogVibeGuide();
             // Detect and render preview grid (index.html)
             if (document.querySelector('#preview-grid')) {
                 populatePostGrid({ containerSelector: '#preview-grid', limit: 3 });

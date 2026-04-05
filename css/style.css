@@ -740,6 +740,43 @@ body > * {
 .hero-title { margin: 0 0 var(--space-xs) 0; font-size: 2.35rem; font-family: var(--font-heading); letter-spacing: 0.01em; }
 .hero-sub { margin: 0; color: var(--text-secondary); }
 
+.recent-posts-intro {
+    margin: 0 0 var(--space-s) 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.recent-posts-hook {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.96rem;
+    font-weight: 600;
+}
+
+.recent-posts-find-vibe-btn {
+    width: 100%;
+    min-height: 46px;
+    padding: 0 18px;
+    white-space: nowrap;
+    line-height: 1;
+}
+
+#city-vibe-map h2,
+.recent-posts-title {
+    margin: 12px 0 0 0;
+    font-size: 1.34rem;
+    font-family: var(--font-heading);
+    letter-spacing: 0.01em;
+}
+
+.recent-posts-title {
+    width: 100%;
+    text-align: left;
+}
+
 /* Cards and previews */
 .preview-grid,
 .reviews-grid {
@@ -2033,6 +2070,26 @@ html[data-theme='light'] .map-popup-open:hover {
         gap: 8px;
         padding: 10px;
         border-radius: 12px;
+    }
+
+    .recent-posts-intro {
+        gap: 8px;
+    }
+
+    .recent-posts-hook {
+        font-size: 0.9rem;
+    }
+
+    .recent-posts-find-vibe-btn {
+        width: 100%;
+        min-height: 44px;
+        padding: 0 14px;
+        font-size: 0.96rem;
+    }
+
+    #city-vibe-map h2,
+    .recent-posts-title {
+        font-size: 1.16rem;
     }
 
     .filter-group {
