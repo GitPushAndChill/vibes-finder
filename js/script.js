@@ -1731,7 +1731,7 @@ function initBlogVibeGuide() {
     if (toggleBtn.dataset.bound === '1') return;
     toggleBtn.dataset.bound = '1';
 
-    toggleBtn.textContent = '👓 Learn about the Vibes 👓';
+    toggleBtn.textContent = '🔎✨ Find your vibe';
 
     toggleBtn.addEventListener('click', () => {
         const sourceDefinitions = (VIBE_DEFINITIONS_FROM_YAML && Object.keys(VIBE_DEFINITIONS_FROM_YAML).length)
@@ -1763,6 +1763,14 @@ function initBlogVibeGuide() {
         const guideList = document.createElement('div');
         guideList.className = 'vibe-guide-list';
 
+        guideList.addEventListener('click', (event) => {
+            const filterBtn = event.target.closest('.vibe-guide-filter-btn');
+            if (!filterBtn) return;
+            const vibeKey = String(filterBtn.getAttribute('data-vibe-key') || '').trim();
+            if (!vibeKey) return;
+            applyVibeFilterFromGuide(vibeKey);
+        });
+
         vibeEntries.forEach((entry) => {
             const item = document.createElement('article');
             item.className = 'vibe-guide-item';
@@ -1775,14 +1783,59 @@ function initBlogVibeGuide() {
             description.className = 'vibe-guide-item-desc';
             description.textContent = entry.definition;
 
+            const actions = document.createElement('div');
+            actions.className = 'vibe-guide-item-actions';
+
+            const filterBtn = document.createElement('button');
+            filterBtn.type = 'button';
+            filterBtn.className = 'btn vibe-guide-filter-btn';
+            filterBtn.setAttribute('data-vibe-key', entry.key);
+            filterBtn.setAttribute('aria-label', `Show places with the ${entry.label} vibe`);
+            filterBtn.textContent = `🔎 ${entry.label} places`;
+
+            actions.appendChild(filterBtn);
+
             item.appendChild(title);
             item.appendChild(description);
+            item.appendChild(actions);
             guideList.appendChild(item);
         });
 
         guideCard.appendChild(guideList);
         openModalWithCard(guideCard);
     });
+}
+
+function applyVibeFilterFromGuide(vibeKey) {
+    const grid = document.querySelector('#all-posts-grid');
+    if (!grid) return;
+
+    const vibeInput = document.querySelector('#vibe-filter');
+    const vibeSelect = document.querySelector('#vibe-select');
+    if (!vibeInput && !vibeSelect) return;
+
+    let selectedVibe = String(vibeKey || '').trim();
+
+    if (vibeSelect) {
+        const matched = Array.from(vibeSelect.options || []).find((option) =>
+            String(option.value || '').trim().toLowerCase() === selectedVibe.toLowerCase()
+        );
+        selectedVibe = matched ? matched.value : '';
+        vibeSelect.value = selectedVibe;
+    }
+
+    if (vibeInput) {
+        vibeInput.value = selectedVibe;
+    }
+
+    if (vibeSelect) {
+        vibeSelect.dispatchEvent(new Event('change', { bubbles: true }));
+    } else if (vibeInput) {
+        vibeInput.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+
+    closeModal();
+    grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function toTitleCase(value) {
