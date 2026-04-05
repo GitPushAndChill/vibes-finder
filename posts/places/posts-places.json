@@ -1149,29 +1149,6 @@
     "updated_on": "2026-03-10T13:42:00Z"
   },
   {
-    "place": "Bonnie",
-    "city": "Amsterdam",
-    "vibe": "social",
-    "title": "Bonnie Amsterdam – Dinner-to-Dance Date Night Favorite",
-    "images": [
-      "images/places/bonnie-amsterdam.jpg"
-    ],
-    "short_description": "Your go-to spot for dinner that turns into dance floor magic — start with bites and cocktails, end the night moving to unforgettable beats.",
-    "description": "Bonnie is a social Amsterdam dinner-and-drinks destination that naturally shifts into dance-floor energy later in the evening.",
-    "coordinates": [
-      52.3478,
-      4.8588
-    ],
-    "adress": "Amstelveenseweg 226h, 1075 RN Amsterdam",
-    "created_on": "2026-03-10T13:44:00Z",
-    "vibes": [
-      "social",
-      "easygoing",
-      "date_night"
-    ],
-    "updated_on": "2026-03-10T13:44:00Z"
-  },
-  {
     "place": "Bar Dancing Multipla",
     "city": "Amsterdam",
     "vibe": "social",
@@ -1741,8 +1718,8 @@
       "images/places/brouwerij-noordt-rotterdam-2.jpg",
       "images/places/brouwerij-noordt-rotterdam-3.jpg"
     ],
-    "short_description": "Brouwerij Noordt Rotterdam brewery serving laid-back craft beers with major chill vibes — perfect for beer lovers and crew hangs. Low-key spot near Zaagmolenkade where the brews and the vibe both slap.",
-    "description": "Brouwerij Noordt is a Rotterdam brewery with easygoing energy and solid craft-beer cred — think approachable, flavour-forward pours and a relaxed crowd. It’s a great place to kick back with friends, taste local brews, and soak up mellow industrial-chic vibes without any pretense.\n\nHit Noordt when you want a casual beer sesh or an intro to Dutch craft brewing; the spot is ideal for small groups, casual dates, or solo tasting sessions. Located on Zaagmolenkade, it’s easy to find via Maps and makes a solid stop on a Rotterdam brewery crawl.",
+    "short_description": "Looking for a brewery in Rotterdam with local character? Brouwerij Noordt is worth visiting for fresh house-brewed beers, a relaxed crowd, and an easy stop before or after a night out.",
+    "description": "Brouwerij Noordt is one of the most reliable easygoing beer spots in Rotterdam if you care more about what is in the glass than flashy decor. You get small-batch house brews, straightforward tasting options, and a converted industrial setting that feels casual without feeling dull, so it works well for both first-time craft beer drinkers and regulars.\n\nThe downside is that food options are limited and peak hours can get noisy and crowded, especially on Friday and Saturday evenings. Skip it if you want a full dinner experience, table service, or a quiet conversation-heavy night, and go when you are in the mood for beer-first plans with friends.",
     "coordinates": [
       51.9332794,
       4.486463200000001
@@ -1764,8 +1741,8 @@
       "images/places/fenix-rotterdam.jpg",
       "images/places/fenix-rotterdam-2.jpg"
     ],
-    "short_description": "Fenix Museum Rotterdam is a photogenic, harbor-side museum that slaps for culture-hungry explorers. Expect rotating exhibits, industrial-chic vibes, and major content-ready backdrops — perfect for your next museum day.",
-    "description": "Nestled on the Kop van Zuid waterfront, FENIX gives off low-key museum core with high-key photo ops. With rotating exhibits and striking industrial architecture, it’s a compact cultural stop that feeds your feed and curiosity alike. \n\nWhy go? It’s an easy visit for a chilled culture day: think curated displays, river views, and architecture that doubles as a backdrop for pics. Ideal for Gen Z museum-hoppers who want art, history, and vibes without the museum marathon — plus it’s super close to cafés and the rest of Rotterdam’s harbor scene.",
+    "short_description": "Searching for a museum in Rotterdam that feels modern and photogenic? FENIX is worth the stop for waterfront views, bold rotating exhibitions, and architecture that makes the visit feel cinematic.",
+    "description": "FENIX sits on Kop van Zuid and delivers a focused museum visit with strong visual impact: industrial architecture, changing exhibitions, and wide river views that make it easy to pair culture with a walk along the water. It is a smart pick for travelers building a list of the best places in the Netherlands for contemporary culture without committing to an all-day museum marathon.\n\nThe trade-off is that rotating shows can be uneven depending on timing, and popular weekends can feel crowded in the main spaces. Skip it if you are specifically looking for a classic old-masters collection or highly interactive family exhibits, and go when you want a shorter, design-forward culture stop.",
     "coordinates": [
       51.9021499,
       4.484190799999999
@@ -1786,8 +1763,8 @@
       "images/places/fenix-food-factory-rotterdam.jpg",
       "images/places/fenix-food-factory-rotterdam-2.jpg"
     ],
-    "short_description": "Fenix Food Factory Rotterdam is the go-to food market for artisan bites, craft beer, and chill waterfront vibes — perfect for golden-hour hangs. Low-key spot for weekend grub runs and community-style eating, ideal if you love trying local flavours.",
-    "description": "Fenix Food Factory is a laid-back food hall on Rotterdam's waterfront where local vendors dish out everything from fresh bread and tacos to specialty coffee and craft beer. The vibe is super easygoing with communal tables, indie producers, and an industrial-chic space that makes it perfect for group hangs or solo snack missions.\n\nDuring golden summertime the terrace fills up with sun-soaked crowds sipping cold beers and sharing plates while watching the water — a must-visit for beer lovers and anyone who vibes with casual outdoor hangs. Pop in for a quick bite, a brewery pairing, or a relaxed evening of discovering local eats.",
+    "short_description": "Need a food hall in Rotterdam where everyone can pick their own dish? Fenix Food Factory is worth it for local vendors, waterfront seating, and an easy beer-and-bites atmosphere.",
+    "description": "Fenix Food Factory works well when your group cannot agree on one cuisine, because the hall mixes bakeries, street-food counters, coffee, and craft beer in one compact waterfront location. The communal setup keeps things social, and on good-weather days the outdoor area adds a relaxed harbor vibe that makes it one of the more practical casual stops in Rotterdam.\n\nThe downside is that seating can be hard to find at peak times and the experience depends a lot on weather if you want to sit outside. Skip it if you want table service, a quiet meal, or a polished fine-dining atmosphere, and go when you are in the mood to sample different stalls and keep things informal.",
     "coordinates": [
       51.9020324,
       4.4867529
@@ -1811,8 +1788,8 @@
       "images/places/nederlands-fotomuseum-rotterdam-2.jpg",
       "images/places/nederlands-fotomuseum-rotterdam-3.jpg"
     ],
-    "short_description": "Nederlands Fotomuseum is the top photo museum in Rotterdam — a must-visit for anyone into contemporary and historic photography. Perfect for culture seekers and content creators looking for photo museum Rotterdam inspo and strong visual vibes.",
-    "description": "This national photo museum serves up rotating exhibitions that spotlight both Dutch and international photographers, archival projects, and storytelling through powerful images. It’s a compact cultural hub where you can dive into themed shows, discover emerging talents, and find fresh inspiration for your feed.\n\nGreat for a daytime cultural crawl or a creative date, the Fotomuseum offers accessible exhibits, a museum shop with unique finds, and plenty of moments made for photos. Easy to reach on Brede Hilledijk, it’s a solid stop for Gen-Z art lovers who want to mix learning with major visual energy.",
+    "short_description": "Looking for a photo museum in Rotterdam with real depth? Nederlands Fotomuseum is worth visiting for powerful rotating shows, Dutch visual history, and exhibitions that reward a slower look.",
+    "description": "Nederlands Fotomuseum is a strong choice for culture-focused visitors who want more than quick photo ops, with exhibitions that combine contemporary work, historical archives, and clear curatorial storytelling. If you are mapping out the best places in the Netherlands for visual culture, this museum gives you a deeper read on Dutch and international photography than most smaller galleries.\n\nThe downside is that some exhibitions are text-heavy and can feel slow if you are after instant, high-energy entertainment. Skip it if your group prefers interactive attractions or short attention-span activities, and go when you can give the work enough time to land.",
     "coordinates": [
       51.9027988,
       4.4951298
