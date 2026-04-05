@@ -122,8 +122,8 @@ Script: [scripts/ingest-email-post.js](scripts/ingest-email-post.js)
 
 ### Model Configuration
 
-- Default model is `gpt-5-mini`.
-- Workflow currently sets `OPENAI_MODEL: gpt-5-mini`.
+- Default model is `gpt-5.3`.
+- Workflow currently sets `OPENAI_MODEL: gpt-5.3`.
 - For this model, requests must use default temperature behavior (no custom temperature field).
 
 ### What Ingestion Does
