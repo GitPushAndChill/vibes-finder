@@ -477,7 +477,7 @@ function validateAndBuildPost({ draft, mapsContext, imagePaths, existingImages, 
   const fallbackCreatedOn = toIsoUtcTimestamp(existingPost?.created_on);
   const createdOn = toIsoUtcTimestamp(draft.created_on) || fallbackCreatedOn || now;
   const draftUpdatedOn = toIsoUtcTimestamp(draft.updated_on);
-  const updatedOn = draftUpdatedOn || (existingPost ? now : createdOn);
+  const updatedOn = existingPost ? now : (draftUpdatedOn || createdOn);
 
   return {
     place,
@@ -525,7 +525,8 @@ function mergePost(existing, incoming, now) {
   ]).slice(0, MAX_IMAGES_PER_POST);
 
   const preservedCreatedOn = toIsoUtcTimestamp(existing.created_on) || toIsoUtcTimestamp(incoming.created_on) || now;
-  const updatedOn = toIsoUtcTimestamp(incoming.updated_on) || now;
+  // Existing posts must always reflect the update moment.
+  const updatedOn = now;
 
   return {
     place: incoming.place || existing.place,
