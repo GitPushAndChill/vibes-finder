@@ -1897,5 +1897,29 @@
       "social",
       "easygoing"
     ]
+  },
+  {
+    "place": "De Tuin van de Vier Windstreken",
+    "city": "Rotterdam",
+    "vibe": "easygoing",
+    "title": "De Tuin van de Vier Windstreken",
+    "images": [
+      "images/places/de-tuin-van-de-vier-windstreken-rotterdam.jpg",
+      "images/places/de-tuin-van-de-vier-windstreken-rotterdam-2.jpg"
+    ],
+    "short_description": "Chill by the Kralingse Plas at De Tuin van de Vier Windstreken, the perfect restaurant in Rotterdam for sunny day cocktails and lake-side dining.",
+    "description": "On a sun-drenched day, De Tuin van de Vier Windstreken offers the ideal retreat with its expansive terrace overlooking the serene Kralingse Plas. With a light breeze carrying the scent of the lake, this spot is perfect for a refreshing cocktail or a relaxed dinner following a day basking by the water. The menu is varied, catering to those seeking both hearty meals and light bites, making it an inviting choice for a laid-back afternoon or evening.\n\nHowever, bear in mind that during busy summer weekends, the terrace can get packed, which might detract from the tranquility you seek. Opt for a weekday visit if crowds aren't your thing. Not recommended for those who prefer intimate, quiet settings, as the lively atmosphere might feel overwhelming.",
+    "coordinates": [
+      51.9322109,
+      4.5216374
+    ],
+    "adress": "11450 Baron Cameron Ave, Reston, VA 20190, United States",
+    "created_on": "2023-11-02T13:47:45Z",
+    "updated_on": "2023-11-02T13:47:45Z",
+    "vibes": [
+      "easygoing",
+      "outdoorsy",
+      "golden_summertime"
+    ]
   }
 ]
