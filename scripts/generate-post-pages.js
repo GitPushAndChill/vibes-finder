@@ -163,6 +163,154 @@ function renderVibeChips(post, iconByVibe) {
     .join('');
 }
 
+function getPostVibeKeys(post) {
+  const vibes = Array.isArray(post?.vibes) && post.vibes.length
+    ? post.vibes
+    : (post?.vibe ? [post.vibe] : []);
+
+  return Array.from(new Set(
+    vibes
+      .map((v) => normalizeVibeKey(v))
+      .filter(Boolean)
+  ));
+}
+
+function getPostCoordinates(post) {
+  if (!Array.isArray(post?.coordinates) || post.coordinates.length < 2) {
+    return null;
+  }
+
+  const lat = Number(post.coordinates[0]);
+  const lng = Number(post.coordinates[1]);
+  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
+
+  return { lat, lng };
+}
+
+function haversineKm(a, b) {
+  if (!a || !b) return Number.POSITIVE_INFINITY;
+
+  const toRad = (deg) => deg * (Math.PI / 180);
+  const earthRadiusKm = 6371;
+
+  const dLat = toRad(b.lat - a.lat);
+  const dLng = toRad(b.lng - a.lng);
+  const lat1 = toRad(a.lat);
+  const lat2 = toRad(b.lat);
+
+  const h = Math.sin(dLat / 2) ** 2
+    + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) ** 2;
+
+  return 2 * earthRadiusKm * Math.asin(Math.sqrt(h));
+}
+
+function sharedVibeCount(a, b) {
+  const aSet = new Set(getPostVibeKeys(a));
+  const bSet = new Set(getPostVibeKeys(b));
+  let count = 0;
+
+  aSet.forEach((key) => {
+    if (bSet.has(key)) count += 1;
+  });
+
+  return count;
+}
+
+function buildCityCentroids(routeList) {
+  const aggregate = new Map();
+
+  routeList.forEach((item) => {
+    if (!item.coords) return;
+
+    const existing = aggregate.get(item.citySlug) || {
+      latSum: 0,
+      lngSum: 0,
+      count: 0,
+    };
+
+    existing.latSum += item.coords.lat;
+    existing.lngSum += item.coords.lng;
+    existing.count += 1;
+    aggregate.set(item.citySlug, existing);
+  });
+
+  const centroids = new Map();
+  aggregate.forEach((value, citySlug) => {
+    if (!value.count) return;
+    centroids.set(citySlug, {
+      lat: value.latSum / value.count,
+      lng: value.lngSum / value.count,
+    });
+  });
+
+  return centroids;
+}
+
+function pickBestCandidate(currentItem, candidates) {
+  if (!Array.isArray(candidates) || !candidates.length) return null;
+
+  const currentCoords = currentItem.coords;
+
+  return candidates
+    .slice()
+    .sort((a, b) => {
+      const vibeDiff = sharedVibeCount(b.post, currentItem.post) - sharedVibeCount(a.post, currentItem.post);
+      if (vibeDiff !== 0) return vibeDiff;
+
+      const distA = haversineKm(currentCoords, a.coords);
+      const distB = haversineKm(currentCoords, b.coords);
+      if (distA !== distB) return distA - distB;
+
+      return String(a.post.title || '').localeCompare(String(b.post.title || ''));
+    })[0];
+}
+
+function findSimilarDestination(currentItem, routeList, cityCentroids) {
+  const otherItems = routeList.filter((item) => item.identity !== currentItem.identity);
+  if (!otherItems.length) return null;
+
+  const sameCitySharedVibe = otherItems.filter((item) =>
+    item.citySlug === currentItem.citySlug
+    && sharedVibeCount(item.post, currentItem.post) > 0
+  );
+  if (sameCitySharedVibe.length) {
+    return {
+      target: pickBestCandidate(currentItem, sameCitySharedVibe),
+      scope: 'same-city',
+    };
+  }
+
+  const currentRef = currentItem.coords || cityCentroids.get(currentItem.citySlug) || null;
+  let nearestCitySlug = '';
+  let nearestCityDistance = Number.POSITIVE_INFINITY;
+
+  cityCentroids.forEach((coords, citySlug) => {
+    if (citySlug === currentItem.citySlug) return;
+    const distance = haversineKm(currentRef, coords);
+    if (distance < nearestCityDistance) {
+      nearestCityDistance = distance;
+      nearestCitySlug = citySlug;
+    }
+  });
+
+  if (nearestCitySlug) {
+    const nearestCityItems = otherItems.filter((item) => item.citySlug === nearestCitySlug);
+    const nearestCitySharedVibe = nearestCityItems.filter((item) =>
+      sharedVibeCount(item.post, currentItem.post) > 0
+    );
+
+    return {
+      target: pickBestCandidate(currentItem, nearestCitySharedVibe.length ? nearestCitySharedVibe : nearestCityItems),
+      scope: 'nearby-city',
+    };
+  }
+
+  return {
+    target: pickBestCandidate(currentItem, otherItems),
+    scope: 'fallback',
+  };
+}
+
 function validatePost(post, idx) {
   const required = ['place', 'city', 'title', 'adress', 'description', 'short_description', 'created_on', 'updated_on'];
   const missing = required.filter((k) => !String(post?.[k] || '').trim());
@@ -226,12 +374,20 @@ async function main() {
     const identity = postIdentity(post);
     const route = routeMap.get(identity);
     if (!route) throw new Error(`No route generated for post identity: ${identity}`);
-    return { post, route, identity };
+    const [, citySlug] = route.split('/');
+    return {
+      post,
+      route,
+      identity,
+      citySlug,
+      coords: getPostCoordinates(post),
+    };
   });
 
+  const cityCentroids = buildCityCentroids(routeList);
+
   for (let i = 0; i < routeList.length; i += 1) {
-    const { post, route } = routeList[i];
-    const [, citySlug] = route.split('/');
+    const { post, route, citySlug } = routeList[i];
     const outDir = path.join(ROOT, route);
     await ensureDir(outDir);
 
@@ -248,6 +404,20 @@ async function main() {
     const nextLink = routeList.length > 1
       ? `<a class="btn modal-nav-btn" href="/${next.route}/index.html" aria-label="Open next article: ${escapeHtml(next.post.title)}">Next article &rarr;</a>`
       : '';
+
+    const similarDestination = findSimilarDestination(routeList[i], routeList, cityCentroids);
+    let similarPlaceLink = '';
+
+    if (similarDestination?.target) {
+      const target = similarDestination.target;
+      const targetCity = String(target.post.city || '').trim();
+      const targetPlace = String(target.post.place || target.post.title || '').trim();
+      const buttonLabel = similarDestination.scope === 'same-city'
+        ? `Similar vibe in ${escapeHtml(post.city)}`
+        : 'Similar vibe nearby';
+
+      similarPlaceLink = `<a class="btn modal-nav-btn modal-nav-btn-primary modal-nav-btn-similar3d" href="/${target.route}/index.html" aria-label="Open a similar vibe place: ${escapeHtml(targetPlace)} in ${escapeHtml(targetCity)}">${buttonLabel}</a>`;
+    }
 
     const metaDescription = String(post.short_description || post.description || '').trim().slice(0, 160);
     const jsonLd = {
@@ -285,6 +455,7 @@ async function main() {
       VIBE_CHIPS: renderVibeChips(post, vibeIcons),
       PREV_LINK: prevLink,
       NEXT_LINK: nextLink,
+      SIMILAR_PLACE_LINK: similarPlaceLink,
       CITY_PAGE_PATH: `/city/${citySlug}/`,
       POST_PATH: `/${route}/index.html`,
     });
