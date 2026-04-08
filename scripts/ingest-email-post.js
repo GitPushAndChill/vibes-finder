@@ -10,7 +10,7 @@ const MAX_IMAGES_PER_POST = 6;
 
 const OPENAI_ENDPOINT = process.env.OPENAI_ENDPOINT || 'https://api.openai.com/v1/chat/completions';
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || process.env.OPENAI_TOKEN || '';
-const OPENAI_MODEL = process.env.OPENAI_MODEL || 'gpt-5.3';
+const OPENAI_MODEL = process.env.OPENAI_MODEL || 'gpt-4o';
 const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY || '';
 
 let _sharp = null;
@@ -380,7 +380,7 @@ async function generatePostDraftWithOpenAI({
 
   if (!response.ok) {
     const details = await response.text();
-    fail(`OpenAI API error ${response.status}: ${details}`);
+    fail(`OpenAI API error ${response.status} for model ${OPENAI_MODEL}: ${details}`);
   }
 
   const data = await response.json();
