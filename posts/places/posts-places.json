@@ -1263,13 +1263,13 @@
   {
     "place": "Kagetsu III",
     "city": "Amsterdam",
-    "vibe": "easygoing",
-    "title": "Kagetsu III Amsterdam – Late-Night Izakaya for Date Nights",
+    "vibe": "date_night",
+    "title": "Kagetsu III",
     "images": [
       "images/places/kagetsu-iii-amsterdam.jpg"
     ],
-    "short_description": "Late‑night izakaya with warm plates, sake pours and buzzing energy — perfect for dinner followed by drinks.",
-    "description": "Kagetsu III is a late-night Amsterdam izakaya with warm plates, sake and buzzing atmosphere that fits a dinner-to-drinks flow.",
+    "short_description": "Looking for an izakaya in Amsterdam? Kagetsu III is worth it for late-night Japanese plates, sake, and a relaxed date-night mood that does not feel stiff.",
+    "description": "Kagetsu III is a solid Amsterdam izakaya when you want dinner to stretch naturally into drinks. The warm small plates, sake, and low-lit atmosphere make it a good fit for an easy date night or a catch-up that feels more intimate than a standard casual restaurant.\n\nThe downside is that it is more about mood than spectacle, and the location is not especially central for most visitors. Skip it if you want a big social scene or a quick cheap bite, and go when you want a slower evening built around sharing plates.",
     "coordinates": [
       52.3324,
       4.8728
@@ -1277,21 +1277,21 @@
     "adress": "Kastelenstraat 268, 1082 EJ Amsterdam",
     "created_on": "2026-03-10T13:56:00Z",
     "vibes": [
-      "easygoing",
-      "date_night"
+      "date_night",
+      "easygoing"
     ],
     "updated_on": "2026-03-10T13:56:00Z"
   },
   {
     "place": "Fort Negen",
     "city": "Amsterdam",
-    "vibe": "easygoing",
-    "title": "Fort Negen Amsterdam – Hidden Bakery for Fresh Morning Treats",
+    "vibe": "hidden_gems",
+    "title": "Fort Negen",
     "images": [
       "images/places/fort-negen-amsterdam.jpg"
     ],
-    "short_description": "Cozy bakery with warm, fresh bread straight from the oven — the perfect spot for a casual morning treat or a slow pastry break.",
-    "description": "Fort Negen is a cozy hidden-gem Amsterdam bakery with warm fresh bread and relaxed neighborhood morning rhythm.",
+    "short_description": "Looking for a bakery in Amsterdam that locals actually queue for? Fort Negen is worth visiting for excellent bread, standout pastries, and a neighborhood feel that lives up to the hype.",
+    "description": "Fort Negen is one of those Amsterdam bakeries that justifies the detour if you care about bread and pastries more than seating or spectacle. It feels local, the quality is consistently high, and it works especially well as a quick morning stop before wandering through West rather than a full brunch destination.\n\nThe downside is that it can sell out, get busy fast, and is not built for lingering. Skip it if you want a slow sit-down cafe experience, and go when you are happy grabbing something genuinely good and taking it with you.",
     "coordinates": [
       52.3721,
       4.8565
@@ -1299,8 +1299,9 @@
     "adress": "Jan Evertsenstraat 31, 1057 BM Amsterdam",
     "created_on": "2026-03-10T13:58:00Z",
     "vibes": [
-      "easygoing",
-      "hidden_gems"
+      "hidden_gems",
+      "coffee_and_chill",
+      "easygoing"
     ],
     "updated_on": "2026-03-10T13:58:00Z"
   },
@@ -1308,12 +1309,12 @@
     "place": "Kattencafé Kopjes",
     "city": "Amsterdam",
     "vibe": "hidden_gems",
-    "title": "Kattencafé Kopjes Amsterdam – Cozy Cat Café Hidden Gem",
+    "title": "Kattencafé Kopjes",
     "images": [
       "images/places/kattencafe-kopjes-amsterdam.jpg"
     ],
-    "short_description": "Cozy café where coffee meets cuddly cats — spend slow mornings with lattes, purring companions and a relaxed, whimsical vibe.",
-    "description": "Kattencafé Kopjes combines cozy coffee culture with cuddly cats in Amsterdam, creating a whimsical hidden-gem escape.",
+    "short_description": "Looking for a cat cafe in Amsterdam? Kattencafé Kopjes is worth a visit for a genuinely cozy setup, adoptable cats, and a quieter break from the usual cafe circuit.",
+    "description": "Kattencafé Kopjes works because it feels more thoughtful than gimmicky. You get the novelty of a cat cafe, but also a calm setting that suits slow coffee, soft conversation, and anyone who would rather spend an hour around cats than in another packed Amsterdam brunch spot.\n\nThe downside is obvious: if you are not into cats, allergies, or slower-paced cafes, this place is not for you. Skip it if you want a fast coffee run or a big food menu, and go when the cats are part of the point.",
     "coordinates": [
       52.3705,
       4.8521
@@ -1331,12 +1332,12 @@
     "place": "'Amsterdecks': drijvende vlonder in het Nieuwe Meer",
     "city": "Amsterdam",
     "vibe": "outdoorsy",
-    "title": "Amsterdecks Amsterdam – Floating Summer Secret at Nieuwe Meer",
+    "title": "'Amsterdecks': drijvende vlonder in het Nieuwe Meer",
     "images": [
       "images/places/amsterdecks-amsterdam.jpg"
     ],
-    "short_description": "Floating wooden decks at Nieuwe Meer — sun‑soaked hangout for dips, drinks and chill lakeside energy that feels like a local secret.",
-    "description": "Amsterdecks offers floating wooden decks at Nieuwe Meer in Amsterdam with sun, swims and hidden local lakeside energy.",
+    "short_description": "Looking for a swimming spot in Amsterdam that feels more local than city beach? Amsterdecks is worth it for lake dips, sunbathing, and laid-back summer hours by the water.",
+    "description": "Amsterdecks is one of the better warm-weather escapes in Amsterdam if you want open water and a less curated atmosphere than the usual terrace scene. The floating decks at Nieuwe Meer make it easy to swim, sit in the sun, and spend half a day outside without overplanning anything.\n\nThe downside is that comfort and facilities are limited, and the whole experience depends heavily on weather. Skip it when temperatures are mediocre or you want food and service close by, and go when sunshine and swimming are the main plan.",
     "coordinates": [
       52.3305,
       4.8409
@@ -1345,21 +1346,21 @@
     "created_on": "2026-03-10T14:02:00Z",
     "vibes": [
       "outdoorsy",
-      "hidden_gems",
-      "golden_summertime"
+      "golden_summertime",
+      "hidden_gems"
     ],
     "updated_on": "2026-03-10T14:02:00Z"
   },
   {
     "place": "Strandzuid",
     "city": "Amsterdam",
-    "vibe": "easygoing",
-    "title": "Strandzuid Amsterdam – City Beach Club for Golden Hour Drinks",
+    "vibe": "golden_summertime",
+    "title": "Strandzuid",
     "images": [
       "images/places/strandzuid-amsterdam.jpg"
     ],
-    "short_description": "Beach‑club meets city park with sandy vibes, casual bites and refreshing drinks — bring shades, friends, and open‑air energy that stretches through golden hour.",
-    "description": "Strandzuid blends city-park accessibility with beach-club atmosphere in Amsterdam for open-air drinks and golden-hour social moments.",
+    "short_description": "Looking for a summer terrace in Amsterdam? Strandzuid is worth it for sandy city-beach energy, easy drinks, and one of the more reliable sunny-day hangouts.",
+    "description": "Strandzuid is an easy Amsterdam choice when the weather turns good and you want people, drinks, and open-air energy without leaving the city. The sand, waterfront setting, and large terrace make it work well for after-work drinks, group hangs, or a low-effort date that still feels summery.\n\nThe downside is that it can feel busy, polished, and a little predictable at peak times. Skip it if you want a hidden spot or quiet conversation, and go when convenience and warm-weather atmosphere matter more than originality.",
     "coordinates": [
       52.3438,
       4.8896
@@ -1367,9 +1368,9 @@
     "adress": "Europaplein 22, 1078 GZ Amsterdam",
     "created_on": "2026-03-10T14:04:00Z",
     "vibes": [
+      "golden_summertime",
       "easygoing",
-      "beer_lovers",
-      "golden_summertime"
+      "social"
     ],
     "updated_on": "2026-03-10T14:04:00Z"
   },
@@ -1377,12 +1378,12 @@
     "place": "Salvo Basement",
     "city": "Amsterdam",
     "vibe": "hidden_gems",
-    "title": "Salvo Basement Amsterdam – Hidden Lunch Spot for Croissant Sandwiches",
+    "title": "Salvo Basement",
     "images": [
       "images/places/salvo-basement-amsterdam.jpg"
     ],
-    "short_description": "Hip croissant-sandwich spot with a curated selection of tasty desserts - a perfect light lunch spot or cozy space for a catch up with a friend.",
-    "description": "Salvo Basement is a hidden-gem Amsterdam lunch spot known for croissant sandwiches, curated desserts and cozy catch-up atmosphere.",
+    "short_description": "Looking for a lunch spot in Amsterdam that feels a bit under the radar? Salvo Basement is worth it for croissant sandwiches, good desserts, and a cozy setup for a casual catch-up.",
+    "description": "Salvo Basement is the kind of Amsterdam lunch spot that works best when you want something lighter but still memorable. The croissant sandwiches and curated sweets give it more personality than a standard cafe lunch, and the tucked-away feel makes it a good pick for an easy one-on-one catch-up.\n\nThe downside is that it is not a place for a big meal or a loud group hang, and seating can feel limited. Skip it if you are very hungry or need a full restaurant experience, and go when a stylish light lunch is enough.",
     "coordinates": [
       52.3638,
       4.898
@@ -1391,20 +1392,21 @@
     "created_on": "2026-03-10T14:06:00Z",
     "vibes": [
       "hidden_gems",
-      "easygoing"
+      "easygoing",
+      "cute_girl_brunch"
     ],
     "updated_on": "2026-03-10T14:06:00Z"
   },
   {
     "place": "Blin Queen",
     "city": "Amsterdam",
-    "vibe": "easygoing",
-    "title": "Blin Queen Amsterdam – Cozy Pancakes with a Date-Night Twist",
+    "vibe": "cute_girl_brunch",
+    "title": "Blin Queen",
     "images": [
       "images/places/blin-queen-amsterdam.jpg"
     ],
-    "short_description": "Eastern European-inspired pancakes with coffee or wine — playful flavors, cozy corners, and a brunch twist that surprises your taste buds. Offers occasional live music evenings.",
-    "description": "Blin Queen serves Eastern European-inspired pancakes in Amsterdam with playful flavors, cozy corners and occasional live-music evenings.",
+    "short_description": "Looking for brunch in Amsterdam that feels different from the usual eggs-and-sourdough routine? Blin Queen is worth a stop for blini, cozy interiors, and a menu with more personality than most brunch spots.",
+    "description": "Blin Queen stands out in Amsterdam because it offers something less predictable than the standard brunch formula. The Eastern European influence, sweet-and-savory pancake options, and intimate setup make it a good fit for a slower brunch, a casual date, or a coffee stop that feels slightly more special.\n\nThe downside is that it is more niche than broad-appeal, so it may not win over anyone who just wants a classic full breakfast. Skip it if your group is picky or in a rush, and go when you are happy trying something a little different.",
     "coordinates": [
       52.3652,
       4.8996
@@ -1412,21 +1414,22 @@
     "adress": "Amstel 102, 1017 AD Amsterdam",
     "created_on": "2026-03-10T14:08:00Z",
     "vibes": [
-      "easygoing",
-      "date_night"
+      "cute_girl_brunch",
+      "date_night",
+      "easygoing"
     ],
     "updated_on": "2026-03-10T14:08:00Z"
   },
   {
     "place": "Cafe the Minds",
     "city": "Amsterdam",
-    "vibe": "easygoing",
-    "title": "Cafe the Minds Amsterdam – Alternative Gothic Bar for Social Nights",
+    "vibe": "alternative",
+    "title": "Cafe the Minds",
     "images": [
       "images/places/cafe-the-minds-amsterdam.jpg"
     ],
-    "short_description": "Gothic bar serving beers in a bold, slightly chaotic setting — perfect for late evening drinks and hangout with friends.You might feel like you’ve stepped into a metal band backstage - it is full of surprises.",
-    "description": "Cafe the Minds is a bold and slightly chaotic Amsterdam gothic bar, known for social late-evening drinks and alternative atmosphere.",
+    "short_description": "Looking for an alternative bar in Amsterdam? Cafe the Minds is worth it for its gothic energy, unpolished personality, and a crowd that feels far from mainstream nightlife.",
+    "description": "Cafe the Minds is a good Amsterdam bar if you want something darker, weirder, and less curated than the usual central nightlife spots. The gothic interior, rougher edges, and social late-night atmosphere give it actual character, especially if bland bars are exactly what you are trying to avoid.\n\nThe downside is that comfort is not the point, and the vibe can feel chaotic if you were hoping for an easy, polished night out. Skip it if you want stylish cocktails or calm conversation, and go when you want atmosphere with attitude.",
     "coordinates": [
       52.3706,
       4.8864
@@ -1434,9 +1437,9 @@
     "adress": "Spuistraat 245, 1012 VP Amsterdam",
     "created_on": "2026-03-10T14:10:00Z",
     "vibes": [
-      "easygoing",
+      "alternative",
       "social",
-      "alternative"
+      "easygoing"
     ],
     "updated_on": "2026-03-10T14:10:00Z"
   },
@@ -1444,12 +1447,12 @@
     "place": "Satchmo",
     "city": "Amsterdam",
     "vibe": "classy",
-    "title": "Satchmo Amsterdam – Jazz Cocktails and Refined Date-Night Energy",
+    "title": "Satchmo",
     "images": [
       "images/places/satchmo-amsterdam.jpg"
     ],
-    "short_description": "Jazz-infused cocktail bar and restaurant with refined cocktails and smooth tunes — elegant, intimate energy that makes every evening feel special.",
-    "description": "Satchmo combines jazz-infused dining and refined cocktails in Amsterdam with elegant intimate atmosphere made for date nights.",
+    "short_description": "Looking for a cocktail bar in Amsterdam with a polished date-night feel? Satchmo is worth it for jazz mood, refined drinks, and a room that feels intentionally dressed up.",
+    "description": "Satchmo is one of the better Amsterdam picks when you want an evening that feels a bit elevated without turning stiff. The jazz influence, refined cocktails, and intimate setting make it especially good for date night or for anyone who wants atmosphere to matter as much as the drinks.\n\nThe downside is that it leans more polished than spontaneous, and it may feel too formal if you just want a low-key round somewhere casual. Skip it for a quick drink in sneakers, and go when you want the night to feel considered.",
     "coordinates": [
       52.3697,
       4.8928
@@ -1466,12 +1469,12 @@
     "place": "Brouwerij 't IJ",
     "city": "Amsterdam",
     "vibe": "beer_lovers",
-    "title": "Brouwerij 't IJ Amsterdam – Windmill Brewery and Tastings",
+    "title": "Brouwerij 't IJ",
     "images": [
       "images/places/brouwerij-t-ij-amsterdam.jpg"
     ],
-    "short_description": "Iconic windmill brewery with house-made beers and tasting sessions — hop-forward fun and relaxed local charm in every sip.",
-    "description": "Brouwerij 't IJ is Amsterdam’s iconic windmill brewery with house-made beers and tasting sessions in an easygoing local setting.",
+    "short_description": "Looking for a brewery in Amsterdam that feels actually worth the stop? Brouwerij 't IJ stands out for local beer, windmill views, and an easy tasting-room atmosphere.",
+    "description": "Brouwerij 't IJ is one of the most reliable beer stops in Amsterdam, and not just because of the windmill next to it. The house-brewed beers are the main reason to go, the tasting setup is straightforward, and it works well for visitors who want something distinctly local without overcomplicating the plan.\n\nThe downside is that it is a known spot, so it can feel touristy and busy, especially in good weather. Skip it if you want a hidden beer bar or a quieter local pub, and go when you are happy with a classic Amsterdam brewery experience.",
     "coordinates": [
       52.3667,
       4.925
@@ -1487,13 +1490,13 @@
   {
     "place": "BADHUS Social Sauna",
     "city": "Amsterdam",
-    "vibe": "do_mode",
-    "title": "BADHUS Social Sauna Amsterdam – Nordic Wellness in Noord",
+    "vibe": "easygoing",
+    "title": "BADHUS Social Sauna",
     "images": [
       "images/places/badhus-social-sauna-amsterdam.jpg"
     ],
-    "short_description": "Nordic-style niche sauna and wellness space — unwind in warm waters, enjoy steam rituals, and step out refreshed and energized.",
-    "description": "BADHUS Social Sauna brings Nordic-style wellness to Amsterdam Noord with warm waters, steam rituals and restorative social calm.",
+    "short_description": "Looking for a social sauna in Amsterdam? BADHUS is worth visiting for its Nordic setup, calm crowd, and easy reset when city plans feel too loud.",
+    "description": "BADHUS Social Sauna is one of the more interesting wellness spots in Amsterdam if you want something less polished-spa, more social reset. The Nordic-inspired setup, shared heat rooms, and low-key Noord atmosphere make it a good pick for decompressing with a friend or stretching a slow afternoon into the evening.\n\nThe downside is that it is not the place for privacy, silence, or a luxury treatment-heavy day. Skip it if you want a plush spa experience or you are not in the mood to share space with other people, and go when you want warmth, conversation, and a simple recharge.",
     "coordinates": [
       52.3995,
       4.9097
@@ -1501,21 +1504,21 @@
     "adress": "Papaverhoek 31, 1032 JZ Amsterdam",
     "created_on": "2026-03-10T14:16:00Z",
     "vibes": [
-      "do_mode",
-      "easygoing"
+      "easygoing",
+      "do_mode"
     ],
     "updated_on": "2026-03-10T14:16:00Z"
   },
   {
     "place": "Stretch and Fold",
     "city": "Amsterdam",
-    "vibe": "easygoing",
-    "title": "Stretch and Fold Amsterdam – Yoga, Sauna and Mindful Recharge",
+    "vibe": "do_mode",
+    "title": "Stretch and Fold",
     "images": [
       "images/places/stretch-and-fold-amsterdam.jpg"
     ],
-    "short_description": "Wellness hub with yoga, sauna, swimming pool, and calm spaces — relax, recharge, and enjoy a full day of mindful indulgence.",
-    "description": "Stretch and Fold is an Amsterdam wellness hub with yoga, sauna, pool and calm spaces for a full-day mindful recharge.",
+    "short_description": "Need a yoga and sauna spot in Amsterdam? Stretch and Fold stands out for its full reset setup, from classes to cold dips and post-session calm.",
+    "description": "Stretch and Fold works best when you want wellness to be the plan, not just a quick add-on. Between yoga, sauna, the pool, and the calmer pace of Amsterdam Noord, it is an easy place to spend a few hours resetting, especially if you like structured self-care rather than a rushed workout.\n\nThe trade-off is that it can feel pricey if you only use one part of the space, and it is not ideal when you are short on time or just want coffee and a casual hang. Skip it on a packed schedule, and go when you can give the experience enough time to feel worth it.",
     "coordinates": [
       52.4002,
       4.9049
@@ -1523,21 +1526,21 @@
     "adress": "Papaverhof 71C, 1032 LX Amsterdam",
     "created_on": "2026-03-10T14:18:00Z",
     "vibes": [
-      "easygoing",
-      "do_mode"
+      "do_mode",
+      "easygoing"
     ],
     "updated_on": "2026-03-10T14:18:00Z"
   },
   {
     "place": "Kometen Brood & Cafe",
     "city": "Amsterdam",
-    "vibe": "easygoing",
-    "title": "Kometen Brood & Cafe Amsterdam – Hidden Noord Bakery Coffee Stop",
+    "vibe": "coffee_and_chill",
+    "title": "Kometen Brood & Cafe",
     "images": [
       "images/places/kometen-brood-and-cafe-amsterdam.jpg"
     ],
-    "short_description": "Neighborhood café with heavenly bread, pastries and coffee — perfect for slow mornings, cozy chats, or lingering with a newspaper.",
-    "description": "Kometen Brood & Cafe is a neighborhood Amsterdam Noord café known for bread, pastries and coffee in an easy hidden-gem rhythm.",
+    "short_description": "Looking for a bakery cafe in Amsterdam Noord? Kometen is worth the detour for fresh bread, strong coffee, and the kind of slow morning that actually feels local.",
+    "description": "Kometen Brood & Cafe is the sort of Amsterdam Noord bakery cafe that makes you want to stay for one more coffee. The bread and pastries are the real reason to come, but the relaxed room and neighborhood pace make it especially good for a slow breakfast, a solo reading stop, or an easy catch-up away from the busier central districts.\n\nThe downside is that it is more about quality and atmosphere than a big all-day menu, and it can feel too quiet if you want buzz or a long sit-down lunch. Skip it when you need variety or a lively crowd, and go when coffee and bakery quality matter most.",
     "coordinates": [
       52.4017,
       4.9028
@@ -1545,9 +1548,9 @@
     "adress": "Ms. van Riemsdijkweg 2, 1033 RD Amsterdam",
     "created_on": "2026-03-10T14:20:00Z",
     "vibes": [
-      "easygoing",
+      "coffee_and_chill",
       "hidden_gems",
-      "coffee_and_chill"
+      "easygoing"
     ],
     "updated_on": "2026-03-10T14:20:00Z"
   },
@@ -1555,12 +1558,12 @@
     "place": "Yellow House",
     "city": "Amsterdam",
     "vibe": "alternative",
-    "title": "Yellow House Amsterdam – Creative Café and Exhibition Hub",
+    "title": "Yellow House",
     "images": [
       "images/places/yellow-house-amsterdam.jpg"
     ],
-    "short_description": "Creative hub and café with artsy vibes — colorful interiors, unique exhibitions, and a space that sparks curiosity and casual exploration.",
-    "description": "Yellow House is an alternative creative hub and café in Amsterdam with colorful interiors, exhibitions and curiosity-led social flow.",
+    "short_description": "Searching for an alternative cafe in Amsterdam? Yellow House stands out for its exhibitions, creative crowd, and the feeling that something unexpected might be happening inside.",
+    "description": "Yellow House is a good Amsterdam pick when a standard cafe feels too predictable. The mix of art, events, colorful interiors, and creative energy gives it more personality than most places around Westerpark, so it works well if you like spaces where you can drink something simple and still feel like you have found a scene.\n\nThe downside is that the atmosphere can matter more than comfort, and if there is no event on, the visit may feel lighter than you hoped. Skip it if you want polished service or a straightforward coffee stop, and go when you are in the mood for something more experimental.",
     "coordinates": [
       52.3901,
       4.8736
@@ -1569,6 +1572,7 @@
     "created_on": "2026-03-10T14:22:00Z",
     "vibes": [
       "alternative",
+      "culture_craving",
       "easygoing"
     ],
     "updated_on": "2026-03-10T14:22:00Z"
@@ -1576,13 +1580,13 @@
   {
     "place": "TonTon Club Westergas",
     "city": "Amsterdam",
-    "vibe": "easygoing",
-    "title": "TonTon Club Westergas Amsterdam – Arcade Bar Game Night Favorite",
+    "vibe": "do_mode",
+    "title": "TonTon Club Westergas",
     "images": [
       "images/places/tonton-club-westergas-amsterdam.jpg"
     ],
-    "short_description": "Arcade bar meets pinball and gaming heaven — playful competition, craft drinks, and late-night energy that turns friends into challengers.",
-    "description": "TonTon Club Westergas mixes arcade and pinball competition with drinks in Amsterdam, creating playful do-mode energy for groups.",
+    "short_description": "Looking for an arcade bar in Amsterdam? TonTon Club Westergas is worth it for retro games, good group energy, and a night out that stays playful instead of predictable.",
+    "description": "TonTon Club Westergas is one of the easiest group-night ideas in Amsterdam because it gives everyone something to do straight away. Between arcade machines, pinball, drinks, and the casual Westergas setting, it works especially well for birthdays, first dates that need an activity, or friends who do not want to spend the whole night just sitting at a bar.\n\nThe downside is that it can get loud, crowded, and slightly chaotic once the evening kicks in. Skip it if you want a quiet conversation or a polished cocktail night, and go when you are happy trading calm for competition and movement.",
     "coordinates": [
       52.3859,
       4.8686
@@ -1590,8 +1594,9 @@
     "adress": "Polonceaukade 27, 1014 DA Amsterdam",
     "created_on": "2026-03-10T14:24:00Z",
     "vibes": [
+      "do_mode",
       "easygoing",
-      "do_mode"
+      "social"
     ],
     "updated_on": "2026-03-10T14:24:00Z"
   },
@@ -1599,12 +1604,12 @@
     "place": "Blast Galaxy",
     "city": "Amsterdam",
     "vibe": "do_mode",
-    "title": "Blast Galaxy Amsterdam – Futuristic Laser Tag Experience",
+    "title": "Blast Galaxy",
     "images": [
       "images/places/blast-galaxy-amsterdam.jpg"
     ],
-    "short_description": "Futuristic indoor laser tag arena — immersive games, adrenaline-charged fun, and high-energy experiences that last well into the evening.",
-    "description": "Blast Galaxy is a futuristic indoor laser-tag arena in Amsterdam built for immersive high-energy sessions and competitive fun.",
+    "short_description": "Want laser tag in Amsterdam that actually feels fun for adults too? Blast Galaxy is worth booking for high-energy rounds, group competition, and a solid rainy-day plan.",
+    "description": "Blast Galaxy is a practical Amsterdam pick when your group wants an activity that gets everyone involved fast. The futuristic arena and team format make it easy to lean into the competition, so it works for birthdays, team outings, or nights when you want to do something more active than dinner and drinks.\n\nThe trade-off is that it is loud, physical, and not especially subtle, so it will not suit anyone looking for a relaxed or conversation-heavy plan. Skip it if your group wants calm, and go when you want movement, noise, and a bit of chaos.",
     "coordinates": [
       52.3884,
       4.8773
@@ -1613,6 +1618,7 @@
     "created_on": "2026-03-10T14:26:00Z",
     "vibes": [
       "do_mode",
+      "social",
       "little_ones"
     ],
     "updated_on": "2026-03-10T14:26:00Z"
@@ -1620,13 +1626,13 @@
   {
     "place": "Back to Black",
     "city": "Amsterdam",
-    "vibe": "easygoing",
-    "title": "Back to Black Amsterdam – Minimal Specialty Coffee for Dog Lovers",
+    "vibe": "coffee_and_chill",
+    "title": "Back to Black Amsterdam – Specialty Coffee in Amsterdam with Calm Local Energy",
     "images": [
       "images/places/back-to-black-amsterdam.jpg"
     ],
-    "short_description": "Specialty coffee spot with minimalist charm and dog lovers — carefully brewed cups and cozy corners for lingering or catching up with friends.",
-    "description": "Back to Black is a minimalist specialty coffee Amsterdam spot with carefully brewed cups, dog-friendly energy and cozy corners.",
+    "short_description": "Looking for specialty coffee in Amsterdam? Back to Black is worth a stop for carefully brewed cups, calm corners, and a neighborhood feel that never tries too hard.",
+    "description": "Back to Black is a strong Amsterdam coffee pick if the drink matters as much as the atmosphere. The room is understated, the coffee is taken seriously, and the crowd tends to be local enough that it still feels like a real neighborhood spot rather than just another photogenic caffeine stop.\n\nThe downside is that it is quieter and more minimal than many brunch-focused cafes, so it is not the best choice for a long, loud group meet-up or a full meal. Skip it when you want a big breakfast scene, and go when you want a proper coffee and a softer pace.",
     "coordinates": [
       52.3849,
       4.8751
@@ -1634,8 +1640,8 @@
     "adress": "Van Hallstraat 268, 1051 HM Amsterdam",
     "created_on": "2026-03-10T14:28:00Z",
     "vibes": [
-      "easygoing",
-      "coffee_and_chill"
+      "coffee_and_chill",
+      "easygoing"
     ],
     "updated_on": "2026-03-10T14:28:00Z"
   },
@@ -1643,12 +1649,12 @@
     "place": "Museum Vrolik",
     "city": "Amsterdam",
     "vibe": "culture_craving",
-    "title": "Museum Vrolik Amsterdam – Offbeat Science and Medical Curiosities",
+    "title": "Museum Vrolik Amsterdam – Medical Museum in Amsterdam for Curious Minds",
     "images": [
       "images/places/museum-vrolik-amsterdam.jpg"
     ],
-    "short_description": "Quirky medical museum blending history, science, and curiosity — step in for a fascinating, slightly offbeat learning experience that sparks conversation.",
-    "description": "Museum Vrolik is a quirky Amsterdam medical museum where history, science and alternative curiosity combine into a striking culture stop.",
+    "short_description": "Looking for a medical museum in Amsterdam? Museum Vrolik is worth visiting for its rare specimens, unusual history, and a genuinely memorable culture stop.",
+    "description": "Museum Vrolik is one of the most unusual museums in Amsterdam, and that is exactly why it works. The collection of anatomical specimens and medical history is fascinating if you like offbeat culture, science, or places that start real conversations instead of offering a generic museum loop.\n\nThe obvious downside is that it is not for everyone: some displays are intense, and the setting is more academic than atmospheric. Skip it if you are squeamish or want a lighter museum day, and go when you are in the mood for something specific, strange, and genuinely memorable.",
     "coordinates": [
       52.2965,
       4.9578
@@ -1657,21 +1663,21 @@
     "created_on": "2026-03-10T14:30:00Z",
     "vibes": [
       "culture_craving",
-      "hidden_gems",
-      "alternative"
+      "alternative",
+      "hidden_gems"
     ],
     "updated_on": "2026-03-10T14:30:00Z"
   },
   {
     "place": "De Japanner Strandeiland",
     "city": "Amsterdam",
-    "vibe": "easygoing",
-    "title": "De Japanner Strandeiland Amsterdam – Sushi and Cocktails by the Water",
+    "vibe": "golden_summertime",
+    "title": "De Japanner Strandeiland Amsterdam – Waterside Sushi Spot for Summer Evenings",
     "images": [
       "images/places/de-japanner-strandeiland-amsterdam.jpg"
     ],
-    "short_description": "Beachy Japanese-inspired café with sushi, cocktails, and sunny terrace vibes — perfect for relaxing by the water while enjoying light bites and good company.",
-    "description": "De Japanner Strandeiland is a beachy Japanese-inspired Amsterdam café with sushi, cocktails and sunny waterside terrace atmosphere.",
+    "short_description": "Looking for a waterside restaurant in Amsterdam? De Japanner Strandeiland is worth it for sushi, cocktails, and one of the better summer terraces by the water.",
+    "description": "De Japanner Strandeiland makes most sense on a warm day, when the terrace and water views do half the work for you. The sushi and cocktails keep things light, the setting feels more relaxed than central Amsterdam, and it is an easy choice for a summer date, a catch-up with friends, or a dinner that leans more scenic than formal.\n\nThe downside is that the location is part of the appeal, so bad weather takes a lot away, and it is not the place for a cozy winter dinner or a budget meal. Skip it when the forecast is weak or you want something more intimate, and go when you want sunshine, space, and a casual evening by the water.",
     "coordinates": [
       52.3531,
       5.0048
@@ -1679,21 +1685,22 @@
     "adress": "Pampuslaan 505, 1087 HP Amsterdam",
     "created_on": "2026-03-10T14:32:00Z",
     "vibes": [
+      "golden_summertime",
       "easygoing",
-      "golden_summertime"
+      "date_night"
     ],
     "updated_on": "2026-04-08T14:32:00Z"
   },
   {
     "place": "Restaurant De Tuin van de Vier Windstreken",
     "city": "Rotterdam",
-    "vibe": "easygoing",
-    "title": "De Tuin van de Vier Windstreken Rotterdam – Green Dining by the Lake",
+    "vibe": "golden_summertime",
+    "title": "Restaurant De Tuin van de Vier Windstreken",
     "images": [
       "images/places/de-tuin-van-de-vier-windstreken-rotterdam.jpg"
     ],
-    "short_description": "Charming restaurant surrounded by greenery with seasonal dishes — casual yet thoughtful dining for long lunches or cozy evenings in nature-inspired surroundings.",
-    "description": "Restaurant De Tuin van de Vier Windstreken offers greenery-surrounded Rotterdam dining with seasonal dishes and relaxed date-friendly atmosphere.",
+    "short_description": "Looking for a restaurant in Rotterdam by the water? De Tuin van de Vier Windstreken is worth it for lake views, easy summer dining, and long terrace lunches when the weather cooperates.",
+    "description": "Restaurant De Tuin van de Vier Windstreken is a strong Rotterdam pick when you want a meal that feels a little removed from the city without leaving it completely behind. The terrace by the Kralingse Plas is the main reason to come, especially on warm days when lunch, drinks, or an easy dinner can stretch out with a view of the water.\n\nThe downside is that the setting does a lot of the heavy lifting, so the experience is less compelling in bad weather or at peak summer times when it gets busy. Skip it if you want something intimate, central, or purely food-driven, and go when sunshine, space, and a relaxed lakeside mood matter most.",
     "coordinates": [
       51.9248,
       4.5314
@@ -1701,9 +1708,8 @@
     "adress": "Plaszoom 354, 3062 CL Rotterdam",
     "created_on": "2026-03-10T14:34:00Z",
     "vibes": [
-      "easygoing",
-      "date_night",
-      "golden_summertime"
+      "golden_summertime",
+      "easygoing"
     ],
     "updated_on": "2026-03-10T14:34:00Z"
   },
@@ -1826,7 +1832,7 @@
     ]
   },
   {
-    "place": "Oasis Rotterdam (formerly Mecca Oasis)",
+    "place": "Oasis Rotterdam",
     "city": "Rotterdam",
     "vibe": "easygoing",
     "title": "Oasis Rotterdam",

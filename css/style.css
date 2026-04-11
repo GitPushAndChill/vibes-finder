@@ -280,6 +280,12 @@ body > * {
     padding: calc(var(--space-l) + 6px) 0;
 }
 
+main.container > section {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* SEO internal linking blocks */
 .seo-linkline {
     margin-top: var(--space-s);
@@ -739,6 +745,30 @@ body > * {
 .hero { padding: var(--space-l) 0; text-align:center; }
 .hero-title { margin: 0 0 var(--space-xs) 0; font-size: 2.35rem; font-family: var(--font-heading); letter-spacing: 0.01em; }
 .hero-sub { margin: 0; color: var(--text-secondary); }
+
+.hero-title,
+.hero-sub,
+.recent-posts-hook,
+.vibe-actions-hook,
+#city-vibe-map h2,
+.seo-linkline {
+    max-width: 68ch;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-title,
+#city-vibe-map h2,
+.recent-posts-title {
+    text-wrap: balance;
+}
+
+.hero-sub,
+.recent-posts-hook,
+.vibe-actions-hook,
+.seo-linkline {
+    text-wrap: pretty;
+}
 
 .recent-posts-intro {
     margin: 0 0 var(--space-s) 0;
@@ -2128,6 +2158,7 @@ html[data-theme='light'] .map-popup-open:hover {
 
     .recent-posts-intro {
         gap: 8px;
+        text-align: center;
     }
 
     .recent-posts-hook {
@@ -2144,6 +2175,29 @@ html[data-theme='light'] .map-popup-open:hover {
     #city-vibe-map h2,
     .recent-posts-title {
         font-size: 1.16rem;
+    }
+
+    .hero {
+        padding: 28px 0 20px;
+    }
+
+    .hero-title {
+        font-size: 1.95rem;
+        line-height: 1.16;
+    }
+
+    .hero-sub,
+    .recent-posts-hook,
+    .vibe-actions-hook,
+    .seo-linkline {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .recent-posts-title,
+    #city-vibe-map h2 {
+        text-align: center;
+        margin-top: 8px;
     }
 
     .filter-group {
