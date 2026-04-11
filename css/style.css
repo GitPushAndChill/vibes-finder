@@ -746,6 +746,22 @@ main.container > section {
 .hero-title { margin: 0 0 var(--space-xs) 0; font-size: 2.35rem; font-family: var(--font-heading); letter-spacing: 0.01em; }
 .hero-sub { margin: 0; color: var(--text-secondary); }
 
+.home-main .hero {
+    padding-bottom: var(--space-s);
+}
+
+.home-main .hero + .recent-posts-intro {
+    margin-top: calc(var(--space-s) * -1);
+}
+
+.home-main .hero + .preview-grid {
+    padding-top: var(--space-s);
+}
+
+.home-main .hero + #city-vibe-map {
+    margin-top: calc(var(--space-xs) * -1);
+}
+
 .hero-title,
 .hero-sub,
 .recent-posts-hook,
@@ -2176,6 +2192,19 @@ html[data-theme='light'] .map-popup-open:hover {
 
     .hero {
         padding: 28px 0 20px;
+    }
+
+    .home-main .hero {
+        padding-bottom: 12px;
+    }
+
+    .home-main .hero + .recent-posts-intro,
+    .home-main .hero + #city-vibe-map {
+        margin-top: -6px;
+    }
+
+    .home-main .hero + .preview-grid {
+        padding-top: 12px;
     }
 
     .hero-title {
