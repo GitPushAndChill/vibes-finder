@@ -83,6 +83,69 @@ function escapeHtml(value) {
     .replace(/'/g, '&#39;');
 }
 
+function getPostPageTitle(post) {
+  return String(post?.title || post?.place || '').trim();
+}
+
+function getStructuredDataText(post) {
+  return [
+    post?.place,
+    post?.title,
+    post?.short_description,
+    post?.description,
+    ...(Array.isArray(post?.vibes) ? post.vibes : []),
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase();
+}
+
+function textIncludesAny(text, terms) {
+  return terms.some((term) => text.includes(term));
+}
+
+function getStructuredDataType(post) {
+  const text = getStructuredDataText(post);
+
+  if (textIncludesAny(text, ['museum', 'observatory', 'fotomuseum', 'photo museum'])) {
+    return 'Museum';
+  }
+
+  if (textIncludesAny(text, ['stripclub', 'adult entertainment'])) {
+    return 'NightClub';
+  }
+
+  if (textIncludesAny(text, ['comedy', 'improv', 'stand-up', 'laser tag', 'arcade', 'gaming', 'immersive experience', 'petanque'])) {
+    return 'EntertainmentBusiness';
+  }
+
+  if (textIncludesAny(text, ['sauna', 'yoga', 'wellness', 'spa'])) {
+    return 'HealthClub';
+  }
+
+  if (textIncludesAny(text, ['brewery', 'brouwerij', 'brewing', 'taproom'])) {
+    return 'Brewery';
+  }
+
+  if (textIncludesAny(text, ['bakery', 'pastries', 'pastry', 'bread'])) {
+    return 'Bakery';
+  }
+
+  if (textIncludesAny(text, ['restaurant', 'kitchen', 'ramen', 'sushi', 'izakaya', 'food hall', 'foodhallen', 'gastropub', 'pancake', 'dining'])) {
+    return 'Restaurant';
+  }
+
+  if (textIncludesAny(text, ['cocktail', 'speakeasy', 'skybar', 'wine bar', 'wijnbar', 'proeflokaal', 'pub', 'beer bar', 'bar '])) {
+    return 'BarOrPub';
+  }
+
+  if (textIncludesAny(text, ['coffee', 'cafe', 'café', 'brunch'])) {
+    return 'CafeOrCoffeeShop';
+  }
+
+  return 'TouristAttraction';
+}
+
 function buildPostRouteMap(posts) {
   const entries = posts.map((post) => {
     const citySlug = slugifyAscii(post.city);
@@ -390,6 +453,9 @@ async function main() {
     const { post, route, citySlug } = routeList[i];
     const outDir = path.join(ROOT, route);
     await ensureDir(outDir);
+    const pageTitle = getPostPageTitle(post);
+    const structuredDataType = getStructuredDataType(post);
+    const placeName = String(post.place || '').trim();
 
     const canonical = `${BASE_URL}/${route}/`;
     const firstImage = String(post.images[0] || '').replace(/^\/+/, '');
@@ -399,10 +465,10 @@ async function main() {
     const next = routeList[(i + 1) % routeList.length];
 
     const prevLink = routeList.length > 1
-      ? `<a class="btn modal-nav-btn" href="/${prev.route}/index.html" aria-label="Open previous article: ${escapeHtml(prev.post.title)}">&larr; Previous article</a>`
+      ? `<a class="btn modal-nav-btn" href="/${prev.route}/index.html" aria-label="Open previous article: ${escapeHtml(getPostPageTitle(prev.post))}">&larr; Previous article</a>`
       : '';
     const nextLink = routeList.length > 1
-      ? `<a class="btn modal-nav-btn" href="/${next.route}/index.html" aria-label="Open next article: ${escapeHtml(next.post.title)}">Next article &rarr;</a>`
+      ? `<a class="btn modal-nav-btn" href="/${next.route}/index.html" aria-label="Open next article: ${escapeHtml(getPostPageTitle(next.post))}">Next article &rarr;</a>`
       : '';
 
     const similarDestination = findSimilarDestination(routeList[i], routeList, cityCentroids);
@@ -422,8 +488,9 @@ async function main() {
     const metaDescription = String(post.short_description || post.description || '').trim().slice(0, 160);
     const jsonLd = {
       '@context': 'https://schema.org',
-      '@type': 'TouristAttraction',
-      name: post.place,
+      '@type': structuredDataType,
+      name: pageTitle,
+      ...(placeName && placeName !== pageTitle ? { alternateName: placeName } : {}),
       description: post.description,
       image: post.images.map((img) => `${BASE_URL}/${String(img).replace(/^\/+/, '')}`),
       address: post.adress,
@@ -439,15 +506,15 @@ async function main() {
 
     const html = replaceTokens(postTemplate, {
       SITE_ROOT: '/',
-      PAGE_TITLE: escapeHtml(post.title),
+      PAGE_TITLE: escapeHtml(pageTitle),
       META_DESCRIPTION: escapeHtml(metaDescription),
       CANONICAL_URL: escapeHtml(canonical),
-      OG_TITLE: escapeHtml(post.title),
+      OG_TITLE: escapeHtml(pageTitle),
       OG_DESCRIPTION: escapeHtml(metaDescription),
       OG_IMAGE: escapeHtml(ogImage),
       JSON_LD: JSON.stringify(jsonLd).replace(/<\//g, '<\\/'),
       IMAGE_SLIDER: renderImageSlider(post),
-      POST_TITLE: escapeHtml(post.title),
+      POST_TITLE: escapeHtml(pageTitle),
       POST_CITY: escapeHtml(post.city),
       POST_SHORT_DESCRIPTION: escapeHtml(post.short_description),
       POST_DESCRIPTION: escapeHtml(post.description),

@@ -1332,13 +1332,14 @@ function createMapMarkerIcon(postVibes) {
 }
 
 function buildMapPopupHtml(post, postVibes, includeOpenButton) {
+    const displayTitle = getPostDisplayTitle(post);
     const popupVibes = postVibes.length
         ? `<div class="map-popup-vibes">${postVibes.map((v) => `${getVibeIcon(v)} ${getVibeLabel(v)}`).join(' • ')}</div>`
         : '';
 
     const imagePath = post?.images?.[0] ? toSitePath(post.images[0]) : '';
     const imageHtml = imagePath
-        ? `<img class="map-popup-image" src="${escapeHtmlAttr(imagePath)}" alt="${escapeHtmlAttr(post.place || post.title || '')}" loading="lazy" decoding="async" fetchpriority="low" width="360" height="208">`
+        ? `<img class="map-popup-image" src="${escapeHtmlAttr(imagePath)}" alt="${escapeHtmlAttr(displayTitle)}" loading="lazy" decoding="async" fetchpriority="low" width="360" height="208">`
         : '';
 
     const openButtonHtml = includeOpenButton
@@ -1346,9 +1347,9 @@ function buildMapPopupHtml(post, postVibes, includeOpenButton) {
         : '';
 
     return `
-        <div class="map-popup-card" role="button" tabindex="0" aria-label="Open post: ${escapeHtmlAttr(post.title || '')}">
+        <div class="map-popup-card" role="button" tabindex="0" aria-label="Open post: ${escapeHtmlAttr(displayTitle)}">
             <div class="map-popup-city">${escapeHtmlText(post.city || '')}</div>
-            <div class="map-popup-title">${escapeHtmlText(post.title || '')}</div>
+            <div class="map-popup-title">${escapeHtmlText(displayTitle)}</div>
             ${popupVibes}
             ${imageHtml}
             ${openButtonHtml}
