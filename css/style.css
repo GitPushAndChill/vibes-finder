@@ -820,8 +820,7 @@ main.container > section {
 /* Home quick actions */
 .vibe-actions {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
     align-items: stretch;
     gap: var(--space-s);
     padding: var(--space-s) 0;
@@ -864,9 +863,13 @@ main.container > section {
     }
 }
 
+.vibe-action-btn:focus {
+    outline: none;
+}
+
 .vibe-action-btn:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 28%, transparent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 44%, transparent);
 }
 
 @supports not (background: color-mix(in srgb, red, blue)) {
@@ -875,29 +878,18 @@ main.container > section {
     }
 }
 
-.vibe-action-surprise {
-    flex: 1 1 0;
-    max-width: 520px;
-}
-
+.vibe-action-surprise,
 .vibe-action-find {
-    flex: 1 1 0;
-    max-width: 520px;
+    width: 100%;
+    min-height: 46px;
+    padding: 0 18px;
+    white-space: nowrap;
+    line-height: 1;
 }
 
 @media (max-width: 600px) {
-    .vibe-actions {
-        flex-direction: column;
-        align-items: stretch;
-    }
     .vibe-actions-hook {
         font-size: 0.9rem;
-    }
-    .vibe-action-surprise,
-    .vibe-action-find {
-        flex: 1 1 auto;
-        max-width: none;
-        width: 100%;
     }
 }
 
@@ -1278,10 +1270,15 @@ main.container > section {
     }
 }
 
+.btn:focus,
+.vibe-action-btn:focus {
+    outline: none;
+}
+
 .btn:focus-visible,
 .vibe-action-btn:focus-visible {
     outline: none;
-    box-shadow: var(--shadow-ring), 0 16px 34px rgba(198, 167, 110, 0.16);
+    box-shadow: 0 0 0 3px rgba(198, 167, 110, 0.45), 0 16px 34px rgba(198, 167, 110, 0.16);
 }
 
 @supports not (background: color-mix(in srgb, red, blue)) {
