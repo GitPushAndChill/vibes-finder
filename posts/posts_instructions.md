@@ -18,7 +18,7 @@ Adhere to the folowing data definition when populating the json file for adding 
 - **place**: the name of the place.
 - **city**: the city where the place is
 - **vibes**: the vibes that the place is giving. only pick vibes that are available in the content/vibes.yml. pick multiple vibes if there are multiple matches. do not link more than 3.
-- **title**: the name of the place.
+- **title**: the name of the place with short SEO optimized add on.
 - **images**: cute pictures of the place and the vibe. Add minimal 1 picture and maximal 6 pictures in .jpg format.
 - **short_description**: Max 2 sentences. Must: Hook attention immediately, Include a relevant SEO keyword (e.g. “restaurant in Hoofddorp”), Clearly state why this place is worth visiting. Think: “Why should I click this?”
 - **description**: The description of the place and vibe, not longer than two paragraphs. It should give reasons to visit the place. Make the description targeted for an audience searching for the best places in the netherlands. Include at least one downside for visiting this place. It should also be clear when not to visit the place. Help readers decide quickly if it fits their situation. Be honest (avoid sounding promotional).

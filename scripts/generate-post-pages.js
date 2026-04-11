@@ -83,6 +83,10 @@ function escapeHtml(value) {
     .replace(/'/g, '&#39;');
 }
 
+function getPostPageTitle(post) {
+  return String(post?.title || post?.place || '').trim();
+}
+
 function buildPostRouteMap(posts) {
   const entries = posts.map((post) => {
     const citySlug = slugifyAscii(post.city);
@@ -390,6 +394,7 @@ async function main() {
     const { post, route, citySlug } = routeList[i];
     const outDir = path.join(ROOT, route);
     await ensureDir(outDir);
+    const pageTitle = getPostPageTitle(post);
 
     const canonical = `${BASE_URL}/${route}/`;
     const firstImage = String(post.images[0] || '').replace(/^\/+/, '');
@@ -399,10 +404,10 @@ async function main() {
     const next = routeList[(i + 1) % routeList.length];
 
     const prevLink = routeList.length > 1
-      ? `<a class="btn modal-nav-btn" href="/${prev.route}/index.html" aria-label="Open previous article: ${escapeHtml(prev.post.title)}">&larr; Previous article</a>`
+      ? `<a class="btn modal-nav-btn" href="/${prev.route}/index.html" aria-label="Open previous article: ${escapeHtml(getPostPageTitle(prev.post))}">&larr; Previous article</a>`
       : '';
     const nextLink = routeList.length > 1
-      ? `<a class="btn modal-nav-btn" href="/${next.route}/index.html" aria-label="Open next article: ${escapeHtml(next.post.title)}">Next article &rarr;</a>`
+      ? `<a class="btn modal-nav-btn" href="/${next.route}/index.html" aria-label="Open next article: ${escapeHtml(getPostPageTitle(next.post))}">Next article &rarr;</a>`
       : '';
 
     const similarDestination = findSimilarDestination(routeList[i], routeList, cityCentroids);
@@ -439,15 +444,15 @@ async function main() {
 
     const html = replaceTokens(postTemplate, {
       SITE_ROOT: '/',
-      PAGE_TITLE: escapeHtml(post.title),
+      PAGE_TITLE: escapeHtml(pageTitle),
       META_DESCRIPTION: escapeHtml(metaDescription),
       CANONICAL_URL: escapeHtml(canonical),
-      OG_TITLE: escapeHtml(post.title),
+      OG_TITLE: escapeHtml(pageTitle),
       OG_DESCRIPTION: escapeHtml(metaDescription),
       OG_IMAGE: escapeHtml(ogImage),
       JSON_LD: JSON.stringify(jsonLd).replace(/<\//g, '<\\/'),
       IMAGE_SLIDER: renderImageSlider(post),
-      POST_TITLE: escapeHtml(post.title),
+      POST_TITLE: escapeHtml(pageTitle),
       POST_CITY: escapeHtml(post.city),
       POST_SHORT_DESCRIPTION: escapeHtml(post.short_description),
       POST_DESCRIPTION: escapeHtml(post.description),
